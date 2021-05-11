@@ -32,5 +32,11 @@ namespace Biblioteka
             panelReader.Visible = !panelReader.Visible;
             panelLibrarian.Visible = !panelLibrarian.Visible;
         }
+
+        private void booksManagementButton_Click(object sender, EventArgs e)
+        {
+            BookManagementForm bookManagement = new BookManagementForm();
+            bookManagement.Show();
+        }
     }
 }

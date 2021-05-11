@@ -58,6 +58,12 @@
     <Compile Include="Autor.cs" />
     <Compile Include="Bibliotekarz.cs" />
     <Compile Include="Bibliotekarz_Wiadomość.cs" />
+    <Compile Include="BookManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookManagementForm.Designer.cs">
+      <DependentUpon>BookManagementForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Czytelnik.cs" />
     <Compile Include="Czytelnik_Wiadomość.cs" />
     <Compile Include="Egzemplarz.cs" />
@@ -74,11 +80,20 @@
     <Compile Include="Program.cs" />
     <Compile Include="Prolongata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublisherForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PublisherForm.Designer.cs">
+      <DependentUpon>PublisherForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Rezerwacje.cs" />
     <Compile Include="Wiadomość.cs" />
     <Compile Include="Wydawnictwo.cs" />
     <Compile Include="Wypożyczenie.cs" />
     <Compile Include="Wystawa.cs" />
+    <EmbeddedResource Include="BookManagementForm.resx">
+      <DependentUpon>BookManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainDashboard.resx">
       <DependentUpon>MainDashboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -91,6 +106,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="PublisherForm.resx">
+      <DependentUpon>PublisherForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
