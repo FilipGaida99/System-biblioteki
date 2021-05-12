@@ -56,18 +56,43 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Autor.cs" />
+    <Compile Include="AutorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AutorForm.Designer.cs">
+      <DependentUpon>AutorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bibliotekarz.cs" />
     <Compile Include="Bibliotekarz_Wiadomość.cs" />
+    <Compile Include="BookAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookAddForm.Designer.cs">
+      <DependentUpon>BookAddForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="BookManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="BookManagementForm.Designer.cs">
       <DependentUpon>BookManagementForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="BookModificationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookModificationForm.Designer.cs">
+      <DependentUpon>BookModificationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CopyModificationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CopyModificationForm.Designer.cs">
+      <DependentUpon>CopyModificationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Czytelnik.cs" />
     <Compile Include="Czytelnik_Wiadomość.cs" />
     <Compile Include="Egzemplarz.cs" />
     <Compile Include="Egzemplarz_elektroniczny.cs" />
+    <Compile Include="FormExtensions.cs" />
     <Compile Include="MainDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,8 +116,20 @@
     <Compile Include="Wydawnictwo.cs" />
     <Compile Include="Wypożyczenie.cs" />
     <Compile Include="Wystawa.cs" />
+    <EmbeddedResource Include="AutorForm.resx">
+      <DependentUpon>AutorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookAddForm.resx">
+      <DependentUpon>BookAddForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BookManagementForm.resx">
       <DependentUpon>BookManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookModificationForm.resx">
+      <DependentUpon>BookModificationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CopyModificationForm.resx">
+      <DependentUpon>CopyModificationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainDashboard.resx">
       <DependentUpon>MainDashboard.cs</DependentUpon>

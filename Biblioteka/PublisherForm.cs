@@ -13,6 +13,7 @@ namespace Biblioteka
     public partial class PublisherForm : Form
     {
         public string choosedPublisherName;
+        List<Wydawnictwo> publishers;
 
         public PublisherForm()
         {
@@ -23,48 +24,45 @@ namespace Biblioteka
         {
             using(var db = new BibliotekaDB())
             {
-                var publishers = db.Wydawnictwo.OrderBy(wyd => wyd.Nazwa).ToList();
-                comboBox.BeginUpdate();
-                foreach (var publisher in publishers)
-                {
-                    comboBox.Items.Add(publisher.Nazwa);
-                }
-                comboBox.EndUpdate();
+                publishers = db.Wydawnictwo.OrderBy(publisher => publisher.Nazwa).ToList();
+                UpdateComboBox();
             }
         }
 
         private void chooseButton_Click(object sender, EventArgs e)
         {
-            choosedPublisherName = (string)comboBox.SelectedItem;
-            Return();
+            if (comboBox.SelectedIndex >= 0)
+            {
+                choosedPublisherName = (string)comboBox.SelectedItem;
+                this.Return();
+            }
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            choosedPublisherName = nazwa.Text;
-            Return();
-        }
-
-        private void Return()
-        {
-            DialogResult = DialogResult.OK;
-            Close();
+            choosedPublisherName = publisherNameText.Text;
+            this.Return();
         }
 
         private void filterButton_Click(object sender, EventArgs e)
         {
             using (var db = new BibliotekaDB())
             {
-                var publishers = db.Wydawnictwo.Where(wyd => wyd.Nazwa.Contains(nazwa.Text)).OrderBy(wyd => wyd.Nazwa).ToList();
-                
-                comboBox.BeginUpdate();
-                comboBox.Items.Clear();
-                foreach (var publisher in publishers)
-                {
-                    comboBox.Items.Add(publisher.Nazwa);
-                }
-                comboBox.EndUpdate();
+                publishers = db.Wydawnictwo.Where(publisher => publisher.Nazwa.Contains(publisherNameText.Text)).OrderBy(wyd => wyd.Nazwa).ToList();
+
+                UpdateComboBox();
             }
+        }
+
+        private void UpdateComboBox()
+        {
+            comboBox.BeginUpdate();
+            comboBox.Items.Clear();
+            foreach (var publisher in publishers)
+            {
+                comboBox.Items.Add(publisher.Nazwa);
+            }
+            comboBox.EndUpdate();
         }
     }
 }

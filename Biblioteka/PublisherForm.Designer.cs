@@ -29,11 +29,13 @@ namespace Biblioteka
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.Label label1;
             this.filterButton = new System.Windows.Forms.Button();
             this.chooseButton = new System.Windows.Forms.Button();
             this.comboBox = new System.Windows.Forms.ComboBox();
             this.addButton = new System.Windows.Forms.Button();
-            this.nazwa = new System.Windows.Forms.TextBox();
+            this.publisherNameText = new System.Windows.Forms.TextBox();
+            label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // filterButton
@@ -76,21 +78,31 @@ namespace Biblioteka
             // 
             // nazwa
             // 
-            this.nazwa.Location = new System.Drawing.Point(11, 41);
-            this.nazwa.Name = "nazwa";
-            this.nazwa.Size = new System.Drawing.Size(162, 20);
-            this.nazwa.TabIndex = 5;
+            this.publisherNameText.Location = new System.Drawing.Point(11, 41);
+            this.publisherNameText.Name = "nazwa";
+            this.publisherNameText.Size = new System.Drawing.Size(162, 20);
+            this.publisherNameText.TabIndex = 5;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(11, 21);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(43, 13);
+            label1.TabIndex = 10;
+            label1.Text = "Nazwa:";
             // 
             // PublisherForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(279, 116);
+            this.Controls.Add(label1);
             this.Controls.Add(this.filterButton);
             this.Controls.Add(this.chooseButton);
             this.Controls.Add(this.comboBox);
             this.Controls.Add(this.addButton);
-            this.Controls.Add(this.nazwa);
+            this.Controls.Add(this.publisherNameText);
             this.Name = "PublisherForm";
             this.Text = "Wybór wydawnictwa";
             this.Load += new System.EventHandler(this.WydawnictwoForm_Load);
@@ -105,6 +117,6 @@ namespace Biblioteka
         private System.Windows.Forms.Button chooseButton;
         private System.Windows.Forms.ComboBox comboBox;
         private System.Windows.Forms.Button addButton;
-        private System.Windows.Forms.TextBox nazwa;
+        private System.Windows.Forms.TextBox publisherNameText;
     }
 }
