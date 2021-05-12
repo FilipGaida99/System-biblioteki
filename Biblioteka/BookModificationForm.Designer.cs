@@ -30,7 +30,6 @@ namespace Biblioteka
         private void InitializeComponent()
         {
             System.Windows.Forms.Label label6;
-            System.Windows.Forms.Label label5;
             System.Windows.Forms.Label label4;
             System.Windows.Forms.Label label3;
             System.Windows.Forms.Label label2;
@@ -40,16 +39,14 @@ namespace Biblioteka
             this.acceptButton = new System.Windows.Forms.Button();
             this.deleteAutorButton = new System.Windows.Forms.Button();
             this.addAutorButton = new System.Windows.Forms.Button();
-            this.autorsList = new System.Windows.Forms.ListBox();
-            this.choosePublisherButton = new System.Windows.Forms.Button();
-            this.publisherText = new System.Windows.Forms.TextBox();
+            this.authorsList = new System.Windows.Forms.ListBox();
             this.descriptionText = new System.Windows.Forms.TextBox();
             this.titleText = new System.Windows.Forms.TextBox();
             this.datePicker = new System.Windows.Forms.DateTimePicker();
             this.isbnText = new System.Windows.Forms.TextBox();
             this.daySpanPicker = new System.Windows.Forms.NumericUpDown();
+            this.publisherPicker = new Biblioteka.PublisherPicker();
             label6 = new System.Windows.Forms.Label();
-            label5 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
@@ -66,15 +63,6 @@ namespace Biblioteka
             label6.Size = new System.Drawing.Size(45, 13);
             label6.TabIndex = 11;
             label6.Text = "Autorzy:";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(11, 95);
-            label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(77, 13);
-            label5.TabIndex = 8;
-            label5.Text = "Wydawnictwo:";
             // 
             // label4
             // 
@@ -161,30 +149,13 @@ namespace Biblioteka
             this.addAutorButton.UseVisualStyleBackColor = true;
             this.addAutorButton.Click += new System.EventHandler(this.addAutorButton_Click);
             // 
-            // autorsList
+            // authorsList
             // 
-            this.autorsList.FormattingEnabled = true;
-            this.autorsList.Location = new System.Drawing.Point(95, 119);
-            this.autorsList.Name = "autorsList";
-            this.autorsList.Size = new System.Drawing.Size(99, 95);
-            this.autorsList.TabIndex = 12;
-            // 
-            // choosePublisherButton
-            // 
-            this.choosePublisherButton.Location = new System.Drawing.Point(200, 90);
-            this.choosePublisherButton.Name = "choosePublisherButton";
-            this.choosePublisherButton.Size = new System.Drawing.Size(75, 23);
-            this.choosePublisherButton.TabIndex = 10;
-            this.choosePublisherButton.Text = "Wybierz";
-            this.choosePublisherButton.UseVisualStyleBackColor = true;
-            this.choosePublisherButton.Click += new System.EventHandler(this.choosePublisherButton_Click);
-            // 
-            // publisherText
-            // 
-            this.publisherText.Location = new System.Drawing.Point(94, 92);
-            this.publisherText.Name = "publisherText";
-            this.publisherText.Size = new System.Drawing.Size(100, 20);
-            this.publisherText.TabIndex = 9;
+            this.authorsList.FormattingEnabled = true;
+            this.authorsList.Location = new System.Drawing.Point(95, 119);
+            this.authorsList.Name = "authorsList";
+            this.authorsList.Size = new System.Drawing.Size(99, 95);
+            this.authorsList.TabIndex = 12;
             // 
             // descriptionText
             // 
@@ -230,11 +201,20 @@ namespace Biblioteka
             0,
             0});
             // 
+            // publisherPicker
+            // 
+            this.publisherPicker.Location = new System.Drawing.Point(8, 83);
+            this.publisherPicker.Name = "publisherPicker";
+            this.publisherPicker.PublisherName = "";
+            this.publisherPicker.Size = new System.Drawing.Size(271, 30);
+            this.publisherPicker.TabIndex = 19;
+            // 
             // BookModificationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(621, 264);
+            this.Controls.Add(this.publisherPicker);
             this.Controls.Add(label7);
             this.Controls.Add(this.daySpanPicker);
             this.Controls.Add(this.cancelButton);
@@ -244,15 +224,12 @@ namespace Biblioteka
             this.Controls.Add(label1);
             this.Controls.Add(this.addAutorButton);
             this.Controls.Add(label2);
-            this.Controls.Add(this.autorsList);
+            this.Controls.Add(this.authorsList);
             this.Controls.Add(this.isbnText);
             this.Controls.Add(label6);
             this.Controls.Add(this.datePicker);
-            this.Controls.Add(this.choosePublisherButton);
             this.Controls.Add(label3);
-            this.Controls.Add(this.publisherText);
             this.Controls.Add(label4);
-            this.Controls.Add(label5);
             this.Controls.Add(this.titleText);
             this.Name = "BookModificationForm";
             this.Text = "Modyfikacja ksiązki";
@@ -268,13 +245,12 @@ namespace Biblioteka
         private System.Windows.Forms.Button acceptButton;
         private System.Windows.Forms.Button deleteAutorButton;
         private System.Windows.Forms.Button addAutorButton;
-        private System.Windows.Forms.ListBox autorsList;
-        private System.Windows.Forms.Button choosePublisherButton;
-        private System.Windows.Forms.TextBox publisherText;
+        private System.Windows.Forms.ListBox authorsList;
         private System.Windows.Forms.TextBox descriptionText;
         private System.Windows.Forms.TextBox titleText;
         private System.Windows.Forms.DateTimePicker datePicker;
         private System.Windows.Forms.TextBox isbnText;
         private System.Windows.Forms.NumericUpDown daySpanPicker;
+        private PublisherPicker publisherPicker;
     }
 }

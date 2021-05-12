@@ -29,27 +29,28 @@ namespace Biblioteka
         /// </summary>
         private void InitializeComponent()
         {
-            this.addButton = new System.Windows.Forms.Button();
+            this.addBookButton = new System.Windows.Forms.Button();
             this.modButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.bookList = new System.Windows.Forms.ListBox();
             this.addCopy = new System.Windows.Forms.Button();
             this.copyList = new System.Windows.Forms.ListBox();
+            this.bookSearch = new Biblioteka.BookSearch();
             this.SuspendLayout();
             // 
-            // addButton
+            // addBookButton
             // 
-            this.addButton.Location = new System.Drawing.Point(18, 256);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(264, 42);
-            this.addButton.TabIndex = 0;
-            this.addButton.Text = "Dodaj nową książkę";
-            this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            this.addBookButton.Location = new System.Drawing.Point(13, 402);
+            this.addBookButton.Name = "addBookButton";
+            this.addBookButton.Size = new System.Drawing.Size(264, 42);
+            this.addBookButton.TabIndex = 0;
+            this.addBookButton.Text = "Dodaj nową książkę";
+            this.addBookButton.UseVisualStyleBackColor = true;
+            this.addBookButton.Click += new System.EventHandler(this.addBookButton_Click);
             // 
             // modButton
             // 
-            this.modButton.Location = new System.Drawing.Point(288, 64);
+            this.modButton.Location = new System.Drawing.Point(283, 210);
             this.modButton.Name = "modButton";
             this.modButton.Size = new System.Drawing.Size(112, 23);
             this.modButton.TabIndex = 3;
@@ -59,7 +60,7 @@ namespace Biblioteka
             // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(288, 93);
+            this.deleteButton.Location = new System.Drawing.Point(283, 239);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(112, 23);
             this.deleteButton.TabIndex = 2;
@@ -70,7 +71,7 @@ namespace Biblioteka
             // bookList
             // 
             this.bookList.FormattingEnabled = true;
-            this.bookList.Location = new System.Drawing.Point(18, 64);
+            this.bookList.Location = new System.Drawing.Point(13, 210);
             this.bookList.Name = "bookList";
             this.bookList.Size = new System.Drawing.Size(264, 186);
             this.bookList.TabIndex = 1;
@@ -78,7 +79,7 @@ namespace Biblioteka
             // 
             // addCopy
             // 
-            this.addCopy.Location = new System.Drawing.Point(406, 256);
+            this.addCopy.Location = new System.Drawing.Point(401, 402);
             this.addCopy.Name = "addCopy";
             this.addCopy.Size = new System.Drawing.Size(264, 42);
             this.addCopy.TabIndex = 4;
@@ -89,24 +90,32 @@ namespace Biblioteka
             // copyList
             // 
             this.copyList.FormattingEnabled = true;
-            this.copyList.Location = new System.Drawing.Point(406, 64);
+            this.copyList.Location = new System.Drawing.Point(401, 210);
             this.copyList.Name = "copyList";
             this.copyList.Size = new System.Drawing.Size(264, 186);
             this.copyList.TabIndex = 5;
+            // 
+            // bookSearch
+            // 
+            this.bookSearch.Location = new System.Drawing.Point(97, 12);
+            this.bookSearch.Name = "bookSearch";
+            this.bookSearch.Size = new System.Drawing.Size(466, 145);
+            this.bookSearch.TabIndex = 6;
             // 
             // BookManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(688, 315);
+            this.ClientSize = new System.Drawing.Size(688, 467);
+            this.Controls.Add(this.bookSearch);
             this.Controls.Add(this.copyList);
             this.Controls.Add(this.addCopy);
-            this.Controls.Add(this.addButton);
+            this.Controls.Add(this.addBookButton);
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.bookList);
             this.Controls.Add(this.modButton);
             this.Name = "BookManagementForm";
-            this.Text = "BookManagementForm";
+            this.Text = "Zarządzanie książkami";
             this.Load += new System.EventHandler(this.BookManagementForm_Load);
             this.ResumeLayout(false);
 
@@ -114,11 +123,12 @@ namespace Biblioteka
 
         #endregion
 
-        private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.Button addBookButton;
         private System.Windows.Forms.ListBox bookList;
         private System.Windows.Forms.Button modButton;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button addCopy;
         private System.Windows.Forms.ListBox copyList;
+        private BookSearch bookSearch;
     }
 }

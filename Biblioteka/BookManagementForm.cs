@@ -21,15 +21,6 @@ namespace Biblioteka
             InitializeComponent();
         }
 
-        private void addButton_Click(object sender, EventArgs e)
-        {
-            BookAddForm form = new BookAddForm();
-            if (form.ShowDialog(this) == DialogResult.OK)
-            {
-                UpdateBookList();
-            }
-        }
-
         private void modButton_Click(object sender, EventArgs e)
         {
             if (bookList.SelectedIndex >= 0)
@@ -47,6 +38,7 @@ namespace Biblioteka
                     BookModificationForm form = new BookModificationForm(books[bookList.SelectedIndex]);
                     if (form.ShowDialog(this) == DialogResult.OK)
                     {
+                       books[bookList.SelectedIndex] = form.managedBook;
                        UpdateBookList();
                     }
                 }
@@ -86,7 +78,6 @@ namespace Biblioteka
                 }
                 else
                 {
-
                     using (var db = new BibliotekaDB())
                     {
                         db.Książka.Remove(db.Książka.Find(deletedBookID));
@@ -101,20 +92,16 @@ namespace Biblioteka
 
         private void BookManagementForm_Load(object sender, EventArgs e)
         {
-            UpdateBookList();
+            bookSearch.onSearch += OnSearch;
         }
 
         private void UpdateBookList()
         {
             bookList.BeginUpdate();
-            using (var db = new BibliotekaDB())
+            bookList.Items.Clear();
+            foreach (var book in books)
             {
-                books = db.Książka.ToList();
-                bookList.Items.Clear();
-                foreach (var book in books)
-                {
-                    bookList.Items.Add(book.Tytuł);
-                }
+                bookList.Items.Add(book.Tytuł);
             }
             bookList.EndUpdate();
         }
@@ -155,6 +142,22 @@ namespace Biblioteka
                 {
                     UpdateCopyList();
                 }
+            }
+        }
+
+        private void OnSearch()
+        {
+            books = bookSearch.resultBooks;
+            UpdateBookList();
+        }
+
+        private void addBookButton_Click(object sender, EventArgs e)
+        {
+            BookAddForm form = new BookAddForm();
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                books.Add(form.managedBook);
+                UpdateBookList();
             }
         }
     }

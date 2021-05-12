@@ -1,7 +1,7 @@
 ﻿
 namespace Biblioteka
 {
-    partial class AutorForm
+    partial class AuthorForm
     {
         /// <summary>
         /// Required designer variable.
@@ -111,7 +111,7 @@ namespace Biblioteka
             this.chooseButton.UseVisualStyleBackColor = true;
             this.chooseButton.Click += new System.EventHandler(this.chooseButton_Click);
             // 
-            // AutorForm
+            // AuthorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -124,7 +124,7 @@ namespace Biblioteka
             this.Controls.Add(this.comboBox);
             this.Controls.Add(this.surnameText);
             this.Controls.Add(this.firstNameText);
-            this.Name = "AutorForm";
+            this.Name = "AuthorForm";
             this.Text = "Wybieranie autora";
             this.Load += new System.EventHandler(this.AutorForm_Load);
             this.ResumeLayout(false);
