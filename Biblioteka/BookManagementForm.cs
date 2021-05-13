@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Entity;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Biblioteka
@@ -156,8 +150,11 @@ namespace Biblioteka
             BookAddForm form = new BookAddForm();
             if (form.ShowDialog(this) == DialogResult.OK)
             {
-                books.Add(form.managedBook);
-                UpdateBookList();
+                if (form.managedBook != null)
+                {
+                    books.Add(form.managedBook);
+                    UpdateBookList();
+                }
             }
         }
     }

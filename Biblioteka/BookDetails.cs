@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Biblioteka
@@ -13,10 +8,19 @@ namespace Biblioteka
     public partial class BookDetails : Form
     {
         Książka book;
+        ListViewColumnSorter lvwColumnSorter;
+        const string ascArrow = " ▲";
+        const string descArrow = " ▼";
+
+
         public BookDetails(Książka presentedBook)
         {
             InitializeComponent();
             book = presentedBook;
+            lvwColumnSorter = new ListViewColumnSorter(2);
+            lvwColumnSorter.SortColumn = 0;
+            lvwColumnSorter.Order = SortOrder.Ascending;
+            copyList.ListViewItemSorter = lvwColumnSorter;
         }
 
         private void BookDetails_Load(object sender, EventArgs e)
@@ -66,7 +70,8 @@ namespace Biblioteka
             {
                 book = db.Książka.Find(book.KsiążkaID);
                 var bookings = book.Rezerwacje.OrderBy(booking => booking.Data_rezerwacji).ToList();
-                bool availableCopy = book.Egzemplarz.Any(copy => copy.Wypożyczenie.Count == 0 || copy.Wypożyczenie.All(lend => lend.Data_zwrotu != null));
+                bool availableCopy = book.AvailableCopy;
+                
                 availabilityLabel.Text = "";
                 if(bookings.Count == 0 && availableCopy)
                 {
@@ -79,6 +84,11 @@ namespace Biblioteka
                 else if(bookings.Count == 0 && !availableCopy)
                 {
                     availabilityLabel.Text = "Brak dostępnych kopii. Brak rezerwacji";
+                }
+
+                if (book.AvailableElectronicCopy)
+                {
+                    electronicCopyGroup.Visible = true;
                 }
             }
 
@@ -94,17 +104,83 @@ namespace Biblioteka
                 foreach(var copy in book.Egzemplarz)
                 {
                     string[] row = { copy.Nr_inwentarza.ToString(), "Dostępny" };
-                    var lastLend = copy.Wypożyczenie.FirstOrDefault(lend => lend.Data_wypożyczenia == copy.Wypożyczenie.Max(x => x.Data_wypożyczenia));
-                    if (lastLend != null && lastLend.Data_zwrotu == null)
+
+                    bool isElecrtionic = copy.Egzemplarz_elektroniczny != null;
+                    if (isElecrtionic)
                     {
-                        //Todo: do funkcji wypożyczenia.
-                        var endDate = lastLend.Data_wypożyczenia.Value.AddDays(copy.Książka.Maksymalny_okres_wypożyczenia);
-                        row[1] = $"Wypożyczony (do {endDate.ToShortDateString()})";
+                        row[0] += " (E)";
+                        row[1] = "Elektroniczny";
                     }
+                    else
+                    {
+                        var lastLend = copy.LastLend;
+                        if (lastLend != null && lastLend.Data_zwrotu == null)
+                        {
+                            var endDate = lastLend.Przewidywany_zwrot;
+                            row[1] = $"Wypożyczony (do {endDate.ToShortDateString()})";
+                        }
+                    }
+
                     copyList.Items.Add(new ListViewItem(row));
                 }
+                SetSortIndicator();
+                copyList.Sort();
                 copyList.EndUpdate();
             }
+        }
+
+        private void copyList_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+
+            if (e.Column == lvwColumnSorter.SortColumn)
+            {
+                if (lvwColumnSorter.Order == SortOrder.Ascending)
+                {
+                    lvwColumnSorter.Order = SortOrder.Descending;
+                }
+                else
+                {
+                    lvwColumnSorter.Order = SortOrder.Ascending;
+                }
+            }
+            else
+            {
+
+                lvwColumnSorter.SortColumn = e.Column;
+                lvwColumnSorter.Order = SortOrder.Ascending;
+            }
+            SetSortIndicator();
+
+            copyList.Sort();
+        }
+
+        private void SetSortIndicator()
+        {
+            // Usunięcie strzałki.
+            foreach(ColumnHeader column in copyList.Columns)
+            {
+                DeleteArrow(column);
+            }
+
+            // Dodanie strzałki.
+            switch (lvwColumnSorter.Order)
+            {
+                case SortOrder.Ascending: 
+                    copyList.Columns[lvwColumnSorter.SortColumn].Text += ascArrow; 
+                    break;
+                case SortOrder.Descending: 
+                    copyList.Columns[lvwColumnSorter.SortColumn].Text += descArrow; 
+                    break;
+            }
+        }
+
+        private void DeleteArrow(ColumnHeader header)
+        {
+            if (header.Text.EndsWith(ascArrow) || header.Text.EndsWith(descArrow))
+            {
+                header.Text = header.Text.Substring(0, header.Text.Length - 2);
+            }
+                
         }
     }
 }

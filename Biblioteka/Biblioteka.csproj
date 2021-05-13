@@ -116,8 +116,10 @@
     <Compile Include="Czytelnik.cs" />
     <Compile Include="Czytelnik_Wiadomość.cs" />
     <Compile Include="Egzemplarz.cs" />
+    <Compile Include="EgzemplarzFunctions.cs" />
     <Compile Include="Egzemplarz_elektroniczny.cs" />
     <Compile Include="FormExtensions.cs" />
+    <Compile Include="ListViewColumnSorter.cs" />
     <Compile Include="MainDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,7 +147,9 @@
     <Compile Include="Rezerwacje.cs" />
     <Compile Include="Wiadomość.cs" />
     <Compile Include="Wydawnictwo.cs" />
+    <Compile Include="WydawnictwoFunctions.cs" />
     <Compile Include="Wypożyczenie.cs" />
+    <Compile Include="WypożyczenieFunctions.cs" />
     <Compile Include="Wystawa.cs" />
     <Compile Include="KsiążkaFunctions.cs" />
     <EmbeddedResource Include="AuthorForm.resx">

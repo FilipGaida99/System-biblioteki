@@ -12,12 +12,13 @@ namespace Biblioteka
                 return false;
             }
 
-            Wydawnictwo = db.Wydawnictwo.Where(wyd => wyd.Nazwa == publisher).FirstOrDefault();
-            if (Wydawnictwo == null)
+            var newPublisher = db.Wydawnictwo.Where(wyd => wyd.Nazwa == publisher).FirstOrDefault();
+            if (newPublisher == null)
             {
-                Wydawnictwo = db.Wydawnictwo.Add(new Wydawnictwo { Nazwa = publisher });
+                newPublisher = db.Wydawnictwo.Add(new Wydawnictwo { Nazwa = publisher });
             }
-            WydawnictwoID = Wydawnictwo.WydawnictwoID;
+
+            Wydawnictwo = newPublisher;
 
             return true;
         }
@@ -42,6 +43,9 @@ namespace Biblioteka
 
             return true;
         }
+
+        public bool AvailableCopy => Egzemplarz.Any(copy => copy.Wypożyczenie.Count == 0 || copy.Wypożyczenie.All(lend => lend.Data_zwrotu != null));
+        public bool AvailableElectronicCopy => Egzemplarz.Any(copy => copy.Egzemplarz_elektroniczny != null);
 
     }
 

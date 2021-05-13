@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Biblioteka
@@ -97,6 +93,9 @@ namespace Biblioteka
             {
                 if (Accept(db)) 
                 {
+                    db.SaveChanges();
+                    Autor.DeleteEmpty(db);
+                    Wydawnictwo.DeleteEmpty(db);
                     db.SaveChanges();
                 }
                 else
