@@ -38,5 +38,11 @@ namespace Biblioteka
             BookManagementForm bookManagement = new BookManagementForm();
             bookManagement.Show();
         }
+
+        private void booksButton_Click(object sender, EventArgs e)
+        {
+            BookBrowse bookBrowse = new BookBrowse();
+            bookBrowse.Show();
+        }
     }
 }

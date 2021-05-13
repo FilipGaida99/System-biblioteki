@@ -16,11 +16,8 @@ namespace Biblioteka
         Egzemplarz managedCopy;
         Książka bookCopy;
 
-        public CopyModificationForm(Książka book)
+        public CopyModificationForm(Książka book): this(null, book)
         {
-            InitializeComponent();
-            managedCopy = null;
-            bookCopy = book;
         }
 
         public CopyModificationForm(Egzemplarz copy, Książka book)

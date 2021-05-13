@@ -71,6 +71,18 @@
     <Compile Include="BookAddForm.Designer.cs">
       <DependentUpon>BookAddForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="BookBrowse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookBrowse.Designer.cs">
+      <DependentUpon>BookBrowse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookDetails.Designer.cs">
+      <DependentUpon>BookDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="BookManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +94,12 @@
     </Compile>
     <Compile Include="BookModificationForm.Designer.cs">
       <DependentUpon>BookModificationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BookRecord.Designer.cs">
+      <DependentUpon>BookRecord.cs</DependentUpon>
     </Compile>
     <Compile Include="BookSearch.cs">
       <SubType>UserControl</SubType>
@@ -136,11 +154,20 @@
     <EmbeddedResource Include="BookAddForm.resx">
       <DependentUpon>BookAddForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BookBrowse.resx">
+      <DependentUpon>BookBrowse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookDetails.resx">
+      <DependentUpon>BookDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BookManagementForm.resx">
       <DependentUpon>BookManagementForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BookModificationForm.resx">
       <DependentUpon>BookModificationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookRecord.resx">
+      <DependentUpon>BookRecord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BookSearch.resx">
       <DependentUpon>BookSearch.cs</DependentUpon>

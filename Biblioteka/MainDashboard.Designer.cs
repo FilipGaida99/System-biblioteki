@@ -200,6 +200,7 @@ namespace Biblioteka
             this.booksButton.TabIndex = 1;
             this.booksButton.Text = "Przeglądanie księgozbioru";
             this.booksButton.UseVisualStyleBackColor = true;
+            this.booksButton.Click += new System.EventHandler(this.booksButton_Click);
             // 
             // panelReader
             // 
