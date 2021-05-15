@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Biblioteka
@@ -31,6 +24,18 @@ namespace Biblioteka
         {
             panelReader.Visible = !panelReader.Visible;
             panelLibrarian.Visible = !panelLibrarian.Visible;
+        }
+
+        private void booksManagementButton_Click(object sender, EventArgs e)
+        {
+            BookManagementForm bookManagement = new BookManagementForm();
+            bookManagement.Show();
+        }
+
+        private void booksButton_Click(object sender, EventArgs e)
+        {
+            BookBrowse bookBrowse = new BookBrowse();
+            bookBrowse.Show();
         }
     }
 }

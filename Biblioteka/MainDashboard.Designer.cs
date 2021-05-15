@@ -32,6 +32,9 @@ namespace Biblioteka
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label2;
             this.panelLibrarian = new System.Windows.Forms.Panel();
+            this.reportButton = new System.Windows.Forms.Button();
+            this.prolognationButton = new System.Windows.Forms.Button();
+            this.returnButton = new System.Windows.Forms.Button();
             this.checkoutButton = new System.Windows.Forms.Button();
             this.booksManagementButton = new System.Windows.Forms.Button();
             this.librariansManagementButton = new System.Windows.Forms.Button();
@@ -44,9 +47,6 @@ namespace Biblioteka
             this.bookingButton = new System.Windows.Forms.Button();
             this.lendButton = new System.Windows.Forms.Button();
             this.messagesButton = new System.Windows.Forms.Button();
-            this.returnButton = new System.Windows.Forms.Button();
-            this.prolognationButton = new System.Windows.Forms.Button();
-            this.reportButton = new System.Windows.Forms.Button();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             this.panelLibrarian.SuspendLayout();
@@ -97,6 +97,34 @@ namespace Biblioteka
             this.panelLibrarian.TabIndex = 1;
             this.panelLibrarian.Visible = false;
             // 
+            // reportButton
+            // 
+            this.reportButton.Enabled = false;
+            this.reportButton.Location = new System.Drawing.Point(122, 222);
+            this.reportButton.Name = "reportButton";
+            this.reportButton.Size = new System.Drawing.Size(265, 23);
+            this.reportButton.TabIndex = 0;
+            this.reportButton.Text = "Generuj raport";
+            this.reportButton.UseVisualStyleBackColor = true;
+            // 
+            // prolognationButton
+            // 
+            this.prolognationButton.Location = new System.Drawing.Point(312, 135);
+            this.prolognationButton.Name = "prolognationButton";
+            this.prolognationButton.Size = new System.Drawing.Size(75, 23);
+            this.prolognationButton.TabIndex = 8;
+            this.prolognationButton.Text = "Prolongata";
+            this.prolognationButton.UseVisualStyleBackColor = true;
+            // 
+            // returnButton
+            // 
+            this.returnButton.Location = new System.Drawing.Point(217, 135);
+            this.returnButton.Name = "returnButton";
+            this.returnButton.Size = new System.Drawing.Size(75, 23);
+            this.returnButton.TabIndex = 7;
+            this.returnButton.Text = "Zwrot";
+            this.returnButton.UseVisualStyleBackColor = true;
+            // 
             // checkoutButton
             // 
             this.checkoutButton.Location = new System.Drawing.Point(122, 135);
@@ -108,13 +136,13 @@ namespace Biblioteka
             // 
             // booksManagementButton
             // 
-            this.booksManagementButton.Enabled = false;
             this.booksManagementButton.Location = new System.Drawing.Point(336, 39);
             this.booksManagementButton.Name = "booksManagementButton";
             this.booksManagementButton.Size = new System.Drawing.Size(82, 34);
             this.booksManagementButton.TabIndex = 4;
             this.booksManagementButton.Text = "Książki";
             this.booksManagementButton.UseVisualStyleBackColor = true;
+            this.booksManagementButton.Click += new System.EventHandler(this.booksManagementButton_Click);
             // 
             // librariansManagementButton
             // 
@@ -172,6 +200,7 @@ namespace Biblioteka
             this.booksButton.TabIndex = 1;
             this.booksButton.Text = "Przeglądanie księgozbioru";
             this.booksButton.UseVisualStyleBackColor = true;
+            this.booksButton.Click += new System.EventHandler(this.booksButton_Click);
             // 
             // panelReader
             // 
@@ -210,34 +239,6 @@ namespace Biblioteka
             this.messagesButton.TabIndex = 4;
             this.messagesButton.Text = "Wiadomości";
             this.messagesButton.UseVisualStyleBackColor = true;
-            // 
-            // returnButton
-            // 
-            this.returnButton.Location = new System.Drawing.Point(217, 135);
-            this.returnButton.Name = "returnButton";
-            this.returnButton.Size = new System.Drawing.Size(75, 23);
-            this.returnButton.TabIndex = 7;
-            this.returnButton.Text = "Zwrot";
-            this.returnButton.UseVisualStyleBackColor = true;
-            // 
-            // prolognationButton
-            // 
-            this.prolognationButton.Location = new System.Drawing.Point(312, 135);
-            this.prolognationButton.Name = "prolognationButton";
-            this.prolognationButton.Size = new System.Drawing.Size(75, 23);
-            this.prolognationButton.TabIndex = 8;
-            this.prolognationButton.Text = "Prolongata";
-            this.prolognationButton.UseVisualStyleBackColor = true;
-            // 
-            // reportButton
-            // 
-            this.reportButton.Enabled = false;
-            this.reportButton.Location = new System.Drawing.Point(122, 222);
-            this.reportButton.Name = "reportButton";
-            this.reportButton.Size = new System.Drawing.Size(265, 23);
-            this.reportButton.TabIndex = 0;
-            this.reportButton.Text = "Generuj raport";
-            this.reportButton.UseVisualStyleBackColor = true;
             // 
             // MainDashboard
             // 

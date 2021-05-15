@@ -55,13 +55,73 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppWaitCursor.cs" />
     <Compile Include="Autor.cs" />
+    <Compile Include="AuthorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuthorForm.Designer.cs">
+      <DependentUpon>AuthorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AutorFunctions.cs" />
     <Compile Include="Bibliotekarz.cs" />
     <Compile Include="Bibliotekarz_Wiadomość.cs" />
+    <Compile Include="BookAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookAddForm.Designer.cs">
+      <DependentUpon>BookAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookBrowse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookBrowse.Designer.cs">
+      <DependentUpon>BookBrowse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookDetails.Designer.cs">
+      <DependentUpon>BookDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookManagementForm.Designer.cs">
+      <DependentUpon>BookManagementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookModificationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookModificationForm.Designer.cs">
+      <DependentUpon>BookModificationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BookRecord.Designer.cs">
+      <DependentUpon>BookRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BookSearch.Designer.cs">
+      <DependentUpon>BookSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CopyModificationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CopyModificationForm.Designer.cs">
+      <DependentUpon>CopyModificationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Czytelnik.cs" />
     <Compile Include="Czytelnik_Wiadomość.cs" />
     <Compile Include="Egzemplarz.cs" />
+    <Compile Include="EgzemplarzFunctions.cs" />
     <Compile Include="Egzemplarz_elektroniczny.cs" />
+    <Compile Include="FormExtensions.cs" />
+    <Compile Include="ISBNValidator.cs" />
+    <Compile Include="ListViewColumnSorter.cs" />
     <Compile Include="MainDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,11 +134,53 @@
     <Compile Include="Program.cs" />
     <Compile Include="Prolongata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublisherForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PublisherForm.Designer.cs">
+      <DependentUpon>PublisherForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PublisherPicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PublisherPicker.Designer.cs">
+      <DependentUpon>PublisherPicker.cs</DependentUpon>
+    </Compile>
     <Compile Include="Rezerwacje.cs" />
     <Compile Include="Wiadomość.cs" />
     <Compile Include="Wydawnictwo.cs" />
+    <Compile Include="WydawnictwoFunctions.cs" />
     <Compile Include="Wypożyczenie.cs" />
+    <Compile Include="WypożyczenieFunctions.cs" />
     <Compile Include="Wystawa.cs" />
+    <Compile Include="KsiążkaFunctions.cs" />
+    <EmbeddedResource Include="AuthorForm.resx">
+      <DependentUpon>AuthorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookAddForm.resx">
+      <DependentUpon>BookAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookBrowse.resx">
+      <DependentUpon>BookBrowse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookDetails.resx">
+      <DependentUpon>BookDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookManagementForm.resx">
+      <DependentUpon>BookManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookModificationForm.resx">
+      <DependentUpon>BookModificationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookRecord.resx">
+      <DependentUpon>BookRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookSearch.resx">
+      <DependentUpon>BookSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CopyModificationForm.resx">
+      <DependentUpon>CopyModificationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainDashboard.resx">
       <DependentUpon>MainDashboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -91,6 +193,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="PublisherForm.resx">
+      <DependentUpon>PublisherForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PublisherPicker.resx">
+      <DependentUpon>PublisherPicker.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
