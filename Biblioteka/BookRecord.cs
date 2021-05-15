@@ -5,16 +5,31 @@ using System.Windows.Forms;
 
 namespace Biblioteka
 {
+    /// <summary>
+    /// Kontrolka przedstawiająca podstawowe informacje o książce, do wyświetlenia podczas przeglądania.
+    /// </summary>
     public partial class BookRecord : UserControl
     {
+        /// <summary>
+        /// Prezentowana ksiązka dostarczająca informacje.
+        /// </summary>
         Książka book;
 
+        /// <summary>
+        /// Konstruktor.
+        /// </summary>
+        /// <param name="presentedBook">Prezentowana ksiązka.</param>
         public BookRecord(Książka presentedBook)
         {
             InitializeComponent();
             book = presentedBook;
         }
 
+        /// <summary>
+        /// Obsługa załadowania formularza.
+        /// </summary>
+        /// <param name="sender">Kontrolka.</param>
+        /// <param name="e">Argumenty.</param>
         private void BookRecord_Load(object sender, EventArgs e)
         {
             titleLabel.Text = book.Tytuł;
@@ -30,6 +45,11 @@ namespace Biblioteka
             }
         }
 
+        /// <summary>
+        /// Obsługa wyświetlenia szczegółów.
+        /// </summary>
+        /// <param name="sender">Kontrolka.</param>
+        /// <param name="e">Argumenty.</param>
         private void showButton_Click(object sender, EventArgs e)
         {
             using(new AppWaitCursor(ParentForm, sender))

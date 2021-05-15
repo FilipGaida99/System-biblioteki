@@ -6,16 +6,30 @@ using System.Windows.Forms;
 
 namespace Biblioteka
 {
+    /// <summary>
+    /// Kontrolka wyszukiwania książek.
+    /// </summary>
     public partial class BookSearch : UserControl
     {
+        /// <summary>
+        /// Callback wywoływany po zakończeniu wyszukiwania.
+        /// </summary>
         public Action onSearch;
         public List<Książka> resultBooks;
 
+        /// <summary>
+        /// Konstruktor.
+        /// </summary>
         public BookSearch()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Obsługa wybierania autora.
+        /// </summary>
+        /// <param name="sender">Kontrolka.</param>
+        /// <param name="e">Argumenty.</param>
         private void authorChooseButton_Click(object sender, EventArgs e)
         {
             using(new AppWaitCursor(ParentForm, sender))
@@ -28,6 +42,11 @@ namespace Biblioteka
             }
         }
 
+        /// <summary>
+        /// OBsługa wyszukiwania na podstawie ustawionych argumentów.
+        /// </summary>
+        /// <param name = "sender" > Kontrolka.</ param >
+        /// <param name="e">Argumenty.</param>
         private void searchButton_Click(object sender, EventArgs e)
         {
             using (new AppWaitCursor(ParentForm, sender))

@@ -5,6 +5,12 @@ namespace Biblioteka
 {
     public partial class Książka
     {
+        /// <summary>
+        /// Ustawienie wydawcy na podstawie nazwy.
+        /// </summary>
+        /// <param name="db">Kontekst bazy danych.</param>
+        /// <param name="publisher">Nazwa wydawcy.</param>
+        /// <returns></returns>
         public bool SetPublisher(BibliotekaDB db, string publisher)
         {
             if (publisher.Trim() == "")
@@ -23,6 +29,12 @@ namespace Biblioteka
             return true;
         }
 
+        /// <summary>
+        /// Ustawienie autorów na podstawie listy.
+        /// </summary>
+        /// <param name="db">Kontekst bazy danych.</param>
+        /// <param name="authors">Lista autorów.</param>
+        /// <returns></returns>
         public bool SetAuthors(BibliotekaDB db, List<Autor> authors)
         {
             if (authors.Count <= 0)
@@ -44,9 +56,19 @@ namespace Biblioteka
             return true;
         }
 
+        /// <summary>
+        /// Sprawdzenie, czy jest dostępna kopia.
+        /// </summary>
         public bool AvailableCopy => Egzemplarz.Any(copy => copy.Available);
+
+        /// <summary>
+        /// Sprawdzenie, czy jest dostępna wersja elektroniczna.
+        /// </summary>
         public bool AvailableElectronicCopy => Egzemplarz.Any(copy => copy.Egzemplarz_elektroniczny != null);
 
+        /// <summary>
+        /// Sprawdzenie, czy wszystkie kopie znajdują się w bibliotece.
+        /// </summary>
         public bool AllCopiesInLibrary => Egzemplarz.All(copy => copy.Available);
     }
 

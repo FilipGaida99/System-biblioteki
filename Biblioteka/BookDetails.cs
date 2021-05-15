@@ -5,14 +5,32 @@ using System.Windows.Forms;
 
 namespace Biblioteka
 {
+    /// <summary>
+    /// Formularz z szczegółowymi informacjami o książce.
+    /// </summary>
     public partial class BookDetails : Form
     {
-        Książka book;
-        ListViewColumnSorter lvwColumnSorter;
+        /// <summary>
+        /// Znak oznaczający rosnącą kolejność sortowania.
+        /// </summary>
         const string ascArrow = " ▲";
+        /// <summary>
+        /// nak oznaczający malejącą kolejność sortowania.
+        /// </summary>
         const string descArrow = " ▼";
+        /// <summary>
+        /// Książka dostarczająca informacje.
+        /// </summary>
+        Książka book;
+        /// <summary>
+        /// Obiekt sortujący kolumny ListView.
+        /// </summary>
+        ListViewColumnSorter lvwColumnSorter;
 
-
+        /// <summary>
+        /// Konstruktor.
+        /// </summary>
+        /// <param name="presentedBook">Książka dostarczająca informacje.</param>
         public BookDetails(Książka presentedBook)
         {
             InitializeComponent();
@@ -23,6 +41,11 @@ namespace Biblioteka
             copyList.ListViewItemSorter = lvwColumnSorter;
         }
 
+        /// <summary>
+        /// Obsługa załadowania formularza.
+        /// </summary>
+        /// <param name="sender">Kontrolka.</param>
+        /// <param name="e">Argumenty.</param>
         private void BookDetails_Load(object sender, EventArgs e)
         {
             Text = book.Tytuł;
@@ -42,6 +65,11 @@ namespace Biblioteka
             descriptionText.Text = book.Opis;
         }
 
+        /// <summary>
+        /// Obsługa zmiany wybranej karty.
+        /// </summary>
+        /// <param name="sender">Kontrolka.</param>
+        /// <param name="e">Argumenty.</param>
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             using (new AppWaitCursor(this))
@@ -57,6 +85,11 @@ namespace Biblioteka
             }
         }
 
+        /// <summary>
+        /// Obsługa odświeżenia w karcie "Dostępność".
+        /// </summary>
+        /// <param name="sender">Kontrolka.</param>
+        /// <param name="e">Argumenty.</param>
         private void refreshAvailabilityButton_Click(object sender, EventArgs e)
         {
             using (new AppWaitCursor(this, sender))
@@ -65,6 +98,11 @@ namespace Biblioteka
             }
         }
 
+        /// <summary>
+        /// Obsługa odświeżenia w karcie "Egzemplarze".
+        /// </summary>
+        /// <param name="sender">Kontrolka.</param>
+        /// <param name="e">Argumenty.</param>
         private void refreshCopyButton_Click(object sender, EventArgs e)
         {
             using (new AppWaitCursor(this, sender))
@@ -73,6 +111,9 @@ namespace Biblioteka
             }
         }
 
+        /// <summary>
+        /// Aktualizacja zawartości karty "Dostępność".
+        /// </summary>
         private void UpdateAvailabilityTab()
         {
             using(var db = new BibliotekaDB())
@@ -103,6 +144,9 @@ namespace Biblioteka
 
         }
 
+        /// <summary>
+        /// Aktualizacja zawartości karty "Egzemplarze".
+        /// </summary>
         private void UpdateCopyTab()
         {
             using (var db = new BibliotekaDB())
@@ -138,6 +182,11 @@ namespace Biblioteka
             }
         }
 
+        /// <summary>
+        /// Obsługa naciśnięcia kolumny w ListView
+        /// </summary>
+        /// <param name="sender">Kontrolka.</param>
+        /// <param name="e">Argumenty.</param>
         private void copyList_ColumnClick(object sender, ColumnClickEventArgs e)
         {
 
@@ -163,6 +212,9 @@ namespace Biblioteka
             copyList.Sort();
         }
 
+        /// <summary>
+        /// Ustawienie znaku oznaczającego kolejność sortowania.
+        /// </summary>
         private void SetSortIndicator()
         {
             // Usunięcie strzałki.
@@ -183,6 +235,10 @@ namespace Biblioteka
             }
         }
 
+        /// <summary>
+        /// Usunięcie znaku oznaczającego kolejność sortowania.
+        /// </summary>
+        /// <param name="header">Wybrana kolumna.</param>
         private void DeleteArrow(ColumnHeader header)
         {
             if (header.Text.EndsWith(ascArrow) || header.Text.EndsWith(descArrow))
