@@ -30,13 +30,14 @@ namespace Biblioteka
         private void InitializeComponent()
         {
             System.Windows.Forms.Label label1;
-            this.copyInventoryText = new System.Windows.Forms.TextBox();
             this.isElectronicCheckBox = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.linkText = new System.Windows.Forms.TextBox();
             this.acceptButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.copyInventoryNumber = new System.Windows.Forms.NumericUpDown();
             label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.copyInventoryNumber)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -47,13 +48,6 @@ namespace Biblioteka
             label1.Size = new System.Drawing.Size(95, 13);
             label1.TabIndex = 0;
             label1.Text = "Numer inwetnarza:";
-            // 
-            // copyInventoryText
-            // 
-            this.copyInventoryText.Location = new System.Drawing.Point(112, 10);
-            this.copyInventoryText.Name = "copyInventoryText";
-            this.copyInventoryText.Size = new System.Drawing.Size(256, 20);
-            this.copyInventoryText.TabIndex = 1;
             // 
             // isElectronicCheckBox
             // 
@@ -103,33 +97,46 @@ namespace Biblioteka
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
+            // firstCopyInventoryNumber
+            // 
+            this.copyInventoryNumber.AllowDrop = true;
+            this.copyInventoryNumber.Location = new System.Drawing.Point(112, 11);
+            this.copyInventoryNumber.Maximum = new decimal(new int[] {
+            -1,
+            2147483647,
+            0,
+            0});
+            this.copyInventoryNumber.Name = "firstCopyInventoryNumber";
+            this.copyInventoryNumber.Size = new System.Drawing.Size(256, 20);
+            this.copyInventoryNumber.TabIndex = 1;
+            // 
             // CopyModificationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(380, 177);
+            this.Controls.Add(this.copyInventoryNumber);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.acceptButton);
             this.Controls.Add(this.linkText);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.isElectronicCheckBox);
-            this.Controls.Add(this.copyInventoryText);
             this.Controls.Add(label1);
             this.Name = "CopyModificationForm";
             this.Text = "Dodawanie/Modyfikowanie Egzemplarza";
             this.Load += new System.EventHandler(this.CopyModificationForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.copyInventoryNumber)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox copyInventoryText;
         private System.Windows.Forms.CheckBox isElectronicCheckBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox linkText;
         private System.Windows.Forms.Button acceptButton;
         private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.NumericUpDown copyInventoryNumber;
     }
 }

@@ -29,14 +29,25 @@ namespace Biblioteka
             managedBook = _managedBook;
         }
 
-        protected virtual bool Accept(BibliotekaDB db)
+        protected virtual bool Accept(BibliotekaDB db, out string errorText)
         {
             if(!isNewBook)
             {
                 managedBook = db.Książka.Find(managedBook.KsiążkaID);
             }
 
-            managedBook.ISBN = isbnText.Text;
+            ISBNValidator isbnValidator = new ISBNValidator(isbnText.Text);
+            if (!isbnValidator.Validate())
+            {
+                errorText = "Niepoprawny numer ISBN";
+                return false;
+            }
+            managedBook.ISBN = ISBNValidator.NormalizeIsbn(isbnText.Text);
+            if(titleText.Text.Trim() == "")
+            {
+                errorText = "Pusty tytuł.";
+                return false;
+            }
             managedBook.Tytuł = titleText.Text;
             managedBook.Opis = descriptionText.Text;
             managedBook.Rok_wydania = datePicker.Value;
@@ -44,11 +55,13 @@ namespace Biblioteka
 
             if(!managedBook.SetPublisher(db, publisherPicker.PublisherName))
             {
+                errorText = "Pusta nazwa wydawnictwa";
                 return false;
             }
             
             if(!managedBook.SetAuthors(db, authors))
             {
+                errorText = "Brak autorów";
                 return false;
             }
 
@@ -60,7 +73,8 @@ namespace Biblioteka
             {
                 db.Entry(managedBook).State = EntityState.Modified;
             }
-            
+
+            errorText = "";
             return true;
         }
 
@@ -89,45 +103,68 @@ namespace Biblioteka
 
         private void acceptButton_Click(object sender, EventArgs e)
         {
-            using (var db = new BibliotekaDB())
+            using (new AppWaitCursor(this, sender))
             {
-                if (Accept(db)) 
+                using (var db = new BibliotekaDB())
                 {
-                    db.SaveChanges();
-                    Autor.DeleteEmpty(db);
-                    Wydawnictwo.DeleteEmpty(db);
-                    db.SaveChanges();
+                    string errorText;
+                    try
+                    {
+                        if (Accept(db, out errorText))
+                        {
+                            db.SaveChanges();
+                            Autor.DeleteEmpty(db);
+                            Wydawnictwo.DeleteEmpty(db);
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            MessageBox.Show(errorText,
+                            "Błąd w formularzu",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message,
+                            "Wyjątek",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
-                else
-                {
-                    return;
-                }
+                this.Return();
             }
-            this.Return();
         }
 
         private void addAutorButton_Click(object sender, EventArgs e)
         {
-            AuthorForm form = new AuthorForm();
-            if (form.ShowDialog(this) == DialogResult.OK)
+            using (new AppWaitCursor(this, sender))
             {
-                AddAutor(form.choosedAutor);
+                AuthorForm form = new AuthorForm();
+                if (form.ShowDialog(this) == DialogResult.OK)
+                {
+                    AddAutor(form.choosedAutor);
+                }
             }
         }
 
         private void deleteAutorButton_Click(object sender, EventArgs e)
         {
-            if(authorsList.SelectedIndex >= 0)
+            using (new AppWaitCursor(this, sender))
             {
-                authors.RemoveAt(authorsList.SelectedIndex);
-                authorsList.Items.RemoveAt(authorsList.SelectedIndex);
-                authorsList.SelectedIndex = -1;
+                if (authorsList.SelectedIndex >= 0)
+                {
+                    authors.RemoveAt(authorsList.SelectedIndex);
+                    authorsList.Items.RemoveAt(authorsList.SelectedIndex);
+                    authorsList.SelectedIndex = -1;
+                }
             }
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            this.Return();
+            this.Return(DialogResult.Cancel);
         }
 
         private void AddAutor(Autor author)

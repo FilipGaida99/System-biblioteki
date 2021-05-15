@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Windows.Forms;
 
 namespace Biblioteka
 {
@@ -10,27 +9,19 @@ namespace Biblioteka
             InitializeComponent();
         }
 
-        protected override bool Accept(BibliotekaDB db)
+        protected override bool Accept(BibliotekaDB db, out string errorText)
         {
-            long id;
-            if(!long.TryParse(firstCopyInventoryText.Text, out id))
-            {
-                MessageBox.Show($"Wprowadzony numer unwenatarza jest niepoprawny.",
-                    "Niepoprawny numer",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+            long id = (long)firstCopyInventoryNumber.Value;
             var _copy = db.Egzemplarz.FirstOrDefault(copy => copy.Nr_inwentarza == id);
             if (_copy != null)
             {
-                MessageBox.Show($"Wprowadzony numer inwenatarza jest już używany przez: " +
-                    $" \"{_copy.Książka.Tytuł}\" (ISBN:{_copy.Książka.ISBN.Trim()}).", 
-                    "Używany numer inwentarza",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorText = "Wprowadzony numer inwenatarza jest już używany przez: " +
+                    $" \"{_copy.Książka.Tytuł}\" (ISBN:{_copy.Książka.ISBN.Trim()}).";
                 return false;
             }
             managedBook.Egzemplarz.Add(new Egzemplarz { Nr_inwentarza = id });
-            return base.Accept(db);
+
+            return base.Accept(db, out errorText);
         }
     }
 }

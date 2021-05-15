@@ -35,12 +35,21 @@ namespace Biblioteka
             label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(3, 9);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(77, 13);
+            label5.TabIndex = 11;
+            label5.Text = "Wydawnictwo:";
+            // 
             // choosePublisherButton
             // 
             this.choosePublisherButton.Location = new System.Drawing.Point(192, 4);
             this.choosePublisherButton.Name = "choosePublisherButton";
             this.choosePublisherButton.Size = new System.Drawing.Size(75, 23);
-            this.choosePublisherButton.TabIndex = 13;
+            this.choosePublisherButton.TabIndex = 2;
             this.choosePublisherButton.Text = "Wybierz";
             this.choosePublisherButton.UseVisualStyleBackColor = true;
             this.choosePublisherButton.Click += new System.EventHandler(this.choosePublisherButton_Click);
@@ -50,16 +59,7 @@ namespace Biblioteka
             this.publisherText.Location = new System.Drawing.Point(86, 6);
             this.publisherText.Name = "publisherText";
             this.publisherText.Size = new System.Drawing.Size(100, 20);
-            this.publisherText.TabIndex = 12;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(3, 9);
-            label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(77, 13);
-            label5.TabIndex = 11;
-            label5.Text = "Wydawnictwo:";
+            this.publisherText.TabIndex = 1;
             // 
             // PublisherPicker
             // 

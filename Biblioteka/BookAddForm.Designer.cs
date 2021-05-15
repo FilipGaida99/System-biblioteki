@@ -30,8 +30,9 @@ namespace Biblioteka
         private void InitializeComponent()
         {
             System.Windows.Forms.Label label1;
-            this.firstCopyInventoryText = new System.Windows.Forms.TextBox();
+            this.firstCopyInventoryNumber = new System.Windows.Forms.NumericUpDown();
             label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.firstCopyInventoryNumber)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -43,23 +44,29 @@ namespace Biblioteka
             label1.TabIndex = 17;
             label1.Text = "Nr inwentarza:";
             // 
-            // firstCopyInventoryText
+            // firstCopyInventoryNumber
             // 
-            this.firstCopyInventoryText.Location = new System.Drawing.Point(404, 197);
-            this.firstCopyInventoryText.Name = "firstCopyInventoryText";
-            this.firstCopyInventoryText.Size = new System.Drawing.Size(100, 20);
-            this.firstCopyInventoryText.TabIndex = 18;
+            this.firstCopyInventoryNumber.Location = new System.Drawing.Point(404, 198);
+            this.firstCopyInventoryNumber.Maximum = new decimal(new int[] {
+            -1,
+            2147483647,
+            0,
+            0});
+            this.firstCopyInventoryNumber.Name = "firstCopyInventoryNumber";
+            this.firstCopyInventoryNumber.Size = new System.Drawing.Size(194, 20);
+            this.firstCopyInventoryNumber.TabIndex = 14;
             // 
             // BookAddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(621, 264);
-            this.Controls.Add(this.firstCopyInventoryText);
+            this.Controls.Add(this.firstCopyInventoryNumber);
             this.Controls.Add(label1);
             this.Name = "BookAddForm";
             this.Text = "Dodawanie książki";
             this.Controls.SetChildIndex(label1, 0);
-            this.Controls.SetChildIndex(this.firstCopyInventoryText, 0);
+            this.Controls.SetChildIndex(this.firstCopyInventoryNumber, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.firstCopyInventoryNumber)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -67,6 +74,6 @@ namespace Biblioteka
 
         #endregion
 
-        private System.Windows.Forms.TextBox firstCopyInventoryText;
+        private System.Windows.Forms.NumericUpDown firstCopyInventoryNumber;
     }
 }

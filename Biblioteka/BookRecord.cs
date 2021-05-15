@@ -32,8 +32,11 @@ namespace Biblioteka
 
         private void showButton_Click(object sender, EventArgs e)
         {
-            BookDetails form = new BookDetails(book);
-            form.Show();
+            using(new AppWaitCursor(ParentForm, sender))
+            {
+                BookDetails form = new BookDetails(book);
+                form.Show();
+            }
         }
     }
 }

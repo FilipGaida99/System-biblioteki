@@ -18,10 +18,13 @@ namespace Biblioteka
 
         private void choosePublisherButton_Click(object sender, EventArgs e)
         {
-            PublisherForm form = new PublisherForm();
-            if (form.ShowDialog(this) == DialogResult.OK)
+            using(new AppWaitCursor(ParentForm, sender))
             {
-                publisherText.Text = form.choosedPublisherName;
+                PublisherForm form = new PublisherForm();
+                if (form.ShowDialog(this) == DialogResult.OK)
+                {
+                    publisherText.Text = form.choosedPublisherName;
+                }
             }
         }
     }

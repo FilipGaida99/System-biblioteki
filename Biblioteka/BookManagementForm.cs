@@ -13,27 +13,32 @@ namespace Biblioteka
         public BookManagementForm()
         {
             InitializeComponent();
+            books = new List<Książka>();
+            copies = new List<Egzemplarz>();
         }
 
         private void modButton_Click(object sender, EventArgs e)
         {
-            if (bookList.SelectedIndex >= 0)
+            using (new AppWaitCursor(this, sender))
             {
-                if (copyList.SelectedIndex >= 0)
+                if (bookList.SelectedIndex >= 0)
                 {
-                    CopyModificationForm form = new CopyModificationForm(copies[copyList.SelectedIndex],books[bookList.SelectedIndex]);
-                    if (form.ShowDialog(this) == DialogResult.OK)
+                    if (copyList.SelectedIndex >= 0)
                     {
-                        UpdateCopyList();
+                        CopyModificationForm form = new CopyModificationForm(copies[copyList.SelectedIndex], books[bookList.SelectedIndex]);
+                        if (form.ShowDialog(this) == DialogResult.OK)
+                        {
+                            UpdateCopyList();
+                        }
                     }
-                }
-                else 
-                { 
-                    BookModificationForm form = new BookModificationForm(books[bookList.SelectedIndex]);
-                    if (form.ShowDialog(this) == DialogResult.OK)
+                    else
                     {
-                       books[bookList.SelectedIndex] = form.managedBook;
-                       UpdateBookList();
+                        BookModificationForm form = new BookModificationForm(books[bookList.SelectedIndex]);
+                        if (form.ShowDialog(this) == DialogResult.OK)
+                        {
+                            books[bookList.SelectedIndex] = form.managedBook;
+                            UpdateBookList();
+                        }
                     }
                 }
             }
@@ -41,45 +46,83 @@ namespace Biblioteka
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            if (bookList.SelectedIndex >= 0)
+            using (new AppWaitCursor(this, sender))
             {
-                var deletedBookID = books[bookList.SelectedIndex].KsiążkaID;
-                if (copyList.SelectedIndex >= 0)
+                if (bookList.SelectedIndex >= 0)
                 {
-                    var deletedCopyID = copies[copyList.SelectedIndex].Nr_inwentarza;
-                    using (var db = new BibliotekaDB())
+                    var deletedBookID = books[bookList.SelectedIndex].KsiążkaID;
+                    if (copyList.SelectedIndex >= 0)
                     {
-                        if(db.Książka.Find(deletedBookID).Egzemplarz.Count <= 1)
+                        var deletedCopyID = copies[copyList.SelectedIndex].Nr_inwentarza;
+                        using (var db = new BibliotekaDB())
                         {
-                            DialogResult dialogResult = MessageBox.Show("Usunięcie ostatniego egzemplarza usunie także książkę. Czy chcesz kontynuować?", "Jesteś pewny?", MessageBoxButtons.YesNo);
-                            if(dialogResult == DialogResult.Yes)
+                            var copyToDelete = db.Egzemplarz.Find(deletedCopyID);
+                            var bookOfCopy = db.Książka.Find(deletedBookID);
+                            if (!copyToDelete.Available)
                             {
-                                db.Książka.Remove(db.Książka.Find(deletedBookID));
-                                bookList.Items.RemoveAt(bookList.SelectedIndex);
-                                bookList.SelectedIndex = -1;
+                                MessageBox.Show("Nie można usunąć wypożyczonego egzemplarza",
+                                     "Niedozwolona operacja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
                             }
-                            if(dialogResult == DialogResult.No)
+
+                            if (MessageBox.Show(
+                                    $"Na pewno chcesz usunąć egzemplarz {deletedCopyID}?",
+                                    "Jesteś pewny?", MessageBoxButtons.YesNo) == DialogResult.No)
                             {
                                 return;
                             }
-                        }
-                        db.Egzemplarz.Remove(db.Egzemplarz.Find(deletedCopyID));
-                        copyList.SelectedIndex = -1;
-                        db.SaveChanges();
-                    }
 
-                    UpdateCopyList();
-                }
-                else
-                {
-                    using (var db = new BibliotekaDB())
-                    {
-                        db.Książka.Remove(db.Książka.Find(deletedBookID));
-                        db.SaveChanges();
+                            if (bookOfCopy.Egzemplarz.Count <= 1)
+                            {
+                                DialogResult dialogResult = MessageBox.Show(
+                                    "Usunięcie ostatniego egzemplarza usunie także książkę. Czy chcesz kontynuować?",
+                                    "Jesteś pewny?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                                if (dialogResult == DialogResult.Yes)
+                                {
+                                    db.Książka.Remove(bookOfCopy);
+                                    bookList.Items.RemoveAt(bookList.SelectedIndex);
+                                    bookList.SelectedIndex = -1;
+                                }
+                                if (dialogResult == DialogResult.No)
+                                {
+                                    return;
+                                }
+                            }
+                            db.Egzemplarz.Remove(copyToDelete);
+                            copyList.SelectedIndex = -1;
+                            db.SaveChanges();
+                        }
+
+                        UpdateCopyList();
                     }
-                    copyList.SelectedIndex = -1;
-                    UpdateCopyList();
-                    UpdateBookList();
+                    else
+                    {
+                        using (var db = new BibliotekaDB())
+                        {
+                            var bookToRemove = db.Książka.Find(deletedBookID);
+                            if (bookToRemove != null)
+                            {
+                                if (!bookToRemove.AllCopiesInLibrary)
+                                {
+                                    MessageBox.Show("Nie można usunąć wypożyczonej książki",
+                                         "Niedozwolona operacja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                }
+
+                                if (MessageBox.Show(
+                                    $"Na pewno chcesz usunąć książkę {bookToRemove.Tytuł} (ISBN: {bookToRemove.ISBN.Trim()})?",
+                                    "Jesteś pewny?", MessageBoxButtons.YesNo) == DialogResult.No)
+                                {
+                                    return;
+                                }
+                                db.Książka.Remove(bookToRemove);
+                            }
+                            bookList.Items.RemoveAt(bookList.SelectedIndex);
+                            db.SaveChanges();
+                        }
+                        copyList.SelectedIndex = -1;
+                        UpdateBookList();
+                    }
                 }
             }
         }
@@ -98,6 +141,7 @@ namespace Biblioteka
                 bookList.Items.Add(book.Tytuł);
             }
             bookList.EndUpdate();
+            UpdateCopyList();
         }
 
         private void UpdateCopyList()
@@ -114,7 +158,12 @@ namespace Biblioteka
                         copies = book.Egzemplarz.ToList();
                         foreach (var copy in copies)
                         {
-                            copyList.Items.Add(copy.Nr_inwentarza);
+                            string item = copy.Nr_inwentarza.ToString();
+                            if (copy.Egzemplarz_elektroniczny != null)
+                            {
+                                item += " (E)";
+                            }
+                            copyList.Items.Add(item);
                         }
                     }
                 }
@@ -129,12 +178,15 @@ namespace Biblioteka
 
         private void addCopy_Click(object sender, EventArgs e)
         {
-            if (bookList.SelectedIndex >= 0)
+            using (new AppWaitCursor(this, sender))
             {
-                CopyModificationForm form = new CopyModificationForm(books[bookList.SelectedIndex]);
-                if (form.ShowDialog(this) == DialogResult.OK)
+                if (bookList.SelectedIndex >= 0)
                 {
-                    UpdateCopyList();
+                    CopyModificationForm form = new CopyModificationForm(books[bookList.SelectedIndex]);
+                    if (form.ShowDialog(this) == DialogResult.OK)
+                    {
+                        UpdateCopyList();
+                    }
                 }
             }
         }
@@ -147,13 +199,16 @@ namespace Biblioteka
 
         private void addBookButton_Click(object sender, EventArgs e)
         {
-            BookAddForm form = new BookAddForm();
-            if (form.ShowDialog(this) == DialogResult.OK)
+            using (new AppWaitCursor(this, sender))
             {
-                if (form.managedBook != null)
+                BookAddForm form = new BookAddForm();
+                if (form.ShowDialog(this) == DialogResult.OK)
                 {
-                    books.Add(form.managedBook);
-                    UpdateBookList();
+                    if (form.managedBook != null)
+                    {
+                        books.Add(form.managedBook);
+                        UpdateBookList();
+                    }
                 }
             }
         }

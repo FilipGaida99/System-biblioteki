@@ -44,24 +44,33 @@ namespace Biblioteka
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(tabControl.SelectedTab == availabilityPage)
+            using (new AppWaitCursor(this))
             {
-                UpdateAvailabilityTab();
-            }
-            if (tabControl.SelectedTab == copyPage)
-            {
-                UpdateCopyTab();
+                if (tabControl.SelectedTab == availabilityPage)
+                {
+                    UpdateAvailabilityTab();
+                }
+                if (tabControl.SelectedTab == copyPage)
+                {
+                    UpdateCopyTab();
+                }
             }
         }
 
         private void refreshAvailabilityButton_Click(object sender, EventArgs e)
         {
-            UpdateAvailabilityTab();
+            using (new AppWaitCursor(this, sender))
+            {
+                UpdateAvailabilityTab();
+            }
         }
 
         private void refreshCopyButton_Click(object sender, EventArgs e)
         {
-            UpdateCopyTab();
+            using (new AppWaitCursor(this, sender))
+            {
+                UpdateCopyTab();
+            }
         }
 
         private void UpdateAvailabilityTab()

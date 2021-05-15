@@ -18,7 +18,7 @@ namespace Biblioteka
 
         private void WydawnictwoForm_Load(object sender, EventArgs e)
         {
-            using(var db = new BibliotekaDB())
+            using (var db = new BibliotekaDB())
             {
                 publishers = db.Wydawnictwo.OrderBy(publisher => publisher.Nazwa).ToList();
                 UpdateComboBox();
@@ -42,11 +42,14 @@ namespace Biblioteka
 
         private void filterButton_Click(object sender, EventArgs e)
         {
-            using (var db = new BibliotekaDB())
+            using (new AppWaitCursor(this, sender))
             {
-                publishers = db.Wydawnictwo.Where(publisher => publisher.Nazwa.Contains(publisherNameText.Text)).OrderBy(wyd => wyd.Nazwa).ToList();
+                using (var db = new BibliotekaDB())
+                {
+                    publishers = db.Wydawnictwo.Where(publisher => publisher.Nazwa.Contains(publisherNameText.Text)).OrderBy(wyd => wyd.Nazwa).ToList();
 
-                UpdateComboBox();
+                    UpdateComboBox();
+                }
             }
         }
 

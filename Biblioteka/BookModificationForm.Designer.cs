@@ -134,7 +134,7 @@ namespace Biblioteka
             this.deleteAutorButton.Location = new System.Drawing.Point(200, 149);
             this.deleteAutorButton.Name = "deleteAutorButton";
             this.deleteAutorButton.Size = new System.Drawing.Size(22, 23);
-            this.deleteAutorButton.TabIndex = 14;
+            this.deleteAutorButton.TabIndex = 8;
             this.deleteAutorButton.Text = "-";
             this.deleteAutorButton.UseVisualStyleBackColor = true;
             this.deleteAutorButton.Click += new System.EventHandler(this.deleteAutorButton_Click);
@@ -144,7 +144,7 @@ namespace Biblioteka
             this.addAutorButton.Location = new System.Drawing.Point(200, 119);
             this.addAutorButton.Name = "addAutorButton";
             this.addAutorButton.Size = new System.Drawing.Size(22, 23);
-            this.addAutorButton.TabIndex = 13;
+            this.addAutorButton.TabIndex = 7;
             this.addAutorButton.Text = "+";
             this.addAutorButton.UseVisualStyleBackColor = true;
             this.addAutorButton.Click += new System.EventHandler(this.addAutorButton_Click);
@@ -163,14 +163,14 @@ namespace Biblioteka
             this.descriptionText.Multiline = true;
             this.descriptionText.Name = "descriptionText";
             this.descriptionText.Size = new System.Drawing.Size(194, 150);
-            this.descriptionText.TabIndex = 7;
+            this.descriptionText.TabIndex = 4;
             // 
             // titleText
             // 
             this.titleText.Location = new System.Drawing.Point(404, 14);
             this.titleText.Name = "titleText";
             this.titleText.Size = new System.Drawing.Size(194, 20);
-            this.titleText.TabIndex = 6;
+            this.titleText.TabIndex = 2;
             // 
             // datePicker
             // 
@@ -187,14 +187,24 @@ namespace Biblioteka
             this.isbnText.Location = new System.Drawing.Point(95, 11);
             this.isbnText.Name = "isbnText";
             this.isbnText.Size = new System.Drawing.Size(100, 20);
-            this.isbnText.TabIndex = 2;
+            this.isbnText.TabIndex = 1;
             // 
             // daySpanPicker
             // 
             this.daySpanPicker.Location = new System.Drawing.Point(94, 63);
+            this.daySpanPicker.Maximum = new decimal(new int[] {
+            365,
+            0,
+            0,
+            0});
+            this.daySpanPicker.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.daySpanPicker.Name = "daySpanPicker";
             this.daySpanPicker.Size = new System.Drawing.Size(100, 20);
-            this.daySpanPicker.TabIndex = 17;
+            this.daySpanPicker.TabIndex = 5;
             this.daySpanPicker.Value = new decimal(new int[] {
             90,
             0,
@@ -207,7 +217,7 @@ namespace Biblioteka
             this.publisherPicker.Name = "publisherPicker";
             this.publisherPicker.PublisherName = "";
             this.publisherPicker.Size = new System.Drawing.Size(271, 30);
-            this.publisherPicker.TabIndex = 19;
+            this.publisherPicker.TabIndex = 6;
             // 
             // BookModificationForm
             // 

@@ -6,7 +6,12 @@ namespace Biblioteka
     {
         public static void Return(this Form form)
         {
-            form.DialogResult = DialogResult.OK;
+            form.Return(DialogResult.OK);
+        }
+
+        public static void Return(this Form form, DialogResult result)
+        {
+            form.DialogResult = result;
             form.Close();
         }
     }

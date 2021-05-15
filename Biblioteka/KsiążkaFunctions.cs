@@ -44,9 +44,10 @@ namespace Biblioteka
             return true;
         }
 
-        public bool AvailableCopy => Egzemplarz.Any(copy => copy.Wypożyczenie.Count == 0 || copy.Wypożyczenie.All(lend => lend.Data_zwrotu != null));
+        public bool AvailableCopy => Egzemplarz.Any(copy => copy.Available);
         public bool AvailableElectronicCopy => Egzemplarz.Any(copy => copy.Egzemplarz_elektroniczny != null);
 
+        public bool AllCopiesInLibrary => Egzemplarz.All(copy => copy.Available);
     }
 
 }

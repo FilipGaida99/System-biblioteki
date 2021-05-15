@@ -35,13 +35,16 @@ namespace Biblioteka
 
         private void filterButton_Click(object sender, EventArgs e)
         {
-            using (var db = new BibliotekaDB())
+            using (new AppWaitCursor(this, sender))
             {
-                authors = db.Autor.Where(author =>
-                    author.Imię.Contains(firstNameText.Text) && author.Nazwisko.Contains(surnameText.Text)
-                    ).OrderBy(author => author.Nazwisko).ToList();
+                using (var db = new BibliotekaDB())
+                {
+                    authors = db.Autor.Where(author =>
+                        author.Imię.Contains(firstNameText.Text) && author.Nazwisko.Contains(surnameText.Text)
+                        ).OrderBy(author => author.Nazwisko).ToList();
 
-                UpdateComboBox();
+                    UpdateComboBox();
+                }
             }
         }
 

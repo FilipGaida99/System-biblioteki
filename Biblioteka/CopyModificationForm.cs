@@ -19,9 +19,10 @@ namespace Biblioteka
             InitializeComponent();
             managedCopy = copy;
             bookCopy = book;
+            
         }
 
-        protected virtual bool Accept(BibliotekaDB db)
+        protected virtual bool Accept(BibliotekaDB db, out string errorText)
         {
             if (managedCopy != null)
             {
@@ -33,26 +34,20 @@ namespace Biblioteka
             {
                 managedCopy = new Egzemplarz();
                 isNew = true;
+
+                long newInventory = (long)copyInventoryNumber.Value;
+                var _copy = db.Egzemplarz.FirstOrDefault(copy => copy.Nr_inwentarza == newInventory);
+                if (_copy != null && _copy.Nr_inwentarza != managedCopy.Nr_inwentarza)
+                {
+                    errorText = "Wprowadzony numer inwenatarza jest już używany przez: " +
+                    $" \"{_copy.Książka.Tytuł}\" (ISBN:{_copy.Książka.ISBN.Trim()}).";
+                    return false;
+                }
+
+                managedCopy.Nr_inwentarza = newInventory;
             }
 
-            long newInventory = -1;
-            if (!long.TryParse(copyInventoryText.Text, out newInventory))
-            {
-                MessageBox.Show($"Wprowadzony numer unwenatarza jest niepoprawny.",
-                    "Niepoprawny numer",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            var _copy = db.Egzemplarz.FirstOrDefault(copy => copy.Nr_inwentarza == newInventory);
-            if (_copy != null && _copy.Nr_inwentarza != managedCopy.Nr_inwentarza)
-            {
-                MessageBox.Show($"Wprowadzony numer inwenatarza jest już używany przez: " +
-                    $" \"{_copy.Książka.Tytuł}\" (ISBN:{_copy.Książka.ISBN.Trim()}).",
-                    "Używany numer inwentarza",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            managedCopy.Nr_inwentarza = newInventory;
+
 
             if (isElectronicCheckBox.Checked)
             {
@@ -71,22 +66,16 @@ namespace Biblioteka
                 db.Egzemplarz_elektroniczny.Remove(managedCopy.Egzemplarz_elektroniczny);
             }
 
-            bookCopy = db.Książka.Find(bookCopy.KsiążkaID);
-            if(bookCopy == null)
-            {
-                return false;
-            }
-            managedCopy.Książka = bookCopy;
-
             if (isNew)
             {
-                db.Egzemplarz.Add(managedCopy);
+                managedCopy = db.Egzemplarz.Add(managedCopy);
+                managedCopy.Książka = db.Książka.Find(bookCopy.KsiążkaID);
             }
             else
             {
                 db.Entry(managedCopy).State = EntityState.Modified;
             }
-
+            errorText = "";
             return true;
         }
 
@@ -97,23 +86,40 @@ namespace Biblioteka
 
         private void acceptButton_Click(object sender, EventArgs e)
         {
-            using (var db = new BibliotekaDB())
+            using(new AppWaitCursor(this, sender))
             {
-                if (Accept(db))
+                using (var db = new BibliotekaDB())
                 {
-                    db.SaveChanges();
+                    try
+                    {
+                        string errorText;
+                        if (Accept(db, out errorText))
+                        {
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            MessageBox.Show(errorText,
+                            "Błąd w formularzu",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message,
+                            "Wyjątek",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
-                else
-                {
-                    return;
-                }
+                this.Return();
             }
-            this.Return();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            this.Return();
+            this.Return(DialogResult.Cancel);
         }
 
         private void CopyModificationForm_Load(object sender, EventArgs e)
@@ -122,16 +128,28 @@ namespace Biblioteka
             {
                 using(var db = new BibliotekaDB())
                 {
+                    Text = "Modyfikowanie egzemplarza";
                     managedCopy = db.Egzemplarz.Find(managedCopy.Nr_inwentarza);
-                    copyInventoryText.Text = managedCopy.Nr_inwentarza.ToString();
+                    copyInventoryNumber.Value = managedCopy.Nr_inwentarza;
+                    copyInventoryNumber.Enabled = false;
+
                     var electrioncCopy = managedCopy.Egzemplarz_elektroniczny;
                     if(electrioncCopy != null)
                     {
                         isElectronicCheckBox.Checked = true;
+                        if (managedCopy.Wypożyczenie.Count != 0)
+                        {
+                            isElectronicCheckBox.Enabled = false;
+                        }
                         linkText.Text = electrioncCopy.Odnośnik;
                     }
                 }
             }
+            else
+            {
+                Text = "Dodawanie egzemplarza";
+            }
+           
         }
     }
 }
