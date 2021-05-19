@@ -12,8 +12,8 @@ namespace Biblioteka
 
         private void exhibitionButton_Click(object sender, EventArgs e)
         {
-            ExhibitionViewerForm exhibition = new ExhibitionViewerForm();
-            exhibition.Show();
+            ExhibitionViewerForm exhibitionViewer = new ExhibitionViewerForm();
+            exhibitionViewer.Show();
         }
 
         private void rentButton_Click(object sender, EventArgs e)

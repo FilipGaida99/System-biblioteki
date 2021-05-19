@@ -125,6 +125,12 @@
     <Compile Include="ExhibitionAddForm.Designer.cs">
       <DependentUpon>ExhibitionAddForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExhibitionDetails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExhibitionDetails.Designer.cs">
+      <DependentUpon>ExhibitionDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExhibitionViewerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExhibitionAddForm.resx">
       <DependentUpon>ExhibitionAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExhibitionDetails.resx">
+      <DependentUpon>ExhibitionDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExhibitionManagementForm.resx">
       <DependentUpon>ExhibitionManagementForm.cs</DependentUpon>

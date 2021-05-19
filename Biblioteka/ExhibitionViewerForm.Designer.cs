@@ -29,23 +29,44 @@ namespace Biblioteka
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.exhibitionList = new System.Windows.Forms.ListBox();
+            this.showButton = new System.Windows.Forms.Button();
+            this.exhibitionDetails1 = new Biblioteka.ExhibitionDetails();
             this.SuspendLayout();
             // 
-            // listBox1
+            // exhibitionList
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(13, 13);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(447, 147);
-            this.listBox1.TabIndex = 0;
+            this.exhibitionList.FormattingEnabled = true;
+            this.exhibitionList.Location = new System.Drawing.Point(13, 13);
+            this.exhibitionList.Name = "exhibitionList";
+            this.exhibitionList.Size = new System.Drawing.Size(491, 147);
+            this.exhibitionList.TabIndex = 0;
+            // 
+            // showButton
+            // 
+            this.showButton.Location = new System.Drawing.Point(510, 58);
+            this.showButton.Name = "showButton";
+            this.showButton.Size = new System.Drawing.Size(100, 54);
+            this.showButton.TabIndex = 1;
+            this.showButton.Text = "Pokaż";
+            this.showButton.UseVisualStyleBackColor = true;
+            this.showButton.Click += new System.EventHandler(this.showButton_Click);
+            // 
+            // exhibitionDetails1
+            // 
+            this.exhibitionDetails1.Location = new System.Drawing.Point(13, 167);
+            this.exhibitionDetails1.Name = "exhibitionDetails1";
+            this.exhibitionDetails1.Size = new System.Drawing.Size(597, 271);
+            this.exhibitionDetails1.TabIndex = 2;
             // 
             // ExhibitionViewerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.listBox1);
+            this.ClientSize = new System.Drawing.Size(622, 450);
+            this.Controls.Add(this.exhibitionDetails1);
+            this.Controls.Add(this.showButton);
+            this.Controls.Add(this.exhibitionList);
             this.Name = "ExhibitionViewerForm";
             this.Text = "Wystawy";
             this.ResumeLayout(false);
@@ -54,6 +75,8 @@ namespace Biblioteka
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox exhibitionList;
+        private System.Windows.Forms.Button showButton;
+        private ExhibitionDetails exhibitionDetails1;
     }
 }

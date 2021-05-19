@@ -12,9 +12,18 @@ namespace Biblioteka
 {
     public partial class ExhibitionViewerForm : Form
     {
+        List<Wystawa> exhibitions;
+
         public ExhibitionViewerForm()
         {
             InitializeComponent();
+            exhibitions = new List<Wystawa>();
+        }
+
+        private void showButton_Click(object sender, EventArgs e)
+        {
+            exhibitionDetails1.Update(exhibitions.FirstOrDefault());
+            // TODO: show active exhibition from ListBox
         }
     }
 }
