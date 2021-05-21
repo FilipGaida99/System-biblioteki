@@ -146,13 +146,13 @@ namespace Biblioteka
             // 
             // librariansManagementButton
             // 
-            this.librariansManagementButton.Enabled = false;
             this.librariansManagementButton.Location = new System.Drawing.Point(248, 39);
             this.librariansManagementButton.Name = "librariansManagementButton";
             this.librariansManagementButton.Size = new System.Drawing.Size(82, 34);
             this.librariansManagementButton.TabIndex = 3;
             this.librariansManagementButton.Text = "Pracownicy";
             this.librariansManagementButton.UseVisualStyleBackColor = true;
+            this.librariansManagementButton.Click += new System.EventHandler(this.librariansManagementButton_Click);
             // 
             // readersManagementButton
             // 
@@ -162,6 +162,7 @@ namespace Biblioteka
             this.readersManagementButton.TabIndex = 2;
             this.readersManagementButton.Text = "Czytelnicy";
             this.readersManagementButton.UseVisualStyleBackColor = true;
+            this.readersManagementButton.Click += new System.EventHandler(this.readersManagementButton_Click);
             // 
             // exhibitionManagementButton
             // 

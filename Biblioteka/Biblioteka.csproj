@@ -121,7 +121,25 @@
     <Compile Include="Egzemplarz_elektroniczny.cs" />
     <Compile Include="FormExtensions.cs" />
     <Compile Include="ISBNValidator.cs" />
+    <Compile Include="LibrarianCreateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibrarianCreateForm.Designer.cs">
+      <DependentUpon>LibrarianCreateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LibrarianManagmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibrarianManagmentForm.Designer.cs">
+      <DependentUpon>LibrarianManagmentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListViewColumnSorter.cs" />
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +149,12 @@
     <Compile Include="Kara.cs" />
     <Compile Include="Książka.cs" />
     <Compile Include="BibliotekaDB.cs" />
+    <Compile Include="PenaltyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PenaltyForm.Designer.cs">
+      <DependentUpon>PenaltyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Prolongata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -145,6 +169,18 @@
     </Compile>
     <Compile Include="PublisherPicker.Designer.cs">
       <DependentUpon>PublisherPicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReaderCreateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReaderCreateForm.Designer.cs">
+      <DependentUpon>ReaderCreateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReadersManagmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReadersManagmentForm.Designer.cs">
+      <DependentUpon>ReadersManagmentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Rezerwacje.cs" />
     <Compile Include="Wiadomość.cs" />
@@ -181,8 +217,20 @@
     <EmbeddedResource Include="CopyModificationForm.resx">
       <DependentUpon>CopyModificationForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LibrarianCreateForm.resx">
+      <DependentUpon>LibrarianCreateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibrarianManagmentForm.resx">
+      <DependentUpon>LibrarianManagmentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainDashboard.resx">
       <DependentUpon>MainDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PenaltyForm.resx">
+      <DependentUpon>PenaltyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -198,6 +246,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PublisherPicker.resx">
       <DependentUpon>PublisherPicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReaderCreateForm.resx">
+      <DependentUpon>ReaderCreateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReadersManagmentForm.resx">
+      <DependentUpon>ReadersManagmentForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
