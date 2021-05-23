@@ -47,6 +47,8 @@ namespace Biblioteka
             this.publisherLabel = new System.Windows.Forms.Label();
             this.titleLabel = new System.Windows.Forms.Label();
             this.availabilityPage = new System.Windows.Forms.TabPage();
+            this.electronicCopyGroup = new System.Windows.Forms.GroupBox();
+            this.lendBookButton = new System.Windows.Forms.Button();
             this.availabilityLabel = new System.Windows.Forms.Label();
             this.bookingButton = new System.Windows.Forms.Button();
             this.refreshAvailabilityButton = new System.Windows.Forms.Button();
@@ -55,8 +57,6 @@ namespace Biblioteka
             this.copyList = new System.Windows.Forms.ListView();
             this.inventory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.availability = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.electronicCopyGroup = new System.Windows.Forms.GroupBox();
-            this.lendBookButton = new System.Windows.Forms.Button();
             label4 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
@@ -68,8 +68,8 @@ namespace Biblioteka
             this.tabControl.SuspendLayout();
             this.informationPage.SuspendLayout();
             this.availabilityPage.SuspendLayout();
-            this.copyPage.SuspendLayout();
             this.electronicCopyGroup.SuspendLayout();
+            this.copyPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // label4
@@ -134,6 +134,18 @@ namespace Biblioteka
             label7.Size = new System.Drawing.Size(31, 13);
             label7.TabIndex = 22;
             label7.Text = "Opis:";
+            // 
+            // label8
+            // 
+            label8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            label8.Location = new System.Drawing.Point(6, 20);
+            label8.Name = "label8";
+            label8.Size = new System.Drawing.Size(188, 13);
+            label8.TabIndex = 0;
+            label8.Text = "Dostępna w wersji elektronicznej";
+            label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabControl
             // 
@@ -250,6 +262,27 @@ namespace Biblioteka
             this.availabilityPage.Text = "Dostępność";
             this.availabilityPage.UseVisualStyleBackColor = true;
             // 
+            // electronicCopyGroup
+            // 
+            this.electronicCopyGroup.Controls.Add(this.lendBookButton);
+            this.electronicCopyGroup.Controls.Add(label8);
+            this.electronicCopyGroup.Location = new System.Drawing.Point(144, 218);
+            this.electronicCopyGroup.Name = "electronicCopyGroup";
+            this.electronicCopyGroup.Size = new System.Drawing.Size(200, 100);
+            this.electronicCopyGroup.TabIndex = 3;
+            this.electronicCopyGroup.TabStop = false;
+            this.electronicCopyGroup.Text = "Wypożyczenie elektroniczne";
+            this.electronicCopyGroup.Visible = false;
+            // 
+            // lendBookButton
+            // 
+            this.lendBookButton.Location = new System.Drawing.Point(69, 57);
+            this.lendBookButton.Name = "lendBookButton";
+            this.lendBookButton.Size = new System.Drawing.Size(75, 23);
+            this.lendBookButton.TabIndex = 1;
+            this.lendBookButton.Text = "Wypożycz";
+            this.lendBookButton.UseVisualStyleBackColor = true;
+            // 
             // availabilityLabel
             // 
             this.availabilityLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -270,6 +303,7 @@ namespace Biblioteka
             this.bookingButton.TabIndex = 1;
             this.bookingButton.Text = "Zarezerwuj";
             this.bookingButton.UseVisualStyleBackColor = true;
+            this.bookingButton.Click += new System.EventHandler(this.bookingButton_Click);
             // 
             // refreshAvailabilityButton
             // 
@@ -326,39 +360,6 @@ namespace Biblioteka
             this.availability.Text = "Dostępność";
             this.availability.Width = 241;
             // 
-            // electronicCopyGroup
-            // 
-            this.electronicCopyGroup.Controls.Add(this.lendBookButton);
-            this.electronicCopyGroup.Controls.Add(label8);
-            this.electronicCopyGroup.Location = new System.Drawing.Point(144, 218);
-            this.electronicCopyGroup.Name = "electronicCopyGroup";
-            this.electronicCopyGroup.Size = new System.Drawing.Size(200, 100);
-            this.electronicCopyGroup.TabIndex = 3;
-            this.electronicCopyGroup.TabStop = false;
-            this.electronicCopyGroup.Text = "Wypożyczenie elektroniczne";
-            this.electronicCopyGroup.Visible = false;
-            // 
-            // label8
-            // 
-            label8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            label8.Location = new System.Drawing.Point(6, 20);
-            label8.Name = "label8";
-            label8.Size = new System.Drawing.Size(188, 13);
-            label8.TabIndex = 0;
-            label8.Text = "Dostępna w wersji elektronicznej";
-            label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lendBookButton
-            // 
-            this.lendBookButton.Location = new System.Drawing.Point(69, 57);
-            this.lendBookButton.Name = "lendBookButton";
-            this.lendBookButton.Size = new System.Drawing.Size(75, 23);
-            this.lendBookButton.TabIndex = 1;
-            this.lendBookButton.Text = "Wypożycz";
-            this.lendBookButton.UseVisualStyleBackColor = true;
-            // 
             // BookDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -372,8 +373,8 @@ namespace Biblioteka
             this.informationPage.ResumeLayout(false);
             this.informationPage.PerformLayout();
             this.availabilityPage.ResumeLayout(false);
-            this.copyPage.ResumeLayout(false);
             this.electronicCopyGroup.ResumeLayout(false);
+            this.copyPage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

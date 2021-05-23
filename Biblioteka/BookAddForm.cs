@@ -39,5 +39,10 @@ namespace Biblioteka
             }
             return false;
         }
+
+        private void BookAddForm_Load(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

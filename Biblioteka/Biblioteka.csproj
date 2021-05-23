@@ -108,6 +108,18 @@
     <Compile Include="BookSearch.Designer.cs">
       <DependentUpon>BookSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="CheckoutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CheckoutForm.Designer.cs">
+      <DependentUpon>CheckoutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CheckoutRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CheckoutRecord.Designer.cs">
+      <DependentUpon>CheckoutRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="CopyModificationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +158,30 @@
     <Compile Include="PublisherPicker.Designer.cs">
       <DependentUpon>PublisherPicker.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReaderRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReaderRecord.Designer.cs">
+      <DependentUpon>ReaderRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReaderSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReaderSearch.Designer.cs">
+      <DependentUpon>ReaderSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReservationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReservationForm.Designer.cs">
+      <DependentUpon>ReservationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReservationSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReservationSearch.Designer.cs">
+      <DependentUpon>ReservationSearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Rezerwacje.cs" />
     <Compile Include="Wiadomość.cs" />
     <Compile Include="Wydawnictwo.cs" />
@@ -178,6 +214,12 @@
     <EmbeddedResource Include="BookSearch.resx">
       <DependentUpon>BookSearch.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CheckoutForm.resx">
+      <DependentUpon>CheckoutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CheckoutRecord.resx">
+      <DependentUpon>CheckoutRecord.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CopyModificationForm.resx">
       <DependentUpon>CopyModificationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -198,6 +240,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PublisherPicker.resx">
       <DependentUpon>PublisherPicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReaderRecord.resx">
+      <DependentUpon>ReaderRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReaderSearch.resx">
+      <DependentUpon>ReaderSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReservationForm.resx">
+      <DependentUpon>ReservationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReservationSearch.resx">
+      <DependentUpon>ReservationSearch.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

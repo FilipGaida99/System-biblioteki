@@ -37,5 +37,16 @@ namespace Biblioteka
             BookBrowse bookBrowse = new BookBrowse();
             bookBrowse.Show();
         }
+
+        private void checkoutButton_Click(object sender, EventArgs e)
+        {
+            CheckoutForm checkoutWindow = new CheckoutForm();
+            checkoutWindow.Show();
+        }
+
+        private void MainDashboard_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
