@@ -37,5 +37,11 @@ namespace Biblioteka
             BookBrowse bookBrowse = new BookBrowse();
             bookBrowse.Show();
         }
+
+        private void messagesButton_Click(object sender, EventArgs e)
+        {
+            MessageForm messageForm = new MessageForm();
+            messageForm.Show();
+        }
     }
 }
