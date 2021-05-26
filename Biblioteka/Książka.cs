@@ -22,7 +22,7 @@ namespace Biblioteka
         public long Maksymalny_okres_wypożyczenia { get; set; }
 
         [Required]
-        [StringLength(13)]
+        [StringLength(17)]
         public string ISBN { get; set; }
 
         [Column("Rok wydania", TypeName = "date")]

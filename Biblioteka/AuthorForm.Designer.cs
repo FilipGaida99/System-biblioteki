@@ -44,48 +44,54 @@ namespace Biblioteka
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(18, 22);
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label1.Location = new System.Drawing.Point(8, 29);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(29, 13);
+            label1.Size = new System.Drawing.Size(43, 20);
             label1.TabIndex = 3;
             label1.Text = "Imię:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(127, 22);
+            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label2.Location = new System.Drawing.Point(172, 29);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(56, 13);
+            label2.Size = new System.Drawing.Size(80, 20);
             label2.TabIndex = 4;
             label2.Text = "Nazwisko:";
             // 
             // firstNameText
             // 
-            this.firstNameText.Location = new System.Drawing.Point(21, 41);
+            this.firstNameText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.firstNameText.Location = new System.Drawing.Point(12, 55);
             this.firstNameText.Name = "firstNameText";
-            this.firstNameText.Size = new System.Drawing.Size(100, 20);
+            this.firstNameText.Size = new System.Drawing.Size(158, 26);
             this.firstNameText.TabIndex = 0;
             // 
             // surnameText
             // 
-            this.surnameText.Location = new System.Drawing.Point(127, 41);
+            this.surnameText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.surnameText.Location = new System.Drawing.Point(176, 55);
             this.surnameText.Name = "surnameText";
-            this.surnameText.Size = new System.Drawing.Size(100, 20);
+            this.surnameText.Size = new System.Drawing.Size(147, 26);
             this.surnameText.TabIndex = 1;
             // 
             // comboBox
             // 
+            this.comboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.comboBox.FormattingEnabled = true;
-            this.comboBox.Location = new System.Drawing.Point(21, 88);
+            this.comboBox.Location = new System.Drawing.Point(12, 102);
             this.comboBox.Name = "comboBox";
-            this.comboBox.Size = new System.Drawing.Size(206, 21);
+            this.comboBox.Size = new System.Drawing.Size(311, 28);
             this.comboBox.TabIndex = 2;
             // 
             // filterButton
             // 
-            this.filterButton.Location = new System.Drawing.Point(234, 37);
+            this.filterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.filterButton.Location = new System.Drawing.Point(329, 58);
             this.filterButton.Name = "filterButton";
-            this.filterButton.Size = new System.Drawing.Size(75, 23);
+            this.filterButton.Size = new System.Drawing.Size(75, 34);
             this.filterButton.TabIndex = 5;
             this.filterButton.Text = "Filtruj";
             this.filterButton.UseVisualStyleBackColor = true;
@@ -93,9 +99,10 @@ namespace Biblioteka
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(234, 8);
+            this.addButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.addButton.Location = new System.Drawing.Point(329, 15);
             this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(75, 23);
+            this.addButton.Size = new System.Drawing.Size(75, 34);
             this.addButton.TabIndex = 6;
             this.addButton.Text = "Dodaj";
             this.addButton.UseVisualStyleBackColor = true;
@@ -103,9 +110,10 @@ namespace Biblioteka
             // 
             // chooseButton
             // 
-            this.chooseButton.Location = new System.Drawing.Point(234, 86);
+            this.chooseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.chooseButton.Location = new System.Drawing.Point(329, 98);
             this.chooseButton.Name = "chooseButton";
-            this.chooseButton.Size = new System.Drawing.Size(75, 23);
+            this.chooseButton.Size = new System.Drawing.Size(75, 34);
             this.chooseButton.TabIndex = 7;
             this.chooseButton.Text = "Wybierz";
             this.chooseButton.UseVisualStyleBackColor = true;
@@ -115,7 +123,7 @@ namespace Biblioteka
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(317, 124);
+            this.ClientSize = new System.Drawing.Size(416, 147);
             this.Controls.Add(this.chooseButton);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.filterButton);

@@ -149,6 +149,9 @@ namespace Biblioteka
         /// </summary>
         private void UpdateCopyTab()
         {
+            const int numberColumnIndex = 0;
+            const int availabilityColumnIndex = 2;
+
             using (var db = new BibliotekaDB())
             {
                 book = db.Książka.Find(book.KsiążkaID);
@@ -156,13 +159,13 @@ namespace Biblioteka
                 copyList.Items.Clear();
                 foreach(var copy in book.Egzemplarz)
                 {
-                    string[] row = { copy.Nr_inwentarza.ToString(), "Dostępny" };
+                    string[] row = { copy.Nr_inwentarza.ToString(), copy.Rok_wydruku.ToString("yyyy.MM.dd"), "Dostępny" };
 
                     bool isElecrtionic = copy.Egzemplarz_elektroniczny != null;
                     if (isElecrtionic)
                     {
-                        row[0] += " (E)";
-                        row[1] = "Elektroniczny";
+                        row[numberColumnIndex] += " (E)";
+                        row[availabilityColumnIndex] = "Elektroniczny";
                     }
                     else
                     {
@@ -170,7 +173,7 @@ namespace Biblioteka
                         if (lastLend != null && lastLend.Data_zwrotu == null)
                         {
                             var endDate = lastLend.Przewidywany_zwrot;
-                            row[1] = $"Wypożyczony (do {endDate.ToShortDateString()})";
+                            row[availabilityColumnIndex] = $"Wypożyczony (do {endDate.ToShortDateString()})";
                         }
                     }
 

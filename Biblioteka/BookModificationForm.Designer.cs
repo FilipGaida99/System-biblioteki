@@ -58,62 +58,70 @@ namespace Biblioteka
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new System.Drawing.Point(43, 121);
+            label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label6.Location = new System.Drawing.Point(55, 145);
             label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(45, 13);
+            label6.Size = new System.Drawing.Size(67, 20);
             label6.TabIndex = 11;
             label6.Text = "Autorzy:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new System.Drawing.Point(367, 44);
+            label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label4.Location = new System.Drawing.Point(369, 57);
             label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(31, 13);
+            label4.Size = new System.Drawing.Size(45, 20);
             label4.TabIndex = 5;
             label4.Text = "Opis:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(363, 18);
+            label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label3.Location = new System.Drawing.Point(367, 18);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(35, 13);
+            label3.Size = new System.Drawing.Size(47, 20);
             label3.TabIndex = 4;
             label3.Text = "Tytuł:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(11, 40);
+            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label2.Location = new System.Drawing.Point(9, 52);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(78, 13);
+            label2.Size = new System.Drawing.Size(113, 20);
             label2.TabIndex = 1;
             label2.Text = "Data Wydania:";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(54, 14);
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label1.Location = new System.Drawing.Point(71, 21);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(35, 13);
+            label1.Size = new System.Drawing.Size(51, 20);
             label1.TabIndex = 0;
             label1.Text = "ISBN:";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new System.Drawing.Point(28, 65);
+            label7.BackColor = System.Drawing.SystemColors.Control;
+            label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label7.Location = new System.Drawing.Point(32, 84);
             label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(61, 13);
+            label7.Size = new System.Drawing.Size(90, 20);
             label7.TabIndex = 18;
             label7.Text = "Okres (dni):";
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(323, 229);
+            this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cancelButton.Location = new System.Drawing.Point(327, 283);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.Size = new System.Drawing.Size(91, 38);
             this.cancelButton.TabIndex = 16;
             this.cancelButton.Text = "Anuluj";
             this.cancelButton.UseVisualStyleBackColor = true;
@@ -121,9 +129,10 @@ namespace Biblioteka
             // 
             // acceptButton
             // 
-            this.acceptButton.Location = new System.Drawing.Point(242, 229);
+            this.acceptButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.acceptButton.Location = new System.Drawing.Point(229, 283);
             this.acceptButton.Name = "acceptButton";
-            this.acceptButton.Size = new System.Drawing.Size(75, 23);
+            this.acceptButton.Size = new System.Drawing.Size(92, 38);
             this.acceptButton.TabIndex = 15;
             this.acceptButton.Text = "Akceptuj";
             this.acceptButton.UseVisualStyleBackColor = true;
@@ -131,9 +140,10 @@ namespace Biblioteka
             // 
             // deleteAutorButton
             // 
-            this.deleteAutorButton.Location = new System.Drawing.Point(200, 149);
+            this.deleteAutorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.deleteAutorButton.Location = new System.Drawing.Point(271, 184);
             this.deleteAutorButton.Name = "deleteAutorButton";
-            this.deleteAutorButton.Size = new System.Drawing.Size(22, 23);
+            this.deleteAutorButton.Size = new System.Drawing.Size(30, 30);
             this.deleteAutorButton.TabIndex = 8;
             this.deleteAutorButton.Text = "-";
             this.deleteAutorButton.UseVisualStyleBackColor = true;
@@ -141,9 +151,10 @@ namespace Biblioteka
             // 
             // addAutorButton
             // 
-            this.addAutorButton.Location = new System.Drawing.Point(200, 119);
+            this.addAutorButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.addAutorButton.Location = new System.Drawing.Point(271, 148);
             this.addAutorButton.Name = "addAutorButton";
-            this.addAutorButton.Size = new System.Drawing.Size(22, 23);
+            this.addAutorButton.Size = new System.Drawing.Size(30, 30);
             this.addAutorButton.TabIndex = 7;
             this.addAutorButton.Text = "+";
             this.addAutorButton.UseVisualStyleBackColor = true;
@@ -151,47 +162,55 @@ namespace Biblioteka
             // 
             // authorsList
             // 
+            this.authorsList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.authorsList.FormattingEnabled = true;
-            this.authorsList.Location = new System.Drawing.Point(95, 119);
+            this.authorsList.ItemHeight = 20;
+            this.authorsList.Location = new System.Drawing.Point(120, 145);
             this.authorsList.Name = "authorsList";
-            this.authorsList.Size = new System.Drawing.Size(99, 95);
+            this.authorsList.Size = new System.Drawing.Size(145, 124);
             this.authorsList.TabIndex = 12;
             // 
             // descriptionText
             // 
-            this.descriptionText.Location = new System.Drawing.Point(404, 41);
+            this.descriptionText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.descriptionText.Location = new System.Drawing.Point(418, 57);
             this.descriptionText.Multiline = true;
             this.descriptionText.Name = "descriptionText";
-            this.descriptionText.Size = new System.Drawing.Size(194, 150);
+            this.descriptionText.Size = new System.Drawing.Size(255, 174);
             this.descriptionText.TabIndex = 4;
             // 
             // titleText
             // 
-            this.titleText.Location = new System.Drawing.Point(404, 14);
+            this.titleText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.titleText.Location = new System.Drawing.Point(418, 15);
             this.titleText.Name = "titleText";
-            this.titleText.Size = new System.Drawing.Size(194, 20);
+            this.titleText.Size = new System.Drawing.Size(255, 26);
             this.titleText.TabIndex = 2;
             // 
             // datePicker
             // 
             this.datePicker.CustomFormat = "";
+            this.datePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.datePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.datePicker.Location = new System.Drawing.Point(95, 37);
+            this.datePicker.Location = new System.Drawing.Point(121, 50);
             this.datePicker.Name = "datePicker";
-            this.datePicker.Size = new System.Drawing.Size(99, 20);
+            this.datePicker.Size = new System.Drawing.Size(144, 26);
             this.datePicker.TabIndex = 3;
             this.datePicker.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             // 
             // isbnText
             // 
-            this.isbnText.Location = new System.Drawing.Point(95, 11);
+            this.isbnText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.isbnText.Location = new System.Drawing.Point(121, 18);
+            this.isbnText.MaxLength = 17;
             this.isbnText.Name = "isbnText";
-            this.isbnText.Size = new System.Drawing.Size(100, 20);
+            this.isbnText.Size = new System.Drawing.Size(144, 26);
             this.isbnText.TabIndex = 1;
             // 
             // daySpanPicker
             // 
-            this.daySpanPicker.Location = new System.Drawing.Point(94, 63);
+            this.daySpanPicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.daySpanPicker.Location = new System.Drawing.Point(120, 82);
             this.daySpanPicker.Maximum = new decimal(new int[] {
             365,
             0,
@@ -203,7 +222,7 @@ namespace Biblioteka
             0,
             0});
             this.daySpanPicker.Name = "daySpanPicker";
-            this.daySpanPicker.Size = new System.Drawing.Size(100, 20);
+            this.daySpanPicker.Size = new System.Drawing.Size(145, 26);
             this.daySpanPicker.TabIndex = 5;
             this.daySpanPicker.Value = new decimal(new int[] {
             90,
@@ -213,27 +232,23 @@ namespace Biblioteka
             // 
             // publisherPicker
             // 
-            this.publisherPicker.Location = new System.Drawing.Point(8, 83);
+            this.publisherPicker.Location = new System.Drawing.Point(12, 107);
             this.publisherPicker.Name = "publisherPicker";
             this.publisherPicker.PublisherName = "";
-            this.publisherPicker.Size = new System.Drawing.Size(271, 30);
+            this.publisherPicker.Size = new System.Drawing.Size(338, 35);
             this.publisherPicker.TabIndex = 6;
             // 
             // BookModificationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(621, 264);
-            this.Controls.Add(this.publisherPicker);
-            this.Controls.Add(label7);
+            this.ClientSize = new System.Drawing.Size(684, 334);
             this.Controls.Add(this.daySpanPicker);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.acceptButton);
             this.Controls.Add(this.descriptionText);
             this.Controls.Add(this.deleteAutorButton);
-            this.Controls.Add(label1);
             this.Controls.Add(this.addAutorButton);
-            this.Controls.Add(label2);
             this.Controls.Add(this.authorsList);
             this.Controls.Add(this.isbnText);
             this.Controls.Add(label6);
@@ -241,6 +256,10 @@ namespace Biblioteka
             this.Controls.Add(label3);
             this.Controls.Add(label4);
             this.Controls.Add(this.titleText);
+            this.Controls.Add(this.publisherPicker);
+            this.Controls.Add(label7);
+            this.Controls.Add(label2);
+            this.Controls.Add(label1);
             this.Name = "BookModificationForm";
             this.Text = "Modyfikacja ksiązki";
             this.Load += new System.EventHandler(this.BookModificationForm_Load);

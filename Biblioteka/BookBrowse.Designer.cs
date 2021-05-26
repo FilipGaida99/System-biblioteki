@@ -38,9 +38,9 @@ namespace Biblioteka
             this.bookLayout.AutoScroll = true;
             this.bookLayout.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.bookLayout.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.bookLayout.Location = new System.Drawing.Point(12, 179);
+            this.bookLayout.Location = new System.Drawing.Point(12, 222);
             this.bookLayout.Name = "bookLayout";
-            this.bookLayout.Size = new System.Drawing.Size(465, 376);
+            this.bookLayout.Size = new System.Drawing.Size(583, 400);
             this.bookLayout.TabIndex = 1;
             this.bookLayout.WrapContents = false;
             // 
@@ -48,14 +48,14 @@ namespace Biblioteka
             // 
             this.bookSearch.Location = new System.Drawing.Point(12, 12);
             this.bookSearch.Name = "bookSearch";
-            this.bookSearch.Size = new System.Drawing.Size(466, 145);
+            this.bookSearch.Size = new System.Drawing.Size(583, 192);
             this.bookSearch.TabIndex = 0;
             // 
             // BookBrowse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(489, 567);
+            this.ClientSize = new System.Drawing.Size(607, 634);
             this.Controls.Add(this.bookLayout);
             this.Controls.Add(this.bookSearch);
             this.Name = "BookBrowse";

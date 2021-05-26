@@ -26,6 +26,8 @@ namespace Biblioteka
             if (base.Accept(db, out errorText))
             {
                 long id = (long)firstCopyInventoryNumber.Value;
+
+                //Sprawdzenie czy numer inwentarza jest unikalny.
                 var _copy = db.Egzemplarz.FirstOrDefault(copy => copy.Nr_inwentarza == id);
                 if (_copy != null)
                 {
@@ -33,7 +35,8 @@ namespace Biblioteka
                         $" \"{_copy.Książka.Tytuł}\" (ISBN:{_copy.Książka.ISBN.Trim()}).";
                     return false;
                 }
-                managedBook.Egzemplarz.Add(new Egzemplarz { Nr_inwentarza = id });
+
+                managedBook.Egzemplarz.Add(new Egzemplarz { Nr_inwentarza = id, Rok_wydruku = managedBook.Rok_wydania });
 
                 return true;
             }
