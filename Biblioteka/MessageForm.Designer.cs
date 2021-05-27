@@ -30,15 +30,16 @@ namespace Biblioteka
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.msgListFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.writeMsgLabel = new System.Windows.Forms.Button();
             this.receivedMsgButton = new System.Windows.Forms.Button();
             this.sentMsgButton = new System.Windows.Forms.Button();
-            this.msgListFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.msgListFlowPanel);
             this.panel1.Controls.Add(this.writeMsgLabel);
             this.panel1.Controls.Add(this.receivedMsgButton);
@@ -47,6 +48,16 @@ namespace Biblioteka
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(683, 426);
             this.panel1.TabIndex = 0;
+            // 
+            // msgListFlowPanel
+            // 
+            this.msgListFlowPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.msgListFlowPanel.Location = new System.Drawing.Point(157, 5);
+            this.msgListFlowPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.msgListFlowPanel.Name = "msgListFlowPanel";
+            this.msgListFlowPanel.Size = new System.Drawing.Size(523, 418);
+            this.msgListFlowPanel.VerticalScroll.Visible = true;
+            this.msgListFlowPanel.TabIndex = 4;
             // 
             // writeMsgLabel
             // 
@@ -78,17 +89,11 @@ namespace Biblioteka
             this.sentMsgButton.UseVisualStyleBackColor = true;
             this.sentMsgButton.Click += new System.EventHandler(this.sentMsgButton_Click);
             // 
-            // msgListFlowPanel
-            // 
-            this.msgListFlowPanel.Location = new System.Drawing.Point(157, 5);
-            this.msgListFlowPanel.Name = "msgListFlowPanel";
-            this.msgListFlowPanel.Size = new System.Drawing.Size(523, 418);
-            this.msgListFlowPanel.TabIndex = 4;
-            // 
             // MessageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(707, 450);
             this.Controls.Add(this.panel1);
             this.Name = "MessageForm";

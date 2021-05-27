@@ -26,15 +26,17 @@ namespace Biblioteka
 
         private void MessageForm_Load(object sender, EventArgs e)
         {
-            CustomMessageButton asd = new CustomMessageButton();
+
+
+            CustomMessageButton asd = new CustomMessageButton(deleteButton_Click);
             asd.Text = "button 1 :)";
             asd.Tag = 1;
             msgListFlowPanel.Controls.Add(asd);
-            asd = new CustomMessageButton();
+            asd = new CustomMessageButton(deleteButton_Click);
             asd.Text = "button 3 :)";
             asd.Tag = 2;
             msgListFlowPanel.Controls.Add(asd);
-            asd = new CustomMessageButton();
+            asd = new CustomMessageButton(deleteButton_Click);
             asd.Text = "button 2 :)";
             asd.Tag = 3;
             msgListFlowPanel.Controls.Add(asd);
@@ -59,6 +61,11 @@ namespace Biblioteka
         private void msgListFlowPanel_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            int msgIndex = msgListFlowPanel.Controls.GetChildIndex(((Button)sender).Parent);
         }
     }
 }

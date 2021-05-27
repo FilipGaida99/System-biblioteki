@@ -72,16 +72,15 @@ namespace Biblioteka
             this.addAddresseeButton.TabIndex = 8;
             this.addAddresseeButton.Text = "Dodaj";
             this.addAddresseeButton.UseVisualStyleBackColor = true;
-            this.addAddresseeButton.Click += new System.EventHandler(this.addAddresseeButton_Click);
+            this.addAddresseeButton.Click += new System.EventHandler(this.AddAddresseeButton_Click);
             // 
             // addresseeLabel
             // 
             this.addresseeLabel.AutoSize = true;
             this.addresseeLabel.Location = new System.Drawing.Point(47, 18);
             this.addresseeLabel.Name = "addresseeLabel";
-            this.addresseeLabel.Size = new System.Drawing.Size(35, 13);
+            this.addresseeLabel.Size = new System.Drawing.Size(0, 13);
             this.addresseeLabel.TabIndex = 7;
-            this.addresseeLabel.Text = "label3";
             // 
             // titleConstLabel
             // 
@@ -116,7 +115,7 @@ namespace Biblioteka
             this.cancelMsgButton.TabIndex = 1;
             this.cancelMsgButton.Text = "Anuluj";
             this.cancelMsgButton.UseVisualStyleBackColor = true;
-            this.cancelMsgButton.Click += new System.EventHandler(this.cancelMsgButton_Click);
+            this.cancelMsgButton.Click += new System.EventHandler(this.CancelMsgButton_Click);
             // 
             // sendMsgButton
             // 
@@ -126,7 +125,7 @@ namespace Biblioteka
             this.sendMsgButton.TabIndex = 0;
             this.sendMsgButton.Text = "Wyślij";
             this.sendMsgButton.UseVisualStyleBackColor = true;
-            this.sendMsgButton.Click += new System.EventHandler(this.sendMsgButton_Click);
+            this.sendMsgButton.Click += new System.EventHandler(this.SendMsgButton_Click);
             // 
             // WriteMessageForm
             // 
