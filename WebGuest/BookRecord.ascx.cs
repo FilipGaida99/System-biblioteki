@@ -8,9 +8,21 @@ using Biblioteka;
 
 namespace WebGuest
 {
+    /// <summary>
+    /// Kontrolka grupująca informacje o książce.
+    /// </summary>
     public partial class BookRecord : System.Web.UI.UserControl
     {
+        /// <summary>
+        /// Identyfikator książki zawierającej wyświetlane informacje.
+        /// </summary>
         public long managedBookID;
+
+        /// <summary>
+        /// Procedura ładowania kontrolki.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             using (var db = new BibliotekaDB())

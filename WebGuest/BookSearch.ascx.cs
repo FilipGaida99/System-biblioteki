@@ -8,18 +8,36 @@ using Biblioteka;
 
 namespace WebGuest
 {
-
+    /// <summary>
+    /// Kontrolka pozwalająca na wyszukiwanie książek.
+    /// </summary>
     public partial class BookSearch : System.Web.UI.UserControl
     {
+        /// <summary>
+        /// Callback wywoływany po zakończeniu wyszukiwania.
+        /// </summary>
         public Action onSearch;
 
+        /// <summary>
+        /// Lista identyfikatorów pasujących do warunków wyszukiwania.
+        /// </summary>
         public List<long> booksID;
 
+        /// <summary>
+        /// Procedura ładowania kontrolki.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Obsługa naciśnięcia przycisku wyszukiwania. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void SerachButton_Click(object sender, EventArgs e)
         {
             using (var db = new BibliotekaDB())

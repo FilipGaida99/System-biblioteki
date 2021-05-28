@@ -7,8 +7,16 @@ using System.Web.UI.WebControls;
 
 namespace WebGuest
 {
+    /// <summary>
+    /// Kontrolka pozwalająca na wybór daty.
+    /// </summary>
     public partial class DatePicker : System.Web.UI.UserControl
     {
+        /// <summary>
+        /// Procedura ładowania kontrolki.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             if(Day.Text.Trim() == "")
@@ -21,8 +29,15 @@ namespace WebGuest
             ErrorLabel.Text = "";
         }
 
+        /// <summary>
+        /// Informacja, czy kontrolka jest zaznaczona.
+        /// </summary>
         public bool Checked => CheckBox.Checked;
 
+        /// <summary>
+        /// Wartość wprowadzonej daty. W przypadku braku zaznaczenia zostanie ustawiona wartość null.
+        /// W przypadku błędów wyświetlony zostanie odpowiedni tekst i wartość zostanie ustawiona na null.
+        /// </summary>
         public DateTime? Date
         {
             get

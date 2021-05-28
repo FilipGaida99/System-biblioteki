@@ -8,9 +8,21 @@ using Biblioteka;
 
 namespace WebGuest
 {
+    /// <summary>
+    /// Strona z opisanymi szczegółami książki.
+    /// </summary>
     public partial class BookDetails : System.Web.UI.Page
     {
+        /// <summary>
+        /// Identyfikator książki zawierającej wyświetlane informacje.
+        /// </summary>
         long bookID;
+
+        /// <summary>
+        /// Procedura ładowania strony.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(Request.QueryString["id"]))
@@ -20,6 +32,9 @@ namespace WebGuest
             }
         }
 
+        /// <summary>
+        /// Procedura ładowania książki do kontrolek znajdzujących się na stronie.
+        /// </summary>
         private void LoadBook()
         {
             using (var db = new BibliotekaDB())
@@ -37,6 +52,10 @@ namespace WebGuest
             }
         }
 
+        /// <summary>
+        /// Ustawianie podstawowych informacji o książce, takich jak tytuł, isbn, data wydania, itd.
+        /// </summary>
+        /// <param name="managedBook">Książka zawierająca wyświetlane informacje</param>
         private void SetBasicInformation(Książka managedBook)
         {
             Title.Text = managedBook.Tytuł;
@@ -53,6 +72,10 @@ namespace WebGuest
             Description.Text = managedBook.Opis.Replace("\r\n", "<br/>");
         }
 
+        /// <summary>
+        /// Ustawianie informacji o dostępności książki.
+        /// </summary>
+        /// <param name="managedBook">Książka zawierająca wyświetlane informacje</param>
         private void SetAvailabilityInformation(Książka managedBook)
         {
             var bookings = managedBook.Rezerwacje.OrderBy(booking => booking.Data_rezerwacji).ToList();
@@ -78,6 +101,10 @@ namespace WebGuest
             }
         }
 
+        /// <summary>
+        /// Ustawianie informacji o egzemplarzach książki.
+        /// </summary>
+        /// <param name="managedBook">Książka zawierająca wyświetlane informacje</param>
         private void SetCopyInformation(Książka managedBook)
         {
             const int numberColumnIndex = 0;

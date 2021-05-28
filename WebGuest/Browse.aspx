@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Browse.aspx.cs" Inherits="WebGuest.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Browse.aspx.cs" Inherits="WebGuest.Browse" %>
 
 <%@ Register Src="~/DatePicker.ascx" TagPrefix="uc1" TagName="DatePicker" %>
 <%@ Register Src="~/BookSearch.ascx" TagPrefix="uc1" TagName="BookSearch" %>

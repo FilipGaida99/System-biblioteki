@@ -11,7 +11,7 @@ namespace WebGuest
 {
 
 
-    public partial class WebForm1
+    public partial class Browse
     {
 
         /// <summary>

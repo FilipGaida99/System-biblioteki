@@ -43,7 +43,7 @@ namespace Biblioteka
         }
 
         /// <summary>
-        /// OBsługa wyszukiwania na podstawie ustawionych argumentów.
+        /// Obsługa wyszukiwania na podstawie ustawionych argumentów.
         /// </summary>
         /// <param name = "sender" > Kontrolka.</ param >
         /// <param name="e">Argumenty.</param>
