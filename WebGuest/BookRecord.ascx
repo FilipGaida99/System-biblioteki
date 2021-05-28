@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="BookRecord.ascx.cs" Inherits="WebGuest.BookRecord" %>
-<div style ="border-style: solid;">
+<div style ="border-style: solid; margin-bottom : 5px;">
 <asp:HyperLink ID="ShowLink" runat="server" runat="server" style="position:relative; float:right; top: 37px; left: -45px;" Font-Size ="30px" CauseValidation="false">Wyświetl</asp:HyperLink>
 <asp:Label ID="Title" runat="server" Text="Label" ToolTip="Tytuł" style ="margin-left:5px" Font-Size ="30px"></asp:Label>
 <br />

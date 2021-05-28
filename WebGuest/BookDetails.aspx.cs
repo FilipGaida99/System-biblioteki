@@ -69,6 +69,7 @@ namespace WebGuest
                 Authors.Text += ", ";
                 Authors.Text += authorsList[i].Imię + " " + authorsList[i].Nazwisko;
             }
+            MaxDays.Text = $"Maksymalny okres wypożyczenia: {managedBook.Maksymalny_okres_wypożyczenia} dni";
             Description.Text = managedBook.Opis.Replace("\r\n", "<br/>");
         }
 

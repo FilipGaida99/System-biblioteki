@@ -19,6 +19,8 @@
         <br />
         <asp:Label ID="Authors" runat="server" Text="Label" ToolTip="Autorzy" Style="margin-left: 5px">Autorzy</asp:Label>
         <br />
+        <asp:Label ID="MaxDays" runat="server" Text="Label" ToolTip="Maksymalny okres wypożyczenia" Style="margin-left: 5px">Dni</asp:Label>
+        <br />
         <br />
         <asp:Label ID="Description" runat="server" Text="Label" ToolTip="Opis" Style="margin-left: 5px">Opis</asp:Label>
         <hr />
