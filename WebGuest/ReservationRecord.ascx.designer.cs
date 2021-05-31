@@ -11,34 +11,25 @@ namespace WebGuest
 {
 
 
-    public partial class _default
+    public partial class ReservationRecord
     {
 
         /// <summary>
-        /// Kontrolka form1.
+        /// Kontrolka BookLink.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.HyperLink BookLink;
 
         /// <summary>
-        /// Kontrolka BrowseButton.
+        /// Kontrolka ReservationDate.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BrowseButton;
-
-        /// <summary>
-        /// Kontrolka UserButton.
-        /// </summary>
-        /// <remarks>
-        /// Pole generowane automatycznie.
-        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button UserButton;
+        protected global::System.Web.UI.WebControls.Label ReservationDate;
     }
 }

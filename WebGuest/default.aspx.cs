@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Biblioteka;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -30,6 +31,16 @@ namespace WebGuest
         protected void BrowseButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Browse.aspx");
+        }
+
+        /// <summary>
+        /// Obsługa przejścia do strony z informacjami o wypożyczeniach.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void UserButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/User.aspx");
         }
     }
 }

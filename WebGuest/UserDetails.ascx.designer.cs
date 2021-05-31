@@ -11,34 +11,43 @@ namespace WebGuest
 {
 
 
-    public partial class _default
+    public partial class UserDetails
     {
 
         /// <summary>
-        /// Kontrolka form1.
+        /// Kontrolka Forename.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Label Forename;
 
         /// <summary>
-        /// Kontrolka BrowseButton.
+        /// Kontrolka Surname.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BrowseButton;
+        protected global::System.Web.UI.WebControls.Label Surname;
 
         /// <summary>
-        /// Kontrolka UserButton.
+        /// Kontrolka LendsPanel.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button UserButton;
+        protected global::System.Web.UI.WebControls.Panel LendsPanel;
+
+        /// <summary>
+        /// Kontrolka ReservationsPanel.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel ReservationsPanel;
     }
 }

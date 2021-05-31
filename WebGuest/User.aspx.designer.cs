@@ -11,7 +11,7 @@ namespace WebGuest
 {
 
 
-    public partial class _default
+    public partial class User
     {
 
         /// <summary>
@@ -24,21 +24,21 @@ namespace WebGuest
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Kontrolka BrowseButton.
+        /// Kontrolka IDTextBox.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BrowseButton;
+        protected global::System.Web.UI.WebControls.TextBox IDTextBox;
 
         /// <summary>
-        /// Kontrolka UserButton.
+        /// Kontrolka SubmitButton.
         /// </summary>
         /// <remarks>
         /// Pole generowane automatycznie.
         /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button UserButton;
+        protected global::System.Web.UI.WebControls.Button SubmitButton;
     }
 }

@@ -15,6 +15,11 @@ namespace WebGuest
     public partial class Browse : System.Web.UI.Page
     {
         /// <summary>
+        /// Ścieżka do kontrolki wyświetlającej dane o książce.
+        /// </summary>
+        const string bookRecordControlPath = "~/BookRecord.ascx";
+
+        /// <summary>
         /// Procedura ładowania strony.
         /// </summary>
         /// <param name="sender"></param>
@@ -45,7 +50,7 @@ namespace WebGuest
         /// <param name="bookID">Identyfikator książki zawierającej wyświetlane informacje</param>
         private void AddBook(long bookID)
         {
-            var rec = (BookRecord)Page.LoadControl("~/BookRecord.ascx");
+            var rec = (BookRecord)Page.LoadControl(bookRecordControlPath);
             rec.ID = $"Book{bookID}";
             rec.managedBookID = bookID;
             BookRecordPanel.Controls.Add(rec);
