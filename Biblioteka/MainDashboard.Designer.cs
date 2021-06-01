@@ -232,13 +232,13 @@ namespace Biblioteka
             // 
             // messagesButton
             // 
-            this.messagesButton.Enabled = false;
             this.messagesButton.Location = new System.Drawing.Point(528, 136);
             this.messagesButton.Name = "messagesButton";
             this.messagesButton.Size = new System.Drawing.Size(91, 34);
             this.messagesButton.TabIndex = 4;
             this.messagesButton.Text = "Wiadomości";
             this.messagesButton.UseVisualStyleBackColor = true;
+            this.messagesButton.Click += new System.EventHandler(this.messagesButton_Click);
             // 
             // MainDashboard
             // 

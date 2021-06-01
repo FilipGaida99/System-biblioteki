@@ -19,7 +19,12 @@ namespace Biblioteka
 
         [Required]
         [StringLength(4000)]
+        public string Tytuł { get; set; }
+
+        [Required]
+        [StringLength(4000)]
         public string Treść { get; set; }
+
 
         [Column("Data wysłania")]
         public DateTime Data_wysłania { get; set; }
