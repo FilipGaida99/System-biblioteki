@@ -1,17 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using Biblioteka;
+using System;
 using System.Drawing;
-using Biblioteka;
+using System.Linq;
 
 namespace WebGuest
 {
+    /// <summary>
+    /// Kontrolka z informacjami o wypożyczeniu.
+    /// </summary>
     public partial class LendRecord : System.Web.UI.UserControl
     {
+        /// <summary>
+        /// Identyfikator wypożyczenia.
+        /// </summary>
         public long LendId;
+
+        /// <summary>
+        /// Procedura ładowania strony.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             using (var db = new BibliotekaDB())
@@ -39,8 +47,13 @@ namespace WebGuest
                 }
                 foreach(var penalty in lend.Kara)
                 {
-                    Penalties.Text += $"<br />Nałożono: {penalty.Data_nałożenia} " +
-                        $"Zdjęto: {(penalty.Data_amnestii.HasValue ? penalty.Data_amnestii.Value.ToShortDateString(): "Aktwyna kara")}";
+                    bool isActive = !penalty.Data_amnestii.HasValue;
+                    Penalties.Text += $"<br />•Nałożono: {penalty.Data_nałożenia.ToShortDateString()} " +
+                        $"Zdjęto: {(isActive ? "Aktwyna kara" : penalty.Data_amnestii.Value.ToShortDateString())}";
+                    if (isActive)
+                    {
+                        LendNumber.ForeColor = Color.Red;
+                    }
                 }
             }
         }

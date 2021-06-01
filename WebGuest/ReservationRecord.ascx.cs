@@ -1,19 +1,28 @@
 ﻿using Biblioteka;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace WebGuest
 {
+    /// <summary>
+    /// Kontrolka z informacjami o rezerwacji.
+    /// </summary>
     public partial class ReservationRecord : System.Web.UI.UserControl
     {
+        /// <summary>
+        /// Identyfikator czytelnika.
+        /// </summary>
         public long ReaderId;
+        /// <summary>
+        /// Identyfikator książki.
+        /// </summary>
         public long BookId;
 
+        /// <summary>
+        /// Procedura ładowania strony.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             using (var db = new BibliotekaDB())

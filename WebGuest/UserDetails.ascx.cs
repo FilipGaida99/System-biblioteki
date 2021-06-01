@@ -1,20 +1,34 @@
 ﻿using Biblioteka;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace WebGuest
 {
+    /// <summary>
+    /// Kontrolka z informacjami o użytkowniku.
+    /// </summary>
     public partial class UserDetails : System.Web.UI.UserControl
     {
+        /// <summary>
+        /// Ścieżka do kontrolki z informacjami o wypożyczeniu.
+        /// </summary>
         const string lendRecordControlPath = "~/LendRecord.ascx";
+        /// <summary>
+        /// Ścieżka do kontrolki z informacjami o rezerwacji.
+        /// </summary>
         const string reservationRecordControlPath = "~/ReservationRecord.ascx";
 
+        /// <summary>
+        /// Identyfikator użytkownika, którego infomracje będą wyświetlane.
+        /// </summary>
         public long ReaderID;
 
+        /// <summary>
+        /// Procedura ładowania strony.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             using(var db = new BibliotekaDB())
@@ -32,7 +46,10 @@ namespace WebGuest
 
                 foreach(Wypożyczenie lend in reader.Wypożyczenie)
                 {
-                    AddLend(lend.WypożyczenieID);
+                    if (!lend.Ended || lend.HasActivePenalty())
+                    {
+                        AddLend(lend.WypożyczenieID);
+                    }
                 }
 
                 foreach(Rezerwacje reservation in reader.Rezerwacje)

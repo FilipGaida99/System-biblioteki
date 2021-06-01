@@ -15,7 +15,7 @@
     <h1>PRZEGLĄDANIE KSIĘGOZBIORU</h1>
     <form id="form1" runat="server">
         <uc1:BookSearch runat="server" id="BookSearch" />
-        <asp:Label ID="CountLabel" runat="server" Text="Label">Wyniki wyszukiwania:</asp:Label>
+        <asp:Label ID="CountLabel" runat="server" Text="Wyniki wyszukiwania:"></asp:Label>
         <asp:Panel ID="BookRecordPanel" runat="server"></asp:Panel>
     </form>
 </body>

@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using Biblioteka;
 
 
 namespace WebGuest
@@ -35,6 +30,7 @@ namespace WebGuest
         private void OnSearch()
         {
             var books = BookSearch.booksID;
+            CountLabel.Text = $"Znaleziono {books.Count} wyników:";
             if (books != null)
             {
                 foreach (var book in books)
