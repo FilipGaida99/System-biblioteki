@@ -153,15 +153,19 @@ namespace Biblioteka
     {
         private UsersSelection() { }
 
-        public abstract void MoveUserRight(int index);
+        abstract public void MoveUserRight(int index);
 
-        public abstract void MoveUserLeft(int index);
+        abstract public void MoveUserLeft(int index);
 
-        public abstract void UpdateLists();
+        abstract public void UpdateLists();
 
-        public abstract List<string> GetAvailableListStr();
+        abstract public List<string> GetAvailableListStr();
 
-        public abstract List<string> GetChosenListStr();
+        abstract public List<string> GetChosenListStr();
+
+        abstract public List<string> GetAvailableListStr(string filter);
+
+        abstract public List<string> GetChosenListStr(string filter);
 
         abstract public List<Czytelnik> GetAvailableReadersList();
 
@@ -197,6 +201,15 @@ namespace Biblioteka
                 availableList.RemoveAt(index);
             }
 
+            public void MoveUserRight(string text)
+            {
+                
+
+                //chosenList.Add(availableList[index]);
+                //chosenList.Sort((x, y) => x.Nazwisko.CompareTo(y));
+                //availableList.RemoveAt(index);
+            }
+
             override public void MoveUserLeft(int index)
             {
                 availableList.Add(availableList[index]);
@@ -210,11 +223,35 @@ namespace Biblioteka
                 chosenListRef = chosenList;
             }
 
+            override public List<string> GetAvailableListStr(string filter)
+            {
+                List<string> namesList = new List<string>();
+                foreach (var elem in availableList)
+                {
+                    string str = $"{elem.Imię} {elem.Nazwisko} ({elem.CzytelnikID})";
+                    if (str.Contains(filter))
+                        namesList.Add(str);
+                }
+                return namesList;
+            }
+
             override public List<string> GetAvailableListStr()
             {
                 List<string> namesList = new List<string>();
                 foreach (var elem in availableList)
-                    namesList.Add($"{elem.Imię} {elem.Nazwisko}");
+                    namesList.Add($"{elem.Imię} {elem.Nazwisko} ({elem.CzytelnikID})");
+                return namesList;
+            }
+
+            override public List<string> GetChosenListStr(string filter)
+            {
+                List<string> namesList = new List<string>();
+                foreach (var elem in chosenList)
+                {
+                    string str = $"{elem.Imię} {elem.Nazwisko} ({elem.CzytelnikID})";
+                    if (str.Contains(filter))
+                        namesList.Add(str);
+                }
                 return namesList;
             }
 
@@ -222,7 +259,7 @@ namespace Biblioteka
             {
                 List<string> namesList = new List<string>();
                 foreach (var elem in chosenList)
-                    namesList.Add($"{elem.Imię} {elem.Nazwisko}");
+                    namesList.Add($"{elem.Imię} {elem.Nazwisko} ({elem.CzytelnikID})");
                 return namesList;
             }
 
@@ -311,11 +348,43 @@ namespace Biblioteka
                 return x.Nazwisko.CompareTo(y.Nazwisko);
             }
 
+            override public List<string> GetAvailableListStr(string filter)
+            {
+                List<string> namesList = new List<string>();
+                foreach (var elem in availableList)
+                {
+                    string str;
+                    if (elem.BibliotekarzID == 0)
+                        str = $"{elem.Imię} {elem.Nazwisko}";
+                    else
+                        str = $"{elem.Imię} {elem.Nazwisko} ({elem.BibliotekarzID})";
+                    if (str.Contains(filter))
+                        namesList.Add(str);
+                }
+                return namesList;
+            }
+
             override public List<string> GetAvailableListStr()
             {
                 List<string> namesList = new List<string>();
                 foreach (var elem in availableList)
-                    namesList.Add($"{elem.Imię} {elem.Nazwisko}");
+                    namesList.Add($"{elem.Imię} {elem.Nazwisko} ({elem.BibliotekarzID})");
+                return namesList;
+            }
+
+            override public List<string> GetChosenListStr(string filter)
+            {
+                List<string> namesList = new List<string>();
+                foreach (var elem in chosenList)
+                {
+                    string str;
+                    if (elem.BibliotekarzID == 0)
+                        str = $"{elem.Imię} {elem.Nazwisko}";
+                    else
+                        str = $"{elem.Imię} {elem.Nazwisko} ({elem.BibliotekarzID})";
+                    if (str.Contains(filter))
+                        namesList.Add(str);
+                }
                 return namesList;
             }
 
@@ -323,7 +392,7 @@ namespace Biblioteka
             {
                 List<string> namesList = new List<string>();
                 foreach (var elem in chosenList)
-                    namesList.Add($"{elem.Imię} {elem.Nazwisko}");
+                    namesList.Add($"{elem.Imię} {elem.Nazwisko} ({elem.BibliotekarzID})");
                 return namesList;
             }
 

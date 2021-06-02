@@ -44,7 +44,7 @@ namespace Biblioteka
             if (availableListBox.SelectedIndex == -1)
                 return;
             usersSelection.MoveUserRight(availableListBox.SelectedIndex);
-            
+
             availableListBox.BeginUpdate();
             availableListBox.Items.Clear();
             availableListBox.Items.AddRange(usersSelection.GetAvailableListStr().ToArray());
@@ -83,6 +83,24 @@ namespace Biblioteka
         private void cancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void availableFilterTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (availableFilterTextBox.Text.Length == 0)
+                ;
+            else
+            {
+
+                //availableListBox.SuspendLayout();
+                //availableListBox.Items.Clear();
+                //availableListBox.ResumeLayout();
+            }
+        }
+
+        private void chosenFilterTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

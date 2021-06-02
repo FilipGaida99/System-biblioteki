@@ -12,9 +12,34 @@ namespace Biblioteka
 {
     public partial class ReadMessageForm : Form
     {
-        public ReadMessageForm()
+        public ReadMessageForm(Czytelnik_Wiadomość readerMsg)
         {
             InitializeComponent();
+
+            fromLabel.Text = readerMsg.Czytelnik.Imię + readerMsg.Czytelnik.Nazwisko;
+            toLabel.Text = "";
+            foreach (var elem in readerMsg.Wiadomość.Bibliotekarz_Wiadomość)
+                toLabel.Text += elem.Bibliotekarz.Imię + " " + elem.Bibliotekarz.Nazwisko + ", ";
+            if (toLabel.Text.Length != 0)
+                toLabel.Text = toLabel.Text.Remove(toLabel.Text.Length - 2);
+            dateLabel.Text = readerMsg.Wiadomość.Data_wysłania.ToString();
+            titleLabel.Text = readerMsg.Wiadomość.Tytuł;
+            titleLabel.Text = readerMsg.Wiadomość.Treść;
+        }
+
+        public ReadMessageForm(Bibliotekarz_Wiadomość readerMsg)
+        {
+            InitializeComponent();
+
+            fromLabel.Text = readerMsg.Bibliotekarz.Imię + readerMsg.Bibliotekarz.Nazwisko;
+            toLabel.Text = "";
+            foreach (var elem in readerMsg.Wiadomość.Czytelnik_Wiadomość)
+                toLabel.Text += elem.Czytelnik.Imię + " " + elem.Czytelnik.Nazwisko + ", ";
+            if (toLabel.Text.Length != 0)
+                toLabel.Text = toLabel.Text.Remove(toLabel.Text.Length - 2);
+            dateLabel.Text = readerMsg.Wiadomość.Data_wysłania.ToString();
+            titleLabel.Text = readerMsg.Wiadomość.Tytuł;
+            titleLabel.Text = readerMsg.Wiadomość.Treść;
         }
     }
 }
