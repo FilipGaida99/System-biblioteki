@@ -57,7 +57,11 @@ namespace Biblioteka
         private void deleteButton_Click(object sender, EventArgs e)
         {
             using (new AppWaitCursor(this, sender))
-                DeleteExhibition(exhibitionList.SelectedIndex);
+            {
+                int exhibitionIndex = exhibitionList.SelectedIndex;
+                if (exhibitionIndex >= 0)
+                    DeleteExhibition(exhibitionIndex);
+            }
         }
 
         private void DeleteExhibition(int exhibitionIndex)
@@ -81,6 +85,25 @@ namespace Biblioteka
                 exhibitionList.Items.RemoveAt(exhibitionIndex);
                 exhibitions.RemoveAt(exhibitionIndex);
                 db.SaveChanges();
+            }
+        }
+
+        private void modifyButton_Click(object sender, EventArgs e)
+        {
+            using (new AppWaitCursor(this, sender))
+            {
+                int exhibitionIndex = exhibitionList.SelectedIndex;
+                if (exhibitionIndex < 0) return;
+
+                var exhibitionID = exhibitions[exhibitionIndex].WystawaID;
+                using (var db = new BibliotekaDB())
+                {
+                    Wystawa exhibitionToModify = db.Wystawa.Find(exhibitionID);
+
+                    ExhibitionAddForm form = new ExhibitionAddForm(exhibitionToModify);
+                    if (form.ShowDialog(this) == DialogResult.OK)
+                        UpdateExhibitionList();
+                }
             }
         }
     }

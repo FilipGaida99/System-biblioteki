@@ -71,6 +71,7 @@ namespace Biblioteka
             this.modifyButton.TabIndex = 5;
             this.modifyButton.Text = "Modyfikuj";
             this.modifyButton.UseVisualStyleBackColor = true;
+            this.modifyButton.Click += new System.EventHandler(this.modifyButton_Click);
             // 
             // ExhibitionManagementForm
             // 

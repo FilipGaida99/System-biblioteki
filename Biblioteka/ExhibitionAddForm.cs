@@ -74,9 +74,7 @@ namespace Biblioteka
                 {
                     bool result = confirm(db);
                     if (result)
-                    {
                         db.SaveChanges();
-                    }
                     else
                     {
                         MessageBox.Show(
@@ -87,6 +85,20 @@ namespace Biblioteka
                     }
                 }
                 this.Return();
+            }
+        }
+
+        private void ExhibitionAddForm_Load(object sender, EventArgs e)
+        {
+            if (managedExhibition == null) return;
+
+            using (var db = new BibliotekaDB())
+            {
+                managedExhibition = db.Wystawa.Find(managedExhibition.WystawaID);
+                nameText.Text = managedExhibition.Nazwa;
+                descriptionText.Text = managedExhibition.Opis;
+                startDatePicker.Value = managedExhibition.Data_rozpoczęcia;
+                endDatePicker.Value = managedExhibition.Data_zakończenia;
             }
         }
     }

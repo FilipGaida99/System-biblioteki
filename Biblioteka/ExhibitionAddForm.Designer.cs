@@ -133,6 +133,7 @@ namespace Biblioteka
             this.Controls.Add(this.nameText);
             this.Name = "ExhibitionAddForm";
             this.Text = "ExhibitionAddForm";
+            this.Load += new System.EventHandler(this.ExhibitionAddForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
