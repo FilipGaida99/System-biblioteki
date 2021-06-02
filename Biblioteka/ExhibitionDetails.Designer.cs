@@ -36,6 +36,7 @@ namespace Biblioteka
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.descriptionText = new System.Windows.Forms.TextBox();
+            this.authorLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // nameLabel
@@ -69,7 +70,7 @@ namespace Biblioteka
             // endLabel
             // 
             this.endLabel.AutoSize = true;
-            this.endLabel.Location = new System.Drawing.Point(245, 28);
+            this.endLabel.Location = new System.Drawing.Point(292, 28);
             this.endLabel.Name = "endLabel";
             this.endLabel.Size = new System.Drawing.Size(25, 13);
             this.endLabel.TabIndex = 4;
@@ -78,7 +79,7 @@ namespace Biblioteka
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(143, 28);
+            this.label3.Location = new System.Drawing.Point(190, 28);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(96, 13);
             this.label3.TabIndex = 3;
@@ -106,10 +107,21 @@ namespace Biblioteka
             this.descriptionText.Size = new System.Drawing.Size(303, 98);
             this.descriptionText.TabIndex = 6;
             // 
+            // authorLabel
+            // 
+            this.authorLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.authorLabel.AutoSize = true;
+            this.authorLabel.Location = new System.Drawing.Point(280, 41);
+            this.authorLabel.Name = "authorLabel";
+            this.authorLabel.Size = new System.Drawing.Size(37, 13);
+            this.authorLabel.TabIndex = 7;
+            this.authorLabel.Text = "author";
+            // 
             // ExhibitionDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.authorLabel);
             this.Controls.Add(this.descriptionText);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.endLabel);
@@ -133,5 +145,6 @@ namespace Biblioteka
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox descriptionText;
+        private System.Windows.Forms.Label authorLabel;
     }
 }

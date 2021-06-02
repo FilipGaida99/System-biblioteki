@@ -12,28 +12,27 @@ namespace Biblioteka
 {
     public partial class ExhibitionDetails : UserControl
     {
-        Wystawa exhibition;
-
         public ExhibitionDetails()
         {
             InitializeComponent();
-            exhibition = null;
             nameLabel.Text = "";
             startLabel.Text = "";
             endLabel.Text = "";
             descriptionText.Text = "";
+            authorLabel.Text = "";
         }
 
-        public void Update(Wystawa _exhibition)
+        public void Update(Wystawa exhibition)
         {
-            if (_exhibition == null)
+            if (exhibition == null)
                 return;
 
-            exhibition = _exhibition;
             nameLabel.Text = exhibition.Nazwa;
-            startLabel.Text = exhibition.Data_rozpoczęcia.ToString();
-            endLabel.Text = exhibition.Data_zakończenia.ToString();
+            startLabel.Text = exhibition.Data_rozpoczęcia.ToString("dd/MM/yyyy");
+            endLabel.Text = exhibition.Data_zakończenia.ToString("dd/MM/yyyy");
             descriptionText.Text = exhibition.Opis;
+            Bibliotekarz author = exhibition.Bibliotekarz;
+            authorLabel.Text = $"{author.Imię} {author.Nazwisko}";
         }
     }
 }

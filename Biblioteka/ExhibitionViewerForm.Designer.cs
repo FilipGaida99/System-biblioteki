@@ -69,6 +69,7 @@ namespace Biblioteka
             this.Controls.Add(this.exhibitionList);
             this.Name = "ExhibitionViewerForm";
             this.Text = "Wystawy";
+            this.Load += new System.EventHandler(this.ExhibitionViewerForm_Load);
             this.ResumeLayout(false);
 
         }

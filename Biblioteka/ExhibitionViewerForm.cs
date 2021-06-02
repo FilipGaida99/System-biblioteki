@@ -20,10 +20,41 @@ namespace Biblioteka
             exhibitions = new List<Wystawa>();
         }
 
+        private void UpdateExhibitionList()
+        {
+            exhibitionList.BeginUpdate();
+            exhibitionList.Items.Clear();
+            foreach (var ex in exhibitions)
+                exhibitionList.Items.Add(ex.Nazwa);
+            exhibitionList.EndUpdate();
+        }
+
         private void showButton_Click(object sender, EventArgs e)
         {
-            exhibitionDetails1.Update(exhibitions.FirstOrDefault());
-            // TODO: show active exhibition from ListBox
+            int exhibitionIndex = exhibitionList.SelectedIndex;
+            if (exhibitionIndex < 0) return;
+            var exhibitionID = exhibitions[exhibitionIndex].WystawaID;
+            using (new AppWaitCursor(this, sender))
+            {
+                using (var db = new BibliotekaDB())
+                {
+                    Wystawa exhibition = db.Wystawa.Find(exhibitionID);
+                    exhibitionDetails1.Update(exhibition);
+                }
+            }
+        }
+
+        private void ExhibitionViewerForm_Load(object sender, EventArgs e)
+        {
+            using (new AppWaitCursor(this, sender))
+            {
+                using (var db = new BibliotekaDB())
+                {
+                    exhibitions = db.Wystawa.OrderBy(exhibition => exhibition.Data_rozpoczęcia).ToList();
+                    UpdateExhibitionList();
+                    exhibitionDetails1.Update(exhibitions.FirstOrDefault());
+                }
+            }
         }
     }
 }
