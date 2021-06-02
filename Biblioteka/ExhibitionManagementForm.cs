@@ -53,5 +53,35 @@ namespace Biblioteka
                 UpdateExhibitionList();
             }
         }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            using (new AppWaitCursor(this, sender))
+                DeleteExhibition(exhibitionList.SelectedIndex);
+        }
+
+        private void DeleteExhibition(int exhibitionIndex)
+        {
+            var exhibitionID = exhibitions[exhibitionIndex].WystawaID;
+
+            using (var db = new BibliotekaDB())
+            {
+                Wystawa exhibitionToRemove = db.Wystawa.Find(exhibitionID);
+
+                if (exhibitionToRemove != null)
+                {
+                    var result = MessageBox.Show(
+                        $"Na pewno chcesz usunąć {exhibitionToRemove.Nazwa}?",
+                        "Na pewno?", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.No) return;
+
+                    db.Wystawa.Remove(exhibitionToRemove);
+                }
+
+                exhibitionList.Items.RemoveAt(exhibitionIndex);
+                exhibitions.RemoveAt(exhibitionIndex);
+                db.SaveChanges();
+            }
+        }
     }
 }

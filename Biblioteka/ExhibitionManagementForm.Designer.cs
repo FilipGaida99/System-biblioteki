@@ -61,6 +61,7 @@ namespace Biblioteka
             this.deleteButton.TabIndex = 4;
             this.deleteButton.Text = "Usuń";
             this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // modifyButton
             // 
