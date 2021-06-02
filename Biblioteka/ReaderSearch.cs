@@ -57,6 +57,12 @@ namespace Biblioteka
                         }
                         query = query.Where(reader => reader.Adres_email.Contains(searchMail.Text)).OrderBy(reader => reader.Nazwisko);
 
+                        if(readerIdBox.Text != "")
+                        {
+                            long id = IDConverter.IdToLong(readerIdBox.Text);
+                            query = query.Where(reader => reader.CzytelnikID == id);
+                        }
+
                         readers = query.ToList();
                         onSearch.Invoke();
                     }

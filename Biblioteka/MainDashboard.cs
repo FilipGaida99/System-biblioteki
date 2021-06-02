@@ -17,7 +17,8 @@ namespace Biblioteka
 
         private void rentButton_Click(object sender, EventArgs e)
         {
-
+            UserCheckoutsForm userCheckouts = new UserCheckoutsForm();
+            userCheckouts.Show();
         }
 
         private void signButton_Click(object sender, EventArgs e)
@@ -47,6 +48,12 @@ namespace Biblioteka
         private void MainDashboard_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void bookingButton_Click(object sender, EventArgs e)
+        {
+            UserReservationsForm reservations = new UserReservationsForm();
+            reservations.Show();
         }
     }
 }

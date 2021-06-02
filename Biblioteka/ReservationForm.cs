@@ -53,13 +53,15 @@ namespace Biblioteka
             {
                 try
                 {
+                    book = db.Książka.Find(book.KsiążkaID);
                     reservation = new Rezerwacje();
                     reservation.Książka = book;
                     reservation.KsiążkaID = book.KsiążkaID;
                     reservation.Data_rezerwacji = currentDate;
                     // TO DO: Uzupełnić po zrobieniu użytkowników bo inaczej nie będzie dodawać
-                    // TO DO: reservation.CzytelnikID = ;
-                    // TO DO: reservation.Czytelnik = ;
+                    var user = db.Czytelnik.Find(10003);
+                    reservation.CzytelnikID = user.CzytelnikID;
+                    reservation.Czytelnik = user;
                     db.Rezerwacje.Add(reservation);
                     db.SaveChanges();
                 }
@@ -69,6 +71,10 @@ namespace Biblioteka
                         "Nie zalogowany",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    this.Close();
                 }
 
             }

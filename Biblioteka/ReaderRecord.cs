@@ -28,6 +28,7 @@ namespace Biblioteka
             surnameLabel.Text = reader.Nazwisko;
             phoneLabel.Text = reader.Numer_telefonu.ToString();
             mailLabel.Text = reader.Adres_email;
+            idLabel.Text = reader.CzytelnikID.ToString();
 
         }
 

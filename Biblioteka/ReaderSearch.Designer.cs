@@ -39,10 +39,39 @@ namespace Biblioteka
             this.searchName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.searchButton = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.readerIdBox = new System.Windows.Forms.TextBox();
             label5 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(39, 130);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(46, 13);
+            label5.TabIndex = 37;
+            label5.Text = "Telefon:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(29, 100);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(56, 13);
+            label2.TabIndex = 35;
+            label2.Text = "Nazwisko:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(56, 71);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(29, 13);
+            label1.TabIndex = 34;
+            label1.Text = "Imię:";
             // 
             // label4
             // 
@@ -91,46 +120,38 @@ namespace Biblioteka
             this.label3.TabIndex = 38;
             this.label3.Text = "E-mail:";
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(39, 130);
-            label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(46, 13);
-            label5.TabIndex = 37;
-            label5.Text = "Telefon:";
-            // 
             // searchButton
             // 
-            this.searchButton.Location = new System.Drawing.Point(236, 55);
+            this.searchButton.Location = new System.Drawing.Point(235, 68);
             this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(100, 136);
+            this.searchButton.Size = new System.Drawing.Size(100, 133);
             this.searchButton.TabIndex = 36;
             this.searchButton.Text = "Szukaj";
             this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
-            // label2
+            // label6
             // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(29, 100);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(56, 13);
-            label2.TabIndex = 35;
-            label2.Text = "Nazwisko:";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(14, 184);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(71, 13);
+            this.label6.TabIndex = 44;
+            this.label6.Text = "ID czytelnika:";
             // 
-            // label1
+            // readerIdBox
             // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(56, 71);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(29, 13);
-            label1.TabIndex = 34;
-            label1.Text = "Imię:";
+            this.readerIdBox.Location = new System.Drawing.Point(91, 181);
+            this.readerIdBox.Name = "readerIdBox";
+            this.readerIdBox.Size = new System.Drawing.Size(100, 20);
+            this.readerIdBox.TabIndex = 45;
             // 
             // ReaderSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.readerIdBox);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.searchMail);
             this.Controls.Add(this.searchPhone);
@@ -142,7 +163,7 @@ namespace Biblioteka
             this.Controls.Add(label2);
             this.Controls.Add(label1);
             this.Name = "ReaderSearch";
-            this.Size = new System.Drawing.Size(365, 205);
+            this.Size = new System.Drawing.Size(365, 216);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,5 +178,7 @@ namespace Biblioteka
         private System.Windows.Forms.TextBox searchName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button searchButton;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox readerIdBox;
     }
 }

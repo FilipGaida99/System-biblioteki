@@ -39,6 +39,8 @@ namespace Biblioteka
             this.mailLabel = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.idLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -131,11 +133,31 @@ namespace Biblioteka
             this.button2.Text = "Zwróć";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(43, 112);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(21, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "ID:";
+            // 
+            // idLabel
+            // 
+            this.idLabel.AutoSize = true;
+            this.idLabel.Location = new System.Drawing.Point(86, 112);
+            this.idLabel.Name = "idLabel";
+            this.idLabel.Size = new System.Drawing.Size(35, 13);
+            this.idLabel.TabIndex = 11;
+            this.idLabel.Text = "label6";
+            // 
             // ReaderRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Controls.Add(this.idLabel);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.mailLabel);
@@ -166,5 +188,7 @@ namespace Biblioteka
         private System.Windows.Forms.Label mailLabel;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label idLabel;
     }
 }

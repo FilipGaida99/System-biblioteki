@@ -17,6 +17,8 @@ namespace Biblioteka
         {
             InitializeComponent();
             readerSearch.onSearch = OnChangedReadersPanel;
+            
+            reservationSearch1.onSearch = OnChangedReservationPanel;
             tabControl1.TabPages[0].Text = "Ręczne wypożyczanie";
             tabControl1.TabPages[1].Text = "Rezerwacje";
             
@@ -39,13 +41,15 @@ namespace Biblioteka
         /// <summary>
         /// Metoda wywoływana po wyszuaniu rezerwacji
         /// </summary>
-        public void onChangedReservationPanel()
+        public void OnChangedReservationPanel()
         {
-            //foreach()
-            //{
-
-           // }
+            reservationsLayoutPanel.Controls.Clear();
+            foreach(var reservation in reservationSearch1.reservations)
+            {
+                reservationsLayoutPanel.Controls.Add(new ReservationRecord(reservation, OnChangedReservationPanel, reservationSearch1.reservations));
+            }
         }
+
 
 
     }

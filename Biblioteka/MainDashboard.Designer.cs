@@ -220,6 +220,7 @@ namespace Biblioteka
             this.bookingButton.TabIndex = 1;
             this.bookingButton.Text = "Rezerwacje";
             this.bookingButton.UseVisualStyleBackColor = true;
+            this.bookingButton.Click += new System.EventHandler(this.bookingButton_Click);
             // 
             // lendButton
             // 

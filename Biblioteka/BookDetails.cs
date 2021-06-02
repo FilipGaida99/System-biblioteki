@@ -124,22 +124,22 @@ namespace Biblioteka
                 bool availableCopy = book.AvailableCopy;
                 
                 availabilityLabel.Text = "";
-                bookingButton.Enabled = false;
+                //bookingButton.Enabled = false;
                 if(bookings.Count == 0 && availableCopy)
                 {
-                    bookingButton.Enabled = false;
+                    //bookingButton.Enabled = false;
                     availabilityLabel.Text = "Dostępna od ręki";
 
                 }
                 else if (bookings.Count > 0)
                 {
                     availabilityLabel.Text = $"Zarezerwowana. Ostatnia rezerwacja: {bookings[bookings.Count - 1].Data_rezerwacji}";
-                    bookingButton.Enabled = true;
+                    //bookingButton.Enabled = true;
                 }
                 else if(bookings.Count == 0 && !availableCopy)
                 {
                     availabilityLabel.Text = "Brak dostępnych kopii. Brak rezerwacji";
-                    bookingButton.Enabled = true;
+                    //bookingButton.Enabled = true;
                 }
 
                 if (book.AvailableElectronicCopy)

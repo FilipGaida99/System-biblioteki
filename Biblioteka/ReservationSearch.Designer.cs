@@ -41,6 +41,8 @@ namespace Biblioteka
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.readerIdBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -144,16 +146,34 @@ namespace Biblioteka
             // 
             this.button1.Location = new System.Drawing.Point(280, 79);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(76, 72);
+            this.button1.Size = new System.Drawing.Size(76, 98);
             this.button1.TabIndex = 11;
             this.button1.Text = "Szukaj";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(30, 160);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(71, 13);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "ID czytelnika:";
+            // 
+            // readerIdBox
+            // 
+            this.readerIdBox.Location = new System.Drawing.Point(107, 157);
+            this.readerIdBox.Name = "readerIdBox";
+            this.readerIdBox.Size = new System.Drawing.Size(124, 20);
+            this.readerIdBox.TabIndex = 13;
+            // 
             // ReservationSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.readerIdBox);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.dateTimePicker2);
@@ -167,7 +187,7 @@ namespace Biblioteka
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "ReservationSearch";
-            this.Size = new System.Drawing.Size(415, 186);
+            this.Size = new System.Drawing.Size(422, 186);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,5 +207,7 @@ namespace Biblioteka
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox readerIdBox;
     }
 }
