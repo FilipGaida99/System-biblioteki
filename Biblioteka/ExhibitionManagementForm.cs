@@ -44,5 +44,14 @@ namespace Biblioteka
                 UpdateExhibitionList();
             }
         }
+
+        private void ExhibitionManagementForm_Load(object sender, EventArgs e)
+        {
+            using (var db = new BibliotekaDB())
+            {
+                exhibitions = db.Wystawa.OrderBy(exhibition => exhibition.Data_rozpoczęcia).ToList();
+                UpdateExhibitionList();
+            }
+        }
     }
 }

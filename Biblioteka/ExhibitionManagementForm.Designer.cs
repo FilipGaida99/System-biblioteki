@@ -82,6 +82,7 @@ namespace Biblioteka
             this.Controls.Add(this.newButton);
             this.Name = "ExhibitionManagementForm";
             this.Text = "Wystawy - Zarządzanie";
+            this.Load += new System.EventHandler(this.ExhibitionManagementForm_Load);
             this.ResumeLayout(false);
 
         }

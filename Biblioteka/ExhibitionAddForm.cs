@@ -52,9 +52,11 @@ namespace Biblioteka
             managedExhibition.Opis = descriptionText.Text.Trim();
             managedExhibition.Data_rozpoczęcia = start;
             managedExhibition.Data_zakończenia = end;
-            //managedExhibition.
-            // jak przypisac bibliotekarza do wystawy
-            // musze czekac az beda zrobieni bibliotekarze
+            UserSingleton user = UserSingleton.Instance;
+            user.CreateLibrarianUnsafeMethodDeleteLater();
+            Bibliotekarz librarian = (Bibliotekarz)user.GetLoggedUser();
+            managedExhibition.Bibliotekarz = librarian;
+            managedExhibition.BibliotekarzID = librarian.BibliotekarzID;
 
             if (newExhibition)
                 db.Wystawa.Add(managedExhibition);
@@ -73,8 +75,7 @@ namespace Biblioteka
                     bool result = confirm(db);
                     if (result)
                     {
-                        //db.SaveChanges();
-                        // nie ma bibliotekarzy
+                        db.SaveChanges();
                     }
                     else
                     {
