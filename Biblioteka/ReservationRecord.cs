@@ -70,64 +70,63 @@ namespace Biblioteka
 
         private void button_Click(object sender, EventArgs e)
         {
-            using(var db = new BibliotekaDB())
+            using(new AppWaitCursor(ParentForm, e))
             {
-                //TO DO: Po zalogowaniu usunąć i wpisać zalogowanego użytkownika
-                var user = db.Czytelnik.Find(10003);
-
-                //sprawdź czy nie ma rezerwacji tej książki na wcześniejszy termin // sprawdzenie ile egzemplarzy wolnych poinno być więc wcześniej, żeby mieć ich liczbę
-                var resQuery = db.Rezerwacje.AsNoTracking().Where(res => res.KsiążkaID == reservation.KsiążkaID).OrderBy(res => res.Data_rezerwacji); ;
-                //ile książek jest w lisćie rezerwacji przed tą rezerwacją
-                int resCount = resQuery.Where(res => res.Data_rezerwacji < reservation.Data_rezerwacji).Count();
-
-                //znajdź wszystie egzemplarze tej książki
-                var book = db.Książka.Find(reservation.KsiążkaID);
-                var query = book.Egzemplarz.OrderBy(copy => copy.Nr_inwentarza);
-
-                List<Egzemplarz> copies = query.ToList();
-
-                ////znajdź wszystie aktualne wypożyczenia tej książki
-                var query2 = db.Wypożyczenie.AsNoTracking().Where(checkout => checkout.Egzemplarz.Książka.KsiążkaID == reservation.Książka.KsiążkaID);
-                query2 = query2.Where(copy => copy.Data_zwrotu == null);
-                List<Wypożyczenie> checkouts = query2.ToList();
-
-                ////złączenie obu tabel (wykaz)
-                //var data = query.Join(query2, copy => copy.Nr_inwentarza, checkout => checkout.Nr_inwentarza, (copy, checkout) => new {
-                //    Title = checkout.Egzemplarz.Książka,
-                //    CopyId = copy.Nr_inwentarza
-                //});
-
-                //sprawdź który/które egzemplarz nie jest wypożyczony //to może nie działać
-                List<Egzemplarz> copiesNotInUse = new List<Egzemplarz>();
-                foreach (var copy in copies)
+                using(var db = new BibliotekaDB())
                 {
-                    if(copy.Available)
+                    //TO DO: Po zalogowaniu usunąć i wpisać zalogowanego użytkownika
+                    var user = db.Czytelnik.Find(10003);
+
+                    //sprawdź czy nie ma rezerwacji tej książki na wcześniejszy termin // sprawdzenie ile egzemplarzy wolnych poinno być więc wcześniej, żeby mieć ich liczbę
+                    var resQuery = db.Rezerwacje.AsNoTracking().Where(res => res.KsiążkaID == reservation.KsiążkaID).OrderBy(res => res.Data_rezerwacji);
+                    //ile książek jest w lisćie rezerwacji przed tą rezerwacją
+                    int resCount = resQuery.Where(res => res.Data_rezerwacji < reservation.Data_rezerwacji).Count();
+
+                    //znajdź wszystie egzemplarze tej książki
+                    var book = db.Książka.Find(reservation.KsiążkaID);
+                    var query = book.Egzemplarz.OrderBy(copy => copy.Nr_inwentarza);
+
+                    List<Egzemplarz> copies = query.ToList();
+
+                    //sprawdź który/które egzemplarz nie jest wypożyczony
+                    List<Egzemplarz> copiesNotInUse = new List<Egzemplarz>();
+                    foreach (var copy in copies)
                     {
-                        copiesNotInUse.Add(copy);
+                        if(copy.Available)
+                        {
+                            copiesNotInUse.Add(copy);
+                        }
                     }
+                    if(!copiesNotInUse.Any())
+                    {
+                        MessageBox.Show("Ta książka nie ma już wolnych egzemplarzy!\nWszystie są wypożyczone!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else if(copiesNotInUse.Count > resCount)
+                    {
+
+                        //TO DO: Uzupełnić po zalogowaniu
+                        db.Wypożyczenie.Add(new Wypożyczenie { Data_wypożyczenia = DateTime.Now, Data_zwrotu = null,
+                                                                Egzemplarz = copiesNotInUse.ElementAt(0), Nr_inwentarza = copiesNotInUse.ElementAt(0).Nr_inwentarza,
+                                                                Czytelnik = user, CzytelnikID = user.CzytelnikID });
+                        var toCheckout = db.Rezerwacje.Where(res => res.CzytelnikID == reservation.CzytelnikID);
+                        toCheckout = toCheckout.Where(res => res.KsiążkaID == reservation.KsiążkaID);
                     
-                }
+                        var resToDelete = toCheckout.First();
+                        db.Rezerwacje.Remove(resToDelete);
+                        reservations.Remove(reservation);
+                        db.SaveChanges();
 
-                if(copiesNotInUse.Count > resCount)
-                {
-
-                    //TO DO: Uzupełnić po zalogowaniu
-                    db.Wypożyczenie.Add(new Wypożyczenie { Data_wypożyczenia = DateTime.Now, Data_zwrotu = null,
-                                                            Egzemplarz = copiesNotInUse.ElementAt(0), Nr_inwentarza = copiesNotInUse.ElementAt(0).Nr_inwentarza,
-                                                            Czytelnik = user, CzytelnikID = user.CzytelnikID }); 
-                    db.Rezerwacje.Remove(reservation);
-                    reservations.Remove(reservation);
-
-                    //db.SaveChanges();
-
-                    onClick.Invoke();
-                }
-                else
-                {
-                    MessageBox.Show("Błąd", "Ta książka została zarezerwowana wcześniej przez kogoś innego!\n Brak wolnych egzemplarzy!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                        onClick.Invoke();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Błąd", "Ta książka została zarezerwowana wcześniej przez kogoś innego!\n Brak wolnych egzemplarzy!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 
+                
+                }
             }
         }
 
@@ -138,20 +137,22 @@ namespace Biblioteka
         /// <param name="e"></param> Argumenty
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            using(var db = new BibliotekaDB())
+            using(new AppWaitCursor(ParentForm, e))
             {
-                var query = db.Rezerwacje.Where(res => res.CzytelnikID == reservation.CzytelnikID);
-                query = query.Where(res => res.KsiążkaID == reservation.KsiążkaID);
-                var toDelete = query.ToList();
-                if (toDelete.Count == 1)
+                using (var db = new BibliotekaDB())
                 {
-                    db.Rezerwacje.Remove(toDelete.ElementAt(0));
-                    
-                    db.SaveChanges();
-                    reservations.Remove(reservation);
-                    onClick.Invoke();
+                    var query = db.Rezerwacje.Where(res => res.CzytelnikID == reservation.CzytelnikID);
+                    query = query.Where(res => res.KsiążkaID == reservation.KsiążkaID);
+                    var toDelete = query.ToList();
+                    if (toDelete.Count == 1)
+                    {
+                        db.Rezerwacje.Remove(toDelete.ElementAt(0));
+                        db.SaveChanges();
+                        reservations.Remove(reservation);
+                        onClick.Invoke();
+                    }
+
                 }
-      
             }
         }
     }

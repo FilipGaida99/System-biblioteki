@@ -40,12 +40,16 @@ namespace Biblioteka
 
         private void UserCheckoutsForm_Load(object sender, EventArgs e)
         {
-            using(var db = new BibliotekaDB())
+            using(new AppWaitCursor(ParentForm, e))
             {
-                user = db.Czytelnik.Find(10003); // usunąć jak będą użytkownicy
-
-                refreshButton_Click(sender, e);
+                using (var db = new BibliotekaDB())
+                {
+                    user = db.Czytelnik.Find(10003); // usunąć jak będą użytkownicy
+                    refreshButton_Click(sender, e);
+                }
             }
+            
+
         }
 
         private void UpdateListView()
@@ -55,8 +59,9 @@ namespace Biblioteka
             foreach (var checkout in userCheckouts)
             {
                 DateTime excpectedReturnDate = (DateTime)checkout.Data_wypożyczenia;
-                excpectedReturnDate.AddDays(checkout.Egzemplarz.Książka.Maksymalny_okres_wypożyczenia);
-
+                var daysToReturn = checkout.Egzemplarz.Książka.Maksymalny_okres_wypożyczenia;
+                excpectedReturnDate = excpectedReturnDate.AddDays((double)daysToReturn);
+                
                 string[] row = { checkout.Egzemplarz.Książka.Tytuł,
                                 $"{checkout.Data_wypożyczenia:g}",
                                 $"{excpectedReturnDate:g}",

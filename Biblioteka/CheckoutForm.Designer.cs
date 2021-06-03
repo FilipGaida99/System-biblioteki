@@ -32,11 +32,11 @@ namespace Biblioteka
             this.readersLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.readerSearch = new Biblioteka.ReaderSearch();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.reservationSearch1 = new Biblioteka.ReservationSearch();
             this.reservationsLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.readerSearch = new Biblioteka.ReaderSearch();
-            this.reservationSearch1 = new Biblioteka.ReservationSearch();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -73,6 +73,13 @@ namespace Biblioteka
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // readerSearch
+            // 
+            this.readerSearch.Location = new System.Drawing.Point(87, 15);
+            this.readerSearch.Name = "readerSearch";
+            this.readerSearch.Size = new System.Drawing.Size(346, 205);
+            this.readerSearch.TabIndex = 2;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.reservationSearch1);
@@ -86,8 +93,16 @@ namespace Biblioteka
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // reservationSearch1
+            // 
+            this.reservationSearch1.Location = new System.Drawing.Point(53, 8);
+            this.reservationSearch1.Name = "reservationSearch1";
+            this.reservationSearch1.Size = new System.Drawing.Size(422, 186);
+            this.reservationSearch1.TabIndex = 2;
+            // 
             // reservationsLayoutPanel
             // 
+            this.reservationsLayoutPanel.AutoScroll = true;
             this.reservationsLayoutPanel.BackColor = System.Drawing.Color.Gainsboro;
             this.reservationsLayoutPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.reservationsLayoutPanel.Location = new System.Drawing.Point(6, 227);
@@ -104,20 +119,6 @@ namespace Biblioteka
             this.label1.Size = new System.Drawing.Size(85, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Rezerwacje:";
-            // 
-            // readerSearch
-            // 
-            this.readerSearch.Location = new System.Drawing.Point(87, 15);
-            this.readerSearch.Name = "readerSearch";
-            this.readerSearch.Size = new System.Drawing.Size(346, 205);
-            this.readerSearch.TabIndex = 2;
-            // 
-            // reservationSearch1
-            // 
-            this.reservationSearch1.Location = new System.Drawing.Point(53, 8);
-            this.reservationSearch1.Name = "reservationSearch1";
-            this.reservationSearch1.Size = new System.Drawing.Size(422, 186);
-            this.reservationSearch1.TabIndex = 2;
             // 
             // CheckoutForm
             // 
