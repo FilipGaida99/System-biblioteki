@@ -76,11 +76,15 @@ namespace Biblioteka
             // 
             // msgTextBox
             // 
+            this.msgTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.msgTextBox.Cursor = System.Windows.Forms.Cursors.Default;
             this.msgTextBox.Location = new System.Drawing.Point(3, 55);
             this.msgTextBox.Multiline = true;
             this.msgTextBox.Name = "msgTextBox";
+            this.msgTextBox.ReadOnly = true;
             this.msgTextBox.Size = new System.Drawing.Size(520, 356);
             this.msgTextBox.TabIndex = 5;
+            this.msgTextBox.TabStop = false;
             // 
             // dateLabel
             // 

@@ -108,7 +108,7 @@ namespace Biblioteka
             this.removeAddresseeButton.TabIndex = 11;
             this.removeAddresseeButton.Text = "<";
             this.removeAddresseeButton.UseVisualStyleBackColor = true;
-            this.removeAddresseeButton.Click += new System.EventHandler(this.removeAddresseeButton_Click);
+            this.removeAddresseeButton.Click += new System.EventHandler(this.RemoveAddresseeButton_Click);
             // 
             // addAddresseeButton
             // 

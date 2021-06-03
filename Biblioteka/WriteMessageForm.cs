@@ -153,15 +153,11 @@ namespace Biblioteka
     {
         private UsersSelection() { }
 
-        abstract public void MoveUserRight(int index);
+        abstract public void MoveUserRight(string str);
 
-        abstract public void MoveUserLeft(int index);
+        abstract public void MoveUserLeft(string str);
 
         abstract public void UpdateLists();
-
-        abstract public List<string> GetAvailableListStr();
-
-        abstract public List<string> GetChosenListStr();
 
         abstract public List<string> GetAvailableListStr(string filter);
 
@@ -194,25 +190,45 @@ namespace Biblioteka
                 this.chosenList = new List<Czytelnik>(chosenList);
             }
 
-            override public void MoveUserRight(int index)
+            private int FindIDInString(string str)
             {
+                str = str
+                    .Split()
+                    .Last()
+                    .Trim("()".ToCharArray());
+                return Int32.Parse(str);
+            }
+
+            //override public void MoveUserRight(int index)
+            //{
+            //    chosenList.Add(availableList[index]);
+            //    chosenList.Sort((x, y) => x.Nazwisko.CompareTo(y));
+            //    availableList.RemoveAt(index);
+            //}
+
+            override public void MoveUserRight(string str)
+            {
+                int id = FindIDInString(str);
+                int index = availableList.FindIndex(librarian => librarian.CzytelnikID == id);
+
                 chosenList.Add(availableList[index]);
                 chosenList.Sort((x, y) => x.Nazwisko.CompareTo(y));
                 availableList.RemoveAt(index);
             }
 
-            public void MoveUserRight(string text)
-            {
-                
+            //override public void MoveUserLeft(int index)
+            //{
+            //    availableList.Add(availableList[index]);
+            //    availableList.Sort((x, y) => x.Nazwisko.CompareTo(y));
+            //    chosenList.RemoveAt(index);
+            //}
 
-                //chosenList.Add(availableList[index]);
-                //chosenList.Sort((x, y) => x.Nazwisko.CompareTo(y));
-                //availableList.RemoveAt(index);
-            }
-
-            override public void MoveUserLeft(int index)
+            override public void MoveUserLeft(string str)
             {
-                availableList.Add(availableList[index]);
+                int id = FindIDInString(str);
+                int index = chosenList.FindIndex(librarian => librarian.CzytelnikID == id);
+
+                availableList.Add(chosenList[index]);
                 availableList.Sort((x, y) => x.Nazwisko.CompareTo(y));
                 chosenList.RemoveAt(index);
             }
@@ -229,37 +245,23 @@ namespace Biblioteka
                 foreach (var elem in availableList)
                 {
                     string str = $"{elem.Imię} {elem.Nazwisko} ({elem.CzytelnikID})";
-                    if (str.Contains(filter))
+                    if (filter.Length == 0 || str.ToLower().Contains(filter.ToLower()))
                         namesList.Add(str);
                 }
-                return namesList;
-            }
-
-            override public List<string> GetAvailableListStr()
-            {
-                List<string> namesList = new List<string>();
-                foreach (var elem in availableList)
-                    namesList.Add($"{elem.Imię} {elem.Nazwisko} ({elem.CzytelnikID})");
                 return namesList;
             }
 
             override public List<string> GetChosenListStr(string filter)
             {
+                System.Globalization.CultureInfo culture;
+
                 List<string> namesList = new List<string>();
                 foreach (var elem in chosenList)
                 {
                     string str = $"{elem.Imię} {elem.Nazwisko} ({elem.CzytelnikID})";
-                    if (str.Contains(filter))
+                    if (filter.Length == 0 || str.ToLower().Contains(filter.ToLower()))
                         namesList.Add(str);
                 }
-                return namesList;
-            }
-
-            override public List<string> GetChosenListStr()
-            {
-                List<string> namesList = new List<string>();
-                foreach (var elem in chosenList)
-                    namesList.Add($"{elem.Imię} {elem.Nazwisko} ({elem.CzytelnikID})");
                 return namesList;
             }
 
@@ -305,8 +307,26 @@ namespace Biblioteka
                 this.chosenList = new List<Bibliotekarz>(chosenList);
             }
 
-            override public void MoveUserRight(int index)
+            private int FindIDInString(string str)
             {
+                if (str.Last() != ')') //Jeżeli stringiem są wszyscy bibliotekarze
+                    return 0;
+
+                str = str
+                    .Split()
+                    .Last()
+                    .Trim("()".ToCharArray());
+                return Int32.Parse(str);
+            }
+
+            override public void MoveUserRight(string str)
+            {
+                int id = FindIDInString(str);
+                int index;
+                if (id == 0)
+                    index = 0;
+                else
+                    index = availableList.FindIndex(librarian => librarian.BibliotekarzID == id);
                 //Jeżeli wybrany jest "wszycy bibliotekarze" to nie dodwaj innych bibliotekarzy do listy
                 if (chosenList.Count != 0 && chosenList[0].BibliotekarzID == 0)
                 {
@@ -324,8 +344,15 @@ namespace Biblioteka
                 chosenList.Sort(compareByLastname);
                 availableList.RemoveAt(index);
             }
-            override public void MoveUserLeft(int index)
+            override public void MoveUserLeft(string str)
             {
+                int id = FindIDInString(str);
+                int index;
+                if (id == 0)
+                    index = 0;
+                else
+                    index = (int)chosenList.FindIndex(librarian => librarian.BibliotekarzID == id);
+
                 availableList.Add(chosenList[index]);
                 availableList.Sort(compareByLastname);
                 chosenList.RemoveAt(index);
@@ -358,17 +385,9 @@ namespace Biblioteka
                         str = $"{elem.Imię} {elem.Nazwisko}";
                     else
                         str = $"{elem.Imię} {elem.Nazwisko} ({elem.BibliotekarzID})";
-                    if (str.Contains(filter))
+                    if (filter.Length == 0 || str.ToLower().Contains(filter.ToLower()))
                         namesList.Add(str);
                 }
-                return namesList;
-            }
-
-            override public List<string> GetAvailableListStr()
-            {
-                List<string> namesList = new List<string>();
-                foreach (var elem in availableList)
-                    namesList.Add($"{elem.Imię} {elem.Nazwisko} ({elem.BibliotekarzID})");
                 return namesList;
             }
 
@@ -382,17 +401,9 @@ namespace Biblioteka
                         str = $"{elem.Imię} {elem.Nazwisko}";
                     else
                         str = $"{elem.Imię} {elem.Nazwisko} ({elem.BibliotekarzID})";
-                    if (str.Contains(filter))
+                    if (filter.Length == 0 || str.ToLower().Contains(filter.ToLower()))
                         namesList.Add(str);
                 }
-                return namesList;
-            }
-
-            override public List<string> GetChosenListStr()
-            {
-                List<string> namesList = new List<string>();
-                foreach (var elem in chosenList)
-                    namesList.Add($"{elem.Imię} {elem.Nazwisko} ({elem.BibliotekarzID})");
                 return namesList;
             }
 

@@ -15,7 +15,6 @@ namespace Biblioteka
         public ReadMessageForm(Czytelnik_Wiadomość readerMsg)
         {
             InitializeComponent();
-
             fromLabel.Text = readerMsg.Czytelnik.Imię + readerMsg.Czytelnik.Nazwisko;
             toLabel.Text = "";
             foreach (var elem in readerMsg.Wiadomość.Bibliotekarz_Wiadomość)
@@ -24,7 +23,7 @@ namespace Biblioteka
                 toLabel.Text = toLabel.Text.Remove(toLabel.Text.Length - 2);
             dateLabel.Text = readerMsg.Wiadomość.Data_wysłania.ToString();
             titleLabel.Text = readerMsg.Wiadomość.Tytuł;
-            titleLabel.Text = readerMsg.Wiadomość.Treść;
+            msgTextBox.Text = readerMsg.Wiadomość.Treść;
         }
 
         public ReadMessageForm(Bibliotekarz_Wiadomość readerMsg)
@@ -39,7 +38,7 @@ namespace Biblioteka
                 toLabel.Text = toLabel.Text.Remove(toLabel.Text.Length - 2);
             dateLabel.Text = readerMsg.Wiadomość.Data_wysłania.ToString();
             titleLabel.Text = readerMsg.Wiadomość.Tytuł;
-            titleLabel.Text = readerMsg.Wiadomość.Treść;
+            msgTextBox.Text = readerMsg.Wiadomość.Treść;
         }
     }
 }

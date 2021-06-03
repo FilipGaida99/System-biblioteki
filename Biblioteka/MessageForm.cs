@@ -128,7 +128,7 @@ namespace Biblioteka
                 {
                     reader = db.Czytelnik.Find(1);
                     Czytelnik_Wiadomość readerMsg = reader.Czytelnik_Wiadomość
-                        .Where(readerMsgTemp => readerMsgTemp.Wiadomość == (Wiadomość)((CustomMessageButton)sender).Tag)
+                        .Where(readerMsgTemp => readerMsgTemp.Wiadomość.WiadomośćID == ((Wiadomość)((CustomMessageButton)sender).Tag).WiadomośćID)
                         .FirstOrDefault();
                     readMsgForm = new ReadMessageForm(readerMsg);
                 }
@@ -178,6 +178,7 @@ namespace Biblioteka
                 {
                     CustomMessageButton msg = new CustomMessageButton(DeleteButton_Click, elem);
                     msg.Tag = elem;
+                    msg.Click += MsgButton_Click;
                     msgListFlowPanel.Controls.Add(msg);
                 }
                 msgListFlowPanel.ResumeLayout();
@@ -223,6 +224,7 @@ namespace Biblioteka
                 {
                     CustomMessageButton msg = new CustomMessageButton(DeleteButton_Click, elem);
                     msg.Tag = elem;
+                    msg.Click += MsgButton_Click;
                     msgListFlowPanel.Controls.Add(msg);
                 }
                 msgListFlowPanel.ResumeLayout();
