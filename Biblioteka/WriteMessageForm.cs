@@ -253,8 +253,6 @@ namespace Biblioteka
 
             override public List<string> GetChosenListStr(string filter)
             {
-                System.Globalization.CultureInfo culture;
-
                 List<string> namesList = new List<string>();
                 foreach (var elem in chosenList)
                 {
