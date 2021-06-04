@@ -31,7 +31,7 @@ namespace Biblioteka
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.msgListFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.writeMsgLabel = new System.Windows.Forms.Button();
+            this.writeMsgButton = new System.Windows.Forms.Button();
             this.receivedMsgButton = new System.Windows.Forms.Button();
             this.sentMsgButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
@@ -41,7 +41,7 @@ namespace Biblioteka
             // 
             this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.msgListFlowPanel);
-            this.panel1.Controls.Add(this.writeMsgLabel);
+            this.panel1.Controls.Add(this.writeMsgButton);
             this.panel1.Controls.Add(this.receivedMsgButton);
             this.panel1.Controls.Add(this.sentMsgButton);
             this.panel1.Location = new System.Drawing.Point(12, 12);
@@ -56,18 +56,17 @@ namespace Biblioteka
             this.msgListFlowPanel.Margin = new System.Windows.Forms.Padding(0);
             this.msgListFlowPanel.Name = "msgListFlowPanel";
             this.msgListFlowPanel.Size = new System.Drawing.Size(523, 418);
-            this.msgListFlowPanel.VerticalScroll.Visible = true;
             this.msgListFlowPanel.TabIndex = 4;
             // 
-            // writeMsgLabel
+            // writeMsgButton
             // 
-            this.writeMsgLabel.Location = new System.Drawing.Point(4, 5);
-            this.writeMsgLabel.Name = "writeMsgLabel";
-            this.writeMsgLabel.Size = new System.Drawing.Size(147, 50);
-            this.writeMsgLabel.TabIndex = 3;
-            this.writeMsgLabel.Text = "Wyślij wiadomość";
-            this.writeMsgLabel.UseVisualStyleBackColor = true;
-            this.writeMsgLabel.Click += new System.EventHandler(this.sendMsgLabel_Click);
+            this.writeMsgButton.Location = new System.Drawing.Point(4, 5);
+            this.writeMsgButton.Name = "writeMsgButton";
+            this.writeMsgButton.Size = new System.Drawing.Size(147, 50);
+            this.writeMsgButton.TabIndex = 3;
+            this.writeMsgButton.Text = "Wyślij wiadomość";
+            this.writeMsgButton.UseVisualStyleBackColor = true;
+            this.writeMsgButton.Click += new System.EventHandler(this.sendMsgButton_Click);
             // 
             // receivedMsgButton
             // 
@@ -109,7 +108,7 @@ namespace Biblioteka
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button receivedMsgButton;
         private System.Windows.Forms.Button sentMsgButton;
-        private System.Windows.Forms.Button writeMsgLabel;
+        private System.Windows.Forms.Button writeMsgButton;
         private System.Windows.Forms.FlowLayoutPanel msgListFlowPanel;
     }
 }

@@ -19,11 +19,11 @@ namespace Biblioteka
 
         IUsersSelectionGetter userLists;
 
-        Czytelnik reader; //raczej do zmiany gdy ogarniemy jak chcemy przechowywać zalogowanego użytkownika
+        //Czytelnik reader; //raczej do zmiany gdy ogarniemy jak chcemy przechowywać zalogowanego użytkownika
 
-        Bibliotekarz librarian; //tu tak samo
+        //Bibliotekarz librarian; //tu tak samo
 
-        bool isReader = true; //to pewnie też
+        //bool isReader = true; //to pewnie też
 
         public WriteMessageForm()
         {
@@ -40,12 +40,20 @@ namespace Biblioteka
 
         private void UpdateAddresseeLabel()
         {
-            if (isReader)
+            if ((Czytelnik)UserSingleton.Instance.GetLoggedUser() != null)
             {
                 addresseeLabel.Text = "";
                 foreach (var elem in userLists.GetChosenLibrariansList())
                     addresseeLabel.Text += elem.Imię + " " + elem.Nazwisko + ", ";
                 if(addresseeLabel.Text.Length != 0)
+                    addresseeLabel.Text = addresseeLabel.Text.Remove(addresseeLabel.Text.Length - 2);
+            }
+            else
+            {
+                addresseeLabel.Text = "";
+                foreach (var elem in userLists.GetChosenReadersList())
+                    addresseeLabel.Text += elem.Imię + " " + elem.Nazwisko + ", ";
+                if (addresseeLabel.Text.Length != 0)
                     addresseeLabel.Text = addresseeLabel.Text.Remove(addresseeLabel.Text.Length - 2);
             }
         }
@@ -54,26 +62,28 @@ namespace Biblioteka
         {
             using (var db = new BibliotekaDB())
             {
-                if (isReader)
+                if ((Czytelnik)UserSingleton.Instance.GetLoggedUser() != null)
                 {
-                    reader = db.Czytelnik.Find(1);
+                    //reader = db.Czytelnik.Find(1);
 
                     List<Bibliotekarz> availableList = db.Bibliotekarz.OrderBy(librarian => librarian.Nazwisko).ToList();
-                    Bibliotekarz allLibrarians = new Bibliotekarz();
+                    
+                    Bibliotekarz allLibrarians = new Bibliotekarz();//Pseudo bibliotekarz reprezentujący wysłanie maila do wszystkich bibliotekarzy
                     allLibrarians.Imię = "Wszyscy";
                     allLibrarians.Nazwisko = "bibliotekarze";
                     allLibrarians.BibliotekarzID = 0;
                     availableList.Insert(0, allLibrarians);
 
                     userLists = UsersSelection.MakeUsersSelection(availableList, new List<Bibliotekarz>());
-                    //Pseudo bibliotekarz reprezentujący wysłanie maila do wszystkich bibliotekarzy
                     
                 }
                 else
                 {
-                    librarian = db.Bibliotekarz.Find(1);
-
-                    userLists = UsersSelection.MakeUsersSelection(db.Czytelnik.OrderBy(librarian => librarian.Nazwisko).ToList(), new List<Czytelnik>());
+                    //librarian = db.Bibliotekarz.Find(1);
+                    userLists = UsersSelection.MakeUsersSelection(db.Czytelnik
+                        .OrderBy(librarian => librarian.Nazwisko)
+                        .ToList(),
+                            new List<Czytelnik>());
                 }
             }
         }
@@ -95,10 +105,11 @@ namespace Biblioteka
                         {
                             db.Wiadomość.Add(msg);
 
-                            if (isReader)
+                            if ((Czytelnik)UserSingleton.Instance.GetLoggedUser() != null)
                             {
                                 db.Czytelnik_Wiadomość.Add(new Czytelnik_Wiadomość 
-                                { CzytelnikID = reader.CzytelnikID, Nadawca = true, WiadomośćID = msg.WiadomośćID });
+                                    { CzytelnikID = ((Czytelnik)UserSingleton.Instance.GetLoggedUser()).CzytelnikID,
+                                        Nadawca = true, WiadomośćID = msg.WiadomośćID });
 
                                 foreach (var elem in userLists.GetChosenLibrariansList())
                                     db.Bibliotekarz_Wiadomość.Add(new Bibliotekarz_Wiadomość 
@@ -107,7 +118,8 @@ namespace Biblioteka
                             else
                             {
                                 db.Bibliotekarz_Wiadomość.Add(new Bibliotekarz_Wiadomość 
-                                    { BibliotekarzID = librarian.BibliotekarzID, Nadawca = true, WiadomośćID = msg.WiadomośćID });
+                                    { BibliotekarzID = ((Bibliotekarz)UserSingleton.Instance.GetLoggedUser()).BibliotekarzID,
+                                        Nadawca = true, WiadomośćID = msg.WiadomośćID });
 
                                 foreach (var elem in userLists.GetChosenReadersList())
                                     db.Czytelnik_Wiadomość.Add(new Czytelnik_Wiadomość 
