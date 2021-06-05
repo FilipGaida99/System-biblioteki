@@ -42,5 +42,29 @@ namespace Biblioteka
             }
             return false;
         }
+
+        /// <summary>
+        /// Obsługa generowania numeru inwentarza z pierwszej niewystępującej wartości klucza.
+        /// </summary>
+        /// <param name="sender">Kontrolka.</param>
+        /// <param name="e">Argumenty.</param>
+        private void identityInventoryButton_Click(object sender, System.EventArgs e)
+        {
+            using (new AppWaitCursor(this, sender))
+            {
+                using (var db = new BibliotekaDB())
+                {
+                    long key = 0;
+                    for (key = 0; key < long.MaxValue; key++)
+                    {
+                        if (db.Egzemplarz.Find(key) == null)
+                        {
+                            break;
+                        }
+                    }
+                    firstCopyInventoryNumber.Value = key;
+                }
+            }
+        }
     }
 }

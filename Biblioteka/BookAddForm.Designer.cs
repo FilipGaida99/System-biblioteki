@@ -29,8 +29,11 @@ namespace Biblioteka
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label label1;
             this.firstCopyInventoryNumber = new System.Windows.Forms.NumericUpDown();
+            this.identityInventoryButton = new System.Windows.Forms.Button();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.firstCopyInventoryNumber)).BeginInit();
             this.SuspendLayout();
@@ -55,19 +58,32 @@ namespace Biblioteka
             0,
             0});
             this.firstCopyInventoryNumber.Name = "firstCopyInventoryNumber";
-            this.firstCopyInventoryNumber.Size = new System.Drawing.Size(255, 26);
+            this.firstCopyInventoryNumber.Size = new System.Drawing.Size(248, 26);
             this.firstCopyInventoryNumber.TabIndex = 14;
+            // 
+            // identityInventoryButton
+            // 
+            this.identityInventoryButton.Location = new System.Drawing.Point(672, 239);
+            this.identityInventoryButton.Name = "identityInventoryButton";
+            this.identityInventoryButton.Size = new System.Drawing.Size(18, 26);
+            this.identityInventoryButton.TabIndex = 15;
+            this.identityInventoryButton.Text = "★";
+            this.toolTip.SetToolTip(this.identityInventoryButton, "Wygenerowanie  nieużywanego numeru inwentarza");
+            this.identityInventoryButton.UseVisualStyleBackColor = true;
+            this.identityInventoryButton.Click += new System.EventHandler(this.identityInventoryButton_Click);
             // 
             // BookAddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(693, 334);
+            this.ClientSize = new System.Drawing.Size(706, 334);
+            this.Controls.Add(this.identityInventoryButton);
             this.Controls.Add(this.firstCopyInventoryNumber);
             this.Controls.Add(label1);
             this.Name = "BookAddForm";
             this.Text = "Dodawanie książki";
             this.Controls.SetChildIndex(label1, 0);
             this.Controls.SetChildIndex(this.firstCopyInventoryNumber, 0);
+            this.Controls.SetChildIndex(this.identityInventoryButton, 0);
             ((System.ComponentModel.ISupportInitialize)(this.firstCopyInventoryNumber)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -77,5 +93,7 @@ namespace Biblioteka
         #endregion
 
         private System.Windows.Forms.NumericUpDown firstCopyInventoryNumber;
+        private System.Windows.Forms.Button identityInventoryButton;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

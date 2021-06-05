@@ -122,7 +122,7 @@ namespace Biblioteka
             this.cancelButton.Location = new System.Drawing.Point(327, 283);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(91, 38);
-            this.cancelButton.TabIndex = 16;
+            this.cancelButton.TabIndex = 17;
             this.cancelButton.Text = "Anuluj";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
@@ -133,7 +133,7 @@ namespace Biblioteka
             this.acceptButton.Location = new System.Drawing.Point(229, 283);
             this.acceptButton.Name = "acceptButton";
             this.acceptButton.Size = new System.Drawing.Size(92, 38);
-            this.acceptButton.TabIndex = 15;
+            this.acceptButton.TabIndex = 16;
             this.acceptButton.Text = "Akceptuj";
             this.acceptButton.UseVisualStyleBackColor = true;
             this.acceptButton.Click += new System.EventHandler(this.acceptButton_Click);
@@ -176,7 +176,7 @@ namespace Biblioteka
             this.descriptionText.Location = new System.Drawing.Point(418, 57);
             this.descriptionText.Multiline = true;
             this.descriptionText.Name = "descriptionText";
-            this.descriptionText.Size = new System.Drawing.Size(255, 174);
+            this.descriptionText.Size = new System.Drawing.Size(272, 174);
             this.descriptionText.TabIndex = 4;
             // 
             // titleText
@@ -184,7 +184,7 @@ namespace Biblioteka
             this.titleText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.titleText.Location = new System.Drawing.Point(418, 15);
             this.titleText.Name = "titleText";
-            this.titleText.Size = new System.Drawing.Size(255, 26);
+            this.titleText.Size = new System.Drawing.Size(272, 26);
             this.titleText.TabIndex = 2;
             // 
             // datePicker
@@ -242,7 +242,7 @@ namespace Biblioteka
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 334);
+            this.ClientSize = new System.Drawing.Size(702, 334);
             this.Controls.Add(this.daySpanPicker);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.acceptButton);
