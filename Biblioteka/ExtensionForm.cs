@@ -57,12 +57,46 @@ namespace Biblioteka
 
         private void acceptButton_Click(object sender, EventArgs e)
         {
+            using (new AppWaitCursor(this, sender))
+            {
 
+            }
+        }
+
+        private void DiscardExtensions(ListView.SelectedIndexCollection selected)
+        {
+            using (var db = new BibliotekaDB())
+            {
+                for(int i = 0; i < selected.Count; ++i)
+                {
+                    int extensionIndex = selected[i];
+                    var extensionID = extensions[extensionIndex].ProlongataID;
+
+                    Prolongata extensionToDiscard = db.Prolongata.Find(extensionID);
+
+                    if (extensionToDiscard != null)
+                        extensionToDiscard.Status = 0;
+                    extensionList.Items.RemoveAt(extensionIndex);
+                    extensions.RemoveAt(extensionIndex);
+                }
+                db.SaveChanges();
+            }
         }
 
         private void discardButton_Click(object sender, EventArgs e)
         {
+            using (new AppWaitCursor(this, sender))
+            {
+                var selected = extensionList.SelectedIndices;
+                if (selected.Count == 0) return;
+                    
+                var result = MessageBox.Show(
+                    "Na pewno chcesz odrzucić te prolongaty?",
+                    "Na pewno?", MessageBoxButtons.YesNo);
+                if (result == DialogResult.No) return;
 
+                DiscardExtensions(selected);
+            }
         }
     }
 }
