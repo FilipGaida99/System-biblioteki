@@ -113,6 +113,7 @@
     </Compile>
     <Compile Include="CustomMessageButton.cs">
       <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CheckoutForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -317,6 +318,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WriteMessageForm.resx">
       <DependentUpon>WriteMessageForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReaderRecord.resx">
       <DependentUpon>ReaderRecord.cs</DependentUpon>
     </EmbeddedResource>
