@@ -133,6 +133,7 @@ namespace Biblioteka
             this.checkoutButton.TabIndex = 6;
             this.checkoutButton.Text = "Wydawanie";
             this.checkoutButton.UseVisualStyleBackColor = true;
+            this.checkoutButton.Click += new System.EventHandler(this.checkoutButton_Click);
             // 
             // booksManagementButton
             // 
@@ -220,6 +221,7 @@ namespace Biblioteka
             this.bookingButton.TabIndex = 1;
             this.bookingButton.Text = "Rezerwacje";
             this.bookingButton.UseVisualStyleBackColor = true;
+            this.bookingButton.Click += new System.EventHandler(this.bookingButton_Click);
             // 
             // lendButton
             // 
@@ -254,6 +256,7 @@ namespace Biblioteka
             this.Controls.Add(this.exhibitionButton);
             this.Name = "MainDashboard";
             this.Text = "Biblioteka publiczna";
+            this.Load += new System.EventHandler(this.MainDashboard_Load);
             this.panelLibrarian.ResumeLayout(false);
             this.panelLibrarian.PerformLayout();
             this.panelReader.ResumeLayout(false);

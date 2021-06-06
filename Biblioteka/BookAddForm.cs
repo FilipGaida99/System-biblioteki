@@ -65,6 +65,9 @@ namespace Biblioteka
                     firstCopyInventoryNumber.Value = key;
                 }
             }
+        private void BookAddForm_Load(object sender, System.EventArgs e)
+        {
+
         }
     }
 }

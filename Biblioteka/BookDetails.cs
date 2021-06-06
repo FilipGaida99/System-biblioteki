@@ -118,22 +118,28 @@ namespace Biblioteka
         {
             using(var db = new BibliotekaDB())
             {
+                //TO DO: Sprawdź czy użytkownik zalogowany!
                 book = db.Książka.Find(book.KsiążkaID);
                 var bookings = book.Rezerwacje.OrderBy(booking => booking.Data_rezerwacji).ToList();
                 bool availableCopy = book.AvailableCopy;
                 
                 availabilityLabel.Text = "";
+                //bookingButton.Enabled = false;
                 if(bookings.Count == 0 && availableCopy)
                 {
+                    //bookingButton.Enabled = false;
                     availabilityLabel.Text = "Dostępna od ręki";
+
                 }
                 else if (bookings.Count > 0)
                 {
                     availabilityLabel.Text = $"Zarezerwowana. Ostatnia rezerwacja: {bookings[bookings.Count - 1].Data_rezerwacji}";
+                    //bookingButton.Enabled = true;
                 }
                 else if(bookings.Count == 0 && !availableCopy)
                 {
                     availabilityLabel.Text = "Brak dostępnych kopii. Brak rezerwacji";
+                    //bookingButton.Enabled = true;
                 }
 
                 if (book.AvailableElectronicCopy)
@@ -249,6 +255,12 @@ namespace Biblioteka
                 header.Text = header.Text.Substring(0, header.Text.Length - 2);
             }
                 
+        }
+
+        private void bookingButton_Click(object sender, EventArgs e)
+        {
+            var reservationForm = new ReservationForm(book);
+            reservationForm.Show();
         }
     }
 }

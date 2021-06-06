@@ -18,7 +18,14 @@ namespace Biblioteka
 
         private void rentButton_Click(object sender, EventArgs e)
         {
-
+            //TO DO: skasować to poniżej i wstawić id czytelnika
+            Czytelnik user;
+            using(var db = new BibliotekaDB())
+            {
+                user = db.Czytelnik.Find(10003);
+            }
+            UserCheckoutsForm userCheckouts = new UserCheckoutsForm(user.CzytelnikID /*logged user ID*/);
+            userCheckouts.Show();
         }
 
         private void signButton_Click(object sender, EventArgs e)
@@ -35,7 +42,7 @@ namespace Biblioteka
 
         private void booksButton_Click(object sender, EventArgs e)
         {
-            BookBrowse bookBrowse = new BookBrowse();
+            BookBrowse bookBrowse = new BookBrowse(null);
             bookBrowse.Show();
         }
 
@@ -44,11 +51,28 @@ namespace Biblioteka
             MessageForm messageForm = new MessageForm();
             messageForm.Show();
         }
-        
+
         private void exhibitionManagementButton_Click(object sender, EventArgs e)
         {
             ExhibitionManagementForm exhibitionManagement = new ExhibitionManagementForm();
             exhibitionManagement.Show();
+        }
+        
+        private void checkoutButton_Click(object sender, EventArgs e)
+        {
+            CheckoutForm checkoutWindow = new CheckoutForm();
+            checkoutWindow.Show();
+        }
+
+        private void MainDashboard_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bookingButton_Click(object sender, EventArgs e)
+        {
+            UserReservationsForm reservations = new UserReservationsForm();
+            reservations.Show();
         }
     }
 }
