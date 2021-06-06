@@ -171,6 +171,7 @@ namespace Biblioteka
             this.exhibitionManagementButton.TabIndex = 0;
             this.exhibitionManagementButton.Text = "Wystawy";
             this.exhibitionManagementButton.UseVisualStyleBackColor = true;
+            this.exhibitionManagementButton.Click += new System.EventHandler(this.exhibitionManagementButton_Click);
             // 
             // signButton
             // 

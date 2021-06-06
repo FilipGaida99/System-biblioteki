@@ -12,7 +12,8 @@ namespace Biblioteka
 
         private void exhibitionButton_Click(object sender, EventArgs e)
         {
-
+            ExhibitionViewerForm exhibitionViewer = new ExhibitionViewerForm();
+            exhibitionViewer.Show();
         }
 
         private void rentButton_Click(object sender, EventArgs e)
@@ -42,6 +43,12 @@ namespace Biblioteka
         {
             MessageForm messageForm = new MessageForm();
             messageForm.Show();
+        }
+        
+        private void exhibitionManagementButton_Click(object sender, EventArgs e)
+        {
+            ExhibitionManagementForm exhibitionManagement = new ExhibitionManagementForm();
+            exhibitionManagement.Show();
         }
     }
 }

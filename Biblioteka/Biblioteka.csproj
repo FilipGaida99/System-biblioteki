@@ -120,6 +120,31 @@
     <Compile Include="CopyModificationForm.Designer.cs">
       <DependentUpon>CopyModificationForm.cs</DependentUpon>
     </Compile>
+
+    <Compile Include="ExhibitionAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExhibitionAddForm.Designer.cs">
+      <DependentUpon>ExhibitionAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExhibitionDetails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExhibitionDetails.Designer.cs">
+      <DependentUpon>ExhibitionDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExhibitionViewerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExhibitionViewerForm.Designer.cs">
+      <DependentUpon>ExhibitionViewerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExhibitionManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExhibitionManagementForm.Designer.cs">
+      <DependentUpon>ExhibitionManagementForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormExtensions.cs" />
     <Compile Include="ISBNValidator.cs" />
     <Compile Include="ListViewColumnSorter.cs" />
@@ -149,6 +174,7 @@
     <Compile Include="PublisherPicker.Designer.cs">
       <DependentUpon>PublisherPicker.cs</DependentUpon>
     </Compile>
+
     <Compile Include="ReadMessageForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +190,7 @@
     <EmbeddedResource Include="AddresseeSelectionForm.resx">
       <DependentUpon>AddresseeSelectionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <Compile Include="UserSingleton.cs" />
     <EmbeddedResource Include="AuthorForm.resx">
       <DependentUpon>AuthorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -190,6 +217,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CopyModificationForm.resx">
       <DependentUpon>CopyModificationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExhibitionAddForm.resx">
+      <DependentUpon>ExhibitionAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExhibitionDetails.resx">
+      <DependentUpon>ExhibitionDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExhibitionManagementForm.resx">
+      <DependentUpon>ExhibitionManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExhibitionViewerForm.resx">
+      <DependentUpon>ExhibitionViewerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainDashboard.resx">
       <DependentUpon>MainDashboard.cs</DependentUpon>
