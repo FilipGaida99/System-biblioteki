@@ -32,6 +32,16 @@ namespace Biblioteka
 
         }
 
+        private void returnButton_Click(object sender, EventArgs e)
+        {
+            UserCheckoutsForm returnForm = new UserCheckoutsForm(reader.CzytelnikID);
+            returnForm.Show();
+        }
 
+        private void checkoutButton_Click(object sender, EventArgs e)
+        {
+            BookBrowse booksBrowseForm = new BookBrowse(reader.CzytelnikID);
+            booksBrowseForm.Show();
+        }
     }
 }

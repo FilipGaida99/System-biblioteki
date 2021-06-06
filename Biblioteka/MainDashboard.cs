@@ -17,7 +17,13 @@ namespace Biblioteka
 
         private void rentButton_Click(object sender, EventArgs e)
         {
-            UserCheckoutsForm userCheckouts = new UserCheckoutsForm();
+            //TO DO: skasować to poniżej i wstawić id czytelnika
+            Czytelnik user;
+            using(var db = new BibliotekaDB())
+            {
+                user = db.Czytelnik.Find(10003);
+            }
+            UserCheckoutsForm userCheckouts = new UserCheckoutsForm(user.CzytelnikID /*logged user ID*/);
             userCheckouts.Show();
         }
 
@@ -35,7 +41,7 @@ namespace Biblioteka
 
         private void booksButton_Click(object sender, EventArgs e)
         {
-            BookBrowse bookBrowse = new BookBrowse();
+            BookBrowse bookBrowse = new BookBrowse(null);
             bookBrowse.Show();
         }
 

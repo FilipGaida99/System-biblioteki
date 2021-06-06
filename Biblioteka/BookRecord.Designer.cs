@@ -39,6 +39,7 @@ namespace Biblioteka
             this.authorsLabel = new System.Windows.Forms.Label();
             this.showButton = new System.Windows.Forms.Button();
             this.isbnLabel = new System.Windows.Forms.Label();
+            this.checkoutToReader = new System.Windows.Forms.Button();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -137,11 +138,22 @@ namespace Biblioteka
             this.isbnLabel.TabIndex = 9;
             this.isbnLabel.Text = "ISBN";
             // 
+            // checkoutToReader
+            // 
+            this.checkoutToReader.Location = new System.Drawing.Point(279, 39);
+            this.checkoutToReader.Name = "checkoutToReader";
+            this.checkoutToReader.Size = new System.Drawing.Size(75, 23);
+            this.checkoutToReader.TabIndex = 10;
+            this.checkoutToReader.Text = "Wypożycz";
+            this.checkoutToReader.UseVisualStyleBackColor = true;
+            this.checkoutToReader.Click += new System.EventHandler(this.checkoutToReader_Click);
+            // 
             // BookRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Controls.Add(this.checkoutToReader);
             this.Controls.Add(this.isbnLabel);
             this.Controls.Add(label4);
             this.Controls.Add(this.showButton);
@@ -168,5 +180,6 @@ namespace Biblioteka
         private System.Windows.Forms.Label authorsLabel;
         private System.Windows.Forms.Button showButton;
         private System.Windows.Forms.Label isbnLabel;
+        private System.Windows.Forms.Button checkoutToReader;
     }
 }

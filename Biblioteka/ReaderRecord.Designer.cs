@@ -37,8 +37,8 @@ namespace Biblioteka
             this.surnameLabel = new System.Windows.Forms.Label();
             this.phoneLabel = new System.Windows.Forms.Label();
             this.mailLabel = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.checkoutButton = new System.Windows.Forms.Button();
+            this.returnButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.idLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -115,23 +115,25 @@ namespace Biblioteka
             this.mailLabel.TabIndex = 7;
             this.mailLabel.Text = "label8";
             // 
-            // button1
+            // checkoutButton
             // 
-            this.button1.Location = new System.Drawing.Point(250, 58);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Wypożycz";
-            this.button1.UseVisualStyleBackColor = true;
+            this.checkoutButton.Location = new System.Drawing.Point(250, 58);
+            this.checkoutButton.Name = "checkoutButton";
+            this.checkoutButton.Size = new System.Drawing.Size(75, 23);
+            this.checkoutButton.TabIndex = 8;
+            this.checkoutButton.Text = "Wypożycz";
+            this.checkoutButton.UseVisualStyleBackColor = true;
+            this.checkoutButton.Click += new System.EventHandler(this.checkoutButton_Click);
             // 
-            // button2
+            // returnButton
             // 
-            this.button2.Location = new System.Drawing.Point(365, 58);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Zwróć";
-            this.button2.UseVisualStyleBackColor = true;
+            this.returnButton.Location = new System.Drawing.Point(365, 58);
+            this.returnButton.Name = "returnButton";
+            this.returnButton.Size = new System.Drawing.Size(75, 23);
+            this.returnButton.TabIndex = 9;
+            this.returnButton.Text = "Zwróć";
+            this.returnButton.UseVisualStyleBackColor = true;
+            this.returnButton.Click += new System.EventHandler(this.returnButton_Click);
             // 
             // label5
             // 
@@ -158,8 +160,8 @@ namespace Biblioteka
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Controls.Add(this.idLabel);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.returnButton);
+            this.Controls.Add(this.checkoutButton);
             this.Controls.Add(this.mailLabel);
             this.Controls.Add(this.phoneLabel);
             this.Controls.Add(this.surnameLabel);
@@ -186,8 +188,8 @@ namespace Biblioteka
         private System.Windows.Forms.Label surnameLabel;
         private System.Windows.Forms.Label phoneLabel;
         private System.Windows.Forms.Label mailLabel;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button checkoutButton;
+        private System.Windows.Forms.Button returnButton;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label idLabel;
     }
