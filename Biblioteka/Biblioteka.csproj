@@ -119,6 +119,12 @@
     <Compile Include="Egzemplarz.cs" />
     <Compile Include="EgzemplarzFunctions.cs" />
     <Compile Include="Egzemplarz_elektroniczny.cs" />
+    <Compile Include="ExtensionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExtensionForm.Designer.cs">
+      <DependentUpon>ExtensionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormExtensions.cs" />
     <Compile Include="ISBNValidator.cs" />
     <Compile Include="ListViewColumnSorter.cs" />
@@ -181,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CopyModificationForm.resx">
       <DependentUpon>CopyModificationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExtensionForm.resx">
+      <DependentUpon>ExtensionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainDashboard.resx">
       <DependentUpon>MainDashboard.cs</DependentUpon>

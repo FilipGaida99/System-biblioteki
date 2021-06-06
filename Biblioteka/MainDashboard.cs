@@ -37,5 +37,11 @@ namespace Biblioteka
             BookBrowse bookBrowse = new BookBrowse();
             bookBrowse.Show();
         }
+
+        private void prolognationButton_Click(object sender, EventArgs e)
+        {
+            ExtensionForm extension = new ExtensionForm();
+            extension.Show();
+        }
     }
 }

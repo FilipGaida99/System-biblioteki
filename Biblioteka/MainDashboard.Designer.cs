@@ -115,6 +115,7 @@ namespace Biblioteka
             this.prolognationButton.TabIndex = 8;
             this.prolognationButton.Text = "Prolongata";
             this.prolognationButton.UseVisualStyleBackColor = true;
+            this.prolognationButton.Click += new System.EventHandler(this.prolognationButton_Click);
             // 
             // returnButton
             // 
