@@ -255,7 +255,6 @@ namespace Biblioteka
             this.Controls.Add(this.exhibitionButton);
             this.Name = "MainDashboard";
             this.Text = "Biblioteka publiczna";
-            this.Load += new System.EventHandler(this.MainDashboard_Load);
             this.panelLibrarian.ResumeLayout(false);
             this.panelLibrarian.PerformLayout();
             this.panelReader.ResumeLayout(false);

@@ -51,11 +51,6 @@ namespace Biblioteka
             checkoutWindow.Show();
         }
 
-        private void MainDashboard_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void bookingButton_Click(object sender, EventArgs e)
         {
             UserReservationsForm reservations = new UserReservationsForm();

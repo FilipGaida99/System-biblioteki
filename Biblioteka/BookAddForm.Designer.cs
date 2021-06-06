@@ -64,7 +64,6 @@ namespace Biblioteka
             this.Controls.Add(label1);
             this.Name = "BookAddForm";
             this.Text = "Dodawanie książki";
-            this.Load += new System.EventHandler(this.BookAddForm_Load);
             this.Controls.SetChildIndex(label1, 0);
             this.Controls.SetChildIndex(this.firstCopyInventoryNumber, 0);
             ((System.ComponentModel.ISupportInitialize)(this.firstCopyInventoryNumber)).EndInit();

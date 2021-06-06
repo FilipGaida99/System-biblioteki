@@ -21,10 +21,5 @@ namespace Biblioteka
             InitializeComponent();
             reservation = _reservation;
         }
-
-        private void CheckoutRecord_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
