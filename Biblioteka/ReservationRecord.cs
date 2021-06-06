@@ -82,9 +82,12 @@ namespace Biblioteka
                     //ile książek jest w lisćie rezerwacji przed tą rezerwacją
                     int resCount = resQuery.Where(res => res.Data_rezerwacji < reservation.Data_rezerwacji).Count();
 
-                    //znajdź wszystie egzemplarze tej książki
+                    //znajdź wszystie egzemplarze (fizyczne) tej książki
                     var book = db.Książka.Find(reservation.KsiążkaID);
-                    var query = book.Egzemplarz.OrderBy(copy => copy.Nr_inwentarza);
+                    var query = db.Egzemplarz.Where(copy => copy.KsiążkaID == book.KsiążkaID);
+                    query = query.Where(copy => copy.Egzemplarz_elektroniczny == null);
+                    query = query.OrderBy(copy => copy.Nr_inwentarza);
+                    
 
                     List<Egzemplarz> copies = query.ToList();
 

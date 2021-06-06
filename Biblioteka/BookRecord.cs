@@ -85,6 +85,7 @@ namespace Biblioteka
                 using(var db = new BibliotekaDB())
                 {
                     var allCopiesQuery = db.Egzemplarz.Where(copy => copy.KsiążkaID == book.KsiążkaID);
+                    allCopiesQuery = allCopiesQuery.Where(copy => copy.Egzemplarz_elektroniczny == null);
 
                     List<Egzemplarz> availableCopies = new List<Egzemplarz>();
                     foreach(var copy in allCopiesQuery.ToList())
