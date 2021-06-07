@@ -9,11 +9,17 @@ namespace Biblioteka
     public partial class BookBrowse : Form
     {
         /// <summary>
+        /// ID czytelnika któremu wypożyczana jest książka
+        /// </summary>
+        long? readerID;
+
+        /// <summary>
         /// Konstruktor.
         /// </summary>
-        public BookBrowse()
+        public BookBrowse(long? readerID)
         {
             InitializeComponent();
+            this.readerID = readerID;
         }
 
         /// <summary>
@@ -34,7 +40,7 @@ namespace Biblioteka
             bookLayout.Controls.Clear();
             foreach(var book in bookSearch.resultBooks)
             {
-                bookLayout.Controls.Add(new BookRecord(book));
+                bookLayout.Controls.Add(new BookRecord(book, readerID));
             }
         }
     }

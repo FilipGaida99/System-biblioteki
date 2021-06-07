@@ -42,6 +42,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -55,17 +56,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddresseeSelectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddresseeSelectionForm.Designer.cs">
+      <DependentUpon>AddresseeSelectionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AppWaitCursor.cs" />
-    <Compile Include="Autor.cs" />
     <Compile Include="AuthorForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AuthorForm.Designer.cs">
       <DependentUpon>AuthorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AutorFunctions.cs" />
-    <Compile Include="Bibliotekarz.cs" />
-    <Compile Include="Bibliotekarz_Wiadomość.cs" />
     <Compile Include="BookAddForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,37 +111,93 @@
     <Compile Include="BookSearch.Designer.cs">
       <DependentUpon>BookSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomMessageButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CheckoutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CheckoutForm.Designer.cs">
+      <DependentUpon>CheckoutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CheckoutRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CheckoutRecord.Designer.cs">
+      <DependentUpon>CheckoutRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="CopyModificationForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CopyModificationForm.Designer.cs">
       <DependentUpon>CopyModificationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Czytelnik.cs" />
-    <Compile Include="Czytelnik_Wiadomość.cs" />
-    <Compile Include="Egzemplarz.cs" />
-    <Compile Include="EgzemplarzFunctions.cs" />
-    <Compile Include="Egzemplarz_elektroniczny.cs" />
-    <Compile Include="ExtensionForm.cs">
+
+    <Compile Include="ExhibitionAddForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ExtensionForm.Designer.cs">
-      <DependentUpon>ExtensionForm.cs</DependentUpon>
+    <Compile Include="ExhibitionAddForm.Designer.cs">
+      <DependentUpon>ExhibitionAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExhibitionDetails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExhibitionDetails.Designer.cs">
+      <DependentUpon>ExhibitionDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExhibitionViewerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExhibitionViewerForm.Designer.cs">
+      <DependentUpon>ExhibitionViewerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExhibitionManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExhibitionManagementForm.Designer.cs">
+      <DependentUpon>ExhibitionManagementForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FormExtensions.cs" />
+    <Compile Include="IDConverter.cs" />
     <Compile Include="ISBNValidator.cs" />
+    <Compile Include="LibrarianCreateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibrarianCreateForm.Designer.cs">
+      <DependentUpon>LibrarianCreateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LibrarianManagmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LibrarianManagmentForm.Designer.cs">
+      <DependentUpon>LibrarianManagmentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListViewColumnSorter.cs" />
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainDashboard.Designer.cs">
       <DependentUpon>MainDashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Kara.cs" />
-    <Compile Include="Książka.cs" />
-    <Compile Include="BibliotekaDB.cs" />
+    <Compile Include="MessageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MessageForm.Designer.cs">
+      <DependentUpon>MessageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PenaltyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PenaltyForm.Designer.cs">
+      <DependentUpon>PenaltyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="Prolongata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublisherForm.cs">
       <SubType>Form</SubType>
@@ -152,15 +211,76 @@
     <Compile Include="PublisherPicker.Designer.cs">
       <DependentUpon>PublisherPicker.cs</DependentUpon>
     </Compile>
-    <Compile Include="Rezerwacje.cs" />
+    <Compile Include="ReadMessageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReadMessageForm.Designer.cs">
+      <DependentUpon>ReadMessageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WriteMessageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WriteMessageForm.Designer.cs">
+      <DependentUpon>WriteMessageForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddresseeSelectionForm.resx">
+      <DependentUpon>AddresseeSelectionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="UserSingleton.cs" />
-    <Compile Include="Wiadomość.cs" />
-    <Compile Include="Wydawnictwo.cs" />
-    <Compile Include="WydawnictwoFunctions.cs" />
-    <Compile Include="Wypożyczenie.cs" />
-    <Compile Include="WypożyczenieFunctions.cs" />
-    <Compile Include="Wystawa.cs" />
-    <Compile Include="KsiążkaFunctions.cs" />
+    <Compile Include="ReaderRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReaderRecord.Designer.cs">
+      <DependentUpon>ReaderRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReaderSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReaderSearch.Designer.cs">
+      <DependentUpon>ReaderSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReservationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReservationForm.Designer.cs">
+      <DependentUpon>ReservationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReservationRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReservationRecord.Designer.cs">
+      <DependentUpon>ReservationRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReservationSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReservationSearch.Designer.cs">
+      <DependentUpon>ReservationSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserCheckoutsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserCheckoutsForm.Designer.cs">
+      <DependentUpon>UserCheckoutsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserReservationsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserReservationsForm.Designer.cs">
+      <DependentUpon>UserReservationsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReaderCreateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReaderCreateForm.Designer.cs">
+      <DependentUpon>ReaderCreateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReadersManagmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReadersManagmentForm.Designer.cs">
+      <DependentUpon>ReadersManagmentForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AuthorForm.resx">
       <DependentUpon>AuthorForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -185,14 +305,47 @@
     <EmbeddedResource Include="BookSearch.resx">
       <DependentUpon>BookSearch.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CheckoutForm.resx">
+      <DependentUpon>CheckoutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CheckoutRecord.resx">
+      <DependentUpon>CheckoutRecord.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CopyModificationForm.resx">
       <DependentUpon>CopyModificationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExhibitionAddForm.resx">
+      <DependentUpon>ExhibitionAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExhibitionDetails.resx">
+      <DependentUpon>ExhibitionDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExhibitionManagementForm.resx">
+      <DependentUpon>ExhibitionManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExhibitionViewerForm.resx">
+      <DependentUpon>ExhibitionViewerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibrarianCreateForm.resx">
+      <DependentUpon>LibrarianCreateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LibrarianManagmentForm.resx">
+      <DependentUpon>LibrarianManagmentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExtensionForm.resx">
       <DependentUpon>ExtensionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainDashboard.resx">
       <DependentUpon>MainDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MessageForm.resx">
+      <DependentUpon>MessageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PenaltyForm.resx">
+      <DependentUpon>PenaltyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -209,6 +362,39 @@
     <EmbeddedResource Include="PublisherPicker.resx">
       <DependentUpon>PublisherPicker.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReadMessageForm.resx">
+      <DependentUpon>ReadMessageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WriteMessageForm.resx">
+      <DependentUpon>WriteMessageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReaderRecord.resx">
+      <DependentUpon>ReaderRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReaderSearch.resx">
+      <DependentUpon>ReaderSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReservationForm.resx">
+      <DependentUpon>ReservationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReservationRecord.resx">
+      <DependentUpon>ReservationRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReservationSearch.resx">
+      <DependentUpon>ReservationSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserCheckoutsForm.resx">
+      <DependentUpon>UserCheckoutsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserReservationsForm.resx">
+      <DependentUpon>UserReservationsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReaderCreateForm.resx">
+      <DependentUpon>ReaderCreateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReadersManagmentForm.resx">
+      <DependentUpon>ReadersManagmentForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -222,6 +408,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BibliotekaModel\BibliotekaModel.csproj">
+      <Project>{70516b69-f409-49db-a3a3-feec8944947e}</Project>
+      <Name>BibliotekaModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

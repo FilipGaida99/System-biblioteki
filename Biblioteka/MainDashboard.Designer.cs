@@ -134,6 +134,7 @@ namespace Biblioteka
             this.checkoutButton.TabIndex = 6;
             this.checkoutButton.Text = "Wydawanie";
             this.checkoutButton.UseVisualStyleBackColor = true;
+            this.checkoutButton.Click += new System.EventHandler(this.checkoutButton_Click);
             // 
             // booksManagementButton
             // 
@@ -147,13 +148,13 @@ namespace Biblioteka
             // 
             // librariansManagementButton
             // 
-            this.librariansManagementButton.Enabled = false;
             this.librariansManagementButton.Location = new System.Drawing.Point(248, 39);
             this.librariansManagementButton.Name = "librariansManagementButton";
             this.librariansManagementButton.Size = new System.Drawing.Size(82, 34);
             this.librariansManagementButton.TabIndex = 3;
             this.librariansManagementButton.Text = "Pracownicy";
             this.librariansManagementButton.UseVisualStyleBackColor = true;
+            this.librariansManagementButton.Click += new System.EventHandler(this.librariansManagementButton_Click);
             // 
             // readersManagementButton
             // 
@@ -163,6 +164,7 @@ namespace Biblioteka
             this.readersManagementButton.TabIndex = 2;
             this.readersManagementButton.Text = "Czytelnicy";
             this.readersManagementButton.UseVisualStyleBackColor = true;
+            this.readersManagementButton.Click += new System.EventHandler(this.readersManagementButton_Click);
             // 
             // exhibitionManagementButton
             // 
@@ -172,6 +174,7 @@ namespace Biblioteka
             this.exhibitionManagementButton.TabIndex = 0;
             this.exhibitionManagementButton.Text = "Wystawy";
             this.exhibitionManagementButton.UseVisualStyleBackColor = true;
+            this.exhibitionManagementButton.Click += new System.EventHandler(this.exhibitionManagementButton_Click);
             // 
             // signButton
             // 
@@ -220,6 +223,7 @@ namespace Biblioteka
             this.bookingButton.TabIndex = 1;
             this.bookingButton.Text = "Rezerwacje";
             this.bookingButton.UseVisualStyleBackColor = true;
+            this.bookingButton.Click += new System.EventHandler(this.bookingButton_Click);
             // 
             // lendButton
             // 
@@ -233,13 +237,13 @@ namespace Biblioteka
             // 
             // messagesButton
             // 
-            this.messagesButton.Enabled = false;
             this.messagesButton.Location = new System.Drawing.Point(528, 136);
             this.messagesButton.Name = "messagesButton";
             this.messagesButton.Size = new System.Drawing.Size(91, 34);
             this.messagesButton.TabIndex = 4;
             this.messagesButton.Text = "Wiadomości";
             this.messagesButton.UseVisualStyleBackColor = true;
+            this.messagesButton.Click += new System.EventHandler(this.messagesButton_Click);
             // 
             // MainDashboard
             // 

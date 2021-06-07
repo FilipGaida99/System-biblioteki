@@ -63,10 +63,15 @@ public class ListViewColumnSorter : IComparer
         int orderIndex = 0;
         while (compareResult == 0 && orderIndex < ColumnsSortOrder.Length)
         {
-            var columnIndex = ColumnsSortOrder[orderIndex];
-            if(columnIndex >= 0)
+            int columnIndex = ColumnsSortOrder[orderIndex];
+            if (columnIndex >= 0)
             {
-                compareResult = ObjectCompare.Compare(listviewX.SubItems[columnIndex].Text, listviewY.SubItems[columnIndex].Text);
+                string textX = listviewX.SubItems[columnIndex].Text;
+                string textY = listviewY.SubItems[columnIndex].Text;
+                if (!(TryCompareDate(textX, textY, out compareResult) || TryCompareLong(textX, textY, out compareResult)))
+                {
+                    compareResult = ObjectCompare.Compare(textX, textY);
+                }
             }
             orderIndex++;
         }
@@ -95,13 +100,16 @@ public class ListViewColumnSorter : IComparer
         }
         set
         {
-            for (int i = ColumnsSortOrder.Length - 2; i >= 0; i--)
+            if (SortColumn != value)
             {
+                for (int i = ColumnsSortOrder.Length - 2; i >= 0; i--)
+                {
 
-                ColumnsSortOrder[i + 1] = ColumnsSortOrder[i];
+                    ColumnsSortOrder[i + 1] = ColumnsSortOrder[i];
+                }
+
+                ColumnsSortOrder[0] = value;
             }
-
-            ColumnsSortOrder[0] = value;
         }
     }
 
@@ -118,6 +126,46 @@ public class ListViewColumnSorter : IComparer
         {
             ColumnsSortOrder = value;
         }
+    }
+
+    /// <summary>
+    /// Próba porówanania wartości dat w tekstach komórek.
+    /// </summary>
+    /// <param name="textX">Pierwszy argument porównania</param>
+    /// <param name="textY">Drugi argument porównania</param>
+    /// <param name="result">Wynik porównania. Przy braku powodzenia odczytu ustawiany na 0.</param>
+    /// <returns>True, gdy porównanie zostało wykonane dla dat.</returns>
+    private bool TryCompareDate(string textX, string textY, out int result)
+    {
+        DateTime dateX;
+        DateTime dateY;
+        if(DateTime.TryParse(textX, out dateX) && DateTime.TryParse(textY, out dateY))
+        {
+            result = dateX.CompareTo(dateY);
+            return true;
+        }
+        result = 0;
+        return false;
+    }
+
+    /// <summary>
+    /// Próba porówanania wartości całkowitych w tekstach komórek.
+    /// </summary>
+    /// <param name="textX">Pierwszy argument porównania</param>
+    /// <param name="textY">Drugi argument porównania</param>
+    /// <param name="result">Wynik porównania. Przy braku powodzenia odczytu ustawiany na 0.</param>
+    /// <returns>True, gdy porównanie zostało wykonane dla liczb całkowitych.</returns>
+    private bool TryCompareLong(string textX, string textY, out int result)
+    {
+        long longX;
+        long longY;
+        if (long.TryParse(textX, out longX) && long.TryParse(textY, out longY))
+        {
+            result = longX.CompareTo(longY);
+            return true;
+        }
+        result = 0;
+        return false;
     }
 
     /// <summary>

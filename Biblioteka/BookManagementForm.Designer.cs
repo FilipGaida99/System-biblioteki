@@ -42,9 +42,30 @@ namespace Biblioteka
             label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label1.Location = new System.Drawing.Point(399, 234);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(106, 20);
+            label1.TabIndex = 8;
+            label1.Text = "Egzemplarze:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label2.Location = new System.Drawing.Point(12, 234);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(142, 20);
+            label2.TabIndex = 9;
+            label2.Text = "Znalezione książki:";
+            // 
             // addBookButton
             // 
-            this.addBookButton.Location = new System.Drawing.Point(13, 402);
+            this.addBookButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.addBookButton.Location = new System.Drawing.Point(15, 449);
             this.addBookButton.Name = "addBookButton";
             this.addBookButton.Size = new System.Drawing.Size(264, 42);
             this.addBookButton.TabIndex = 5;
@@ -54,9 +75,10 @@ namespace Biblioteka
             // 
             // modButton
             // 
-            this.modButton.Location = new System.Drawing.Point(283, 210);
+            this.modButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.modButton.Location = new System.Drawing.Point(285, 257);
             this.modButton.Name = "modButton";
-            this.modButton.Size = new System.Drawing.Size(112, 23);
+            this.modButton.Size = new System.Drawing.Size(112, 42);
             this.modButton.TabIndex = 3;
             this.modButton.Text = "Modyfikuj";
             this.modButton.UseVisualStyleBackColor = true;
@@ -64,9 +86,10 @@ namespace Biblioteka
             // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(283, 239);
+            this.deleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.deleteButton.Location = new System.Drawing.Point(285, 305);
             this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(112, 23);
+            this.deleteButton.Size = new System.Drawing.Size(112, 42);
             this.deleteButton.TabIndex = 4;
             this.deleteButton.Text = "Usuń";
             this.deleteButton.UseVisualStyleBackColor = true;
@@ -74,16 +97,19 @@ namespace Biblioteka
             // 
             // bookList
             // 
+            this.bookList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.bookList.FormattingEnabled = true;
-            this.bookList.Location = new System.Drawing.Point(13, 210);
+            this.bookList.ItemHeight = 20;
+            this.bookList.Location = new System.Drawing.Point(15, 257);
             this.bookList.Name = "bookList";
-            this.bookList.Size = new System.Drawing.Size(264, 186);
+            this.bookList.Size = new System.Drawing.Size(264, 184);
             this.bookList.TabIndex = 2;
             this.bookList.SelectedIndexChanged += new System.EventHandler(this.bookList_SelectedIndexChanged);
             // 
             // addCopy
             // 
-            this.addCopy.Location = new System.Drawing.Point(401, 402);
+            this.addCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.addCopy.Location = new System.Drawing.Point(403, 449);
             this.addCopy.Name = "addCopy";
             this.addCopy.Size = new System.Drawing.Size(264, 42);
             this.addCopy.TabIndex = 7;
@@ -93,42 +119,26 @@ namespace Biblioteka
             // 
             // copyList
             // 
+            this.copyList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.copyList.FormattingEnabled = true;
-            this.copyList.Location = new System.Drawing.Point(401, 210);
+            this.copyList.ItemHeight = 20;
+            this.copyList.Location = new System.Drawing.Point(403, 257);
             this.copyList.Name = "copyList";
-            this.copyList.Size = new System.Drawing.Size(264, 186);
+            this.copyList.Size = new System.Drawing.Size(264, 184);
             this.copyList.TabIndex = 6;
             // 
             // bookSearch
             // 
-            this.bookSearch.Location = new System.Drawing.Point(97, 12);
+            this.bookSearch.Location = new System.Drawing.Point(29, 12);
             this.bookSearch.Name = "bookSearch";
-            this.bookSearch.Size = new System.Drawing.Size(466, 145);
+            this.bookSearch.Size = new System.Drawing.Size(638, 199);
             this.bookSearch.TabIndex = 1;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(401, 191);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(70, 13);
-            label1.TabIndex = 8;
-            label1.Text = "Egzemplarze:";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(13, 191);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(94, 13);
-            label2.TabIndex = 9;
-            label2.Text = "Znalezione książki";
             // 
             // BookManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(688, 467);
+            this.ClientSize = new System.Drawing.Size(685, 520);
             this.Controls.Add(label2);
             this.Controls.Add(label1);
             this.Controls.Add(this.bookSearch);

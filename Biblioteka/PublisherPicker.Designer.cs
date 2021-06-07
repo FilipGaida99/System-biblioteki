@@ -38,17 +38,19 @@ namespace Biblioteka
             // label5
             // 
             label5.AutoSize = true;
+            label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             label5.Location = new System.Drawing.Point(3, 9);
             label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(77, 13);
+            label5.Size = new System.Drawing.Size(109, 20);
             label5.TabIndex = 11;
             label5.Text = "Wydawnictwo:";
             // 
             // choosePublisherButton
             // 
-            this.choosePublisherButton.Location = new System.Drawing.Point(192, 4);
+            this.choosePublisherButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.choosePublisherButton.Location = new System.Drawing.Point(258, 6);
             this.choosePublisherButton.Name = "choosePublisherButton";
-            this.choosePublisherButton.Size = new System.Drawing.Size(75, 23);
+            this.choosePublisherButton.Size = new System.Drawing.Size(75, 26);
             this.choosePublisherButton.TabIndex = 2;
             this.choosePublisherButton.Text = "Wybierz";
             this.choosePublisherButton.UseVisualStyleBackColor = true;
@@ -56,9 +58,11 @@ namespace Biblioteka
             // 
             // publisherText
             // 
-            this.publisherText.Location = new System.Drawing.Point(86, 6);
+            this.publisherText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.publisherText.Location = new System.Drawing.Point(109, 7);
+            this.publisherText.MaxLength = 50;
             this.publisherText.Name = "publisherText";
-            this.publisherText.Size = new System.Drawing.Size(100, 20);
+            this.publisherText.Size = new System.Drawing.Size(143, 26);
             this.publisherText.TabIndex = 1;
             // 
             // PublisherPicker
@@ -69,7 +73,7 @@ namespace Biblioteka
             this.Controls.Add(this.publisherText);
             this.Controls.Add(label5);
             this.Name = "PublisherPicker";
-            this.Size = new System.Drawing.Size(271, 30);
+            this.Size = new System.Drawing.Size(336, 42);
             this.ResumeLayout(false);
             this.PerformLayout();
 

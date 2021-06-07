@@ -70,7 +70,14 @@ namespace Biblioteka
                 managedCopy.Nr_inwentarza = newInventory;
             }
 
-
+            if(bookCopy.Rok_wydania > printDatePicker.Value)
+            {
+                errorText = "Wprowadzona data wydruku jest starsza niż data wydania ksiżki.\n" +
+                    $"Data wydania książki: {bookCopy.Rok_wydania.ToShortDateString()}\n" +
+                    "Sprawdź czy zmieniasz odpowiednie wydanie lub zmień najpierw datę wydania ksiązki.";
+                return false;
+            }
+            managedCopy.Rok_wydruku = printDatePicker.Value;
 
             if (isElectronicCheckBox.Checked)
             {
@@ -176,6 +183,8 @@ namespace Biblioteka
                     copyInventoryNumber.Value = managedCopy.Nr_inwentarza;
                     copyInventoryNumber.Enabled = false;
 
+                    printDatePicker.Value = managedCopy.Rok_wydruku;
+
                     var electrioncCopy = managedCopy.Egzemplarz_elektroniczny;
                     if(electrioncCopy != null)
                     {
@@ -191,6 +200,7 @@ namespace Biblioteka
             else
             {
                 Text = "Dodawanie egzemplarza";
+                printDatePicker.Value = bookCopy.Rok_wydania;
             }
            
         }

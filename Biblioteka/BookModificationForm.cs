@@ -59,13 +59,14 @@ namespace Biblioteka
                 isNew = true;
             }
 
-                ISBNValidator isbnValidator = new ISBNValidator(isbnText.Text);
+            ISBNValidator isbnValidator = new ISBNValidator(isbnText.Text);
             if (!isbnValidator.Validate())
             {
-                errorText = "Niepoprawny numer ISBN";
+                errorText = "Niepoprawny numer ISBN.";
                 return false;
             }
-            managedBook.ISBN = ISBNValidator.NormalizeIsbn(isbnText.Text);
+            managedBook.ISBN = isbnText.Text;
+
             if(titleText.Text.Trim() == "")
             {
                 errorText = "Pusty tytuł.";
@@ -73,7 +74,20 @@ namespace Biblioteka
             }
             managedBook.Tytuł = titleText.Text;
             managedBook.Opis = descriptionText.Text;
+
+            var copiesWithErrorDate = managedBook.Egzemplarz.Where(copy => copy.Rok_wydruku < datePicker.Value).ToList();
+            if (copiesWithErrorDate.Count > 0)
+            {
+                errorText = "Podane egzemplarze zawierają datę wydruku starszą niż wybrana data wydania:\n";
+                foreach(var copy in copiesWithErrorDate)
+                {
+                    errorText += $"• {copy.Nr_inwentarza} ({copy.Rok_wydruku.ToShortDateString()})\n";
+                }
+                errorText += "Jeżeli zmiana jest wymagana, zmień najpierw daty wydruku.";
+                return false;
+            }
             managedBook.Rok_wydania = datePicker.Value;
+
             managedBook.Maksymalny_okres_wypożyczenia = (long)daySpanPicker.Value;
 
             if(!managedBook.SetPublisher(db, publisherPicker.PublisherName))
@@ -113,7 +127,7 @@ namespace Biblioteka
                 using (var db = new BibliotekaDB())
                 {
                     managedBook = db.Książka.Find(managedBook.KsiążkaID);
-                    isbnText.Text = managedBook.ISBN;
+                    isbnText.Text = managedBook.ISBN.Trim();
                     datePicker.Value = managedBook.Rok_wydania;
                     titleText.Text = managedBook.Tytuł;
                     descriptionText.Text = managedBook.Opis;
@@ -250,6 +264,5 @@ namespace Biblioteka
                 authors.Add(author);
             }
         }
-
     }
 }

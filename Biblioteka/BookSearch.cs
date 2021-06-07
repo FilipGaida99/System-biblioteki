@@ -43,7 +43,7 @@ namespace Biblioteka
         }
 
         /// <summary>
-        /// OBsługa wyszukiwania na podstawie ustawionych argumentów.
+        /// Obsługa wyszukiwania na podstawie ustawionych argumentów.
         /// </summary>
         /// <param name = "sender" > Kontrolka.</ param >
         /// <param name="e">Argumenty.</param>
@@ -53,20 +53,20 @@ namespace Biblioteka
             {
                 using (var db = new BibliotekaDB())
                 {
-                    var query = db.Książka.AsNoTracking().Where(book => book.Tytuł.Contains(searchText.Text) ||
-                        (descriptionSearchCheckBox.Checked && book.Opis.Contains(searchText.Text)));
-                    query = query.Where(book => book.ISBN.Contains(isbnText.Text));
-                    query = query.Where(book => book.Wydawnictwo.Nazwa.Contains(publisherPicker.PublisherName));
-                    query = query.Where(book => book.Autor.Any(author => (author.Imię + " " + author.Nazwisko).Contains(authorText.Text)));
-
-                    if (startDatePicker.Checked)
-                    {
-                        query = query.Where(book => book.Rok_wydania > startDatePicker.Value);
-                    }
-                    if (endDatePicker.Checked)
-                    {
-                        query = query.Where(book => book.Rok_wydania < endDatePicker.Value);
-                    }
+                    var query = db.Książka.AsNoTracking().Where(
+                        //Książka lub opis zawiera frazę.
+                        book => (book.Tytuł.Contains(searchText.Text) || (descriptionSearchCheckBox.Checked && book.Opis.Contains(searchText.Text))) &&
+                        //Podany fragemnt isbn występuje w książce.
+                        book.ISBN.Contains(isbnText.Text) &&
+                        //Wydawnictwo zawiera frazę.
+                        book.Wydawnictwo.Nazwa.Contains(publisherPicker.PublisherName) &&
+                        //Imię i nazwisko autora zawiera frazę.
+                        book.Autor.Any(author => (author.Imię + " " + author.Nazwisko).Contains(authorText.Text)) &&
+                        //Jeżeli niezaznaczona lub data początkowa starsza od podanej.
+                        (!startDatePicker.Checked || book.Rok_wydania > startDatePicker.Value) &&
+                        //Jeżeli niezaznaczona lub data końcowa młodsza od podanej.
+                        (!endDatePicker.Checked || book.Rok_wydania < endDatePicker.Value)
+                        );
 
                     resultBooks = query.ToList();
                     onSearch.Invoke();
