@@ -66,7 +66,7 @@ namespace Biblioteka
                 {
                     //reader = db.Czytelnik.Find(1);
                     List<Bibliotekarz> availableList = db.Bibliotekarz
-                        .Where(librarian => librarian.Imię != "Biblioteka")
+                        .Where(librarian => librarian.Imię != Bibliotekarz.specialLibrarianName)
                         .OrderBy(librarian => librarian.Nazwisko)
                         .ToList();
                     
@@ -118,7 +118,7 @@ namespace Biblioteka
                                     if(elem.BibliotekarzID == 0)
                                     {
                                         Bibliotekarz specialLibrarian = db.Bibliotekarz
-                                        .Where(librarian => librarian.Imię == "Biblioteka")
+                                        .Where(librarian => librarian.Imię == Bibliotekarz.specialLibrarianName)
                                         .First();
                                         db.Bibliotekarz_Wiadomość.Add(new Bibliotekarz_Wiadomość
                                             { BibliotekarzID = specialLibrarian.BibliotekarzID, Nadawca = false, WiadomośćID = msg.WiadomośćID });
