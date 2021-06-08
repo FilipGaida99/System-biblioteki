@@ -29,6 +29,7 @@ namespace Biblioteka
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.chosenConstLabel = new System.Windows.Forms.Label();
             this.availableConstLabel = new System.Windows.Forms.Label();
@@ -38,11 +39,16 @@ namespace Biblioteka
             this.addAddresseeButton = new System.Windows.Forms.Button();
             this.chosenListBox = new System.Windows.Forms.ListBox();
             this.availableListBox = new System.Windows.Forms.ListBox();
+            this.availableFilterTextBox = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.chosenFilterTextBox = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.chosenFilterTextBox);
+            this.panel1.Controls.Add(this.availableFilterTextBox);
             this.panel1.Controls.Add(this.chosenConstLabel);
             this.panel1.Controls.Add(this.availableConstLabel);
             this.panel1.Controls.Add(this.cancelButton);
@@ -53,7 +59,7 @@ namespace Biblioteka
             this.panel1.Controls.Add(this.availableListBox);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(526, 322);
+            this.panel1.Size = new System.Drawing.Size(526, 339);
             this.panel1.TabIndex = 0;
             // 
             // chosenConstLabel
@@ -76,7 +82,7 @@ namespace Biblioteka
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(265, 278);
+            this.cancelButton.Location = new System.Drawing.Point(265, 305);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 13;
@@ -86,7 +92,7 @@ namespace Biblioteka
             // 
             // selectButton
             // 
-            this.selectButton.Location = new System.Drawing.Point(184, 278);
+            this.selectButton.Location = new System.Drawing.Point(184, 305);
             this.selectButton.Name = "selectButton";
             this.selectButton.Size = new System.Drawing.Size(75, 23);
             this.selectButton.TabIndex = 12;
@@ -102,7 +108,7 @@ namespace Biblioteka
             this.removeAddresseeButton.TabIndex = 11;
             this.removeAddresseeButton.Text = "<";
             this.removeAddresseeButton.UseVisualStyleBackColor = true;
-            this.removeAddresseeButton.Click += new System.EventHandler(this.removeAddresseeButton_Click);
+            this.removeAddresseeButton.Click += new System.EventHandler(this.RemoveAddresseeButton_Click);
             // 
             // addAddresseeButton
             // 
@@ -131,11 +137,32 @@ namespace Biblioteka
             this.availableListBox.Size = new System.Drawing.Size(210, 238);
             this.availableListBox.TabIndex = 8;
             // 
+            // availableFilterTextBox
+            // 
+            this.availableFilterTextBox.Location = new System.Drawing.Point(15, 279);
+            this.availableFilterTextBox.Name = "availableFilterTextBox";
+            this.availableFilterTextBox.Size = new System.Drawing.Size(210, 20);
+            this.availableFilterTextBox.TabIndex = 16;
+            this.availableFilterTextBox.TextChanged += new System.EventHandler(this.availableFilterTextBox_TextChanged);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // chosenFilterTextBox
+            // 
+            this.chosenFilterTextBox.Location = new System.Drawing.Point(302, 279);
+            this.chosenFilterTextBox.Name = "chosenFilterTextBox";
+            this.chosenFilterTextBox.Size = new System.Drawing.Size(210, 20);
+            this.chosenFilterTextBox.TabIndex = 17;
+            this.chosenFilterTextBox.TextChanged += new System.EventHandler(this.chosenFilterTextBox_TextChanged);
+            // 
             // AddresseeSelectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(550, 346);
+            this.ClientSize = new System.Drawing.Size(550, 363);
             this.Controls.Add(this.panel1);
             this.Name = "AddresseeSelectionForm";
             this.Text = "addresseeSelectionForm";
@@ -157,5 +184,8 @@ namespace Biblioteka
         private System.Windows.Forms.Button addAddresseeButton;
         private System.Windows.Forms.ListBox chosenListBox;
         private System.Windows.Forms.ListBox availableListBox;
+        private System.Windows.Forms.TextBox chosenFilterTextBox;
+        private System.Windows.Forms.TextBox availableFilterTextBox;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }

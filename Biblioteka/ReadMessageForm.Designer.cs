@@ -30,9 +30,9 @@ namespace Biblioteka
         private void InitializeComponent()
         {
             this.readMsgPanel = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.titleLabel = new System.Windows.Forms.Label();
             this.titleConstLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.msgTextBox = new System.Windows.Forms.TextBox();
             this.dateLabel = new System.Windows.Forms.Label();
             this.toLabel = new System.Windows.Forms.Label();
             this.toConstLabel = new System.Windows.Forms.Label();
@@ -43,9 +43,9 @@ namespace Biblioteka
             // 
             // readMsgPanel
             // 
-            this.readMsgPanel.Controls.Add(this.label1);
+            this.readMsgPanel.Controls.Add(this.titleLabel);
             this.readMsgPanel.Controls.Add(this.titleConstLabel);
-            this.readMsgPanel.Controls.Add(this.textBox1);
+            this.readMsgPanel.Controls.Add(this.msgTextBox);
             this.readMsgPanel.Controls.Add(this.dateLabel);
             this.readMsgPanel.Controls.Add(this.toLabel);
             this.readMsgPanel.Controls.Add(this.toConstLabel);
@@ -56,14 +56,14 @@ namespace Biblioteka
             this.readMsgPanel.Size = new System.Drawing.Size(526, 414);
             this.readMsgPanel.TabIndex = 3;
             // 
-            // label1
+            // titleLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(36, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "label3";
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Location = new System.Drawing.Point(36, 39);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(35, 13);
+            this.titleLabel.TabIndex = 7;
+            this.titleLabel.Text = "label3";
             // 
             // titleConstLabel
             // 
@@ -74,13 +74,17 @@ namespace Biblioteka
             this.titleConstLabel.TabIndex = 6;
             this.titleConstLabel.Text = "Tytuł: ";
             // 
-            // textBox1
+            // msgTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(3, 55);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(520, 356);
-            this.textBox1.TabIndex = 5;
+            this.msgTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.msgTextBox.Cursor = System.Windows.Forms.Cursors.Default;
+            this.msgTextBox.Location = new System.Drawing.Point(3, 55);
+            this.msgTextBox.Multiline = true;
+            this.msgTextBox.Name = "msgTextBox";
+            this.msgTextBox.ReadOnly = true;
+            this.msgTextBox.Size = new System.Drawing.Size(520, 356);
+            this.msgTextBox.TabIndex = 5;
+            this.msgTextBox.TabStop = false;
             // 
             // dateLabel
             // 
@@ -144,9 +148,9 @@ namespace Biblioteka
         #endregion
 
         private System.Windows.Forms.Panel readMsgPanel;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Label titleConstLabel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox msgTextBox;
         private System.Windows.Forms.Label dateLabel;
         private System.Windows.Forms.Label toLabel;
         private System.Windows.Forms.Label toConstLabel;

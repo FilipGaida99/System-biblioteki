@@ -28,50 +28,45 @@ namespace Biblioteka
 
         private void AddresseeSelectionForm_Load(object sender, EventArgs e)
         {
-            availableListBox.BeginUpdate();
-            availableListBox.Items.Clear();
-            availableListBox.Items.AddRange(usersSelection.GetAvailableListStr().ToArray());
-            availableListBox.EndUpdate();
-
-            chosenListBox.BeginUpdate();
-            chosenListBox.Items.Clear();
-            chosenListBox.Items.AddRange(usersSelection.GetChosenListStr().ToArray());
-            chosenListBox.EndUpdate();
+            UpdateAvailableListBox();
+            UpdateChosenListBox();
         }
 
         private void addAddresseeButton_Click(object sender, EventArgs e)
         {
             if (availableListBox.SelectedIndex == -1)
                 return;
-            usersSelection.MoveUserRight(availableListBox.SelectedIndex);
-            
-            availableListBox.BeginUpdate();
-            availableListBox.Items.Clear();
-            availableListBox.Items.AddRange(usersSelection.GetAvailableListStr().ToArray());
-            availableListBox.EndUpdate();
+            usersSelection.MoveUserRight((string)availableListBox.SelectedItem);
 
-            chosenListBox.BeginUpdate();
-            chosenListBox.Items.Clear();
-            chosenListBox.Items.AddRange(usersSelection.GetChosenListStr().ToArray());
-            chosenListBox.EndUpdate();
+            UpdateAvailableListBox();
+            UpdateChosenListBox();
         }
 
-        private void removeAddresseeButton_Click(object sender, EventArgs e)
+        private void RemoveAddresseeButton_Click(object sender, EventArgs e)
         {
             if (chosenListBox.SelectedIndex == -1)
                 return;
 
-            usersSelection.MoveUserLeft(chosenListBox.SelectedIndex);
+            usersSelection.MoveUserLeft((string)chosenListBox.SelectedItem);
 
-            chosenListBox.BeginUpdate();
-            chosenListBox.Items.Clear();
-            chosenListBox.Items.AddRange(usersSelection.GetChosenListStr().ToArray());
-            chosenListBox.EndUpdate();
+            UpdateAvailableListBox();
+            UpdateChosenListBox();
+        }
 
+        private void UpdateAvailableListBox()
+        {
             availableListBox.BeginUpdate();
             availableListBox.Items.Clear();
-            availableListBox.Items.AddRange(usersSelection.GetAvailableListStr().ToArray());
+            availableListBox.Items.AddRange(usersSelection.GetAvailableListStr(availableFilterTextBox.Text).ToArray());
             availableListBox.EndUpdate();
+        }
+
+        private void UpdateChosenListBox()
+        {
+            chosenListBox.BeginUpdate();
+            chosenListBox.Items.Clear();
+            chosenListBox.Items.AddRange(usersSelection.GetChosenListStr(chosenFilterTextBox.Text).ToArray());
+            chosenListBox.EndUpdate();
         }
 
         private void selectButton_Click(object sender, EventArgs e)
@@ -83,6 +78,16 @@ namespace Biblioteka
         private void cancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void availableFilterTextBox_TextChanged(object sender, EventArgs e)
+        {
+            UpdateAvailableListBox();
+        }
+
+        private void chosenFilterTextBox_TextChanged(object sender, EventArgs e)
+        {
+            UpdateChosenListBox();
         }
     }
 }

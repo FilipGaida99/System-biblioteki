@@ -19,11 +19,11 @@ namespace Biblioteka
 
         IUsersSelectionGetter userLists;
 
-        Czytelnik reader; //raczej do zmiany gdy ogarniemy jak chcemy przechowywać zalogowanego użytkownika
+        //Czytelnik reader; //raczej do zmiany gdy ogarniemy jak chcemy przechowywać zalogowanego użytkownika
 
-        Bibliotekarz librarian; //tu tak samo
+        //Bibliotekarz librarian; //tu tak samo
 
-        bool isReader = true; //to pewnie też
+        //bool isReader = true; //to pewnie też
 
         public WriteMessageForm()
         {
@@ -40,12 +40,20 @@ namespace Biblioteka
 
         private void UpdateAddresseeLabel()
         {
-            if (isReader)
+            if ((Czytelnik)UserSingleton.Instance.GetLoggedUser() != null)
             {
                 addresseeLabel.Text = "";
                 foreach (var elem in userLists.GetChosenLibrariansList())
                     addresseeLabel.Text += elem.Imię + " " + elem.Nazwisko + ", ";
                 if(addresseeLabel.Text.Length != 0)
+                    addresseeLabel.Text = addresseeLabel.Text.Remove(addresseeLabel.Text.Length - 2);
+            }
+            else
+            {
+                addresseeLabel.Text = "";
+                foreach (var elem in userLists.GetChosenReadersList())
+                    addresseeLabel.Text += elem.Imię + " " + elem.Nazwisko + ", ";
+                if (addresseeLabel.Text.Length != 0)
                     addresseeLabel.Text = addresseeLabel.Text.Remove(addresseeLabel.Text.Length - 2);
             }
         }
@@ -54,26 +62,30 @@ namespace Biblioteka
         {
             using (var db = new BibliotekaDB())
             {
-                if (isReader)
+                if ((Czytelnik)UserSingleton.Instance.GetLoggedUser() != null)
                 {
-                    reader = db.Czytelnik.Find(1);
-
-                    List<Bibliotekarz> availableList = db.Bibliotekarz.OrderBy(librarian => librarian.Nazwisko).ToList();
-                    Bibliotekarz allLibrarians = new Bibliotekarz();
+                    //reader = db.Czytelnik.Find(1);
+                    List<Bibliotekarz> availableList = db.Bibliotekarz
+                        .Where(librarian => librarian.Imię != Bibliotekarz.specialLibrarianName)
+                        .OrderBy(librarian => librarian.Nazwisko)
+                        .ToList();
+                    
+                    Bibliotekarz allLibrarians = new Bibliotekarz();//Pseudo bibliotekarz reprezentujący wysłanie maila do wszystkich bibliotekarzy
                     allLibrarians.Imię = "Wszyscy";
                     allLibrarians.Nazwisko = "bibliotekarze";
                     allLibrarians.BibliotekarzID = 0;
                     availableList.Insert(0, allLibrarians);
 
                     userLists = UsersSelection.MakeUsersSelection(availableList, new List<Bibliotekarz>());
-                    //Pseudo bibliotekarz reprezentujący wysłanie maila do wszystkich bibliotekarzy
                     
                 }
                 else
                 {
-                    librarian = db.Bibliotekarz.Find(1);
-
-                    userLists = UsersSelection.MakeUsersSelection(db.Czytelnik.OrderBy(librarian => librarian.Nazwisko).ToList(), new List<Czytelnik>());
+                    //librarian = db.Bibliotekarz.Find(1);
+                    userLists = UsersSelection.MakeUsersSelection(db.Czytelnik
+                        .OrderBy(librarian => librarian.Nazwisko)
+                        .ToList(),
+                            new List<Czytelnik>());
                 }
             }
         }
@@ -95,19 +107,32 @@ namespace Biblioteka
                         {
                             db.Wiadomość.Add(msg);
 
-                            if (isReader)
+                            if ((Czytelnik)UserSingleton.Instance.GetLoggedUser() != null)
                             {
                                 db.Czytelnik_Wiadomość.Add(new Czytelnik_Wiadomość 
-                                { CzytelnikID = reader.CzytelnikID, Nadawca = true, WiadomośćID = msg.WiadomośćID });
+                                    { CzytelnikID = ((Czytelnik)UserSingleton.Instance.GetLoggedUser()).CzytelnikID,
+                                        Nadawca = true, WiadomośćID = msg.WiadomośćID });
 
                                 foreach (var elem in userLists.GetChosenLibrariansList())
-                                    db.Bibliotekarz_Wiadomość.Add(new Bibliotekarz_Wiadomość 
-                                        { BibliotekarzID = elem.BibliotekarzID, Nadawca = false, WiadomośćID = msg.WiadomośćID });
+                                {
+                                    if(elem.BibliotekarzID == 0)
+                                    {
+                                        Bibliotekarz specialLibrarian = db.Bibliotekarz
+                                        .Where(librarian => librarian.Imię == Bibliotekarz.specialLibrarianName)
+                                        .First();
+                                        db.Bibliotekarz_Wiadomość.Add(new Bibliotekarz_Wiadomość
+                                            { BibliotekarzID = specialLibrarian.BibliotekarzID, Nadawca = false, WiadomośćID = msg.WiadomośćID });
+                                    }
+                                    else
+                                        db.Bibliotekarz_Wiadomość.Add(new Bibliotekarz_Wiadomość
+                                            { BibliotekarzID = elem.BibliotekarzID, Nadawca = false, WiadomośćID = msg.WiadomośćID });
+                                }
                             }
                             else
                             {
                                 db.Bibliotekarz_Wiadomość.Add(new Bibliotekarz_Wiadomość 
-                                    { BibliotekarzID = librarian.BibliotekarzID, Nadawca = true, WiadomośćID = msg.WiadomośćID });
+                                    { BibliotekarzID = ((Bibliotekarz)UserSingleton.Instance.GetLoggedUser()).BibliotekarzID,
+                                        Nadawca = true, WiadomośćID = msg.WiadomośćID });
 
                                 foreach (var elem in userLists.GetChosenReadersList())
                                     db.Czytelnik_Wiadomość.Add(new Czytelnik_Wiadomość 
@@ -153,15 +178,15 @@ namespace Biblioteka
     {
         private UsersSelection() { }
 
-        public abstract void MoveUserRight(int index);
+        abstract public void MoveUserRight(string str);
 
-        public abstract void MoveUserLeft(int index);
+        abstract public void MoveUserLeft(string str);
 
-        public abstract void UpdateLists();
+        abstract public void UpdateLists();
 
-        public abstract List<string> GetAvailableListStr();
+        abstract public List<string> GetAvailableListStr(string filter);
 
-        public abstract List<string> GetChosenListStr();
+        abstract public List<string> GetChosenListStr(string filter);
 
         abstract public List<Czytelnik> GetAvailableReadersList();
 
@@ -190,16 +215,45 @@ namespace Biblioteka
                 this.chosenList = new List<Czytelnik>(chosenList);
             }
 
-            override public void MoveUserRight(int index)
+            private int FindIDInString(string str)
             {
+                str = str
+                    .Split()
+                    .Last()
+                    .Trim("()".ToCharArray());
+                return Int32.Parse(str);
+            }
+
+            //override public void MoveUserRight(int index)
+            //{
+            //    chosenList.Add(availableList[index]);
+            //    chosenList.Sort((x, y) => x.Nazwisko.CompareTo(y));
+            //    availableList.RemoveAt(index);
+            //}
+
+            override public void MoveUserRight(string str)
+            {
+                int id = FindIDInString(str);
+                int index = availableList.FindIndex(librarian => librarian.CzytelnikID == id);
+
                 chosenList.Add(availableList[index]);
                 chosenList.Sort((x, y) => x.Nazwisko.CompareTo(y));
                 availableList.RemoveAt(index);
             }
 
-            override public void MoveUserLeft(int index)
+            //override public void MoveUserLeft(int index)
+            //{
+            //    availableList.Add(availableList[index]);
+            //    availableList.Sort((x, y) => x.Nazwisko.CompareTo(y));
+            //    chosenList.RemoveAt(index);
+            //}
+
+            override public void MoveUserLeft(string str)
             {
-                availableList.Add(availableList[index]);
+                int id = FindIDInString(str);
+                int index = chosenList.FindIndex(librarian => librarian.CzytelnikID == id);
+
+                availableList.Add(chosenList[index]);
                 availableList.Sort((x, y) => x.Nazwisko.CompareTo(y));
                 chosenList.RemoveAt(index);
             }
@@ -210,19 +264,27 @@ namespace Biblioteka
                 chosenListRef = chosenList;
             }
 
-            override public List<string> GetAvailableListStr()
+            override public List<string> GetAvailableListStr(string filter)
             {
                 List<string> namesList = new List<string>();
                 foreach (var elem in availableList)
-                    namesList.Add($"{elem.Imię} {elem.Nazwisko}");
+                {
+                    string str = $"{elem.Imię} {elem.Nazwisko} ({elem.CzytelnikID})";
+                    if (filter.Length == 0 || str.ToLower().Contains(filter.ToLower()))
+                        namesList.Add(str);
+                }
                 return namesList;
             }
 
-            override public List<string> GetChosenListStr()
+            override public List<string> GetChosenListStr(string filter)
             {
                 List<string> namesList = new List<string>();
                 foreach (var elem in chosenList)
-                    namesList.Add($"{elem.Imię} {elem.Nazwisko}");
+                {
+                    string str = $"{elem.Imię} {elem.Nazwisko} ({elem.CzytelnikID})";
+                    if (filter.Length == 0 || str.ToLower().Contains(filter.ToLower()))
+                        namesList.Add(str);
+                }
                 return namesList;
             }
 
@@ -268,8 +330,26 @@ namespace Biblioteka
                 this.chosenList = new List<Bibliotekarz>(chosenList);
             }
 
-            override public void MoveUserRight(int index)
+            private int FindIDInString(string str)
             {
+                if (str.Last() != ')') //Jeżeli stringiem są wszyscy bibliotekarze
+                    return 0;
+
+                str = str
+                    .Split()
+                    .Last()
+                    .Trim("()".ToCharArray());
+                return Int32.Parse(str);
+            }
+
+            override public void MoveUserRight(string str)
+            {
+                int id = FindIDInString(str);
+                int index;
+                if (id == 0)
+                    index = 0;
+                else
+                    index = availableList.FindIndex(librarian => librarian.BibliotekarzID == id);
                 //Jeżeli wybrany jest "wszycy bibliotekarze" to nie dodwaj innych bibliotekarzy do listy
                 if (chosenList.Count != 0 && chosenList[0].BibliotekarzID == 0)
                 {
@@ -287,8 +367,15 @@ namespace Biblioteka
                 chosenList.Sort(compareByLastname);
                 availableList.RemoveAt(index);
             }
-            override public void MoveUserLeft(int index)
+            override public void MoveUserLeft(string str)
             {
+                int id = FindIDInString(str);
+                int index;
+                if (id == 0)
+                    index = 0;
+                else
+                    index = (int)chosenList.FindIndex(librarian => librarian.BibliotekarzID == id);
+
                 availableList.Add(chosenList[index]);
                 availableList.Sort(compareByLastname);
                 chosenList.RemoveAt(index);
@@ -311,19 +398,35 @@ namespace Biblioteka
                 return x.Nazwisko.CompareTo(y.Nazwisko);
             }
 
-            override public List<string> GetAvailableListStr()
+            override public List<string> GetAvailableListStr(string filter)
             {
                 List<string> namesList = new List<string>();
                 foreach (var elem in availableList)
-                    namesList.Add($"{elem.Imię} {elem.Nazwisko}");
+                {
+                    string str;
+                    if (elem.BibliotekarzID == 0)
+                        str = $"{elem.Imię} {elem.Nazwisko}";
+                    else
+                        str = $"{elem.Imię} {elem.Nazwisko} ({elem.BibliotekarzID})";
+                    if (filter.Length == 0 || str.ToLower().Contains(filter.ToLower()))
+                        namesList.Add(str);
+                }
                 return namesList;
             }
 
-            override public List<string> GetChosenListStr()
+            override public List<string> GetChosenListStr(string filter)
             {
                 List<string> namesList = new List<string>();
                 foreach (var elem in chosenList)
-                    namesList.Add($"{elem.Imię} {elem.Nazwisko}");
+                {
+                    string str;
+                    if (elem.BibliotekarzID == 0)
+                        str = $"{elem.Imię} {elem.Nazwisko}";
+                    else
+                        str = $"{elem.Imię} {elem.Nazwisko} ({elem.BibliotekarzID})";
+                    if (filter.Length == 0 || str.ToLower().Contains(filter.ToLower()))
+                        namesList.Add(str);
+                }
                 return namesList;
             }
 
