@@ -63,7 +63,7 @@ namespace Biblioteka
                 if (selected.Count == 0) return;
 
                 var result = MessageBox.Show(
-                    "Na pewno chcesz zaakceptować te prolongaty?",
+                    $"Na pewno chcesz zaakceptować te prolongaty ({selected.Count})?",
                     "Na pewno?", MessageBoxButtons.YesNo);
                 if (result == DialogResult.No) return;
 
@@ -125,7 +125,7 @@ namespace Biblioteka
                 if (selected.Count == 0) return;
                     
                 var result = MessageBox.Show(
-                    "Na pewno chcesz odrzucić te prolongaty?",
+                    $"Na pewno chcesz odrzucić te prolongaty ({selected.Count})?",
                     "Na pewno?", MessageBoxButtons.YesNo);
                 if (result == DialogResult.No) return;
 
