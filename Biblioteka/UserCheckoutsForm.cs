@@ -27,6 +27,11 @@ namespace Biblioteka
         /// </summary>
         ListViewColumnSorter sorter;
 
+        public UserCheckoutsForm()
+        {
+            InitializeComponent();
+        }
+
         public UserCheckoutsForm(long _userID)
         {
             InitializeComponent();
@@ -116,6 +121,7 @@ namespace Biblioteka
             {
                 using(var db = new BibliotekaDB())
                 {
+                    //TO DO:
                     var query = db.Wypożyczenie.AsNoTracking().Where(checkout => checkout.CzytelnikID == userID   /*logged user ID*/);
 
                     returnButton.Enabled = false;
