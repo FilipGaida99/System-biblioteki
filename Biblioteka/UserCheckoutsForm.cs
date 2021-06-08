@@ -28,8 +28,7 @@ namespace Biblioteka
         ListViewColumnSorter sorter;
 
         public UserCheckoutsForm(): this(long.MinValue)
-        {
-        }
+        {}
 
         public UserCheckoutsForm(long _userID)
         {

@@ -11,7 +11,7 @@ namespace Biblioteka
 {
     public partial class UserCheckoutsManagementForm : Biblioteka.UserCheckoutsForm
     {
-        public UserCheckoutsManagementForm() : base()
+        public UserCheckoutsManagementForm(long _userID) : base(_userID)
         {
             InitializeComponent();
         }
