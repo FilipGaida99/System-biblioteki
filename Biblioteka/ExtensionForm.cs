@@ -59,7 +59,41 @@ namespace Biblioteka
         {
             using (new AppWaitCursor(this, sender))
             {
+                var selected = extensionList.SelectedIndices;
+                if (selected.Count == 0) return;
 
+                var result = MessageBox.Show(
+                    "Na pewno chcesz zaakceptować te prolongaty?",
+                    "Na pewno?", MessageBoxButtons.YesNo);
+                if (result == DialogResult.No) return;
+
+                AcceptExtensions(selected);
+            }
+        }
+
+        private void AcceptExtensions(ListView.SelectedIndexCollection selected)
+        {
+            using (var db = new BibliotekaDB())
+            {
+                for (int i = 0; i < selected.Count; ++i)
+                {
+                    int extensionIndex = selected[i];
+                    var extensionID = extensions[extensionIndex].ProlongataID;
+
+                    Prolongata extensionToAccept = db.Prolongata.Find(extensionID);
+
+                    if (extensionToAccept != null)
+                    {
+                        extensionToAccept.Status = 1;
+                        Wypożyczenie wypozyczenie = extensionToAccept.Wypożyczenie;
+                        extensionToAccept.Data_prolongaty =
+                            wypozyczenie.Przewidywany_zwrot.AddDays(
+                                wypozyczenie.Egzemplarz.Książka.Maksymalny_okres_wypożyczenia);
+                    }
+                    extensionList.Items.RemoveAt(extensionIndex);
+                    extensions.RemoveAt(extensionIndex);
+                }
+                db.SaveChanges();
             }
         }
 

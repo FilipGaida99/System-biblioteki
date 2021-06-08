@@ -157,6 +157,12 @@
     <Compile Include="ExhibitionManagementForm.Designer.cs">
       <DependentUpon>ExhibitionManagementForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExtensionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExtensionForm.Designer.cs">
+      <DependentUpon>ExtensionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormExtensions.cs" />
     <Compile Include="IDConverter.cs" />
     <Compile Include="ISBNValidator.cs" />
