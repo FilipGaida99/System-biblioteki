@@ -13,7 +13,12 @@ namespace Biblioteka
 {
     public partial class ExhibitionAddForm : Form
     {
-        public Wystawa managedExhibition;
+        private Wystawa managedExhibition;
+
+        public Wystawa Wystawa
+        {
+            get { return managedExhibition; }
+        }
 
         public ExhibitionAddForm(): this(null)
         {

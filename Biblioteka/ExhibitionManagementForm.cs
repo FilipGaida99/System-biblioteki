@@ -37,10 +37,10 @@ namespace Biblioteka
                 if (form.ShowDialog(this) != DialogResult.OK)
                     return;
 
-                if (form.managedExhibition == null)
+                if (form.Wystawa == null)
                     return;
 
-                exhibitions.Add(form.managedExhibition);
+                exhibitions.Add(form.Wystawa);
                 UpdateExhibitionList();
             }
         }
