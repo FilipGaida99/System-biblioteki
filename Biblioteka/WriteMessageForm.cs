@@ -65,8 +65,10 @@ namespace Biblioteka
                 if ((Czytelnik)UserSingleton.Instance.GetLoggedUser() != null)
                 {
                     //reader = db.Czytelnik.Find(1);
-
-                    List<Bibliotekarz> availableList = db.Bibliotekarz.OrderBy(librarian => librarian.Nazwisko).ToList();
+                    List<Bibliotekarz> availableList = db.Bibliotekarz
+                        .Where(librarian => librarian.Imię != "Biblioteka")
+                        .OrderBy(librarian => librarian.Nazwisko)
+                        .ToList();
                     
                     Bibliotekarz allLibrarians = new Bibliotekarz();//Pseudo bibliotekarz reprezentujący wysłanie maila do wszystkich bibliotekarzy
                     allLibrarians.Imię = "Wszyscy";
@@ -112,8 +114,19 @@ namespace Biblioteka
                                         Nadawca = true, WiadomośćID = msg.WiadomośćID });
 
                                 foreach (var elem in userLists.GetChosenLibrariansList())
-                                    db.Bibliotekarz_Wiadomość.Add(new Bibliotekarz_Wiadomość 
-                                        { BibliotekarzID = elem.BibliotekarzID, Nadawca = false, WiadomośćID = msg.WiadomośćID });
+                                {
+                                    if(elem.BibliotekarzID == 0)
+                                    {
+                                        Bibliotekarz specialLibrarian = db.Bibliotekarz
+                                        .Where(librarian => librarian.Imię == "Biblioteka")
+                                        .First();
+                                        db.Bibliotekarz_Wiadomość.Add(new Bibliotekarz_Wiadomość
+                                            { BibliotekarzID = specialLibrarian.BibliotekarzID, Nadawca = false, WiadomośćID = msg.WiadomośćID });
+                                    }
+                                    else
+                                        db.Bibliotekarz_Wiadomość.Add(new Bibliotekarz_Wiadomość
+                                            { BibliotekarzID = elem.BibliotekarzID, Nadawca = false, WiadomośćID = msg.WiadomośćID });
+                                }
                             }
                             else
                             {

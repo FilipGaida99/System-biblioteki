@@ -8,6 +8,27 @@ namespace Biblioteka
         public MainDashboard()
         {
             InitializeComponent();
+            using (var db = new BibliotekaDB())
+            {
+                UserSingleton.Instance.SetReader(db.Czytelnik.Find(1));
+                //z jakiegoś powodu where tutaj nie działa
+                //Sprawdzenie czy istnieje specjalny bibliotekarz i jeżeli nie to go dodaje do bazy
+                //if (db.Bibliotekarz.Where(librarian => librarian.Imię == "Biblioteka")
+                //    .First() == null)
+                //    db.Bibliotekarz
+                //        .Add(new Bibliotekarz { Imię = "Biblioteka" });
+                //db.SaveChanges();
+                Bibliotekarz librarian = null;
+                foreach (var elem in db.Bibliotekarz)
+                    if (elem.Imię == "Biblioteka")
+                        librarian = elem;
+                if(librarian == null)
+                {
+                    db.Bibliotekarz
+                        .Add(new Bibliotekarz { Imię = "Biblioteka" });
+                    db.SaveChanges();
+                }
+            }
         }
 
         private void exhibitionButton_Click(object sender, EventArgs e)

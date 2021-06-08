@@ -17,8 +17,11 @@ namespace Biblioteka
             InitializeComponent();
             fromLabel.Text = readerMsg.Czytelnik.Imię + readerMsg.Czytelnik.Nazwisko;
             toLabel.Text = "";
-            foreach (var elem in readerMsg.Wiadomość.Bibliotekarz_Wiadomość)
-                toLabel.Text += elem.Bibliotekarz.Imię + " " + elem.Bibliotekarz.Nazwisko + ", ";
+            if (readerMsg.Wiadomość.Bibliotekarz_Wiadomość.First().Bibliotekarz.Imię == "Biblioteka")
+                toLabel.Text += "Wszyscy Bibliotekarze, ";
+            else
+                foreach (var elem in readerMsg.Wiadomość.Bibliotekarz_Wiadomość)
+                    toLabel.Text += elem.Bibliotekarz.Imię + " " + elem.Bibliotekarz.Nazwisko + ", ";
             if (toLabel.Text.Length != 0)
                 toLabel.Text = toLabel.Text.Remove(toLabel.Text.Length - 2);
             dateLabel.Text = readerMsg.Wiadomość.Data_wysłania.ToString();
@@ -32,8 +35,11 @@ namespace Biblioteka
 
             fromLabel.Text = readerMsg.Bibliotekarz.Imię + readerMsg.Bibliotekarz.Nazwisko;
             toLabel.Text = "";
-            foreach (var elem in readerMsg.Wiadomość.Czytelnik_Wiadomość)
-                toLabel.Text += elem.Czytelnik.Imię + " " + elem.Czytelnik.Nazwisko + ", ";
+            if (readerMsg.Wiadomość.Bibliotekarz_Wiadomość.First().Bibliotekarz.Imię == "Biblioteka")
+                toLabel.Text += "Wszyscy Bibliotekarze, ";
+            else
+                foreach (var elem in readerMsg.Wiadomość.Czytelnik_Wiadomość)
+                    toLabel.Text += elem.Czytelnik.Imię + " " + elem.Czytelnik.Nazwisko + ", ";
             if (toLabel.Text.Length != 0)
                 toLabel.Text = toLabel.Text.Remove(toLabel.Text.Length - 2);
             dateLabel.Text = readerMsg.Wiadomość.Data_wysłania.ToString();
