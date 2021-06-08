@@ -129,5 +129,11 @@ namespace Biblioteka
             LibrarianManagmentForm librarian = new LibrarianManagmentForm();
             librarian.Show();
         }
+
+        private void prolognationButton_Click(object sender, EventArgs e)
+        {
+            ExtensionForm extension = new ExtensionForm();
+            extension.Show();
+        }
     }
 }
