@@ -177,6 +177,12 @@
     <Compile Include="ReservationForm.Designer.cs">
       <DependentUpon>ReservationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReservationManagementRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReservationManagementRecord.Designer.cs">
+      <DependentUpon>ReservationManagementRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReservationRecord.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -274,6 +280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReservationForm.resx">
       <DependentUpon>ReservationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReservationManagementRecord.resx">
+      <DependentUpon>ReservationManagementRecord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReservationRecord.resx">
       <DependentUpon>ReservationRecord.cs</DependentUpon>
