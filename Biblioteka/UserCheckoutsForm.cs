@@ -20,16 +20,15 @@ namespace Biblioteka
         /// <summary>
         /// ID czytelnika
         /// </summary>
-        private long userID;
+        protected long userID;
 
         /// <summary>
         /// Obiet sortujący kolumny w kontrolce ListView
         /// </summary>
         ListViewColumnSorter sorter;
 
-        public UserCheckoutsForm()
+        public UserCheckoutsForm(): this(long.MinValue)
         {
-            InitializeComponent();
         }
 
         public UserCheckoutsForm(long _userID)
@@ -42,24 +41,39 @@ namespace Biblioteka
             userID = _userID;
         }
 
-        
+        protected virtual void RefreshCheckoutList()
+        {
+            using (var db = new BibliotekaDB())
+            {
+                //TO DO:
+                var query = db.Wypożyczenie.AsNoTracking().Where(checkout => checkout.CzytelnikID == userID   /*logged user ID*/);
+
+                if (!returnedCheckBox.Checked)
+                {
+                    query = query.Where(checkout => checkout.Data_zwrotu == null);
+                }
+
+                query = query.OrderBy(checkout => checkout.Data_wypożyczenia);
+                query = query.OrderBy(checkout => checkout.Data_zwrotu);
+
+                userCheckouts = query.ToList();
+
+                UpdateListView();
+            }
+        }
+
 
         private void UserCheckoutsForm_Load(object sender, EventArgs e)
         {
-            using(new AppWaitCursor(ParentForm, e))
+            if (userID != long.MinValue)
             {
-                using (var db = new BibliotekaDB())
+                using (new AppWaitCursor(ParentForm, e))
                 {
-                    refreshButton_Click(sender, e);
+                    using (var db = new BibliotekaDB())
+                    {
+                        refreshButton_Click(sender, e);
+                    }
                 }
-                // TO DO: jeśli zalogowany bibliotekarz to nie chowaj przycisu do zwrotu
-                returnButton.Enabled = false;
-                returnButton.Visible = false;
-                //if (/*logged librarian*/)
-                //{
-                    returnButton.Enabled = true;
-                    returnButton.Visible = true;
-                //}
             }
         }
 
@@ -117,66 +131,11 @@ namespace Biblioteka
 
         private void refreshButton_Click(object sender, EventArgs e)
         {
-            using (new AppWaitCursor(ParentForm, e))
+            using (new AppWaitCursor(this, sender))
             {
-                using(var db = new BibliotekaDB())
-                {
-                    //TO DO:
-                    var query = db.Wypożyczenie.AsNoTracking().Where(checkout => checkout.CzytelnikID == userID   /*logged user ID*/);
-
-                    returnButton.Enabled = false;
-                    if (!returnedChecBox.Checked)
-                    {
-                        query = query.Where(checkout => checkout.Data_zwrotu == null);
-                        returnButton.Enabled = true;
-                    }
-                        
-                    query = query.OrderBy(checkout => checkout.Data_wypożyczenia);
-                    query = query.OrderBy(checkout => checkout.Data_zwrotu);
-                    
-                    userCheckouts = query.ToList();
-
-                    UpdateListView();
-                }
-
+                RefreshCheckoutList();
             }
         }
-
-        private void returnButton_Click(object sender, EventArgs e)
-        {
-            var selected = checkoutsList.SelectedItems;
-            if(selected.Count == 0)
-            {
-                MessageBox.Show("Nie wybrano żadnej książki do zwrotu!",
-                                "Błąd",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-                return;
-            }
-            using(new AppWaitCursor(ParentForm, e))
-            {
-                using (var db = new BibliotekaDB())
-                {
-                    for (int i = 0; i < selected.Count; i++)
-                    {
-                        var item = selected[i];
-                        var copyNumber = item.SubItems[checkoutsList.Columns.Count - 1].Text;
-
-                        var query = db.Wypożyczenie.Where(checkout => checkout.Data_zwrotu == null);
-                        query = query.Where(checkout => checkout.CzytelnikID == userID);
-                        var copyNumberLong = Convert.ToInt64(copyNumber);
-                        query = query.Where(checkout => checkout.Egzemplarz.Nr_inwentarza == copyNumberLong);
-
-                        Wypożyczenie checkoutToReturn = query.First();
-                        if (checkoutToReturn != null)
-                        {
-                            checkoutToReturn.Data_zwrotu = DateTime.Now;
-                            db.SaveChanges();
-                        }
-                        refreshButton_Click(sender, e);
-                    }
-                }
-            }
-        }
+        
     }
 }
