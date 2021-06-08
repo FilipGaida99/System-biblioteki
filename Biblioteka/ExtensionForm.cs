@@ -10,11 +10,24 @@ using System.Windows.Forms;
 
 namespace Biblioteka
 {
+    /// <summary>
+    /// Form zarządzający oczekującymi prolongatami.
+    /// </summary>
     public partial class ExtensionForm : Form
     {
+        /// <summary>
+        /// Lista prolongat.
+        /// </summary>
         List<Prolongata> extensions;
+
+        /// <summary>
+        /// Obiekt sortujący kolumny ListView.
+        /// </summary>
         ListViewColumnSorter listViewColumnSorter;
 
+        /// <summary>
+        /// Konstruktor.
+        /// </summary>
         public ExtensionForm()
         {
             InitializeComponent();
@@ -25,6 +38,9 @@ namespace Biblioteka
             extensions = new List<Prolongata>();
         }
 
+        /// <summary>
+        /// Aktualizacja listy prolongat w formularzu.
+        /// </summary>
         private void UpdateExtensionList()
         {
             using (var db = new BibliotekaDB())
@@ -55,6 +71,11 @@ namespace Biblioteka
             }
         }
 
+        /// <summary>
+        /// Obsługa akceptacji prolongat.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void acceptButton_Click(object sender, EventArgs e)
         {
             using (new AppWaitCursor(this, sender))
@@ -71,6 +92,10 @@ namespace Biblioteka
             }
         }
 
+        /// <summary>
+        /// Akceptacja prolongaty.
+        /// </summary>
+        /// <param name="selected">Kolekcja indeksów prolongat.</param>
         private void AcceptExtensions(ListView.SelectedIndexCollection selected)
         {
             using (var db = new BibliotekaDB())
@@ -97,6 +122,10 @@ namespace Biblioteka
             }
         }
 
+        /// <summary>
+        /// Odrzucenie prolongaty.
+        /// </summary>
+        /// <param name="selected">Kolekcja indeksów prolongat.</param>
         private void DiscardExtensions(ListView.SelectedIndexCollection selected)
         {
             using (var db = new BibliotekaDB())
@@ -117,6 +146,11 @@ namespace Biblioteka
             }
         }
 
+        /// <summary>
+        /// Obsługa odrzucenia prolongaty.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void discardButton_Click(object sender, EventArgs e)
         {
             using (new AppWaitCursor(this, sender))
