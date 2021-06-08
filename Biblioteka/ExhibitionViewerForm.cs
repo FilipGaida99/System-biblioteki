@@ -10,16 +10,28 @@ using System.Windows.Forms;
 
 namespace Biblioteka
 {
+    /// <summary>
+    /// Form wyświetlający wystawy czytelnikowi.
+    /// </summary>
     public partial class ExhibitionViewerForm : Form
     {
+        /// <summary>
+        /// Lista wystaw.
+        /// </summary>
         List<Wystawa> exhibitions;
 
+        /// <summary>
+        /// Konstruktor.
+        /// </summary>
         public ExhibitionViewerForm()
         {
             InitializeComponent();
             exhibitions = new List<Wystawa>();
         }
 
+        /// <summary>
+        /// Aktualizacja listy wystaw w formularzu na podstawie zapisanej listy wystaw.
+        /// </summary>
         private void UpdateExhibitionList()
         {
             exhibitionList.BeginUpdate();
@@ -29,6 +41,11 @@ namespace Biblioteka
             exhibitionList.EndUpdate();
         }
 
+        /// <summary>
+        /// Wyświetlenie wybranej wystawy.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void showButton_Click(object sender, EventArgs e)
         {
             int exhibitionIndex = exhibitionList.SelectedIndex;

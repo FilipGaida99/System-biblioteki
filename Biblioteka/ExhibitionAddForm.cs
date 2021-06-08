@@ -11,8 +11,14 @@ using System.Windows.Forms;
 
 namespace Biblioteka
 {
+    /// <summary>
+    /// Form tworzenia i modyfikowania wystawy.
+    /// </summary>
     public partial class ExhibitionAddForm : Form
     {
+        /// <summary>
+        /// Aktualnie przetwarzana wystawa.
+        /// </summary>
         private Wystawa managedExhibition;
 
         public Wystawa Wystawa
@@ -20,16 +26,28 @@ namespace Biblioteka
             get { return managedExhibition; }
         }
 
+        /// <summary>
+        /// Konstruktor domyślny.
+        /// </summary>
         public ExhibitionAddForm(): this(null)
         {
         }
 
+        /// <summary>
+        /// Konstruktor dla modyfikowanych wystaw.
+        /// </summary>
+        /// <param name="exhibition"></param>
         public ExhibitionAddForm(Wystawa exhibition)
         {
             InitializeComponent();
             managedExhibition = exhibition;
         }
 
+        /// <summary>
+        /// Funkcja wprowadzająca dane z formularza do modelu.
+        /// </summary>
+        /// <param name="db">Kontekst bazy danych.</param>
+        /// <returns>True, gdy udało się wprowadzić wszystkie dane.</returns>
         private bool confirm(BibliotekaDB db)
         {
             bool newExhibition;
@@ -71,6 +89,11 @@ namespace Biblioteka
             return true;
         }
 
+        /// <summary>
+        /// Obsługa akceptacji podanych argumentów.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void newButton_Click(object sender, EventArgs e)
         {
             using (new AppWaitCursor(this, sender))

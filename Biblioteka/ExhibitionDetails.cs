@@ -10,8 +10,14 @@ using System.Windows.Forms;
 
 namespace Biblioteka
 {
+    /// <summary>
+    /// Control przedstawiający informacje o wystawie do wyświetlenia podczas przeglądania.
+    /// </summary>
     public partial class ExhibitionDetails : UserControl
     {
+        /// <summary>
+        /// Konstruktor.
+        /// </summary>
         public ExhibitionDetails()
         {
             InitializeComponent();
@@ -22,6 +28,10 @@ namespace Biblioteka
             authorLabel.Text = "";
         }
 
+        /// <summary>
+        /// Wyświetlanie konkretnej wystawy.
+        /// </summary>
+        /// <param name="exhibition">Wystawa do wyświetlenia</param>
         public void Update(Wystawa exhibition)
         {
             if (exhibition == null)

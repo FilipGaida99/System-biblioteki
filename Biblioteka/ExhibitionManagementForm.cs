@@ -10,16 +10,28 @@ using System.Windows.Forms;
 
 namespace Biblioteka
 {
+    /// <summary>
+    /// Form zarządzania wystawami.
+    /// </summary>
     public partial class ExhibitionManagementForm : Form
     {
+        /// <summary>
+        /// Lista wystaw.
+        /// </summary>
         List<Wystawa> exhibitions;
 
+        /// <summary>
+        /// Konstruktor.
+        /// </summary>
         public ExhibitionManagementForm()
         {
             InitializeComponent();
             exhibitions = new List<Wystawa>();
         }
 
+        /// <summary>
+        /// Aktualizacja listy wystaw w formularzu na podstawie zapisanej listy wystaw.
+        /// </summary>
         private void UpdateExhibitionList()
         {
             exhibitionList.BeginUpdate();
@@ -29,6 +41,11 @@ namespace Biblioteka
             exhibitionList.EndUpdate();
         }
 
+        /// <summary>
+        /// Dodawanie wystawy.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void newButton_Click(object sender, EventArgs e)
         {
             using (new AppWaitCursor(this, sender))
@@ -54,6 +71,11 @@ namespace Biblioteka
             }
         }
 
+        /// <summary>
+        /// Obsługa usunięcia wybranej wystawy.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void deleteButton_Click(object sender, EventArgs e)
         {
             using (new AppWaitCursor(this, sender))
@@ -64,6 +86,10 @@ namespace Biblioteka
             }
         }
 
+        /// <summary>
+        /// Usunięcie wystawy.
+        /// </summary>
+        /// <param name="exhibitionIndex">Indeks wystawy na liście.</param>
         private void DeleteExhibition(int exhibitionIndex)
         {
             var exhibitionID = exhibitions[exhibitionIndex].WystawaID;
@@ -88,6 +114,11 @@ namespace Biblioteka
             }
         }
 
+        /// <summary>
+        /// Obsługa modyfikacji wybranej wystawy.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void modifyButton_Click(object sender, EventArgs e)
         {
             using (new AppWaitCursor(this, sender))
