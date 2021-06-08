@@ -46,11 +46,8 @@ namespace Biblioteka
             reservationsLayoutPanel.Controls.Clear();
             foreach(var reservation in reservationSearch1.reservations)
             {
-                reservationsLayoutPanel.Controls.Add(new ReservationRecord(reservation, OnChangedReservationPanel, reservationSearch1.reservations));
+                reservationsLayoutPanel.Controls.Add(new ReservationManagementRecord(reservation, OnChangedReservationPanel, reservationSearch1.reservations));
             }
         }
-
-
-
     }
 }

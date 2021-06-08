@@ -41,7 +41,6 @@ namespace Biblioteka
             this.readerSurname = new System.Windows.Forms.Label();
             this.reservationDate = new System.Windows.Forms.Label();
             this.readerId = new System.Windows.Forms.Label();
-            this.checkoutButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -153,16 +152,6 @@ namespace Biblioteka
             this.readerId.TabIndex = 11;
             this.readerId.Text = "label7";
             // 
-            // checkoutButton
-            // 
-            this.checkoutButton.Location = new System.Drawing.Point(365, 58);
-            this.checkoutButton.Name = "checkoutButton";
-            this.checkoutButton.Size = new System.Drawing.Size(75, 35);
-            this.checkoutButton.TabIndex = 12;
-            this.checkoutButton.Text = "Wypożycz";
-            this.checkoutButton.UseVisualStyleBackColor = true;
-            this.checkoutButton.Click += new System.EventHandler(this.button_Click);
-            // 
             // deleteButton
             // 
             this.deleteButton.Location = new System.Drawing.Point(284, 58);
@@ -179,7 +168,6 @@ namespace Biblioteka
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Controls.Add(this.deleteButton);
-            this.Controls.Add(this.checkoutButton);
             this.Controls.Add(this.readerId);
             this.Controls.Add(this.reservationDate);
             this.Controls.Add(this.readerSurname);
@@ -214,7 +202,6 @@ namespace Biblioteka
         private System.Windows.Forms.Label readerSurname;
         private System.Windows.Forms.Label reservationDate;
         private System.Windows.Forms.Label readerId;
-        private System.Windows.Forms.Button checkoutButton;
         private System.Windows.Forms.Button deleteButton;
     }
 }

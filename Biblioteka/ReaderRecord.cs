@@ -34,7 +34,7 @@ namespace Biblioteka
 
         private void returnButton_Click(object sender, EventArgs e)
         {
-            UserCheckoutsForm returnForm = new UserCheckoutsForm(reader.CzytelnikID);
+            UserCheckoutsManagementForm returnForm = new UserCheckoutsManagementForm(reader.CzytelnikID);
             returnForm.Show();
         }
 
