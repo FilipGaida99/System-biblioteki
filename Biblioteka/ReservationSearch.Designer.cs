@@ -142,7 +142,7 @@ namespace Biblioteka
             this.label6.TabIndex = 10;
             this.label6.Text = "-";
             // 
-            // button1
+            // returnButton
             // 
             this.button1.Location = new System.Drawing.Point(280, 79);
             this.button1.Name = "button1";

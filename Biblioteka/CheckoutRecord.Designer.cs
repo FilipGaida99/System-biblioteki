@@ -137,7 +137,6 @@ namespace Biblioteka
             this.Controls.Add(this.bookName);
             this.Name = "CheckoutRecord";
             this.Size = new System.Drawing.Size(467, 101);
-            this.Load += new System.EventHandler(this.CheckoutRecord_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
