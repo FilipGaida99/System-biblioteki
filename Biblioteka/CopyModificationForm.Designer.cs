@@ -38,6 +38,7 @@ namespace Biblioteka
             this.cancelButton = new System.Windows.Forms.Button();
             this.copyInventoryNumber = new System.Windows.Forms.NumericUpDown();
             this.printDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.identityInventoryButton = new System.Windows.Forms.Button();
             label1 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.copyInventoryNumber)).BeginInit();
@@ -53,6 +54,16 @@ namespace Biblioteka
             label1.TabIndex = 0;
             label1.Text = "Numer inwetnarza:";
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            label3.Location = new System.Drawing.Point(10, 49);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(110, 20);
+            label3.TabIndex = 7;
+            label3.Text = "Data wydruku:";
+            // 
             // isElectronicCheckBox
             // 
             this.isElectronicCheckBox.AutoSize = true;
@@ -60,7 +71,7 @@ namespace Biblioteka
             this.isElectronicCheckBox.Location = new System.Drawing.Point(14, 79);
             this.isElectronicCheckBox.Name = "isElectronicCheckBox";
             this.isElectronicCheckBox.Size = new System.Drawing.Size(208, 24);
-            this.isElectronicCheckBox.TabIndex = 3;
+            this.isElectronicCheckBox.TabIndex = 4;
             this.isElectronicCheckBox.Text = "Egzemplarz elektroniczny";
             this.isElectronicCheckBox.UseVisualStyleBackColor = true;
             this.isElectronicCheckBox.CheckedChanged += new System.EventHandler(this.isElectronicCheckBox_CheckedChanged);
@@ -82,8 +93,8 @@ namespace Biblioteka
             this.linkText.Location = new System.Drawing.Point(97, 107);
             this.linkText.MaxLength = 50;
             this.linkText.Name = "linkText";
-            this.linkText.Size = new System.Drawing.Size(312, 26);
-            this.linkText.TabIndex = 4;
+            this.linkText.Size = new System.Drawing.Size(341, 26);
+            this.linkText.TabIndex = 5;
             // 
             // acceptButton
             // 
@@ -91,7 +102,7 @@ namespace Biblioteka
             this.acceptButton.Location = new System.Drawing.Point(81, 166);
             this.acceptButton.Name = "acceptButton";
             this.acceptButton.Size = new System.Drawing.Size(114, 31);
-            this.acceptButton.TabIndex = 5;
+            this.acceptButton.TabIndex = 6;
             this.acceptButton.Text = "Zaakceptuj";
             this.acceptButton.UseVisualStyleBackColor = true;
             this.acceptButton.Click += new System.EventHandler(this.acceptButton_Click);
@@ -102,7 +113,7 @@ namespace Biblioteka
             this.cancelButton.Location = new System.Drawing.Point(217, 166);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(114, 31);
-            this.cancelButton.TabIndex = 6;
+            this.cancelButton.TabIndex = 7;
             this.cancelButton.Text = "Anuluj";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
@@ -128,23 +139,24 @@ namespace Biblioteka
             this.printDatePicker.Location = new System.Drawing.Point(126, 44);
             this.printDatePicker.Name = "printDatePicker";
             this.printDatePicker.Size = new System.Drawing.Size(129, 26);
-            this.printDatePicker.TabIndex = 2;
+            this.printDatePicker.TabIndex = 3;
             // 
-            // label3
+            // identityInventoryButton
             // 
-            label3.AutoSize = true;
-            label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            label3.Location = new System.Drawing.Point(10, 49);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(110, 20);
-            label3.TabIndex = 7;
-            label3.Text = "Data wydruku:";
+            this.identityInventoryButton.Location = new System.Drawing.Point(420, 13);
+            this.identityInventoryButton.Name = "identityInventoryButton";
+            this.identityInventoryButton.Size = new System.Drawing.Size(18, 26);
+            this.identityInventoryButton.TabIndex = 2;
+            this.identityInventoryButton.Text = "★";
+            this.identityInventoryButton.UseVisualStyleBackColor = true;
+            this.identityInventoryButton.Click += new System.EventHandler(this.identityInventoryButton_Click);
             // 
             // CopyModificationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(421, 209);
+            this.ClientSize = new System.Drawing.Size(444, 209);
+            this.Controls.Add(this.identityInventoryButton);
             this.Controls.Add(label3);
             this.Controls.Add(this.printDatePicker);
             this.Controls.Add(this.copyInventoryNumber);
@@ -171,5 +183,6 @@ namespace Biblioteka
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.NumericUpDown copyInventoryNumber;
         private System.Windows.Forms.DateTimePicker printDatePicker;
+        private System.Windows.Forms.Button identityInventoryButton;
     }
 }

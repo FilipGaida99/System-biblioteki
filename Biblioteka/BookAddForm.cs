@@ -54,18 +54,9 @@ namespace Biblioteka
             {
                 using (var db = new BibliotekaDB())
                 {
-                    long key = 0;
-                    for (key = 0; key < long.MaxValue; key++)
-                    {
-                        if (db.Egzemplarz.Find(key) == null)
-                        {
-                            break;
-                        }
-                    }
-                    firstCopyInventoryNumber.Value = key;
+                    firstCopyInventoryNumber.Value = Egzemplarz.FindFirstUnused(db);
                 }
             }
-
         }
     }
 }

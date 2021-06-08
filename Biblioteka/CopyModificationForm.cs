@@ -55,7 +55,7 @@ namespace Biblioteka
             bool isNew = false;
             if(managedCopy == null)
             {
-                managedCopy = new Egzemplarz();
+                managedCopy = new Egzemplarz { Nr_inwentarza = long.MinValue};
                 isNew = true;
 
                 long newInventory = (long)copyInventoryNumber.Value;
@@ -182,6 +182,7 @@ namespace Biblioteka
                     managedCopy = db.Egzemplarz.Find(managedCopy.Nr_inwentarza);
                     copyInventoryNumber.Value = managedCopy.Nr_inwentarza;
                     copyInventoryNumber.Enabled = false;
+                    identityInventoryButton.Enabled = false;
 
                     printDatePicker.Value = managedCopy.Rok_wydruku;
 
@@ -203,6 +204,22 @@ namespace Biblioteka
                 printDatePicker.Value = bookCopy.Rok_wydania;
             }
            
+        }
+
+        /// <summary>
+        /// Obsługa generowania numeru inwentarza z pierwszej niewystępującej wartości klucza.
+        /// </summary>
+        /// <param name="sender">Kontrolka.</param>
+        /// <param name="e">Argumenty.</param>
+        private void identityInventoryButton_Click(object sender, System.EventArgs e)
+        {
+            using (new AppWaitCursor(this, sender))
+            {
+                using (var db = new BibliotekaDB())
+                {
+                    copyInventoryNumber.Value = Egzemplarz.FindFirstUnused(db);
+                }
+            }
         }
     }
 }
