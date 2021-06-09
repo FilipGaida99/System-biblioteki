@@ -96,7 +96,7 @@ namespace Biblioteka
             // 
             this.returnedCheckBox.AutoSize = true;
             this.returnedCheckBox.Location = new System.Drawing.Point(421, 13);
-            this.returnedCheckBox.Name = "returnedChecBox";
+            this.returnedCheckBox.Name = "returnedCheckBox";
             this.returnedCheckBox.Size = new System.Drawing.Size(105, 17);
             this.returnedCheckBox.TabIndex = 2;
             this.returnedCheckBox.Text = "Pokaż zwrócone";

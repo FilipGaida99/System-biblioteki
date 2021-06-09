@@ -26,7 +26,7 @@ namespace Biblioteka
             {
                 user = db.Czytelnik.Find(10003);
             }
-            UserCheckoutsForm userCheckouts = new UserCheckoutsForm(user.CzytelnikID /*logged user ID*/);
+            UserCheckoutsViewForm userCheckouts = new UserCheckoutsViewForm(user.CzytelnikID /*logged user ID*/);
             userCheckouts.Show();
         }
 

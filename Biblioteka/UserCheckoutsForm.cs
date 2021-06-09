@@ -15,7 +15,7 @@ namespace Biblioteka
         /// <summary>
         /// Lista wypożyczeń użytkownika
         /// </summary>
-        private List<Wypożyczenie> userCheckouts;
+        protected List<Wypożyczenie> userCheckouts;
 
         /// <summary>
         /// ID czytelnika

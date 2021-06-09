@@ -132,7 +132,6 @@
     <Compile Include="CopyModificationForm.Designer.cs">
       <DependentUpon>CopyModificationForm.cs</DependentUpon>
     </Compile>
-
     <Compile Include="ExhibitionAddForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,6 +221,12 @@
     </Compile>
     <Compile Include="ReadMessageForm.Designer.cs">
       <DependentUpon>ReadMessageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserCheckoutsViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserCheckoutsViewForm.Designer.cs">
+      <DependentUpon>UserCheckoutsViewForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WriteMessageForm.cs">
       <SubType>Form</SubType>
@@ -382,6 +387,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReadMessageForm.resx">
       <DependentUpon>ReadMessageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserCheckoutsViewForm.resx">
+      <DependentUpon>UserCheckoutsViewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WriteMessageForm.resx">
       <DependentUpon>WriteMessageForm.cs</DependentUpon>
