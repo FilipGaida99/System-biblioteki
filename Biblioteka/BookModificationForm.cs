@@ -191,7 +191,7 @@ namespace Biblioteka
                     }
                     catch (Exception exception)
                     {
-                        MessageBox.Show(exception.ToString(),
+                        MessageBox.Show(exception.Message,
                             "Wyjątek",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;

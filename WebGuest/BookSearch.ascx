@@ -6,6 +6,7 @@
 <asp:CheckBox ID="DescriptionCheckBox" runat="server" Text="Szukaj w opisach" />
 <br />
 <asp:Label runat="server" Text="Label">Data wydania:</asp:Label>
+<asp:Label ID="DateErrorLabel" runat="server" Text="Error" ForeColor="Red"></asp:Label>
 <div>
     <asp:Label runat="server" Text="Label">od</asp:Label>
     <uc1:DatePicker runat="server" ID="StartDatePicker" />

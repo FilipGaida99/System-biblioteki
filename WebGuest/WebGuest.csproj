@@ -133,6 +133,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Browse.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="HomeButton.ascx" />
     <Content Include="LendRecord.ascx" />
     <Content Include="ReservationRecord.ascx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -211,6 +212,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HomeButton.ascx.cs">
+      <DependentUpon>HomeButton.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomeButton.ascx.designer.cs">
+      <DependentUpon>HomeButton.ascx</DependentUpon>
     </Compile>
     <Compile Include="LendRecord.ascx.cs">
       <DependentUpon>LendRecord.ascx</DependentUpon>

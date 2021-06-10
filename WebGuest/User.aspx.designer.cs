@@ -24,6 +24,15 @@ namespace WebGuest
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// Kontrolka HomeButton.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::WebGuest.HomeButton HomeButton;
+
+        /// <summary>
         /// Kontrolka IDTextBox.
         /// </summary>
         /// <remarks>

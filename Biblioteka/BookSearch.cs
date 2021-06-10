@@ -49,6 +49,16 @@ namespace Biblioteka
         /// <param name="e">Argumenty.</param>
         private void searchButton_Click(object sender, EventArgs e)
         {
+            if(startDatePicker.Checked && endDatePicker.Checked)
+            {
+                if(endDatePicker.Value < startDatePicker.Value)
+                {
+                    MessageBox.Show("Wprowadzono pusty przedział dat. Nic nie zostanie znalezione.", "Niepoprawna data",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
             using (new AppWaitCursor(ParentForm, sender))
             {
                 using (var db = new BibliotekaDB())

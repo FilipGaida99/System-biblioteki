@@ -33,6 +33,15 @@ namespace WebGuest
         protected global::System.Web.UI.WebControls.CheckBox DescriptionCheckBox;
 
         /// <summary>
+        /// Kontrolka DateErrorLabel.
+        /// </summary>
+        /// <remarks>
+        /// Pole generowane automatycznie.
+        /// By zmodyfikować deklaracje pola przenieś ją z pliku projektanta do pliku codebehind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label DateErrorLabel;
+
+        /// <summary>
         /// Kontrolka StartDatePicker.
         /// </summary>
         /// <remarks>

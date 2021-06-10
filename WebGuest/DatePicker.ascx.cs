@@ -47,7 +47,7 @@ namespace WebGuest
                 }
                 catch(ArgumentOutOfRangeException)
                 {
-                    ErrorLabel.Text = "Niepoprawna data.";
+                    ErrorLabel.Text = "Niepoprawna data";
                 }
                 return null;
             }

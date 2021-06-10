@@ -3,6 +3,8 @@
 <%@ Register Src="~/DatePicker.ascx" TagPrefix="uc1" TagName="DatePicker" %>
 <%@ Register Src="~/BookSearch.ascx" TagPrefix="uc1" TagName="BookSearch" %>
 <%@ Register Src="~/BookRecord.ascx" TagPrefix="uc1" TagName="BookRecord" %>
+<%@ Register Src="~/HomeButton.ascx" TagPrefix="uc1" TagName="HomeButton" %>
+
 
 <!DOCTYPE html>
 
@@ -12,8 +14,8 @@
     <title></title>
 </head>
 <body>
-    <h1>PRZEGLĄDANIE KSIĘGOZBIORU</h1>
     <form id="form1" runat="server">
+        <h1>PRZEGLĄDANIE KSIĘGOZBIORU <uc1:HomeButton runat="server" ID="HomeButton" /></h1>
         <uc1:BookSearch runat="server" id="BookSearch" />
         <asp:Label ID="CountLabel" runat="server" Text="Wyniki wyszukiwania:"></asp:Label>
         <asp:Panel ID="BookRecordPanel" runat="server"></asp:Panel>

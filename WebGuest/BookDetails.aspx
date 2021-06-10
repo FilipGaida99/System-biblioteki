@@ -1,5 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BookDetails.aspx.cs" Inherits="WebGuest.BookDetails" %>
 
+<%@ Register Src="~/HomeButton.ascx" TagPrefix="uc1" TagName="HomeButton" %>
+
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -9,6 +12,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <uc1:HomeButton runat="server" ID="HomeButton" />
         <asp:Label ID="Title" runat="server" Text="Label" ToolTip="Tytuł" Style="margin-left: 5px" Font-Size="30px"></asp:Label>
         <br />
         <asp:Label ID="ISBN" runat="server" Text="Label" ToolTip="ISBN" Style="margin-left: 5px">ISBN</asp:Label>

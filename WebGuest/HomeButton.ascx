@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="HomeButton.ascx.cs" Inherits="WebGuest.HomeButton" %>
+<asp:Button ID="Button" runat="server" Text="⮌" OnClick="Button_Click" ToolTip="Powrót do strony głównej" style ="margin: 10px 10px 10px 10px; position:absolute; right:20px" Font-Size="XX-Large" Height="49px" Width="49px"/>
