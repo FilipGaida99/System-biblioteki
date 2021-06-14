@@ -83,16 +83,17 @@ namespace Biblioteka
             foreach (var checkout in userCheckouts)
             {
                 var returnDate = checkout.Data_zwrotu;
-                string returnDateInString;
-                returnDateInString = $"{returnDate:g}";
+                string returnDateInString = $"{returnDate:g}";
                 if (returnDate == null)
                 {
-                    returnDateInString = "Wypożyczona";
+                    var lastExtension = checkout.Prolongata.LastOrDefault();
+                    if (lastExtension != null && lastExtension.Status == null)
+                        returnDateInString = "Oczekująca prolongata";
+                    else
+                        returnDateInString = "Wypożyczona";
                 }
-                
-                DateTime excpectedReturnDate = (DateTime)checkout.Data_wypożyczenia;
-                var daysToReturn = checkout.Egzemplarz.Książka.Maksymalny_okres_wypożyczenia;
-                excpectedReturnDate = excpectedReturnDate.AddDays((double)daysToReturn);
+
+                DateTime excpectedReturnDate = checkout.Przewidywany_zwrot;
                 
                 string[] row = { checkout.Egzemplarz.Książka.Tytuł,
                                 $"{checkout.Data_wypożyczenia:g}",
