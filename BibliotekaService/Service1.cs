@@ -9,14 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Biblioteka;
 using System.Timers;
-using System.IO;
 
 namespace BibliotekaService
 {
     public partial class Service1 : ServiceBase
     {
-        const int hoursInterval = 4;
-        static readonly string configFilePath = AppDomain.CurrentDomain.BaseDirectory + "\\Config.txt";
+        const int hoursInterval = 1;
+        private MailSender sender;
+
         public Service1()
         {
             InitializeComponent();
@@ -28,15 +28,20 @@ namespace BibliotekaService
             }
             eventLog.Source = "BibliotekaPubliczna";
             eventLog.Log = "BibliotekaLog";
+            sender = new MailSender();
         }
 
         protected override void OnStart(string[] args)
         {
             eventLog.WriteEntry("Start.");
 
-            if(!File.Exists(AppDomain.CurrentDomain.BaseDirectory + "\\Config.txt"))
+            try
             {
-                CreateNewConfigFile();
+                sender.OnStart();
+            }
+            catch
+            {
+                eventLog.WriteEntry("Blad tworzenia pliku konfiguracyjnego", EventLogEntryType.Error);
             }
 
             RefreshLibrary();
@@ -62,24 +67,22 @@ namespace BibliotekaService
             using (var db = new BibliotekaDB())
             {
                 Kara.Refresh(db);
-                //TODO rozsyłanie maili
-            }
-        }
 
-        private void CreateNewConfigFile()
-        {
-            try
-            {
-                StreamWriter sw = new StreamWriter(configFilePath, false);
-                sw.WriteLine("Email:");
-                sw.WriteLine("Pasword:");
-                sw.WriteLine("Server:");
-                sw.Flush();
-                sw.Close();
-            }
-            catch
-            {
-                eventLog.WriteEntry("Blad tworzenia pliku konfiguracyjnego", EventLogEntryType.Information);
+                var readers = db.Czytelnik.Where(r => r.Czytelnik_Wiadomość.Any(m => !m.Przeczytana && !m.Nadawca)).ToList();
+                foreach(var reader in readers)
+                {
+                    string emailBody = "Masz nieprzeczytane wiadomości w swojej bibliotece:\n";
+                    var unreadedMessagesToReader = reader.Czytelnik_Wiadomość.Where(m => !m.Przeczytana && !m.Nadawca).OrderBy(m => m.Wiadomość.Data_wysłania).ToList();
+                    foreach(var messageToReader in unreadedMessagesToReader)
+                    {
+                        var message = messageToReader.Wiadomość;
+                        var librarian = message.Bibliotekarz_Wiadomość.FirstOrDefault().Bibliotekarz;
+                        emailBody += $"{librarian.Imię} {librarian.Nazwisko} {message.Data_wysłania}:\n";
+                        emailBody += $"{message.Tytuł}\n {message.Treść} \n\n";
+                    }
+
+                    sender.SendMail(reader.Adres_email, $"Wiadomości w bibliotece {DateTime.Now}", emailBody);
+                }
             }
         }
     }

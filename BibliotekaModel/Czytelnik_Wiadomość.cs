@@ -20,6 +20,8 @@ namespace Biblioteka
 
         public bool Nadawca { get; set; }
 
+        public bool Przeczytana { get; set; }
+
         public virtual Czytelnik Czytelnik { get; set; }
 
         public virtual Wiadomość Wiadomość { get; set; }
