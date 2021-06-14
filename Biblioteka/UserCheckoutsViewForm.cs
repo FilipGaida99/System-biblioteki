@@ -8,13 +8,25 @@ using System.Windows.Forms;
 
 namespace Biblioteka
 {
+    /// <summary>
+    /// Form z wypożyczeniami w ListView dla czytelnika.
+    /// </summary>
     public partial class UserCheckoutsViewForm : Biblioteka.UserCheckoutsForm
     {
+        /// <summary>
+        /// Konstruktor.
+        /// </summary>
+        /// <param name="_userID">ID czytelnika</param>
         public UserCheckoutsViewForm(long _userID) : base(_userID)
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Obsługa tworzenia prolongat.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void extensionButton_Click(object sender, EventArgs e)
         {
             var selected = checkoutsList.SelectedIndices;
@@ -32,6 +44,10 @@ namespace Biblioteka
             }
         }
 
+        /// <summary>
+        /// Dodawanie prolongat.
+        /// </summary>
+        /// <param name="selected">Kolekcja indeksów wypożyczeń.</param>
         private void Extensions(ListView.SelectedIndexCollection selected)
         {
             using (var db = new BibliotekaDB())
