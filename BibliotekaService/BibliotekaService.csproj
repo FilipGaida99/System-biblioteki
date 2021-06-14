@@ -5,18 +5,19 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{70516B69-F409-49DB-A3A3-FEEC8944947E}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BibliotekaModel</RootNamespace>
-    <AssemblyName>BibliotekaModel</AssemblyName>
+    <ProjectGuid>{9E1EFDA9-8B80-46F2-823C-CD9D577D7410}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>BibliotekaService</RootNamespace>
+    <AssemblyName>BibliotekaService</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -26,6 +27,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -42,46 +44,50 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Autor.cs" />
-    <Compile Include="AutorFunctions.cs" />
-    <Compile Include="BibliotekaDB.cs" />
-    <Compile Include="Bibliotekarz.cs" />
-    <Compile Include="Bibliotekarz_Wiadomość.cs" />
-    <Compile Include="Czytelnik.cs" />
-    <Compile Include="Czytelnik_Wiadomość.cs" />
-    <Compile Include="Egzemplarz.cs" />
-    <Compile Include="EgzemplarzFunctions.cs" />
-    <Compile Include="Egzemplarz_elektroniczny.cs" />
-    <Compile Include="Kara.cs" />
-    <Compile Include="KaraFunctions.cs" />
-    <Compile Include="Książka.cs" />
-    <Compile Include="KsiążkaFunctions.cs" />
-    <Compile Include="Prolongata.cs" />
-    <Compile Include="ProlongataFunctions.cs" />
+    <Compile Include="ProjectInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Service1.Designer.cs">
+      <DependentUpon>Service1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rezerwacje.cs" />
-    <Compile Include="Wiadomość.cs" />
-    <Compile Include="Wydawnictwo.cs" />
-    <Compile Include="WydawnictwoFunctions.cs" />
-    <Compile Include="Wypożyczenie.cs" />
-    <Compile Include="WypożyczenieFunctions.cs" />
-    <Compile Include="Wystawa.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BibliotekaModel\BibliotekaModel.csproj">
+      <Project>{70516b69-f409-49db-a3a3-feec8944947e}</Project>
+      <Name>BibliotekaModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ProjectInstaller.resx">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Service1.resx">
+      <DependentUpon>Service1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
