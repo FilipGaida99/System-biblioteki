@@ -9,22 +9,61 @@ using System.Threading.Tasks;
 
 namespace BibliotekaService
 {
+    /// <summary>
+    /// Klasa obiektu rozsyłającego maile.
+    /// </summary>
     public class MailSender
     {
+        /// <summary>
+        /// Ścieżka pliku konfiguracji
+        /// </summary>
         private static readonly string configFilePath = AppDomain.CurrentDomain.BaseDirectory + "\\Config.txt";
 
+        /// <summary>
+        /// Klucz w plilku konfiguracji dla adresu email.
+        /// </summary>
         const string addressKey = "Email";
+        /// <summary>
+        /// Klucz w plilku konfiguracji dla hasła.
+        /// </summary>
         const string passwordKey = "Password";
+        /// <summary>
+        /// Klucz w plilku konfiguracji dla serwera SMTP.
+        /// </summary>
         const string serverKey = "Server";
+        /// <summary>
+        /// Klucz w plilku konfiguracji dla portu serwera.
+        /// </summary>
         const string portKey = "Port";
+        /// <summary>
+        /// Znak rozdzielający kolejne pary klucz-wartość w pliku konfiguracyjnym. Domyślnie nowa linia.
+        /// </summary>
         static readonly string splitChar = Environment.NewLine;
+        /// <summary>
+        /// Znak rozdzielający klucz od wartości w pliku konfiguracyjnym.
+        /// </summary>
         const char assignChar = '=';
 
+        /// <summary>
+        /// Odczytany z pliku konfiguracyjnego adres email.
+        /// </summary>
         private string fromAddress;
+        /// <summary>
+        /// Odczytane z pliku konfiguracyjnego hasło.
+        /// </summary>
         private string password;
+        /// <summary>
+        /// Odczytany z pliku konfiguracyjnego serwer SMTP.
+        /// </summary>
         private string server;
+        /// <summary>
+        /// Odczytany z pliku konfiguracyjnego port serwera.
+        /// </summary>
         private int? port;
 
+        /// <summary>
+        /// Inicializacja po starcie programu.
+        /// </summary>
         public void OnStart()
         {
             if (!File.Exists(configFilePath))
@@ -33,6 +72,13 @@ namespace BibliotekaService
             }
         }
 
+        /// <summary>
+        /// Procedura wysłania maila.
+        /// </summary>
+        /// <param name="toAddress">Adresat.</param>
+        /// <param name="subject">Tytuł.</param>
+        /// <param name="body">Treść.</param>
+        /// <returns></returns>
         public bool SendMail(string toAddress, string subject, string body)
         {
             ReadConfigFile();
@@ -48,6 +94,9 @@ namespace BibliotekaService
             return true;
         }
 
+        /// <summary>
+        /// Utworzenie nowego pliku konfiguracyjnego.
+        /// </summary>
         private void CreateNewConfigFile()
         {
             StreamWriter sw = new StreamWriter(configFilePath, false);
@@ -59,6 +108,9 @@ namespace BibliotekaService
             sw.Close();
         }
 
+        /// <summary>
+        /// Odczyt danych z pliku konfiguraycjnego.
+        /// </summary>
         private void ReadConfigFile()
         {
             string configuration = File.ReadAllText(configFilePath);

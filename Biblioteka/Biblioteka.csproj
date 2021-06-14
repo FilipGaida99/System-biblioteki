@@ -132,7 +132,6 @@
     <Compile Include="CopyModificationForm.Designer.cs">
       <DependentUpon>CopyModificationForm.cs</DependentUpon>
     </Compile>
-
     <Compile Include="ExhibitionAddForm.cs">
       <SubType>Form</SubType>
     </Compile>
