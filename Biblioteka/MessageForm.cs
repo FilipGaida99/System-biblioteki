@@ -35,7 +35,7 @@ namespace Biblioteka
         private void updateMsgListFlowPanel()
         {
             //Tylko przy wysłanych wiadomościach może się pojawić nowa
-            if (!isSentMsgView)
+            if (isSentMsgView)
             {
                 using (var db = new BibliotekaDB())
                 {
@@ -58,7 +58,7 @@ namespace Biblioteka
                             .FirstOrDefault()
                             .Wiadomość;
                     }
-                    if (msg != (Wiadomość)msgListFlowPanel.Controls[0].Tag)
+                    if (msg != (Wiadomość)msgListFlowPanel.Controls[0].Tag) //Jeżeli wiadomość została wysłana to znajduje się na pierwszym miejscu
                     {
                         CustomMessageButton msgButton = new CustomMessageButton(DeleteButton_Click, msg);
                         msgButton.Tag = msg;
@@ -95,22 +95,28 @@ namespace Biblioteka
                 if ((Czytelnik)UserSingleton.Instance.GetLoggedUser() != null)
                 {
                     Czytelnik reader = db.Czytelnik.Find(((Czytelnik)UserSingleton.Instance.GetLoggedUser()).CzytelnikID);
-                    reader
-                        .Czytelnik_Wiadomość
-                        .Remove(reader
-                            .Czytelnik_Wiadomość
-                            .Where(readerMsg => readerMsg.WiadomośćID == msg.WiadomośćID)
-                            .FirstOrDefault());
+                    //reader.Czytelnik_Wiadomość
+                    //    .Remove(reader
+                    //        .Czytelnik_Wiadomość
+                    //        .Where(readerMsg => readerMsg.WiadomośćID == msg.WiadomośćID)
+                    //        .FirstOrDefault());
+                    Czytelnik_Wiadomość readerMsg = db.Czytelnik_Wiadomość
+                        .Single(readerMsgTemp => readerMsgTemp.WiadomośćID == msg.WiadomośćID);
+                    if (readerMsg != null)
+                        readerMsg.Stan = 2;
                 }
                 else
                 {
                     Bibliotekarz librarian = db.Bibliotekarz.Find(((Bibliotekarz)UserSingleton.Instance.GetLoggedUser()).BibliotekarzID);
-                    librarian
-                        .Bibliotekarz_Wiadomość
-                        .Remove(librarian
-                            .Bibliotekarz_Wiadomość
-                            .Where(librarianMsg => librarianMsg.WiadomośćID == librarianMsg.WiadomośćID)
-                            .FirstOrDefault());
+                    //librarian.Bibliotekarz_Wiadomość
+                    //    .Remove(librarian
+                    //        .Bibliotekarz_Wiadomość
+                    //        .Where(librarianMsg => librarianMsg.WiadomośćID == librarianMsg.WiadomośćID)
+                    //        .FirstOrDefault());
+                    Bibliotekarz_Wiadomość librarianMsg = db.Bibliotekarz_Wiadomość
+                        .Single(librarianMsgTemp => librarianMsgTemp.WiadomośćID == msg.WiadomośćID);
+                    if (librarianMsg != null)
+                        librarianMsg.Stan = 2;
                 }
                 db.SaveChanges();
             }
@@ -126,9 +132,20 @@ namespace Biblioteka
             using (var db = new BibliotekaDB())
             {
                 msg = db.Wiadomość.Find(msg.WiadomośćID);
-                if (msg.Bibliotekarz_Wiadomość.Count == 0 && msg.Czytelnik_Wiadomość.Count == 0)
+                bool isDeleted = true;
+                if (msg.Bibliotekarz_Wiadomość.Count != 0)
+                    foreach(var elem in msg.Bibliotekarz_Wiadomość)
+                        if (elem.Stan == null || elem.Stan == 1)
+                        isDeleted = false;
+                if (msg.Czytelnik_Wiadomość.Count != 0)
+                foreach (var elem in msg.Czytelnik_Wiadomość)
+                        if (elem.Stan == null || elem.Stan == 1)
+                            isDeleted = false;
+                if (isDeleted)
+                {
                     db.Wiadomość.Remove(msg);
-                db.SaveChanges();
+                    db.SaveChanges();
+                }
             }
         }
 
@@ -144,6 +161,11 @@ namespace Biblioteka
                         .Czytelnik_Wiadomość
                         .Where(readerMsgTemp => readerMsgTemp.Wiadomość.WiadomośćID == ((Wiadomość)((CustomMessageButton)sender).Tag).WiadomośćID)
                         .FirstOrDefault();
+                    if (readerMsg.Stan == null)
+                    {
+                        readerMsg.Stan = 1;
+                        db.SaveChanges();
+                    }
                     readMsgForm = new ReadMessageForm(readerMsg);
                 }
             }
@@ -156,6 +178,11 @@ namespace Biblioteka
                         .Bibliotekarz_Wiadomość
                         .Where(librarianMsgTemp => librarianMsgTemp.Wiadomość == (Wiadomość)((CustomMessageButton)sender).Tag)
                         .FirstOrDefault();
+                    if (librarianMsg.Stan == null)
+                    {
+                        librarianMsg.Stan = 1;
+                        db.SaveChanges();
+                    }
                     readMsgForm = new ReadMessageForm(librarianMsg);
                 }
             }
@@ -176,6 +203,21 @@ namespace Biblioteka
                         .Where(readerMsg => readerMsg.Nadawca == true)
                         .Select(readerMsg => readerMsg.Wiadomość)
                         .ToList();
+
+                    msgListFlowPanel.SuspendLayout();
+                    msgListFlowPanel.Controls.Clear();
+                    foreach (var elem in msgList)
+                    {
+                        Czytelnik_Wiadomość readerMsg = elem.Czytelnik_Wiadomość
+                            .SingleOrDefault(readerTemp => readerTemp.CzytelnikID == reader.CzytelnikID);
+                        if (readerMsg.Stan == 2)
+                            continue;
+                        CustomMessageButton msg = new CustomMessageButton(DeleteButton_Click, elem);
+                        msg.Tag = elem;
+                        msg.Click += MsgButton_Click;
+                        msgListFlowPanel.Controls.Add(msg);
+                    }
+                    msgListFlowPanel.ResumeLayout();
                 }
                 else
                 {
@@ -186,17 +228,32 @@ namespace Biblioteka
                         .Where(librarianMsg => librarianMsg.Nadawca == true)
                         .Select(librarianMsg => librarianMsg.Wiadomość)
                         .ToList();
+
+                    msgListFlowPanel.SuspendLayout();
+                    msgListFlowPanel.Controls.Clear();
+                    foreach (var elem in msgList)
+                    {
+                        Bibliotekarz_Wiadomość librarianMsg = elem.Bibliotekarz_Wiadomość
+                            .SingleOrDefault(librarianTemp => librarianTemp.BibliotekarzID == librarian.BibliotekarzID);
+                        if (librarianMsg.Stan == 2)
+                            continue; //Jeżeli stan wiadomośći jest 2 (czyli usunięta) to nie wyświetlaj jej
+                        CustomMessageButton msg = new CustomMessageButton(DeleteButton_Click, elem);
+                        msg.Tag = elem;
+                        msg.Click += MsgButton_Click;
+                        msgListFlowPanel.Controls.Add(msg);
+                    }
+                    msgListFlowPanel.ResumeLayout();
                 }
-                msgListFlowPanel.SuspendLayout();
-                msgListFlowPanel.Controls.Clear();
-                foreach (var elem in msgList)
-                {
-                    CustomMessageButton msg = new CustomMessageButton(DeleteButton_Click, elem);
-                    msg.Tag = elem;
-                    msg.Click += MsgButton_Click;
-                    msgListFlowPanel.Controls.Add(msg);
-                }
-                msgListFlowPanel.ResumeLayout();
+                //msgListFlowPanel.SuspendLayout();
+                //msgListFlowPanel.Controls.Clear();
+                //foreach (var elem in msgList)
+                //{
+                //    CustomMessageButton msg = new CustomMessageButton(DeleteButton_Click, elem);
+                //    msg.Tag = elem;
+                //    msg.Click += MsgButton_Click;
+                //    msgListFlowPanel.Controls.Add(msg);
+                //}
+                //msgListFlowPanel.ResumeLayout();
             }
         }
 
@@ -214,6 +271,21 @@ namespace Biblioteka
                         .Where(readerMsg => readerMsg.Nadawca == false)
                         .Select(readerMsg => readerMsg.Wiadomość)
                         .ToList();
+
+                    msgListFlowPanel.SuspendLayout();
+                    msgListFlowPanel.Controls.Clear();
+                    foreach (var elem in msgList)
+                    {
+                        Czytelnik_Wiadomość readerMsg = elem.Czytelnik_Wiadomość
+                            .SingleOrDefault(readerTemp => readerTemp.CzytelnikID == reader.CzytelnikID);
+                        if (readerMsg.Stan == 2)
+                            continue;
+                        CustomMessageButton msg = new CustomMessageButton(DeleteButton_Click, elem, readerMsg.Stan);
+                        msg.Tag = elem;
+                        msg.Click += MsgButton_Click;
+                        msgListFlowPanel.Controls.Add(msg);
+                    }
+                    msgListFlowPanel.ResumeLayout();
                 }
                 else
                 {
@@ -231,17 +303,32 @@ namespace Biblioteka
 
                     msgList.AddRange(allLibrariansMsgList);
                     msgList.OrderBy(librarianMsg => librarianMsg.Data_wysłania);
+
+                    msgListFlowPanel.SuspendLayout();
+                    msgListFlowPanel.Controls.Clear();
+                    foreach (var elem in msgList)
+                    {
+                        Bibliotekarz_Wiadomość librarianMsg = elem.Bibliotekarz_Wiadomość
+                            .SingleOrDefault(librarianTemp => librarianTemp.BibliotekarzID == librarian.BibliotekarzID);
+                        if (librarianMsg.Stan == 2)
+                            continue; //Jeżeli stan wiadomośći jest 2 (czyli usunięta) to nie wyświetlaj jej
+                        CustomMessageButton msg = new CustomMessageButton(DeleteButton_Click, elem, librarianMsg.Stan);
+                        msg.Tag = elem;
+                        msg.Click += MsgButton_Click;
+                        msgListFlowPanel.Controls.Add(msg);
+                    }
+                    msgListFlowPanel.ResumeLayout();
                 }
-                msgListFlowPanel.SuspendLayout();
-                msgListFlowPanel.Controls.Clear();
-                foreach (var elem in msgList)
-                {
-                    CustomMessageButton msg = new CustomMessageButton(DeleteButton_Click, elem);
-                    msg.Tag = elem;
-                    msg.Click += MsgButton_Click;
-                    msgListFlowPanel.Controls.Add(msg);
-                }
-                msgListFlowPanel.ResumeLayout();
+                //msgListFlowPanel.SuspendLayout();
+                //msgListFlowPanel.Controls.Clear();
+                //foreach (var elem in msgList)
+                //{
+                //    CustomMessageButton msg = new CustomMessageButton(DeleteButton_Click, elem);
+                //    msg.Tag = elem;
+                //    msg.Click += MsgButton_Click;
+                //    msgListFlowPanel.Controls.Add(msg);
+                //}
+                //msgListFlowPanel.ResumeLayout();
             }
         }
     }

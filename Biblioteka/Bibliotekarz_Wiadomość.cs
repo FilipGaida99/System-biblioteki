@@ -20,6 +20,11 @@ namespace Biblioteka
 
         public bool Nadawca { get; set; }
 
+        //null - nieprzeczytane
+        //1 - przeczytane
+        //2 - usunięte
+        public byte? Stan { get; set; }
+
         public virtual Bibliotekarz Bibliotekarz { get; set; }
 
         public virtual Wiadomość Wiadomość { get; set; }

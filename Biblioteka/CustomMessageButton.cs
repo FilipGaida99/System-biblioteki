@@ -11,7 +11,7 @@ namespace Biblioteka
         //TO DO: customowy label co świeci buttonem, któy jest za labelem
         System.Windows.Forms.Label dateLabel;
         System.Windows.Forms.Button deleteButton;
-        public CustomMessageButton(Action<object, EventArgs> deleteButton_click, Wiadomość msg)
+        public CustomMessageButton(Action<object, EventArgs> deleteButton_click, Wiadomość msg, byte? state = null)
         {
             this.Width = 507;
             this.Height = 47;
@@ -20,6 +20,8 @@ namespace Biblioteka
             this.Margin = temp;
             this.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Text = msg.Tytuł;
+            if (state == 1)
+                this.BackColor = System.Drawing.Color.DarkGray;
 
             dateLabel = new System.Windows.Forms.Label();
             dateLabel.Location = new System.Drawing.Point(this.Width - 94, this.Height - 17);

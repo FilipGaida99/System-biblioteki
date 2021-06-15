@@ -60,12 +60,13 @@ namespace Biblioteka
             // 
             // writeMsgButton
             // 
+            this.writeMsgButton.BackColor = System.Drawing.SystemColors.ControlLight;
             this.writeMsgButton.Location = new System.Drawing.Point(4, 5);
             this.writeMsgButton.Name = "writeMsgButton";
             this.writeMsgButton.Size = new System.Drawing.Size(147, 50);
             this.writeMsgButton.TabIndex = 3;
             this.writeMsgButton.Text = "Wyślij wiadomość";
-            this.writeMsgButton.UseVisualStyleBackColor = true;
+            this.writeMsgButton.UseVisualStyleBackColor = false;
             this.writeMsgButton.Click += new System.EventHandler(this.sendMsgButton_Click);
             // 
             // receivedMsgButton

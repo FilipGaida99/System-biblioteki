@@ -147,6 +147,7 @@ namespace Biblioteka
                           "Brak adresatów",
                           MessageBoxButtons.OK,
                           MessageBoxIcon.Error);
+                        return;
                     }
                 }
                 else
@@ -155,6 +156,7 @@ namespace Biblioteka
                           "Pusta treść",
                           MessageBoxButtons.OK,
                           MessageBoxIcon.Error);
+                    return;
                 }
             }
             else
@@ -163,6 +165,7 @@ namespace Biblioteka
                            "Pusty tytuł",
                            MessageBoxButtons.OK,
                            MessageBoxIcon.Error);
+                return;
             }
             this.Close();
         }
