@@ -282,6 +282,7 @@ namespace Biblioteka
             this.lendBookButton.TabIndex = 1;
             this.lendBookButton.Text = "Wypożycz";
             this.lendBookButton.UseVisualStyleBackColor = true;
+            this.lendBookButton.Click += new System.EventHandler(this.lendBookButton_Click);
             // 
             // availabilityLabel
             // 

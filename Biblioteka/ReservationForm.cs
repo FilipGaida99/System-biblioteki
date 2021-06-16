@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace Biblioteka
 {
+    /// <summary>
+    /// Formularz z informacją o planowanej rezerwacji
+    /// </summary>
     public partial class ReservationForm : Form
     {
         /// <summary>
@@ -25,7 +28,10 @@ namespace Biblioteka
         /// </summary>
         System.DateTime currentDate = System.DateTime.Now;
 
-
+        /// <summary>
+        /// Konstruktor jednoargumentowy
+        /// </summary>
+        /// <param name="_book"></param> Obiekt z informacją o książce
         public ReservationForm(Książka _book)
         {
             InitializeComponent();
@@ -47,6 +53,11 @@ namespace Biblioteka
             }
           
         }
+        /// <summary>
+        /// Metoda wywoływana po linięciu przycisku z potwierdzeniem rezerwacji
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
             using(var db = new BibliotekaDB())
@@ -62,6 +73,7 @@ namespace Biblioteka
                         reservation.Data_rezerwacji = currentDate;
                         // TO DO: Uzupełnić po zrobieniu użytkowników bo inaczej nie będzie dodawać
                         var user = db.Czytelnik.Find(10003);
+
                         reservation.CzytelnikID = user.CzytelnikID;
                         reservation.Czytelnik = user;
                         db.Rezerwacje.Add(reservation);

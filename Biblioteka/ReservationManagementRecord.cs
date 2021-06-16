@@ -9,14 +9,28 @@ using System.Windows.Forms;
 
 namespace Biblioteka
 {
+    /// <summary>
+    /// Kontrolka użytkownika pozwalająca zarządzać rezerwacjami
+    /// </summary>
     public partial class ReservationManagementRecord : Biblioteka.ReservationRecord
     {
+        /// <summary>
+        /// Konstruktor wieloargumentowy kontrolki
+        /// </summary>
+        /// <param name="_reservation"></param> obiekt z rezerwacją
+        /// <param name="_onClick"></param> metoda wywoływana po wypożyczeniu z rezerwacji
+        /// <param name="_reservations"></param> lista wszystkich rezerwacji
         public ReservationManagementRecord(Rezerwacje _reservation, Action _onClick, List<Rezerwacje> _reservations) 
             : base(_reservation, _onClick, _reservations)
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Metoda wypożyczająca egzemplarz książki z rezerwacji
+        /// </summary>
+        /// <param name="sender"></param> Kontrolka
+        /// <param name="e"></param> Argumenty
         private void checkoutFromReservation_Click(object sender, EventArgs e)
         {
             using (new AppWaitCursor(ParentForm, e))
@@ -56,7 +70,6 @@ namespace Biblioteka
                     }
                     else if (copiesNotInUse.Count > resCount)
                     {
-
                         //TO DO: Uzupełnić po zalogowaniu
                         db.Wypożyczenie.Add(new Wypożyczenie
                         {
@@ -74,7 +87,6 @@ namespace Biblioteka
                         db.Rezerwacje.Remove(resToDelete);
                         reservations.Remove(reservation);
                         db.SaveChanges();
-
                         onClick.Invoke();
                     }
                     else

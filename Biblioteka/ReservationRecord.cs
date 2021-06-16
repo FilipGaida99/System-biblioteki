@@ -10,12 +10,15 @@ using System.Windows.Forms;
 
 namespace Biblioteka
 {
+    /// <summary>
+    /// Kontorlka użytkownika wyświetlająca rezerwacje
+    /// </summary>
     public partial class ReservationRecord : UserControl
     {
         /// <summary>
         /// Lista wyszukanych rezerwacji
         /// </summary>
-        public static List<Rezerwacje> reservations;
+        protected static List<Rezerwacje> reservations;
 
         /// <summary>
         /// Obiekt przechowujący informacje o rezerwacji prezentowanej na kontrolce
@@ -43,12 +46,11 @@ namespace Biblioteka
             onClick = _onClick;
         }
 
-        public ReservationRecord()
-        {
-            InitializeComponent();
-            reservation = null;
-        }
-
+        /// <summary>
+        /// Metoda wywoływana w tracie ładowania kontrolki
+        /// </summary>
+        /// <param name="sender"></param> Kontrolka
+        /// <param name="e"></param> Argumenty
         private void ReservationRecord_Load(object sender, EventArgs e)
         {
             if(reservation != null)

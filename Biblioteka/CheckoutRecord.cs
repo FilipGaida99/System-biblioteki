@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace Biblioteka
 {
+    /// <summary>
+    /// ontrolka użytkownika wyświetlająca informacje o rezerwacji
+    /// </summary>
     public partial class CheckoutRecord : UserControl
     {
         /// <summary>

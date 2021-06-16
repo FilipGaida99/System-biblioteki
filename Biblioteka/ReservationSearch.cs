@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace Biblioteka
 {
+    /// <summary>
+    /// Kontrolka użytkownika wyszukująca rezerwacje
+    /// </summary>
     public partial class ReservationSearch : UserControl
     {
         /// <summary>
@@ -31,7 +34,7 @@ namespace Biblioteka
         }
 
         /// <summary>
-        /// Metdoa wywoływana po wciśnięciu przycisku szukającego. Wyszukuje w bazie rezerwacje o danych 
+        /// Metdoda wywoływana po wciśnięciu przycisku szukającego. Wyszukuje w bazie rezerwacje o danych 
         /// zawartych w polach tesktowych
         /// </summary>
         /// <param name="sender"></param> Kontrolka

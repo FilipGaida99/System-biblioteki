@@ -66,6 +66,7 @@ namespace Biblioteka
             this.checkoutsList.UseCompatibleStateImageBehavior = false;
             this.checkoutsList.View = System.Windows.Forms.View.Details;
             this.checkoutsList.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.CheckoutsList_ColumnClick);
+            this.checkoutsList.DoubleClick += new System.EventHandler(this.OpenElectronicCopy_DoubleClick);
             // 
             // bookTitle
             // 
@@ -96,7 +97,7 @@ namespace Biblioteka
             // 
             this.returnedCheckBox.AutoSize = true;
             this.returnedCheckBox.Location = new System.Drawing.Point(421, 13);
-            this.returnedCheckBox.Name = "returnedChecBox";
+            this.returnedCheckBox.Name = "returnedCheckBox";
             this.returnedCheckBox.Size = new System.Drawing.Size(105, 17);
             this.returnedCheckBox.TabIndex = 2;
             this.returnedCheckBox.Text = "Pokaż zwrócone";
