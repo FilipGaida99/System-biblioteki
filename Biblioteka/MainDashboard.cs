@@ -14,7 +14,7 @@ namespace Biblioteka
                 //UserSingleton.Instance.SetReader(db.Czytelnik.Find(1));
                 //Sprawdzenie czy istnieje specjalny bibliotekarz i jeżeli nie to go dodaje do bazy
                 if (db.Bibliotekarz.Where(librarian => librarian.Imię == "Biblioteka")
-                    .First() == null)
+                    .FirstOrDefault() == null)
                     db.Bibliotekarz
                         .Add(new Bibliotekarz { Imię = "Biblioteka" });
                 db.SaveChanges();

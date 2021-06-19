@@ -13,7 +13,7 @@ namespace Biblioteka
     public partial class MessageForm : Form
     {
 
-        bool isSentMsgView = true;
+        bool isSentMsgView = false;
 
         public MessageForm()
         {
@@ -40,7 +40,7 @@ namespace Biblioteka
                 using (var db = new BibliotekaDB())
                 {
                     Wiadomość msg;
-                    if ((Czytelnik)UserSingleton.Instance.GetLoggedUser() != null)
+                    if (UserSingleton.Instance.GetLoggedUser() as Czytelnik != null)
                     {
                         Czytelnik reader = db.Czytelnik.Find(((Czytelnik)UserSingleton.Instance.GetLoggedUser()).CzytelnikID);
                         msg = reader
@@ -58,7 +58,7 @@ namespace Biblioteka
                             .FirstOrDefault()
                             .Wiadomość;
                     }
-                    if (msg != (Wiadomość)msgListFlowPanel.Controls[0].Tag) //Jeżeli wiadomość została wysłana to znajduje się na pierwszym miejscu
+                    if (msgListFlowPanel.Controls.Count != 0 && msg != (Wiadomość)msgListFlowPanel.Controls[0].Tag) //Jeżeli wiadomość została wysłana to znajduje się na pierwszym miejscu
                     {
                         CustomMessageButton msgButton = new CustomMessageButton(DeleteButton_Click, msg);
                         msgButton.Tag = msg;
@@ -83,7 +83,7 @@ namespace Biblioteka
         {
             //if (!isSentMsgView)
             //    return;
-            isSentMsgView = false;
+            isSentMsgView = true;
             LoadSentMessages();
         }
 
@@ -92,7 +92,7 @@ namespace Biblioteka
             Wiadomość msg = (Wiadomość)((Button)sender).Parent.Tag;
             using (var db = new BibliotekaDB())
             {
-                if ((Czytelnik)UserSingleton.Instance.GetLoggedUser() != null)
+                if (UserSingleton.Instance.GetLoggedUser() as Czytelnik != null)
                 {
                     Czytelnik reader = db.Czytelnik.Find(((Czytelnik)UserSingleton.Instance.GetLoggedUser()).CzytelnikID);
                     //reader.Czytelnik_Wiadomość
@@ -101,20 +101,26 @@ namespace Biblioteka
                     //        .Where(readerMsg => readerMsg.WiadomośćID == msg.WiadomośćID)
                     //        .FirstOrDefault());
                     Czytelnik_Wiadomość readerMsg = db.Czytelnik_Wiadomość
-                        .Single(readerMsgTemp => readerMsgTemp.WiadomośćID == msg.WiadomośćID);
+                        .Single(readerMsgTemp => readerMsgTemp.WiadomośćID == msg.WiadomośćID
+                                                 && readerMsgTemp.CzytelnikID == reader.CzytelnikID);
                     if (readerMsg != null)
                         readerMsg.Stan = 2;
                 }
                 else
                 {
                     Bibliotekarz librarian = db.Bibliotekarz.Find(((Bibliotekarz)UserSingleton.Instance.GetLoggedUser()).BibliotekarzID);
+                    Bibliotekarz specialLibrarian = db.Bibliotekarz
+                                        .Where(librarianTemp => librarianTemp.Imię == Bibliotekarz.specialLibrarianName)
+                                        .First();
                     //librarian.Bibliotekarz_Wiadomość
                     //    .Remove(librarian
                     //        .Bibliotekarz_Wiadomość
                     //        .Where(librarianMsg => librarianMsg.WiadomośćID == librarianMsg.WiadomośćID)
                     //        .FirstOrDefault());
                     Bibliotekarz_Wiadomość librarianMsg = db.Bibliotekarz_Wiadomość
-                        .Single(librarianMsgTemp => librarianMsgTemp.WiadomośćID == msg.WiadomośćID);
+                        .Single(librarianMsgTemp => librarianMsgTemp.WiadomośćID == msg.WiadomośćID
+                                                    && (librarianMsgTemp.BibliotekarzID == librarian.BibliotekarzID
+                                                        || librarianMsgTemp.BibliotekarzID == specialLibrarian.BibliotekarzID));
                     if (librarianMsg != null)
                         librarianMsg.Stan = 2;
                 }
@@ -152,7 +158,7 @@ namespace Biblioteka
         private void MsgButton_Click(object sender, EventArgs e)
         {
             ReadMessageForm readMsgForm;
-            if ((Czytelnik)UserSingleton.Instance.GetLoggedUser() != null)
+            if (UserSingleton.Instance.GetLoggedUser() as Czytelnik != null)
             {
                 using (var db = new BibliotekaDB())
                 {
@@ -161,9 +167,10 @@ namespace Biblioteka
                         .Czytelnik_Wiadomość
                         .Where(readerMsgTemp => readerMsgTemp.Wiadomość.WiadomośćID == ((Wiadomość)((CustomMessageButton)sender).Tag).WiadomośćID)
                         .FirstOrDefault();
-                    if (readerMsg.Stan == null)
+                    if (readerMsg.Stan == null && isSentMsgView == false)
                     {
                         readerMsg.Stan = 1;
+                        ((CustomMessageButton)sender).BackColor = System.Drawing.Color.DarkGray;
                         db.SaveChanges();
                     }
                     readMsgForm = new ReadMessageForm(readerMsg);
@@ -174,13 +181,22 @@ namespace Biblioteka
                 using (var db = new BibliotekaDB())
                 {
                     Bibliotekarz librarian = db.Bibliotekarz.Find(((Bibliotekarz)UserSingleton.Instance.GetLoggedUser()).BibliotekarzID);
-                    Bibliotekarz_Wiadomość librarianMsg = (librarian)
-                        .Bibliotekarz_Wiadomość
-                        .Where(librarianMsgTemp => librarianMsgTemp.Wiadomość == (Wiadomość)((CustomMessageButton)sender).Tag)
+                    Bibliotekarz specialLibrarian = db.Bibliotekarz
+                                        .Where(librarianTemp => librarianTemp.Imię == Bibliotekarz.specialLibrarianName)
+                                        .First();
+                    //Bibliotekarz_Wiadomość librarianMsg = (librarian)
+                    //    .Bibliotekarz_Wiadomość
+                    //    .Where(librarianMsgTemp => librarianMsgTemp.WiadomośćID == ((Wiadomość)((CustomMessageButton)sender).Tag).WiadomośćID)
+                    //    .FirstOrDefault();
+                    Bibliotekarz_Wiadomość librarianMsg = db.Bibliotekarz_Wiadomość
+                        .Where(librarianMsgTemp => librarianMsgTemp.WiadomośćID == ((Wiadomość)((CustomMessageButton)sender).Tag).WiadomośćID
+                                                   && (librarianMsgTemp.BibliotekarzID == librarian.BibliotekarzID
+                                                       || librarianMsgTemp.BibliotekarzID == specialLibrarian.BibliotekarzID))
                         .FirstOrDefault();
-                    if (librarianMsg.Stan == null)
+                    if (librarianMsg.Stan == null && isSentMsgView == false)
                     {
                         librarianMsg.Stan = 1;
+                        ((CustomMessageButton)sender).BackColor = System.Drawing.Color.DarkGray;
                         db.SaveChanges();
                     }
                     readMsgForm = new ReadMessageForm(librarianMsg);
@@ -194,12 +210,12 @@ namespace Biblioteka
             using (var db = new BibliotekaDB())
             {
                 List<Wiadomość> msgList;
-                if ((Czytelnik)UserSingleton.Instance.GetLoggedUser() != null)
+                if (UserSingleton.Instance.GetLoggedUser() as Czytelnik != null)
                 {
                     Czytelnik reader = db.Czytelnik.Find(((Czytelnik)UserSingleton.Instance.GetLoggedUser()).CzytelnikID);
                     msgList = reader
                         .Czytelnik_Wiadomość
-                        .OrderBy(readerMsg => readerMsg.Wiadomość.Data_wysłania)
+                        .OrderByDescending(readerMsg => readerMsg.Wiadomość.Data_wysłania)
                         .Where(readerMsg => readerMsg.Nadawca == true)
                         .Select(readerMsg => readerMsg.Wiadomość)
                         .ToList();
@@ -224,7 +240,7 @@ namespace Biblioteka
                     Bibliotekarz librarian = db.Bibliotekarz.Find(((Bibliotekarz)UserSingleton.Instance.GetLoggedUser()).BibliotekarzID);
                     msgList = librarian
                         .Bibliotekarz_Wiadomość
-                        .OrderBy(librarianMsg => librarianMsg.Wiadomość.Data_wysłania)
+                        .OrderByDescending(librarianMsg => librarianMsg.Wiadomość.Data_wysłania)
                         .Where(librarianMsg => librarianMsg.Nadawca == true)
                         .Select(librarianMsg => librarianMsg.Wiadomość)
                         .ToList();
@@ -262,12 +278,13 @@ namespace Biblioteka
             using (var db = new BibliotekaDB())
             {
                 List<Wiadomość> msgList;
-                if ((Czytelnik)UserSingleton.Instance.GetLoggedUser() != null)
+
+                if (UserSingleton.Instance.GetLoggedUser() as Czytelnik != null)
                 {
                     Czytelnik reader = db.Czytelnik.Find(((Czytelnik)UserSingleton.Instance.GetLoggedUser()).CzytelnikID);
                     msgList = reader
                         .Czytelnik_Wiadomość
-                        .OrderBy(readerMsg => readerMsg.Wiadomość.Data_wysłania)
+                        .OrderByDescending(readerMsg => readerMsg.Wiadomość.Data_wysłania)
                         .Where(readerMsg => readerMsg.Nadawca == false)
                         .Select(readerMsg => readerMsg.Wiadomość)
                         .ToList();
@@ -290,26 +307,37 @@ namespace Biblioteka
                 else
                 {
                     Bibliotekarz librarian = db.Bibliotekarz.Find(((Bibliotekarz)UserSingleton.Instance.GetLoggedUser()).BibliotekarzID);
+                    Bibliotekarz specialLibrarian = db.Bibliotekarz
+                                        .Where(librarianTemp => librarianTemp.Imię == Bibliotekarz.specialLibrarianName)
+                                        .First();
                     List<Wiadomość> allLibrariansMsgList = db.Bibliotekarz_Wiadomość
-                        .Where(librarianMsg => librarianMsg.BibliotekarzID == 0)
+                        .Where(librarianMsg => librarianMsg.BibliotekarzID == specialLibrarian.BibliotekarzID)
                         .Select(librarianMsg => librarianMsg.Wiadomość)
+                        .OrderByDescending(librarianMsg => librarianMsg.Data_wysłania)
                         .ToList();
 
                     msgList = librarian
                         .Bibliotekarz_Wiadomość
                         .Where(librarianMsg => librarianMsg.Nadawca == false)
                         .Select(librarianMsg => librarianMsg.Wiadomość)
+                        .OrderByDescending(librarianMsg => librarianMsg.Data_wysłania)
                         .ToList();
 
                     msgList.AddRange(allLibrariansMsgList);
-                    msgList.OrderBy(librarianMsg => librarianMsg.Data_wysłania);
-
+                    msgList.Sort(delegate (Wiadomość x, Wiadomość y)
+                    {
+                        if (x.Data_wysłania == null && y.Data_wysłania == null) return 0;
+                        else if (x.Data_wysłania == null) return -1;
+                        else if (y.Data_wysłania == null) return 1;
+                        else return y.Data_wysłania.CompareTo(x.Data_wysłania);
+                    });
                     msgListFlowPanel.SuspendLayout();
                     msgListFlowPanel.Controls.Clear();
                     foreach (var elem in msgList)
                     {
                         Bibliotekarz_Wiadomość librarianMsg = elem.Bibliotekarz_Wiadomość
-                            .SingleOrDefault(librarianTemp => librarianTemp.BibliotekarzID == librarian.BibliotekarzID);
+                            .SingleOrDefault(librarianTemp => librarianTemp.BibliotekarzID == librarian.BibliotekarzID
+                                                              || librarianTemp.BibliotekarzID == specialLibrarian.BibliotekarzID);
                         if (librarianMsg.Stan == 2)
                             continue; //Jeżeli stan wiadomośći jest 2 (czyli usunięta) to nie wyświetlaj jej
                         CustomMessageButton msg = new CustomMessageButton(DeleteButton_Click, elem, librarianMsg.Stan);

@@ -17,8 +17,12 @@ namespace Biblioteka
             InitializeComponent();
             fromLabel.Text = readerMsg.Czytelnik.Imię + readerMsg.Czytelnik.Nazwisko;
             toLabel.Text = "";
-            if (readerMsg.Wiadomość.Bibliotekarz_Wiadomość.First().Bibliotekarz.Imię == Bibliotekarz.specialLibrarianName)
-                toLabel.Text += "Wszyscy Bibliotekarze, ";
+            if (readerMsg.Wiadomość.Bibliotekarz_Wiadomość.First().Bibliotekarz.Imię == Bibliotekarz.specialLibrarianName) {
+                if (readerMsg.Nadawca == true)
+                    toLabel.Text += "Wszyscy Bibliotekarze, ";
+                else
+                    toLabel.Text += "System, ";
+            }
             else
                 foreach (var elem in readerMsg.Wiadomość.Bibliotekarz_Wiadomość)
                     toLabel.Text += elem.Bibliotekarz.Imię + " " + elem.Bibliotekarz.Nazwisko + ", ";

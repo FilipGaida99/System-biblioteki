@@ -21,6 +21,9 @@ namespace Biblioteka
 
         public long KsiążkaID { get; set; }
 
+        [Column("Rok wydruku", TypeName = "date")]
+        public DateTime Rok_wydruku { get; set; }
+
         public virtual Egzemplarz_elektroniczny Egzemplarz_elektroniczny { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -40,7 +40,7 @@ namespace Biblioteka
 
         private void UpdateAddresseeLabel()
         {
-            if ((Czytelnik)UserSingleton.Instance.GetLoggedUser() != null)
+            if (UserSingleton.Instance.GetLoggedUser() as Czytelnik != null)
             {
                 addresseeLabel.Text = "";
                 foreach (var elem in userLists.GetChosenLibrariansList())
@@ -62,7 +62,7 @@ namespace Biblioteka
         {
             using (var db = new BibliotekaDB())
             {
-                if ((Czytelnik)UserSingleton.Instance.GetLoggedUser() != null)
+                if (UserSingleton.Instance.GetLoggedUser() as Czytelnik != null)
                 {
                     //reader = db.Czytelnik.Find(1);
                     List<Bibliotekarz> availableList = db.Bibliotekarz
@@ -107,7 +107,7 @@ namespace Biblioteka
                         {
                             db.Wiadomość.Add(msg);
 
-                            if ((Czytelnik)UserSingleton.Instance.GetLoggedUser() != null)
+                            if (UserSingleton.Instance.GetLoggedUser() as Czytelnik != null)
                             {
                                 db.Czytelnik_Wiadomość.Add(new Czytelnik_Wiadomość 
                                     { CzytelnikID = ((Czytelnik)UserSingleton.Instance.GetLoggedUser()).CzytelnikID,

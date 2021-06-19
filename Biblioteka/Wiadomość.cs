@@ -49,5 +49,20 @@ namespace Biblioteka
                 db.Bibliotekarz_Wiadomość.Add(new Bibliotekarz_Wiadomość { BibliotekarzID = librarian.BibliotekarzID, Nadawca = true, Wiadomość = msg });
             }
         }
+
+        public static void SystemNotification(string title, string content, long addresseeID)
+        {
+            Wiadomość msg = new Wiadomość { Treść = content, Tytuł = title, Data_wysłania = DateTime.Now };
+            using (var db = new BibliotekaDB())
+            {
+                db.Wiadomość.Add(msg);
+                Bibliotekarz librarian = db.Bibliotekarz
+                                        .Where(lib => lib.Imię == Bibliotekarz.specialLibrarianName)
+                                        .First();
+                db.Czytelnik_Wiadomość.Add(new Czytelnik_Wiadomość { CzytelnikID = addresseeID, Nadawca = false, Wiadomość = msg });
+                db.Bibliotekarz_Wiadomość.Add(new Bibliotekarz_Wiadomość { BibliotekarzID = librarian.BibliotekarzID, Nadawca = true, Wiadomość = msg });
+                db.SaveChanges();
+            }
+        }
     }
 }
