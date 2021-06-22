@@ -99,13 +99,13 @@ namespace Biblioteka
             // 
             // reportButton
             // 
-            this.reportButton.Enabled = false;
             this.reportButton.Location = new System.Drawing.Point(122, 222);
             this.reportButton.Name = "reportButton";
             this.reportButton.Size = new System.Drawing.Size(265, 23);
             this.reportButton.TabIndex = 0;
             this.reportButton.Text = "Generuj raport";
             this.reportButton.UseVisualStyleBackColor = true;
+            this.reportButton.Click += new System.EventHandler(this.reportButton_Click);
             // 
             // prolognationButton
             // 

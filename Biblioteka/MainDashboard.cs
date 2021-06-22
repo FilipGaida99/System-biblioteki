@@ -11,7 +11,7 @@ namespace Biblioteka
             InitializeComponent();
             using (var db = new BibliotekaDB())
             {
-                //UserSingleton.Instance.SetReader(db.Czytelnik.Find(1));
+                UserSingleton.Instance.SetReader(db.Czytelnik.Find(1));
                 //Sprawdzenie czy istnieje specjalny bibliotekarz i jeżeli nie to go dodaje do bazy
                 if (db.Bibliotekarz.Where(librarian => librarian.Imię == "Biblioteka")
                     .FirstOrDefault() == null)
@@ -53,6 +53,12 @@ namespace Biblioteka
         {
             MessageForm messageForm = new MessageForm();
             messageForm.Show();
+        }
+
+        private void reportButton_Click(object sender, EventArgs e)
+        {
+            ReportsForm reportsForm = new ReportsForm();
+            reportsForm.ShowDialog();
         }
     }
 }

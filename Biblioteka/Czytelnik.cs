@@ -32,6 +32,9 @@ namespace Biblioteka
         [StringLength(50)]
         public string Adres_email { get; set; }
 
+        [Column("Data utworzenia", TypeName = "date")]
+        public DateTime Data_utworzenia { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Czytelnik_Wiadomość> Czytelnik_Wiadomość { get; set; }
 
