@@ -10,8 +10,15 @@ using System.Windows.Forms;
 
 namespace Biblioteka
 {
+    /// <summary>
+    /// Formularz wyświetlania wiadomości.
+    /// </summary>
     public partial class ReadMessageForm : Form
     {
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="readerMsg">Wyświetlana wiadomość.</param>
         public ReadMessageForm(Czytelnik_Wiadomość readerMsg)
         {
             InitializeComponent();
@@ -33,6 +40,10 @@ namespace Biblioteka
             msgTextBox.Text = readerMsg.Wiadomość.Treść;
         }
 
+        /// <summary>
+        /// Konstruktor.
+        /// </summary>
+        /// <param name="readerMsg">Wyświetlana wiadomość.</param>
         public ReadMessageForm(Bibliotekarz_Wiadomość readerMsg)
         {
             InitializeComponent();

@@ -10,21 +10,40 @@ using System.Windows.Forms;
 
 namespace Biblioteka
 {
+    /// <summary>
+    /// Formularz wiadomości
+    /// </summary>
     public partial class MessageForm : Form
     {
 
+        /// <summary>
+        /// Czy aktualnie są wyświetlane wysłane wiadomości
+        /// </summary>
         bool isSentMsgView = false;
 
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
         public MessageForm()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Obsługa załadowania formularza.
+        /// </summary>
+        /// <param name="sender">Kontrolka.</param>
+        /// <param name="e">Argumenty.</param>
         private void MessageForm_Load(object sender, EventArgs e)
         {
             LoadRecievedMessages();
         }
 
+        /// <summary>
+        /// Obsługa wysłania nowej wiadomości.
+        /// </summary>
+        /// <param name="sender">Kontrolka.</param>
+        /// <param name="e">Argumenty.</param>
         private void sendMsgButton_Click(object sender, EventArgs e)
         {
             WriteMessageForm writeMsgForm = new WriteMessageForm();
@@ -32,10 +51,13 @@ namespace Biblioteka
             updateMsgListFlowPanel();
         }
 
+        /// <summary>
+        /// Dodanie do panelu wiadomośći nowo utworzonej wiadomości jeżeli wyświetlane są wysłane.
+        /// </summary>
         private void updateMsgListFlowPanel()
         {
             //Tylko przy wysłanych wiadomościach może się pojawić nowa
-            if (isSentMsgView)
+            if (isSentMsgView == true)
             {
                 using (var db = new BibliotekaDB())
                 {
@@ -71,6 +93,11 @@ namespace Biblioteka
             }
         }
 
+        /// <summary>
+        /// Obsługa wyświetlania otrzymanych wiadomości.
+        /// </summary>
+        /// <param name="sender">Kontrolka.</param>
+        /// <param name="e">Argumenty.</param>
         private void receivedMsgButton_Click(object sender, EventArgs e)
         {
             //if (isSentMsgView)
@@ -79,6 +106,11 @@ namespace Biblioteka
             LoadRecievedMessages();
         }
 
+        /// <summary>
+        /// Obsługa wyświetlania wysłanych wiadomości.
+        /// </summary>
+        /// <param name="sender">Kontrolka.</param>
+        /// <param name="e">Argumenty.</param>
         private void sentMsgButton_Click(object sender, EventArgs e)
         {
             //if (!isSentMsgView)
@@ -87,6 +119,11 @@ namespace Biblioteka
             LoadSentMessages();
         }
 
+        /// <summary>
+        /// Obsługa usuwania wiadomości.
+        /// </summary>
+        /// <param name="sender">Kontrolka.</param>
+        /// <param name="e">Argumenty.</param>
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             Wiadomość msg = (Wiadomość)((Button)sender).Parent.Tag;
@@ -133,6 +170,11 @@ namespace Biblioteka
             DeleteLonelyMessage(msg);
         }
 
+
+        /// <summary>
+        /// Sprawdzenie czy wiadomość została przez każego usunięta i jeżeli tak to usunięcie tej wiadomości.
+        /// </summary>
+        /// <param name="msg">Testowana wiadomość</param>
         private void DeleteLonelyMessage(Wiadomość msg)
         {
             using (var db = new BibliotekaDB())
@@ -155,6 +197,11 @@ namespace Biblioteka
             }
         }
 
+        /// <summary>
+        /// Obsługa wyświetlania wybranej wiadomości.
+        /// </summary>
+        /// <param name="sender">Kontrolka.</param>
+        /// <param name="e">Argumenty.</param>
         private void MsgButton_Click(object sender, EventArgs e)
         {
             ReadMessageForm readMsgForm;
@@ -205,6 +252,10 @@ namespace Biblioteka
             readMsgForm.ShowDialog();
         }
 
+
+        /// <summary>
+        /// Wypełnienie flow panelu wysłanymi wiadomościami.
+        /// </summary>
         private void LoadSentMessages()
         {
             using (var db = new BibliotekaDB())
@@ -273,6 +324,9 @@ namespace Biblioteka
             }
         }
 
+        /// <summary>
+        /// Wypełnienie flow panelu otrzymanymi wiadomościami.
+        /// </summary>
         private void LoadRecievedMessages()
         {
             using (var db = new BibliotekaDB())

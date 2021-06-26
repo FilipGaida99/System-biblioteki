@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace Biblioteka
 {
+    /// <summary>
+    /// Klasa odpowiedzialna za komunikację z bazą danych.
+    /// </summary>
     public partial class BibliotekaDB : DbContext
     {
         public BibliotekaDB()
@@ -12,22 +15,71 @@ namespace Biblioteka
         {
         }
 
+        /// <summary>
+        /// Zbiór objektów encji Autor.
+        /// </summary>
         public virtual DbSet<Autor> Autor { get; set; }
+        /// <summary>
+        /// Zbiór objektów encji Bibliotekarz.
+        /// </summary>
         public virtual DbSet<Bibliotekarz> Bibliotekarz { get; set; }
+        /// <summary>
+        /// Zbiór objektów encji Bibliotekarz_Wiadomość.
+        /// </summary>
         public virtual DbSet<Bibliotekarz_Wiadomość> Bibliotekarz_Wiadomość { get; set; }
+        /// <summary>
+        /// Zbiór objektów encji Czytelnik.
+        /// </summary>
         public virtual DbSet<Czytelnik> Czytelnik { get; set; }
+        /// <summary>
+        /// Zbiór objektów encji Czytelnik_Wiadomość.
+        /// </summary>
         public virtual DbSet<Czytelnik_Wiadomość> Czytelnik_Wiadomość { get; set; }
+        /// <summary>
+        /// Zbiór objektów encji Egzemplarz.
+        /// </summary>
         public virtual DbSet<Egzemplarz> Egzemplarz { get; set; }
+        /// <summary>
+        /// Zbiór objektów encji Egzemplarz_elektroniczny.
+        /// </summary>
         public virtual DbSet<Egzemplarz_elektroniczny> Egzemplarz_elektroniczny { get; set; }
+        /// <summary>
+        /// Zbiór objektów encji Kara.
+        /// </summary>
         public virtual DbSet<Kara> Kara { get; set; }
+        /// <summary>
+        /// Zbiór objektów encji Książka.
+        /// </summary>
         public virtual DbSet<Książka> Książka { get; set; }
+        /// <summary>
+        /// Zbiór objektów encji Prolongata.
+        /// </summary>
         public virtual DbSet<Prolongata> Prolongata { get; set; }
+        /// <summary>
+        /// Zbiór objektów encji Rezerwacje.
+        /// </summary>
         public virtual DbSet<Rezerwacje> Rezerwacje { get; set; }
+        /// <summary>
+        /// Zbiór objektów encji Wiadomość.
+        /// </summary>
         public virtual DbSet<Wiadomość> Wiadomość { get; set; }
+        /// <summary>
+        /// Zbiór objektów encji Wydawnictwo.
+        /// </summary>
         public virtual DbSet<Wydawnictwo> Wydawnictwo { get; set; }
+        /// <summary>
+        /// Zbiór objektów encji Wypożyczenie.
+        /// </summary>
         public virtual DbSet<Wypożyczenie> Wypożyczenie { get; set; }
+        /// <summary>
+        /// Zbiór objektów encji Wystawa.
+        /// </summary>
         public virtual DbSet<Wystawa> Wystawa { get; set; }
 
+        /// <summary>
+        /// Dodanie ograniczeń do encji podczas tworzenia modelu.
+        /// </summary>
+        /// <param name="modelBuilder">Konfigurator modelu.</param>
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Autor>()
