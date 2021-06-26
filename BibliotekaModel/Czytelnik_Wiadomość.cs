@@ -22,6 +22,11 @@ namespace Biblioteka
 
         public bool Przeczytana { get; set; }
 
+        //null - nieprzeczytane
+        //1 - przeczytane
+        //2 - usunięte
+        public byte? Stan { get; set; }
+
         public virtual Czytelnik Czytelnik { get; set; }
 
         public virtual Wiadomość Wiadomość { get; set; }

@@ -29,7 +29,7 @@ namespace Biblioteka
         public DateTime Rok_wydania { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(200)]
         public string Tytuł { get; set; }
 
         [StringLength(4000)]

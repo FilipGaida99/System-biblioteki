@@ -348,3 +348,15 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/Biblioteka/SqlServerTypes
+/Biblioteka/Properties/DataSources
+/Biblioteka/DataSet1.cs
+/Biblioteka/DataSet1.Designer.cs
+/Biblioteka/DataSet1.xsc
+/Biblioteka/DataSet1.xsd
+/Biblioteka/DataSet1.xss
+/Biblioteka/Report1.rdlc
+/Biblioteka/Report2.rdlc
+/Biblioteka/ReportForm.cs
+/Biblioteka/ReportForm.Designer.cs
+/Biblioteka/ReportForm.resx
