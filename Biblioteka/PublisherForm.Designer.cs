@@ -52,7 +52,7 @@ namespace Biblioteka
             // 
             this.filterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.filterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.filterButton.Location = new System.Drawing.Point(193, 47);
+            this.filterButton.Location = new System.Drawing.Point(225, 47);
             this.filterButton.Name = "filterButton";
             this.filterButton.Size = new System.Drawing.Size(79, 29);
             this.filterButton.TabIndex = 9;
@@ -64,7 +64,7 @@ namespace Biblioteka
             // 
             this.chooseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chooseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chooseButton.Location = new System.Drawing.Point(193, 82);
+            this.chooseButton.Location = new System.Drawing.Point(225, 82);
             this.chooseButton.Name = "chooseButton";
             this.chooseButton.Size = new System.Drawing.Size(79, 29);
             this.chooseButton.TabIndex = 8;
@@ -80,14 +80,14 @@ namespace Biblioteka
             this.comboBox.FormattingEnabled = true;
             this.comboBox.Location = new System.Drawing.Point(11, 82);
             this.comboBox.Name = "comboBox";
-            this.comboBox.Size = new System.Drawing.Size(162, 28);
+            this.comboBox.Size = new System.Drawing.Size(194, 28);
             this.comboBox.TabIndex = 7;
             // 
             // addButton
             // 
             this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.addButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.addButton.Location = new System.Drawing.Point(193, 12);
+            this.addButton.Location = new System.Drawing.Point(225, 12);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(79, 29);
             this.addButton.TabIndex = 6;
@@ -101,16 +101,16 @@ namespace Biblioteka
             | System.Windows.Forms.AnchorStyles.Right)));
             this.publisherNameText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.publisherNameText.Location = new System.Drawing.Point(11, 41);
-            this.publisherNameText.MaxLength = 50;
+            this.publisherNameText.MaxLength = 200;
             this.publisherNameText.Name = "publisherNameText";
-            this.publisherNameText.Size = new System.Drawing.Size(162, 26);
+            this.publisherNameText.Size = new System.Drawing.Size(194, 26);
             this.publisherNameText.TabIndex = 5;
             // 
             // PublisherForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 117);
+            this.ClientSize = new System.Drawing.Size(316, 117);
             this.Controls.Add(label1);
             this.Controls.Add(this.filterButton);
             this.Controls.Add(this.chooseButton);

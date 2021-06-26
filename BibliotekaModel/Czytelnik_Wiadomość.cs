@@ -20,8 +20,6 @@ namespace Biblioteka
 
         public bool Nadawca { get; set; }
 
-        public bool Przeczytana { get; set; }
-
         //null - nieprzeczytane
         //1 - przeczytane
         //2 - usunięte
@@ -30,5 +28,27 @@ namespace Biblioteka
         public virtual Czytelnik Czytelnik { get; set; }
 
         public virtual Wiadomość Wiadomość { get; set; }
+
+        /// <summary>
+        /// Informacja, czy wiadomość została przeczytana.
+        /// </summary>
+        public bool Przeczytana
+        {
+            get
+            {
+                return Stan != null && Stan.Value > 0;
+            }
+            set
+            {
+                if (value)
+                {
+                    Stan = 1;
+                }
+                else
+                {
+                    Stan = null;
+                }
+            }
+        }
     }
 }

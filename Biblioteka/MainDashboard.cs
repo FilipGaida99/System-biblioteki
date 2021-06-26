@@ -35,7 +35,7 @@ namespace Biblioteka
             Czytelnik user;
             using(var db = new BibliotekaDB())
             {
-                user = db.Czytelnik.Find(10003);
+                user = db.Czytelnik.FirstOrDefault();
             }
             UserCheckoutsForm userCheckouts = new UserCheckoutsForm(user.CzytelnikID /*logged user ID*/);
             userCheckouts.Show();

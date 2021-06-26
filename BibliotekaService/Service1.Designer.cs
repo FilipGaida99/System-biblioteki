@@ -30,7 +30,14 @@ namespace BibliotekaService
         private void InitializeComponent()
         {
             this.eventLog = new System.Diagnostics.EventLog();
+            this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog)).BeginInit();
+            // 
+            // directorySearcher1
+            // 
+            this.directorySearcher1.ClientTimeout = System.TimeSpan.Parse("-00:00:01");
+            this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
+            this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
             // 
             // Service1
             // 
@@ -42,5 +49,6 @@ namespace BibliotekaService
         #endregion
 
         private System.Diagnostics.EventLog eventLog;
+        private System.DirectoryServices.DirectorySearcher directorySearcher1;
     }
 }

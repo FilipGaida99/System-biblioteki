@@ -23,6 +23,10 @@ namespace Biblioteka
             }
         }
 
+        /// <summary>
+        /// Informacja, czy wypożyczenie ma aktywną karę.
+        /// </summary>
+        /// <returns></returns>
         public bool HasActivePenalty() => Kara.Any(penalty => penalty.Data_amnestii == null);
 
         /// <summary>

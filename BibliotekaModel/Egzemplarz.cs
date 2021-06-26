@@ -19,9 +19,6 @@ namespace Biblioteka
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Nr_inwentarza { get; set; }
 
-        [Column("Rok wydruku", TypeName = "date")]
-        public DateTime Rok_wydruku { get; set; }
-
         public long KsiążkaID { get; set; }
 
         [Column("Rok wydruku", TypeName = "date")]

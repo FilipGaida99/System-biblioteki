@@ -40,6 +40,7 @@ namespace BibliotekaService
             // 
             // serviceInstaller1
             // 
+            this.serviceInstaller1.DelayedAutoStart = true;
             this.serviceInstaller1.Description = "Usługa obsługująca automatyczną pracę systemu biblioteki publicznej";
             this.serviceInstaller1.DisplayName = "Usługa automatycznego zarządzania biblioteką";
             this.serviceInstaller1.ServiceName = "BibliotekaService";

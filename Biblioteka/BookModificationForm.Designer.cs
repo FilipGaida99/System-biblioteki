@@ -174,6 +174,7 @@ namespace Biblioteka
             // 
             this.descriptionText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.descriptionText.Location = new System.Drawing.Point(418, 57);
+            this.descriptionText.MaxLength = 4000;
             this.descriptionText.Multiline = true;
             this.descriptionText.Name = "descriptionText";
             this.descriptionText.Size = new System.Drawing.Size(272, 174);
@@ -183,6 +184,7 @@ namespace Biblioteka
             // 
             this.titleText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.titleText.Location = new System.Drawing.Point(418, 15);
+            this.titleText.MaxLength = 200;
             this.titleText.Name = "titleText";
             this.titleText.Size = new System.Drawing.Size(272, 26);
             this.titleText.TabIndex = 2;

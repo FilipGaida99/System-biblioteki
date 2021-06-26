@@ -84,6 +84,7 @@ namespace BibliotekaService
             timer.Interval = hoursInterval * 60 * 60 * 1000;
             timer.Elapsed += new ElapsedEventHandler(OnTimer);
             timer.Start();
+            Task.Delay(10000).ContinueWith(t => OnTimer(null, null));
         }
 
         /// <summary>
