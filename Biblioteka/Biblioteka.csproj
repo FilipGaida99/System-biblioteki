@@ -59,6 +59,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Messaging" />
     <Reference Include="System.Runtime.Serialization" />
@@ -360,7 +361,6 @@
       <DependentUpon>CheckoutRecord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BorrowsReport.rdlc" />
-
     <EmbeddedResource Include="CopyModificationForm.resx">
       <DependentUpon>CopyModificationForm.cs</DependentUpon>
     </EmbeddedResource>
