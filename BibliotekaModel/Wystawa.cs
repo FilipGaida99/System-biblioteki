@@ -40,7 +40,7 @@ namespace Biblioteka
         /// Data zakończenia.
         /// </summary>
         [Column("Data zakończenia", TypeName = "date")]
-        public DateTime D { get; set; }
+        public DateTime Data_zakończenia { get; set; }
 
         /// <summary>
         /// ID bibliotekarza odpowiedzialnego za wystawę.
