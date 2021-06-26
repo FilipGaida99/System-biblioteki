@@ -1433,7 +1433,7 @@ ORDER BY Książka.Tytuł, Miesiąc";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Biblioteka.Properties.Settings.Default.BibliotekaConnectionString;
+            this._connection.ConnectionString = ConfigurationManager.ConnectionStrings["BibliotekaDB"].ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
