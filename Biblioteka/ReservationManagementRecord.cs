@@ -33,7 +33,7 @@ namespace Biblioteka
         /// <param name="e"></param> Argumenty
         private void checkoutFromReservation_Click(object sender, EventArgs e)
         {
-            using (new AppWaitCursor(ParentForm, e))
+            using (new AppWaitCursor(ParentForm, sender))
             {
                 using (var db = new BibliotekaDB())
                 {

@@ -290,7 +290,7 @@ namespace Biblioteka
                 query = query.Where(copy => copy.Egzemplarz_elektroniczny != null);
                 var electronicCopy = query.First();
                 // Usunąc po sprawdzeniu czy zalogowany użytkownik i przypsiać go do zmienej user
-                var user = db.Czytelnik.Find(10003);
+                var user = db.Czytelnik.FirstOrDefault();
 
                 db.Wypożyczenie.Add(new Wypożyczenie
                 {

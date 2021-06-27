@@ -62,7 +62,7 @@ namespace Biblioteka
         {
             using(var db = new BibliotekaDB())
             {
-                using (new AppWaitCursor(ParentForm, e))
+                using (new AppWaitCursor(this, sender))
                 {
                     try
                     {

@@ -80,7 +80,7 @@ namespace Biblioteka
         /// <param name="e"></param>
         private void checkoutToReader_Click(object sender, EventArgs e)
         {
-            using(new AppWaitCursor(ParentForm, e))
+            using(new AppWaitCursor(ParentForm, sender))
             {
                 using(var db = new BibliotekaDB())
                 {

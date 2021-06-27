@@ -83,7 +83,7 @@ namespace Biblioteka
         {
             if (userID != long.MinValue)
             {
-                using (new AppWaitCursor(ParentForm, e))
+                using (new AppWaitCursor(this, sender))
                 {
                     using (var db = new BibliotekaDB())
                     {
@@ -192,21 +192,30 @@ namespace Biblioteka
             copyNumber = copyNumber.Replace("(E)", "");
             copyNumber = copyNumber.Trim();
             var copyNumberInLong = Convert.ToInt64(copyNumber);
-            using (new AppWaitCursor(ParentForm, e))
+            using (new AppWaitCursor(this, sender))
             {
                 using (var db = new BibliotekaDB())
                 {
-                    var query2 = db.Wypożyczenie.Where(lend => lend.CzytelnikID == userID);
-                    query2 = query2.Where(lend => lend.Data_zwrotu != null);
-                    query2 = query2.Where(lend => lend.Nr_inwentarza == copyNumberInLong);
-
-                    if (query2.ToList().Count == 1)
+                    Czytelnik user = db.Czytelnik.Find(userID);
+                    if(user == null)
                     {
-                        var query = db.Egzemplarz_elektroniczny.Where(elCopy => elCopy.Nr_inwentarza == copyNumberInLong);
-                        var electronicCopy = query.FirstOrDefault();
-                        System.Diagnostics.Process.Start($"{electronicCopy.Odnośnik}");
-
+                        return;
                     }
+                    
+                    var lend = user.Wypożyczenie
+                        .Where(l => !l.Ended && l.LendedElectronicCopy && l.Nr_inwentarza == copyNumberInLong)
+                        .FirstOrDefault();
+                    if(lend == null)
+                    {
+                        return;
+                    }
+
+                    var electronicCopy = db.Egzemplarz_elektroniczny.Find(lend.Egzemplarz.Nr_inwentarza);
+                    if(electronicCopy == null)
+                    {
+                        return;
+                    }
+                    System.Diagnostics.Process.Start($"{electronicCopy.Odnośnik}");
                 }
             }
         }
