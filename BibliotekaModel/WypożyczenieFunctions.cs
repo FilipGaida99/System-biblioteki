@@ -33,5 +33,10 @@ namespace Biblioteka
         /// Informacja, czy wypożyczenie zostało zakończone.
         /// </summary>
         public bool Ended => Data_zwrotu != null;
+
+        /// <summary>
+        /// Informacja czy wypożyczenie dotyczy egzemplarza elektronicznego
+        /// </summary>
+        public bool LendedElectronicCopy => Egzemplarz.Egzemplarz_elektroniczny != null;
     }
 }
