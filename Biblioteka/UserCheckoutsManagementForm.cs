@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Biblioteka
 {
@@ -63,16 +64,19 @@ namespace Biblioteka
 
                         var query = db.Wypożyczenie.Where(checkout => checkout.Data_zwrotu == null);
                         query = query.Where(checkout => checkout.CzytelnikID == userID);
-                        var copyNumberLong = Convert.ToInt64(copyNumber);
-                        query = query.Where(checkout => checkout.Egzemplarz.Nr_inwentarza == copyNumberLong);
-
-                        Wypożyczenie checkoutToReturn = query.First();
-                        if (checkoutToReturn != null)
+                        long copyNumberLong;
+                        if (long.TryParse(Regex.Match(copyNumber, @"\d+").Value, out copyNumberLong))
                         {
-                            checkoutToReturn.Data_zwrotu = DateTime.Now;
-                            db.SaveChanges();
+                            query = query.Where(checkout => checkout.Egzemplarz.Nr_inwentarza == copyNumberLong);
+
+                            Wypożyczenie checkoutToReturn = query.First();
+                            if (checkoutToReturn != null)
+                            {
+                                checkoutToReturn.Data_zwrotu = DateTime.Now;
+                                db.SaveChanges();
+                            }
+                            RefreshCheckoutList();
                         }
-                        RefreshCheckoutList();
                     }
                 }
             }

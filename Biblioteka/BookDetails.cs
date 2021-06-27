@@ -290,7 +290,7 @@ namespace Biblioteka
                                                                     && lend.CzytelnikID == user.CzytelnikID 
                                                                     && lend.Egzemplarz.KsiążkaID == electronicCopy.KsiążkaID);
              
-                if(usersLendQuery.Count() == 1)
+                if(usersLendQuery.Count() >= 1)
                 {
                     MessageBox.Show("Masz już aktualnie wypożyczony egzemplarz elektroniczny tej książki. Sprawdź wypożyczenia.",
                         "Uwaga",

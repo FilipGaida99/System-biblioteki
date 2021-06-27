@@ -13,7 +13,7 @@ namespace Biblioteka
             panelLibrarian.Visible = false;
             using (var db = new BibliotekaDB())
             {
-                UserSingleton.Instance.SetReader(db.Czytelnik.Find(1));
+                UserSingleton.Instance.SetReader(db.Czytelnik.FirstOrDefault());
                 //Sprawdzenie czy istnieje specjalny bibliotekarz i jeżeli nie to go dodaje do bazy
                 if (db.Bibliotekarz.Where(librarian => librarian.Imię == "Biblioteka")
                     .FirstOrDefault() == null)
