@@ -125,8 +125,8 @@ namespace Biblioteka
                             Egzemplarz = availableCopies.ElementAt(0)
                         });
                         db.SaveChanges();
-                        MessageBox.Show("Pomyślnie wypożyczono!",
-                                        "Błąd",
+                        MessageBox.Show($"Pomyślnie wypożyczono {book.Tytuł} o numerze inwentarza: {availableCopies.ElementAt(0).Nr_inwentarza}!",
+                                        "Informacja",
                                         MessageBoxButtons.OK,
                                         MessageBoxIcon.Information);
                         return;

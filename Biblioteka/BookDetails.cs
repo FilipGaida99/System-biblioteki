@@ -275,22 +275,25 @@ namespace Biblioteka
         /// <param name="e"></param> Argumenty
         private void lendBookButton_Click(object sender, EventArgs e)
         {
-            //TO DO: jeśli niezalogowany czytelnik to return i jakieś okno dialogowe;
-            //if ()
-            //{
-            //    MessageBox.Show("Nie można wypożyczyć egzemplarza książki niezalogowanej osobie!",
-            //       "Błąd",
-            //       MessageBoxButtons.OK,
-            //       MessageBoxIcon.Error);  
-            //    return;
-            //}
+
             using(var db = new BibliotekaDB())
             {
+                var user = UserSingleton.Instance.GetLoggedUser() as Czytelnik;
+
                 var query = db.Egzemplarz.Where(copy => copy.KsiążkaID == book.KsiążkaID);
                 query = query.Where(copy => copy.Egzemplarz_elektroniczny != null);
-                var electronicCopy = query.First();
-                // Usunąc po sprawdzeniu czy zalogowany użytkownik i przypsiać go do zmienej user
-                var user = db.Czytelnik.FirstOrDefault();
+                var electronicCopy = query.FirstOrDefault();
+
+                var usersLendQuery = db.Wypożyczenie.Where(lend => lend.LendedElectronicCopy && lend.CzytelnikID == user.CzytelnikID);
+             
+                if(usersLendQuery.Any(lend => lend.Nr_inwentarza == electronicCopy.Nr_inwentarza))
+                {
+                    MessageBox.Show("Masz już aktualnie wypożyczony egzemplarz elektroniczny tej książki. Sprawdź wypożyczenia.",
+                        "Uwaga",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    return;
+                }
 
                 db.Wypożyczenie.Add(new Wypożyczenie
                 {
