@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace Biblioteka
 {
+    /// <summary>
+    /// Kontrolka użytkownika pozwalająca wyszukiwać użytkowników
+    /// </summary>
     public partial class ReaderSearch : UserControl
     {
         /// <summary>
@@ -29,6 +32,11 @@ namespace Biblioteka
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Metoda wyszukująca użytkowników, po kliknięciu przycisku
+        /// </summary>
+        /// <param name="sender"></param> Kontrolka
+        /// <param name="e"></param> Argumenty
         private void searchButton_Click(object sender, EventArgs e)
         {
             using (new AppWaitCursor(ParentForm, sender))

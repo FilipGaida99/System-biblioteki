@@ -297,6 +297,7 @@ namespace Biblioteka
             this.lendBookButton.TabIndex = 1;
             this.lendBookButton.Text = "Wypożycz";
             this.lendBookButton.UseVisualStyleBackColor = true;
+            this.lendBookButton.Click += new System.EventHandler(this.lendBookButton_Click);
             //
             // availabilityLabel
             //
@@ -382,7 +383,7 @@ namespace Biblioteka
             this.date.Width = 136;
             //
             // BookDetails
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(687, 449);

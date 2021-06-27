@@ -10,16 +10,21 @@ using System.Windows.Forms;
 
 namespace Biblioteka
 {
+    /// <summary>
+    /// Formularz umożliwiający wypożyczanie i zwracanie książek bibliotekarzowi oraz przeglądanie rezerwacji
+    /// </summary>
     public partial class CheckoutForm : Form
     {
 
+        /// <summary>
+        /// Konstruktor formularza do przeglądania użytkowników i rezerwacji, wypożyczania i zwracania książek
+        /// </summary>
         public CheckoutForm()
         {
             InitializeComponent();
             readerSearch.onSearch = OnChangedReadersPanel;
-            
             reservationSearch1.onSearch = OnChangedReservationPanel;
-            tabControl1.TabPages[0].Text = "Ręczne wypożyczanie";
+            tabControl1.TabPages[0].Text = "Czytelnicy";
             tabControl1.TabPages[1].Text = "Rezerwacje";
             
         }

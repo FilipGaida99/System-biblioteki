@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Biblioteka
 {
+    /// <summary>
+    /// Klasa sprawdzająca i konwertująca id podane w stringu do long
+    /// </summary>
     public static class IDConverter
     {
         /// <summary>
@@ -24,7 +27,6 @@ namespace Biblioteka
 
             }
             return Convert.ToInt64(id);
-
         }
     }
 }

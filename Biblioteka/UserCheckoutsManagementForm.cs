@@ -9,13 +9,23 @@ using System.Linq;
 
 namespace Biblioteka
 {
+    /// <summary>
+    /// Formularz do przeglądania wypozyczeń wykorzystywany przez bibliotekarza, umozlwiający zarządzanie.
+    /// </summary>
     public partial class UserCheckoutsManagementForm : Biblioteka.UserCheckoutsForm
     {
+        /// <summary>
+        /// Konstruktor jednoargumentowy
+        /// </summary>
+        /// <param name="_userID"></param>
         public UserCheckoutsManagementForm(long _userID) : base(_userID)
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Metoda do odświeżania listy wypożyczeń, uniemożliwia też zwroty
+        /// </summary>
         protected override void RefreshCheckoutList()
         {
             base.RefreshCheckoutList();
@@ -26,6 +36,11 @@ namespace Biblioteka
             }
         }
 
+        /// <summary>
+        /// Metoda wywoływana po kliknięciu przycisku zwracającego wybraną książkę
+        /// </summary>
+        /// <param name="sender"></param> Kontrolka
+        /// <param name="e"></param> Argumenty
         private void returnButton_Click(object sender, EventArgs e)
         {
             var selected = checkoutsList.SelectedItems;

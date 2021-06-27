@@ -257,10 +257,60 @@ namespace Biblioteka
                 
         }
 
+        /// <summary>
+        /// Metoda otwiera formualrz z informacją o rezerwacji
+        /// </summary>
+        /// <param name="sender"></param> Kontrolka
+        /// <param name="e"></param> Argumenty
         private void bookingButton_Click(object sender, EventArgs e)
         {
             var reservationForm = new ReservationForm(book);
             reservationForm.Show();
         }
+
+        /// <summary>
+        /// Wypozycza użytkownikowi egzemplarz elektroniczny książki
+        /// </summary>
+        /// <param name="sender"></param> Kontrolka
+        /// <param name="e"></param> Argumenty
+        private void lendBookButton_Click(object sender, EventArgs e)
+        {
+            //TO DO: jeśli niezalogowany czytelnik to return i jakieś okno dialogowe;
+            //if ()
+            //{
+            //    MessageBox.Show("Nie można wypożyczyć egzemplarza książki niezalogowanej osobie!",
+            //       "Błąd",
+            //       MessageBoxButtons.OK,
+            //       MessageBoxIcon.Error);  
+            //    return;
+            //}
+            using(var db = new BibliotekaDB())
+            {
+                var query = db.Egzemplarz.Where(copy => copy.KsiążkaID == book.KsiążkaID);
+                query = query.Where(copy => copy.Egzemplarz_elektroniczny != null);
+                var electronicCopy = query.First();
+                // Usunąc po sprawdzeniu czy zalogowany użytkownik i przypsiać go do zmienej user
+                var user = db.Czytelnik.Find(10003);
+
+                db.Wypożyczenie.Add(new Wypożyczenie
+                {
+                    Czytelnik = user,
+                    CzytelnikID = user.CzytelnikID,
+                    Data_wypożyczenia = DateTime.Now,
+                    Egzemplarz = electronicCopy,
+                    Data_zwrotu = null,
+                    Nr_inwentarza = electronicCopy.Nr_inwentarza
+                });
+                db.SaveChanges();
+
+                MessageBox.Show("Książka została wypożyczona, sprawdź swoje wypożyczenia.",
+                      "Sukces",
+                       MessageBoxButtons.OK,
+                       MessageBoxIcon.Information);
+                
+            }
+        }
+
+        
     }
 }
