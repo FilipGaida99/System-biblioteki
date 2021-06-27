@@ -152,5 +152,13 @@ namespace Biblioteka
             ReportsForm reportsForm = new ReportsForm();
             reportsForm.ShowDialog();
         }
+
+        private void penaltiesButton_Click(object sender, EventArgs e)
+        {
+            using(var db = new BibliotekaDB())
+            {
+                Kara.Refresh(db);
+            }
+        }
     }
 }

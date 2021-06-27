@@ -34,7 +34,7 @@ namespace Biblioteka
             this.panelLibrarian = new System.Windows.Forms.Panel();
             this.reportButton = new System.Windows.Forms.Button();
             this.prolognationButton = new System.Windows.Forms.Button();
-            this.returnButton = new System.Windows.Forms.Button();
+            this.penaltiesButton = new System.Windows.Forms.Button();
             this.checkoutButton = new System.Windows.Forms.Button();
             this.booksManagementButton = new System.Windows.Forms.Button();
             this.librariansManagementButton = new System.Windows.Forms.Button();
@@ -83,7 +83,7 @@ namespace Biblioteka
             // 
             this.panelLibrarian.Controls.Add(this.reportButton);
             this.panelLibrarian.Controls.Add(this.prolognationButton);
-            this.panelLibrarian.Controls.Add(this.returnButton);
+            this.panelLibrarian.Controls.Add(this.penaltiesButton);
             this.panelLibrarian.Controls.Add(this.checkoutButton);
             this.panelLibrarian.Controls.Add(label2);
             this.panelLibrarian.Controls.Add(this.booksManagementButton);
@@ -111,28 +111,29 @@ namespace Biblioteka
             // 
             this.prolognationButton.Location = new System.Drawing.Point(312, 135);
             this.prolognationButton.Name = "prolognationButton";
-            this.prolognationButton.Size = new System.Drawing.Size(75, 23);
+            this.prolognationButton.Size = new System.Drawing.Size(75, 40);
             this.prolognationButton.TabIndex = 8;
             this.prolognationButton.Text = "Prolongata";
             this.prolognationButton.UseVisualStyleBackColor = true;
             this.prolognationButton.Click += new System.EventHandler(this.prolognationButton_Click);
             // 
-            // returnButton
+            // penaltiesButton
             // 
-            this.returnButton.Location = new System.Drawing.Point(217, 135);
-            this.returnButton.Name = "returnButton";
-            this.returnButton.Size = new System.Drawing.Size(75, 23);
-            this.returnButton.TabIndex = 7;
-            this.returnButton.Text = "Zwrot";
-            this.returnButton.UseVisualStyleBackColor = true;
+            this.penaltiesButton.Location = new System.Drawing.Point(217, 135);
+            this.penaltiesButton.Name = "penaltiesButton";
+            this.penaltiesButton.Size = new System.Drawing.Size(75, 40);
+            this.penaltiesButton.TabIndex = 7;
+            this.penaltiesButton.Text = "Kary";
+            this.penaltiesButton.UseVisualStyleBackColor = true;
+            this.penaltiesButton.Click += new System.EventHandler(this.penaltiesButton_Click);
             // 
             // checkoutButton
             // 
             this.checkoutButton.Location = new System.Drawing.Point(122, 135);
             this.checkoutButton.Name = "checkoutButton";
-            this.checkoutButton.Size = new System.Drawing.Size(75, 23);
+            this.checkoutButton.Size = new System.Drawing.Size(75, 40);
             this.checkoutButton.TabIndex = 6;
-            this.checkoutButton.Text = "Wydawanie";
+            this.checkoutButton.Text = "Wydawanie/Zwrot";
             this.checkoutButton.UseVisualStyleBackColor = true;
             this.checkoutButton.Click += new System.EventHandler(this.checkoutButton_Click);
             // 
@@ -280,7 +281,7 @@ namespace Biblioteka
         private System.Windows.Forms.Button readersManagementButton;
         private System.Windows.Forms.Button exhibitionManagementButton;
         private System.Windows.Forms.Button prolognationButton;
-        private System.Windows.Forms.Button returnButton;
+        private System.Windows.Forms.Button penaltiesButton;
         private System.Windows.Forms.Button reportButton;
     }
 }

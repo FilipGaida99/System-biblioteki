@@ -77,6 +77,7 @@ namespace Biblioteka
                                         .First();
                 db.Czytelnik_Wiadomość.Add(new Czytelnik_Wiadomość { CzytelnikID = addressee.CzytelnikID, Nadawca = false, Wiadomość = msg });
                 db.Bibliotekarz_Wiadomość.Add(new Bibliotekarz_Wiadomość { BibliotekarzID = librarian.BibliotekarzID, Nadawca = true, Wiadomość = msg });
+                db.SaveChanges();
             }
         }
 

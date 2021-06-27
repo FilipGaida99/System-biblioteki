@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 
 namespace Biblioteka
@@ -17,10 +18,18 @@ namespace Biblioteka
                 string penalties = "";
                 foreach(var lend in reader.Wypożyczenie)
                 {
-                    if(!lend.Ended && lend.Przewidywany_zwrot < now && !lend.Kara.All(p => p.Data_amnestii.HasValue))
+                    if(!lend.Ended && lend.Przewidywany_zwrot < now && (lend.Kara.Count == 0 || lend.Kara.All(p => p.Data_amnestii.HasValue)))
                     {
-                        lend.Kara.Add(new Kara { Data_nałożenia = now });
-                        penalties += $"•Książka {lend.Egzemplarz.Książka.Tytuł}\n";
+                        if (lend.Egzemplarz.Egzemplarz_elektroniczny != null)
+                        {
+                            lend.Data_zwrotu = now;
+                            db.Entry(lend).State = EntityState.Modified;
+                        }
+                        else
+                        {
+                            lend.Kara.Add(new Kara { Data_nałożenia = now });
+                            penalties += $"•Książka {lend.Egzemplarz.Książka.Tytuł}\n";
+                        }
                     }
                 }
 
