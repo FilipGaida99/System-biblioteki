@@ -18,7 +18,7 @@ namespace Biblioteka
         /// <summary>
         /// Lista wypożyczeń użytkownika
         /// </summary>
-        private List<Wypożyczenie> userCheckouts;
+        protected List<Wypożyczenie> userCheckouts;
 
         /// <summary>
         /// ID czytelnika
@@ -103,22 +103,26 @@ namespace Biblioteka
             foreach (var checkout in userCheckouts)
             {
                 var returnDate = checkout.Data_zwrotu;
-                string returnDateInString;
-                returnDateInString = $"{returnDate:g}";
+                string returnDateInString = $"{returnDate:g}";
                 if (returnDate == null)
                 {
-                    returnDateInString = "Wypożyczona";
+                    var lastExtension = checkout.Prolongata.LastOrDefault();
+                    if (lastExtension != null && lastExtension.Status == null)
+                        returnDateInString = "Oczekująca prolongata";
+                    else
+                        returnDateInString = "Wypożyczona";
                 }
+                
                 string copyInfo = checkout.Egzemplarz.Nr_inwentarza.ToString();
                 if(checkout.LendedElectronicCopy)
                 {
                     copyInfo += " (E)";
                 }
-                
-                DateTime excpectedReturnDate = (DateTime)checkout.Data_wypożyczenia;
+
+                DateTime excpectedReturnDate = checkout.Przewidywany_zwrot;
                 var daysToReturn = checkout.Egzemplarz.Książka.Maksymalny_okres_wypożyczenia;
                 excpectedReturnDate = excpectedReturnDate.AddDays((double)daysToReturn);
-                
+
                 string[] row = { checkout.Egzemplarz.Książka.Tytuł,
                                 $"{checkout.Data_wypożyczenia:g}",
                                 $"{excpectedReturnDate:g}",
@@ -201,11 +205,11 @@ namespace Biblioteka
                         var query = db.Egzemplarz_elektroniczny.Where(elCopy => elCopy.Nr_inwentarza == copyNumberInLong);
                         var electronicCopy = query.FirstOrDefault();
                         System.Diagnostics.Process.Start($"{electronicCopy.Odnośnik}");
-                        
+
                     }
                 }
             }
         }
-        
+
     }
 }

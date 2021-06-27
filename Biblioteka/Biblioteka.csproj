@@ -254,6 +254,12 @@
     <Compile Include="ReadMessageForm.Designer.cs">
       <DependentUpon>ReadMessageForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserCheckoutsViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserCheckoutsViewForm.Designer.cs">
+      <DependentUpon>UserCheckoutsViewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WriteMessageForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -418,6 +424,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportsForm.resx">
       <DependentUpon>ReportsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserCheckoutsViewForm.resx">
+      <DependentUpon>UserCheckoutsViewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WriteMessageForm.resx">
       <DependentUpon>WriteMessageForm.cs</DependentUpon>

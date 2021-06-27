@@ -110,10 +110,10 @@ namespace Biblioteka
                     if (extensionToAccept != null)
                     {
                         extensionToAccept.Status = 1;
-                        Wypożyczenie wypozyczenie = extensionToAccept.Wypożyczenie;
+                        Wypożyczenie checkout = extensionToAccept.Wypożyczenie;
                         extensionToAccept.Data_prolongaty =
-                            wypozyczenie.Przewidywany_zwrot.AddDays(
-                                wypozyczenie.Egzemplarz.Książka.Maksymalny_okres_wypożyczenia);
+                            checkout.Przewidywany_zwrot.AddDays(
+                                checkout.Egzemplarz.Książka.Maksymalny_okres_wypożyczenia);
                     }
                     extensionList.Items.RemoveAt(extensionIndex);
                     extensions.RemoveAt(extensionIndex);
