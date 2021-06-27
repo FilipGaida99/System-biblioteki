@@ -38,7 +38,8 @@ namespace Biblioteka
                 using (var db = new BibliotekaDB())
                 {
                     //TO DO: Po zalogowaniu usunąć i wpisać zalogowanego użytkownika
-                    var user = db.Czytelnik.Find(10003);
+                    var user = UserSingleton.Instance.GetLoggedUser() as Czytelnik;
+                    user = db.Czytelnik.Find(user.CzytelnikID);
 
                     //sprawdź czy nie ma rezerwacji tej książki na wcześniejszy termin // sprawdzenie ile egzemplarzy wolnych poinno być więc wcześniej, żeby mieć ich liczbę
                     var resQuery = db.Rezerwacje.AsNoTracking().Where(res => res.KsiążkaID == reservation.KsiążkaID).OrderBy(res => res.Data_rezerwacji);

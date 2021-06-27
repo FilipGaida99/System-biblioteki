@@ -279,14 +279,18 @@ namespace Biblioteka
             using(var db = new BibliotekaDB())
             {
                 var user = UserSingleton.Instance.GetLoggedUser() as Czytelnik;
+                user = db.Czytelnik.Find(user.CzytelnikID);
 
                 var query = db.Egzemplarz.Where(copy => copy.KsiążkaID == book.KsiążkaID);
                 query = query.Where(copy => copy.Egzemplarz_elektroniczny != null);
                 var electronicCopy = query.FirstOrDefault();
+                var electronicCopyNumber = electronicCopy.Nr_inwentarza;
 
-                var usersLendQuery = db.Wypożyczenie.Where(lend => lend.LendedElectronicCopy && lend.CzytelnikID == user.CzytelnikID);
+                var usersLendQuery = db.Wypożyczenie.Where(lend => lend.Egzemplarz.Egzemplarz_elektroniczny != null 
+                                                                    && lend.CzytelnikID == user.CzytelnikID 
+                                                                    && lend.Egzemplarz.KsiążkaID == electronicCopy.KsiążkaID);
              
-                if(usersLendQuery.Any(lend => lend.Nr_inwentarza == electronicCopy.Nr_inwentarza))
+                if(usersLendQuery.Count() == 1)
                 {
                     MessageBox.Show("Masz już aktualnie wypożyczony egzemplarz elektroniczny tej książki. Sprawdź wypożyczenia.",
                         "Uwaga",

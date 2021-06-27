@@ -71,8 +71,9 @@ namespace Biblioteka
                         reservation.Książka = book;
                         reservation.KsiążkaID = book.KsiążkaID;
                         reservation.Data_rezerwacji = currentDate;
-                        // TO DO: Uzupełnić po zrobieniu użytkowników bo inaczej nie będzie dodawać
-                        var user = db.Czytelnik.Find(10003);
+                        
+                        var user = UserSingleton.Instance.GetLoggedUser() as Czytelnik;
+                        user = db.Czytelnik.Find(user.CzytelnikID);
 
                         reservation.CzytelnikID = user.CzytelnikID;
                         reservation.Czytelnik = user;

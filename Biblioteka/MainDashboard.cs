@@ -32,12 +32,8 @@ namespace Biblioteka
         private void rentButton_Click(object sender, EventArgs e)
         {
             //TO DO: skasować to poniżej i wstawić id czytelnika
-            Czytelnik user;
-            using(var db = new BibliotekaDB())
-            {
-                user = db.Czytelnik.FirstOrDefault();
-            }
-            UserCheckoutsViewForm userCheckouts = new UserCheckoutsViewForm(user.CzytelnikID /*logged user ID*/);
+            Czytelnik user = UserSingleton.Instance.GetLoggedUser() as Czytelnik;
+            UserCheckoutsViewForm userCheckouts = new UserCheckoutsViewForm(user.CzytelnikID);
             userCheckouts.Show();
         }
 
