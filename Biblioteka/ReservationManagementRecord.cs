@@ -71,7 +71,6 @@ namespace Biblioteka
                     }
                     else if (copiesNotInUse.Count >= resCount)
                     {
-                        //TO DO: Uzupełnić po zalogowaniu
                         db.Wypożyczenie.Add(new Wypożyczenie
                         {
                             Data_wypożyczenia = DateTime.Now,
@@ -89,6 +88,10 @@ namespace Biblioteka
                         reservations.Remove(reservation);
                         db.SaveChanges();
                         onClick.Invoke();
+                        MessageBox.Show($"Pomyślnie wypożyczono \"{book.Tytuł}\" o numerze inwentarza: \"{copiesNotInUse.ElementAt(0).Nr_inwentarza}\"!",
+                                        "Informacja",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Information);
                     }
                     else
                     {

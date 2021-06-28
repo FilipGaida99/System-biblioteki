@@ -30,7 +30,6 @@ namespace Biblioteka
         /// </summary>
         public Action onClick;
 
-
         /// <summary>
         /// Konstruktor trojargumentowy 
         /// </summary>
