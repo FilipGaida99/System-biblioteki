@@ -69,7 +69,7 @@ namespace Biblioteka
                         MessageBox.Show("Ta książka nie ma już wolnych egzemplarzy!\nWszystie są wypożyczone!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    else if (copiesNotInUse.Count > resCount)
+                    else if (copiesNotInUse.Count >= resCount)
                     {
                         //TO DO: Uzupełnić po zalogowaniu
                         db.Wypożyczenie.Add(new Wypożyczenie

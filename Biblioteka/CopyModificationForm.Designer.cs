@@ -29,6 +29,7 @@ namespace Biblioteka
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label3;
             this.isElectronicCheckBox = new System.Windows.Forms.CheckBox();
@@ -39,6 +40,7 @@ namespace Biblioteka
             this.copyInventoryNumber = new System.Windows.Forms.NumericUpDown();
             this.printDatePicker = new System.Windows.Forms.DateTimePicker();
             this.identityInventoryButton = new System.Windows.Forms.Button();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             label1 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.copyInventoryNumber)).BeginInit();
@@ -148,6 +150,7 @@ namespace Biblioteka
             this.identityInventoryButton.Size = new System.Drawing.Size(18, 26);
             this.identityInventoryButton.TabIndex = 2;
             this.identityInventoryButton.Text = "★";
+            this.toolTip.SetToolTip(this.identityInventoryButton, "Wygenerowanie  nieużywanego numeru inwentarza");
             this.identityInventoryButton.UseVisualStyleBackColor = true;
             this.identityInventoryButton.Click += new System.EventHandler(this.identityInventoryButton_Click);
             // 
@@ -184,5 +187,6 @@ namespace Biblioteka
         private System.Windows.Forms.NumericUpDown copyInventoryNumber;
         private System.Windows.Forms.DateTimePicker printDatePicker;
         private System.Windows.Forms.Button identityInventoryButton;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

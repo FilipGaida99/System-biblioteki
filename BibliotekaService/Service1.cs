@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Biblioteka;
 using System.Timers;
+using System.Data.Entity;
 
 namespace BibliotekaService
 {
@@ -38,9 +39,13 @@ namespace BibliotekaService
         /// </summary>
         const int databaseError = 3;
         /// <summary>
-        /// Identyfikator w dzienniku zdarzeń dla błędu w obsłudzę mail.
+        /// Identyfikator w dzienniku zdarzeń dla błędu w obsłudze mail.
         /// </summary>
         const int emailError = 4;
+        /// <summary>
+        /// Identyfikator w dzienniku zdarzeń dla informacji o obsłudze mail.
+        /// </summary>
+        const int emailInfo = 5;
         /// <summary>
         /// Obiekt rozsyłający maile.
         /// </summary>
@@ -122,28 +127,37 @@ namespace BibliotekaService
             {
                 Kara.Refresh(db);
 
-                var readers = db.Czytelnik.Where(r => r.Adres_email.Length>0 && r.Czytelnik_Wiadomość.Any(m => !m.Przeczytana && !m.Nadawca)).ToList();
+                var readers = db.Czytelnik.Where(r => r.Adres_email.Length>0 && r.Czytelnik_Wiadomość.Any(m => !m.Stan.HasValue && !m.Nadawca)).ToList();
                 foreach(var reader in readers)
                 {
                     string emailBody = "Masz nieprzeczytane wiadomości w swojej bibliotece:\n";
-                    var unreadedMessagesToReader = reader.Czytelnik_Wiadomość.Where(m => !m.Przeczytana && !m.Nadawca).OrderBy(m => m.Wiadomość.Data_wysłania).ToList();
+                    var unreadedMessagesToReader = reader.Czytelnik_Wiadomość.Where(m => !m.Stan.HasValue && !m.Nadawca).OrderBy(m => m.Wiadomość.Data_wysłania).ToList();
                     foreach(var messageToReader in unreadedMessagesToReader)
                     {
                         var message = messageToReader.Wiadomość;
                         var librarian = message.Bibliotekarz_Wiadomość.FirstOrDefault().Bibliotekarz;
                         emailBody += $"{librarian.Imię} {librarian.Nazwisko} {message.Data_wysłania}:\n";
                         emailBody += $"{message.Tytuł}\n {message.Treść} \n\n";
-                        messageToReader.Przeczytana = true;
                     }
 
                     try
                     {
-                        sender.SendMail(reader.Adres_email, $"Wiadomości w bibliotece {DateTime.Now}", emailBody);
+                        if(sender.SendMail(reader.Adres_email, $"Wiadomości w bibliotece {DateTime.Now}", emailBody))
+                        {
+                            eventLog.WriteEntry($"Wysłano maila do {reader.Adres_email} (Identyfikator czytelnika: {reader.CzytelnikID})\n{emailBody}",
+                            EventLogEntryType.Information, emailInfo);
+                            foreach (var messageToReader in unreadedMessagesToReader)
+                            {
+                                messageToReader.Stan = 1;
+                                db.Entry(messageToReader).State = EntityState.Modified;
+                            }
+                            db.SaveChanges();
+                        }
                     }
                     catch(Exception e)
                     {
                         eventLog.WriteEntry($"Nie można wysłać maila do {reader.Adres_email} (Identyfikator czytelnika: {reader.CzytelnikID})\n{e.Message}", 
-                            EventLogEntryType.Information, emailError);
+                            EventLogEntryType.Error, emailError);
                     }
                 }
             }
