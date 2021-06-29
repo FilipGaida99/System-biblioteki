@@ -50,18 +50,6 @@ namespace Biblioteka
         /// <returns>True, gdy udało się wprowadzić wszystkie dane.</returns>
         private bool confirm(BibliotekaDB db)
         {
-            bool newExhibition;
-            if (managedExhibition != null)
-            {
-                managedExhibition = db.Wystawa.Find(managedExhibition.WystawaID);
-                newExhibition = false;
-            }
-            else
-            {
-                managedExhibition = new Wystawa();
-                newExhibition = true;
-            }
-
             string trimmedName = nameText.Text.Trim();
             if (trimmedName == "")
                 return false;
@@ -73,6 +61,18 @@ namespace Biblioteka
             DateTime end = endDatePicker.Value;
             if (start > end)
                 return false;
+
+            bool newExhibition;
+            if (managedExhibition == null)
+            {
+                managedExhibition = new Wystawa();
+                newExhibition = true;
+            }
+            else
+            {
+                managedExhibition = db.Wystawa.Find(managedExhibition.WystawaID);
+                newExhibition = false;
+            }
 
             managedExhibition.Nazwa = trimmedName;
             managedExhibition.Opis = descriptionText.Text.Trim();
