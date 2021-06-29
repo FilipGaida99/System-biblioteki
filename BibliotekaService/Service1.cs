@@ -21,7 +21,7 @@ namespace BibliotekaService
         /// <summary>
         /// Ilość godzin pomiędzy wywołaniami odświeżenia.
         /// </summary>
-        const double hoursInterval = 4;
+        const double hoursInterval = 24;
         /// <summary>
         /// Identyfikator w dzienniku zdarzeń dla operacji start i stop.
         /// </summary>
@@ -146,11 +146,6 @@ namespace BibliotekaService
                         {
                             eventLog.WriteEntry($"Wysłano maila do {reader.Adres_email} (Identyfikator czytelnika: {reader.CzytelnikID})\n{emailBody}",
                             EventLogEntryType.Information, emailInfo);
-                            foreach (var messageToReader in unreadedMessagesToReader)
-                            {
-                                messageToReader.Stan = 1;
-                                db.Entry(messageToReader).State = EntityState.Modified;
-                            }
                             db.SaveChanges();
                         }
                     }
