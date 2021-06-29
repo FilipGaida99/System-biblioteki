@@ -65,6 +65,9 @@ namespace Biblioteka
             string trimmedName = nameText.Text.Trim();
             if (trimmedName == "")
                 return false;
+            const int MAX_NAME_LENGTH = 50;
+            if (trimmedName.Length > MAX_NAME_LENGTH)
+                return false;
 
             DateTime start = startDatePicker.Value;
             DateTime end = endDatePicker.Value;
@@ -78,6 +81,7 @@ namespace Biblioteka
             UserSingleton user = UserSingleton.Instance;
             user.CreateLibrarianUnsafeMethodDeleteLater();
             Bibliotekarz librarian = (Bibliotekarz)user.GetLoggedUser();
+            librarian = db.Bibliotekarz.Find(librarian.BibliotekarzID);
             managedExhibition.Bibliotekarz = librarian;
             managedExhibition.BibliotekarzID = librarian.BibliotekarzID;
 
