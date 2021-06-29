@@ -94,7 +94,7 @@ namespace Biblioteka
             modelBuilder.Entity<Bibliotekarz>()
                 .HasMany(e => e.Wystawa)
                 .WithRequired(e => e.Bibliotekarz)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<Czytelnik>()
                 .Property(e => e.Adres_email)
@@ -117,17 +117,17 @@ namespace Biblioteka
             modelBuilder.Entity<Wydawnictwo>()
                 .HasMany(e => e.Książka)
                 .WithRequired(e => e.Wydawnictwo)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<Wypożyczenie>()
                 .HasMany(e => e.Kara)
                 .WithRequired(e => e.Wypożyczenie)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<Wypożyczenie>()
                 .HasMany(e => e.Prolongata)
                 .WithRequired(e => e.Wypożyczenie)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete();
         }
     }
 }
