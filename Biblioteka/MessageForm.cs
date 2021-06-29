@@ -36,6 +36,8 @@ namespace Biblioteka
         /// <param name="e">Argumenty.</param>
         private void MessageForm_Load(object sender, EventArgs e)
         {
+            msgListFlowPanel.VerticalScroll.Visible = true;
+            msgListFlowPanel.AutoScroll = true;
             LoadRecievedMessages();
         }
 
@@ -80,10 +82,11 @@ namespace Biblioteka
                             .FirstOrDefault()
                             .Wiadomość;
                     }
-                    if (msgListFlowPanel.Controls.Count != 0 && msg != (Wiadomość)msgListFlowPanel.Controls[0].Tag) //Jeżeli wiadomość została wysłana to znajduje się na pierwszym miejscu
+                    if (msgListFlowPanel.Controls.Count != 0 && msg.WiadomośćID != ((Wiadomość)msgListFlowPanel.Controls[0].Tag).WiadomośćID) //Jeżeli wiadomość została wysłana to znajduje się na pierwszym miejscu
                     {
                         CustomMessageButton msgButton = new CustomMessageButton(DeleteButton_Click, msg);
                         msgButton.Tag = msg;
+                        msgButton.Click += MsgButton_Click;
                         msgListFlowPanel.SuspendLayout();
                         msgListFlowPanel.Controls.Add(msgButton);
                         msgListFlowPanel.Controls.SetChildIndex(msgButton, 0);
@@ -102,7 +105,7 @@ namespace Biblioteka
         {
             //if (isSentMsgView)
             //    return;
-            isSentMsgView = true;
+            isSentMsgView = false;
             LoadRecievedMessages();
         }
 

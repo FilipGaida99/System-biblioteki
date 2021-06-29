@@ -55,7 +55,7 @@ namespace Biblioteka
             this.msgListFlowPanel.Location = new System.Drawing.Point(157, 5);
             this.msgListFlowPanel.Margin = new System.Windows.Forms.Padding(0);
             this.msgListFlowPanel.Name = "msgListFlowPanel";
-            this.msgListFlowPanel.Size = new System.Drawing.Size(523, 418);
+            this.msgListFlowPanel.Size = new System.Drawing.Size(524, 418);
             this.msgListFlowPanel.TabIndex = 4;
             // 
             // writeMsgButton
