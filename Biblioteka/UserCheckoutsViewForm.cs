@@ -41,6 +41,7 @@ namespace Biblioteka
                 if (result == DialogResult.No) return;
 
                 Extensions(selected);
+                RefreshCheckoutList();
             }
         }
 
