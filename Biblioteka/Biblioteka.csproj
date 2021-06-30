@@ -83,11 +83,23 @@
       <DependentUpon>AddresseeSelectionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AppWaitCursor.cs" />
-    <Compile Include="AuthorForm.cs">
+    <Compile Include="AuthorAddForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AuthorForm.Designer.cs">
-      <DependentUpon>AuthorForm.cs</DependentUpon>
+    <Compile Include="AuthorAddForm.Designer.cs">
+      <DependentUpon>AuthorAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AuthorManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuthorManagementForm.Designer.cs">
+      <DependentUpon>AuthorManagementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AuthorPickForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuthorPickForm.Designer.cs">
+      <DependentUpon>AuthorPickForm.cs</DependentUpon>
     </Compile>
     <Compile Include="BookAddForm.cs">
       <SubType>Form</SubType>
@@ -342,8 +354,14 @@
     <Compile Include="ReadersManagmentForm.Designer.cs">
       <DependentUpon>ReadersManagmentForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AuthorForm.resx">
-      <DependentUpon>AuthorForm.cs</DependentUpon>
+    <EmbeddedResource Include="AuthorAddForm.resx">
+      <DependentUpon>AuthorAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuthorManagementForm.resx">
+      <DependentUpon>AuthorManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuthorPickForm.resx">
+      <DependentUpon>AuthorPickForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BookAddForm.resx">
       <DependentUpon>BookAddForm.cs</DependentUpon>

@@ -37,9 +37,9 @@ namespace Biblioteka
             this.bookList = new System.Windows.Forms.ListBox();
             this.addCopy = new System.Windows.Forms.Button();
             this.copyList = new System.Windows.Forms.ListBox();
-            this.bookSearch = new Biblioteka.BookSearch();
             this.publishersButton = new System.Windows.Forms.Button();
             this.authorsButton = new System.Windows.Forms.Button();
+            this.bookSearch = new Biblioteka.BookSearch();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -129,18 +129,12 @@ namespace Biblioteka
             this.copyList.Size = new System.Drawing.Size(264, 184);
             this.copyList.TabIndex = 6;
             // 
-            // bookSearch
-            // 
-            this.bookSearch.Location = new System.Drawing.Point(29, 12);
-            this.bookSearch.Name = "bookSearch";
-            this.bookSearch.Size = new System.Drawing.Size(638, 238);
-            this.bookSearch.TabIndex = 1;
-            // 
             // publishersButton
             // 
-            this.publishersButton.Location = new System.Drawing.Point(673, 12);
+            this.publishersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.publishersButton.Location = new System.Drawing.Point(15, 517);
             this.publishersButton.Name = "publishersButton";
-            this.publishersButton.Size = new System.Drawing.Size(133, 67);
+            this.publishersButton.Size = new System.Drawing.Size(264, 42);
             this.publishersButton.TabIndex = 10;
             this.publishersButton.Text = "Wydawnictwa";
             this.publishersButton.UseVisualStyleBackColor = true;
@@ -148,18 +142,27 @@ namespace Biblioteka
             // 
             // authorsButton
             // 
-            this.authorsButton.Location = new System.Drawing.Point(673, 85);
+            this.authorsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.authorsButton.Location = new System.Drawing.Point(403, 517);
             this.authorsButton.Name = "authorsButton";
-            this.authorsButton.Size = new System.Drawing.Size(133, 67);
+            this.authorsButton.Size = new System.Drawing.Size(264, 42);
             this.authorsButton.TabIndex = 11;
             this.authorsButton.Text = "Autorzy";
             this.authorsButton.UseVisualStyleBackColor = true;
+            this.authorsButton.Click += new System.EventHandler(this.authorsButton_Click);
+            // 
+            // bookSearch
+            // 
+            this.bookSearch.Location = new System.Drawing.Point(29, 12);
+            this.bookSearch.Name = "bookSearch";
+            this.bookSearch.Size = new System.Drawing.Size(638, 238);
+            this.bookSearch.TabIndex = 1;
             // 
             // BookManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(818, 520);
+            this.ClientSize = new System.Drawing.Size(680, 591);
             this.Controls.Add(this.authorsButton);
             this.Controls.Add(this.publishersButton);
             this.Controls.Add(label2);

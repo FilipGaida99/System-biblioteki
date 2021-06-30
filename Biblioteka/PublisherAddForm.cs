@@ -55,12 +55,20 @@ namespace Biblioteka
         {
             using (new AppWaitCursor(this, sender))
             {
+                if (publisherNameText.Text.Trim() == "")
+                {
+                    MessageBox.Show("Nazwa jest pusta.\nJeżeli nazwa nie jest pusta wybierz je z listy w poprzednim formularzu",
+                        "Błędna nazwa",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 using (var db = new BibliotekaDB())
                 {
-                    if (publisherNameText.Text.Trim() == "" || db.Wydawnictwo.Any(p => p.Nazwa == publisherNameText.Text))
+                    if(db.Wydawnictwo.Any(p => p.Nazwa == publisherNameText.Text))
                     {
-                        MessageBox.Show("Nazwa jest pusta lub wydawnictwo już istnieje.\nJeżeli nazwa nie jes pusta wybierz je z listy w poprzednim formularzu",
-                            "Błędna nazwa",
+                        MessageBox.Show("Nazwa jest używana. Wybierz wydawnictwo o podanej nazwie z listy w poprzednim formularzu",
+                            "Używana nazwa",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
@@ -82,7 +90,7 @@ namespace Biblioteka
         }
 
         /// <summary>
-        /// Anulowanie zmian
+        /// Anulowanie zmian.
         /// </summary>
         /// <param name="sender">Kontrolka.</param>
         /// <param name="e">Argumenty.</param>

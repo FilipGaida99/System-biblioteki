@@ -12,38 +12,38 @@ using System.Data.Entity;
 namespace Biblioteka
 {
     /// <summary>
-    /// Formularz zarządzania wydawnictwami.
+    /// Formularz zarządzania autorami.
     /// </summary>
-    public partial class PublisherManagementForm : Form
+    public partial class AuthorManagementForm : Form
     {
         /// <summary>
-        /// Lista wydawnictw.
+        /// Lista autorów.
         /// </summary>
-        List<Wydawnictwo> publishers;
+        List<Autor> authors;
         /// <summary>
-        /// Przefiltrowana przez użytkownika lista wydawnictw.
+        /// Przefiltrowana przez użytkownika lista autorów.
         /// </summary>
-        IEnumerable<Wydawnictwo> searchedPublishers;
+        IEnumerable<Autor> searchedAuthors;
 
         /// <summary>
         /// Konstruktor.
         /// </summary>
-        public PublisherManagementForm()
+        public AuthorManagementForm()
         {
             InitializeComponent();
         }
 
         /// <summary>
-        /// Uzyskanie wydawnictwa na podstawie wyboru z listy.
+        /// Uzyskanie autora na podstawie wyboru z listy.
         /// </summary>
-        /// <returns>Wybrane wydawnictwo.</returns>
-        protected Wydawnictwo GetSelectedPublisher()
+        /// <returns>Wybrany autor.</returns>
+        protected Autor GetSelectedAuthor()
         {
-            var index = publishersListBox.SelectedIndex;
-            if (index >= 0 && index < searchedPublishers.Count())
+            var index = authorsListBox.SelectedIndex;
+            if (index >= 0 && index < searchedAuthors.Count())
             {
-                var publisher = searchedPublishers.ElementAt(index);
-                return publisher;
+                var author = searchedAuthors.ElementAt(index);
+                return author;
             }
             return null;
         }
@@ -53,7 +53,7 @@ namespace Biblioteka
         /// </summary>
         /// <param name="sender">Kontrolka.</param>
         /// <param name="e">Argumenty.</param>
-        private void PublisherManagementForm_Load(object sender, EventArgs e)
+        private void AuthorManagementForm_Load(object sender, EventArgs e)
         {
             if (DesignMode)
             {
@@ -63,15 +63,15 @@ namespace Biblioteka
             {
                 using (var db = new BibliotekaDB())
                 {
-                    LoadPublishers(db);
-                    publishers.Sort((a, b) => a.Nazwa.CompareTo(b.Nazwa));
+                    LoadAuthors(db);
+                    authors.Sort((a, b) => a.Nazwisko.CompareTo(b.Nazwisko));
                     UpdateList();
                 }
             }
         }
 
         /// <summary>
-        /// Przejście do dodawania nowego wydawnictwa.
+        /// Przejście do dodawania nowego autora.
         /// </summary>
         /// <param name="sender">Kontrolka.</param>
         /// <param name="e">Argumenty.</param>
@@ -79,13 +79,13 @@ namespace Biblioteka
         {
             using (new AppWaitCursor(this, sender))
             {
-                PublisherAddForm form = new PublisherAddForm();
+                AuthorAddForm form = new AuthorAddForm();
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
-                    if (form.choosedPublisher != null)
+                    if (form.choosedAuthor != null)
                     {
-                        publishers.Add(form.choosedPublisher);
-                        publishers.Sort((a, b) => a.Nazwa.CompareTo(b.Nazwa));
+                        authors.Add(form.choosedAuthor);
+                        authors.Sort(CompareAuthors);
                         UpdateList();
                     }
                 }
@@ -93,7 +93,7 @@ namespace Biblioteka
         }
 
         /// <summary>
-        /// Zmiana wyszukiwanej frazy w nazwach wydawnictwa.
+        /// Zmiana wyszukiwanej frazy w imionach i nazwiskach autorów.
         /// </summary>
         /// <param name="sender">Kontrolka.</param>
         /// <param name="e">Argumenty.</param>
@@ -103,7 +103,7 @@ namespace Biblioteka
         }
 
         /// <summary>
-        /// Zmiana warunków szukania wydawnictw wszystkich i tylko nieużywanych.
+        /// Zmiana warunków szukania autorów wszystkich i tylko nieużywanych.
         /// </summary>
         /// <param name="sender">Kontrolka.</param>
         /// <param name="e">Argumenty.</param>
@@ -113,7 +113,7 @@ namespace Biblioteka
         }
 
         /// <summary>
-        /// Przejście do modyfikacji wydawnictwa.
+        /// Przejście do modyfikacji autora.
         /// </summary>
         /// <param name="sender">Kontrolka.</param>
         /// <param name="e">Argumenty.</param>
@@ -121,26 +121,25 @@ namespace Biblioteka
         {
             using (new AppWaitCursor(this, sender))
             {
-                var publisher = GetSelectedPublisher();
-                if (publisher != null)
+                var author = GetSelectedAuthor();
+                if (author != null)
                 {
-                    PublisherAddForm form = new PublisherAddForm(publisher);
+                    AuthorAddForm form = new AuthorAddForm(author);
                     if (form.ShowDialog(this) == DialogResult.OK)
                     {
                         using (var db = new BibliotekaDB())
                         {
-                            LoadPublishers(db);
-                            publishers.Sort((a, b) => a.Nazwa.CompareTo(b.Nazwa));
+                            LoadAuthors(db);
+                            authors.Sort(CompareAuthors);
                             UpdateList();
                         }
                     }
                 }
-
             }
         }
 
         /// <summary>
-        /// Usunięcie wydawnictwa. Tylko nieużywane zostaną usunięte poprawnie.
+        /// Usunięcie autora. Tylko nieużywani zostaną usunięci poprawnie.
         /// </summary>
         /// <param name="sender">Kontrolka.</param>
         /// <param name="e">Argumenty.</param>
@@ -148,29 +147,29 @@ namespace Biblioteka
         {
             using (new AppWaitCursor(this, sender))
             {
-                var publisher = GetSelectedPublisher();
-                if (publisher != null)
+                var author = GetSelectedAuthor();
+                if (author != null)
                 {
                     using (var db = new BibliotekaDB())
                     {
-                        publisher = db.Wydawnictwo.Find(publisher.WydawnictwoID);
-                        if (publisher.Książka.Count > 0)
+                        author = db.Autor.Find(author.AutorID);
+                        if (author.Książka.Count > 0)
                         {
                             string books = "";
-                            foreach (var book in publisher.Książka)
+                            foreach (var book in author.Książka)
                             {
                                 books += $"•{book.Tytuł} (ISBN: {book.ISBN})\n";
                             }
-                            DialogResult result = MessageBox.Show($"Nie można usunąć \"{publisher.Nazwa}\". Jest ono przypisane do {publisher.Książka.Count} książek:\n" +
+                            DialogResult result = MessageBox.Show($"Nie można usunąć autora/autorki: {author.Imię} {author.Nazwisko}. Jest on/ona przypisany do {author.Książka.Count} książek:\n" +
                                 books,
-                                "Używane wydanictwo",
+                                "Używany autor",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
-                        db.Wydawnictwo.Remove(publisher);
+                        db.Autor.Remove(author);
                         db.SaveChanges();
-                        LoadPublishers(db);
-                        publishers.Sort((a, b) => a.Nazwa.CompareTo(b.Nazwa));
+                        LoadAuthors(db);
+                        authors.Sort(CompareAuthors);
                         UpdateList();
                     }
                 }
@@ -178,32 +177,48 @@ namespace Biblioteka
         }
 
         /// <summary>
-        /// Aktualizacja kontrolki listy na podstawie listy wydawnictw i parametrów wyszukiwania.
+        /// Aktualizacja kontrolki listy na podstawie listy autorów i parametrów wyszukiwania.
         /// </summary>
         private void UpdateList()
         {
-            searchedPublishers = publishers.Where(p => p.Nazwa.Contains(search.Text) && (!unusedCheckBox.Checked || p.Książka.Count <= 0));
-            publishersListBox.BeginUpdate();
-            publishersListBox.Items.Clear();
-            foreach (var publisher in searchedPublishers)
+            searchedAuthors = authors.Where(a => (a.Imię + " " + a.Nazwisko).Contains(search.Text) && (!unusedCheckBox.Checked || a.Książka.Count <= 0));
+            authorsListBox.BeginUpdate();
+            authorsListBox.Items.Clear();
+            foreach (var author in searchedAuthors)
             {
-                string item = publisher.Nazwa;
-                if (publisher.Książka.Count <= 0)
+                string item = $"{author.Imię} {author.Nazwisko}";
+                if (author.Książka.Count <= 0)
                 {
-                    item += " (Nieużywane)";
+                    item += " (Nieużywany)";
                 }
-                publishersListBox.Items.Add(item);
+                authorsListBox.Items.Add(item);
             }
-            publishersListBox.EndUpdate();
+            authorsListBox.EndUpdate();
         }
 
         /// <summary>
-        /// Pobranie wydawnictw z bazy danych.
+        /// Pobranie autorów z bazy danych.
         /// </summary>
         /// <param name="db">Kontekst bazy danych.</param>
-        private void LoadPublishers(BibliotekaDB db)
+        private void LoadAuthors(BibliotekaDB db)
         {
-            publishers = db.Wydawnictwo.Include(p => p.Książka).ToList();
+            authors = db.Autor.Include(p => p.Książka).ToList();
+        }
+
+        /// <summary>
+        /// Porównywanie przy sortowaniu dwóch autorów.
+        /// </summary>
+        /// <param name="a">Pierwszy autor.</param>
+        /// <param name="b">Drugi autor.</param>
+        /// <returns>0, gdy równi. Większe od 0, gdy pierwszy powinien być wcześniej na liście.</returns>
+        private int CompareAuthors(Autor a, Autor b)
+        {
+            var result = a.Nazwisko.CompareTo(b.Nazwisko);
+            if (result == 0)
+            {
+                return a.Imię.CompareTo(b.Imię);
+            }
+            return result;
         }
     }
 }

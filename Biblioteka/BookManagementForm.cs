@@ -279,11 +279,31 @@ namespace Biblioteka
             copyList.SelectedIndex = -1;
         }
 
+        /// <summary>
+        /// Przejście do zarządzania wydawnictwami.
+        /// </summary>
+        /// <param name="sender">Kontrolka.</param>
+        /// <param name="e">Argumenty.</param>
         private void publishersButton_Click(object sender, EventArgs e)
         {
-            PublisherManagementForm form = new PublisherManagementForm();
-            if (form.ShowDialog(this) == DialogResult.OK)
+            using (new AppWaitCursor(this, sender))
             {
+                PublisherManagementForm form = new PublisherManagementForm();
+                form.ShowDialog(this);
+            }
+        }
+
+        /// <summary>
+        /// Przejście do zarządzania wydawnictwami
+        /// </summary>
+        /// <param name="sender">Kontrolka.</param>
+        /// <param name="e">Argumenty.</param>
+        private void authorsButton_Click(object sender, EventArgs e)
+        {
+            using (new AppWaitCursor(this, sender))
+            {
+                AuthorManagementForm form = new AuthorManagementForm();
+                form.ShowDialog(this);
             }
         }
     }

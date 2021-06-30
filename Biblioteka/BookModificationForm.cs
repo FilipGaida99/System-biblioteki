@@ -226,10 +226,10 @@ namespace Biblioteka
         {
             using (new AppWaitCursor(this, sender))
             {
-                AuthorForm form = new AuthorForm();
+                AuthorPickForm form = new AuthorPickForm();
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
-                    AddAutor(form.choosedAutor);
+                    AddAutor(form.author);
                 }
             }
         }
