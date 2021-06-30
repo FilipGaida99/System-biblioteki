@@ -43,6 +43,7 @@ namespace Biblioteka
             this.searchButton = new System.Windows.Forms.Button();
             this.isbnText = new System.Windows.Forms.TextBox();
             this.publisherPicker = new Biblioteka.PublisherPicker();
+            this.onlyElectronicCheckBox = new System.Windows.Forms.CheckBox();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -167,8 +168,8 @@ namespace Biblioteka
             this.searchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.searchButton.Location = new System.Drawing.Point(428, 6);
             this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(138, 181);
-            this.searchButton.TabIndex = 9;
+            this.searchButton.Size = new System.Drawing.Size(138, 227);
+            this.searchButton.TabIndex = 10;
             this.searchButton.Text = "Szukaj";
             this.searchButton.UseVisualStyleBackColor = true;
             this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
@@ -189,10 +190,22 @@ namespace Biblioteka
             this.publisherPicker.Size = new System.Drawing.Size(337, 39);
             this.publisherPicker.TabIndex = 6;
             // 
+            // onlyElectronicCheckBox
+            // 
+            this.onlyElectronicCheckBox.AutoSize = true;
+            this.onlyElectronicCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.onlyElectronicCheckBox.Location = new System.Drawing.Point(116, 194);
+            this.onlyElectronicCheckBox.Name = "onlyElectronicCheckBox";
+            this.onlyElectronicCheckBox.Size = new System.Drawing.Size(162, 24);
+            this.onlyElectronicCheckBox.TabIndex = 9;
+            this.onlyElectronicCheckBox.Text = "Tylko elektroniczne";
+            this.onlyElectronicCheckBox.UseVisualStyleBackColor = true;
+            // 
             // BookSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.onlyElectronicCheckBox);
             this.Controls.Add(this.isbnText);
             this.Controls.Add(label5);
             this.Controls.Add(this.searchButton);
@@ -208,7 +221,7 @@ namespace Biblioteka
             this.Controls.Add(this.searchText);
             this.Controls.Add(label1);
             this.Name = "BookSearch";
-            this.Size = new System.Drawing.Size(569, 195);
+            this.Size = new System.Drawing.Size(569, 236);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -225,5 +238,6 @@ namespace Biblioteka
         private System.Windows.Forms.Button authorChooseButton;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.TextBox isbnText;
+        private System.Windows.Forms.CheckBox onlyElectronicCheckBox;
     }
 }

@@ -56,7 +56,10 @@ namespace WebGuest
                             //Jeżeli niezaznaczona lub data początkowa starsza od podanej.
                             (!StartDatePicker.Checked || book.Rok_wydania > startDate.Value) &&
                             //Jeżeli niezaznaczona lub data końcowa młodsza od podanej.
-                            (!EndDatePicker.Checked || book.Rok_wydania < endDate.Value));
+                            (!EndDatePicker.Checked || book.Rok_wydania < endDate.Value) &&
+                            //Jeżeli tylko elektroniczne.
+                            (!OnlyElectronicCheckBox.Checked || book.Egzemplarz.Any(copy => copy.Egzemplarz_elektroniczny != null))
+                        );
 
                     booksID = query.Select(book => book.KsiążkaID).ToList();
                 }

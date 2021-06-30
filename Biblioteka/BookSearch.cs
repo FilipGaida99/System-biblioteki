@@ -75,7 +75,9 @@ namespace Biblioteka
                         //Jeżeli niezaznaczona lub data początkowa starsza od podanej.
                         (!startDatePicker.Checked || book.Rok_wydania > startDatePicker.Value) &&
                         //Jeżeli niezaznaczona lub data końcowa młodsza od podanej.
-                        (!endDatePicker.Checked || book.Rok_wydania < endDatePicker.Value)
+                        (!endDatePicker.Checked || book.Rok_wydania < endDatePicker.Value) &&
+                        //Jeżeli tylko elektroniczne.
+                        (!onlyElectronicCheckBox.Checked || book.Egzemplarz.Any(copy => copy.Egzemplarz_elektroniczny != null))
                         );
 
                     resultBooks = query.ToList();

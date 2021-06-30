@@ -24,5 +24,7 @@
 <asp:Label runat="server" Text="Label">Autor:</asp:Label>
 <asp:TextBox ID="AuthorTextBox" runat="server" Width="178px"></asp:TextBox>
 <br />
+<asp:CheckBox ID="OnlyElectronicCheckBox" runat="server" Text="Tylko elektroniczne" TextAlign="Left" ToolTip="Wyszukane zostaną tylko książki, które mają dostępny egzemplarz elektroniczny" />
+<br />
 <asp:Button ID="SerachButton" runat="server" Text="Szukaj" Height="65px" OnClick="SerachButton_Click" Width="345px" />
 <br />
