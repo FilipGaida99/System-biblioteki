@@ -200,6 +200,34 @@ namespace Biblioteka
         }
 
         /// <summary>
+        /// Przejście do zarządzania wydawnictwami.
+        /// </summary>
+        /// <param name="sender">Kontrolka.</param>
+        /// <param name="e">Argumenty.</param>
+        private void publishersButton_Click(object sender, EventArgs e)
+        {
+            using (new AppWaitCursor(this, sender))
+            {
+                PublisherManagementForm form = new PublisherManagementForm();
+                form.ShowDialog(this);
+            }
+        }
+
+        /// <summary>
+        /// Przejście do zarządzania wydawnictwami
+        /// </summary>
+        /// <param name="sender">Kontrolka.</param>
+        /// <param name="e">Argumenty.</param>
+        private void authorsButton_Click(object sender, EventArgs e)
+        {
+            using (new AppWaitCursor(this, sender))
+            {
+                AuthorManagementForm form = new AuthorManagementForm();
+                form.ShowDialog(this);
+            }
+        }
+
+        /// <summary>
         /// Procedura usuwania egzemplarza.
         /// </summary>
         /// <param name="bookIndex">Indeks książki na liście.</param>
@@ -270,6 +298,22 @@ namespace Biblioteka
                     {
                         return;
                     }
+
+                    if(bookToRemove.Rezerwacje.Count > 0)
+                    {
+                        if (MessageBox.Show(
+                        $"Książka ma aktywne rezerwacje. Usunięcie spowoduje anulowanie wszystkich rezerwacji i rozesłanie powiadomień. Kontynnuować?",
+                        "Jesteś pewny?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                        {
+                            return;
+                        }
+
+                        foreach(var reservation in bookToRemove.Rezerwacje)
+                        {
+                            SendCancelationNotification(reservation);
+                        }
+                    }
+
                     db.Książka.Remove(bookToRemove);
                 }
                 bookList.Items.RemoveAt(bookIndex);
@@ -279,32 +323,12 @@ namespace Biblioteka
             copyList.SelectedIndex = -1;
         }
 
-        /// <summary>
-        /// Przejście do zarządzania wydawnictwami.
-        /// </summary>
-        /// <param name="sender">Kontrolka.</param>
-        /// <param name="e">Argumenty.</param>
-        private void publishersButton_Click(object sender, EventArgs e)
+        void SendCancelationNotification(Rezerwacje reservations)
         {
-            using (new AppWaitCursor(this, sender))
-            {
-                PublisherManagementForm form = new PublisherManagementForm();
-                form.ShowDialog(this);
-            }
-        }
-
-        /// <summary>
-        /// Przejście do zarządzania wydawnictwami
-        /// </summary>
-        /// <param name="sender">Kontrolka.</param>
-        /// <param name="e">Argumenty.</param>
-        private void authorsButton_Click(object sender, EventArgs e)
-        {
-            using (new AppWaitCursor(this, sender))
-            {
-                AuthorManagementForm form = new AuthorManagementForm();
-                form.ShowDialog(this);
-            }
+            Wiadomość.SystemNotification("Usunięto rezerwację",
+                        $"Książka {reservations.Książka.Tytuł} została usunięta z biblioteki." +
+                        $"Twoja rezerwacja tej książki została usunięta. Przepraszamy za zaistniałą sytuację.",
+                        reservations.Czytelnik);
         }
     }
 }
