@@ -230,13 +230,13 @@ namespace Biblioteka
                 if (bookOfCopy.Egzemplarz.Count <= 1)
                 {
                     DialogResult dialogResult = MessageBox.Show(
-                        "Usunięcie ostatniego egzemplarza usunie także książkę. Czy chcesz kontynuować?",
-                        "Jesteś pewny?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        "Usunięcie ostatniego egzemplarza nie usunie książki. Czy chcesz by została usunięta natychmiast?",
+                        "Ostatni egzemplarz", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dialogResult == DialogResult.Yes)
                     {
                         DeleteBook(bookIndex);
+                        return;
                     }
-                    return;
                 }
                 db.Egzemplarz.Remove(copyToDelete);
                 db.SaveChanges();
