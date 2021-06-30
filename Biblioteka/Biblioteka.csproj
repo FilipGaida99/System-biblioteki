@@ -187,6 +187,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LibDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="PublisherManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PublisherManagementForm.Designer.cs">
+      <DependentUpon>PublisherManagementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PublisherPickForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PublisherPickForm.Designer.cs">
+      <DependentUpon>PublisherPickForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,17 +248,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PublisherForm.cs">
+    <Compile Include="PublisherAddForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PublisherForm.Designer.cs">
-      <DependentUpon>PublisherForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PublisherPicker.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PublisherPicker.Designer.cs">
-      <DependentUpon>PublisherPicker.cs</DependentUpon>
+    <Compile Include="PublisherAddForm.Designer.cs">
+      <DependentUpon>PublisherAddForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ReadMessageForm.cs">
       <SubType>Form</SubType>
@@ -412,11 +418,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="PublisherForm.resx">
-      <DependentUpon>PublisherForm.cs</DependentUpon>
+    <EmbeddedResource Include="PublisherAddForm.resx">
+      <DependentUpon>PublisherAddForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PublisherPicker.resx">
-      <DependentUpon>PublisherPicker.cs</DependentUpon>
+    <EmbeddedResource Include="PublisherManagementForm.resx">
+      <DependentUpon>PublisherManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PublisherPickForm.resx">
+      <DependentUpon>PublisherPickForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReadersReport.rdlc" />
     <EmbeddedResource Include="ReadMessageForm.resx">

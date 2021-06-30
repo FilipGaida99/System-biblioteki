@@ -26,23 +26,6 @@ namespace Biblioteka
         }
 
         /// <summary>
-        /// Obsługa wybierania autora.
-        /// </summary>
-        /// <param name="sender">Kontrolka.</param>
-        /// <param name="e">Argumenty.</param>
-        private void authorChooseButton_Click(object sender, EventArgs e)
-        {
-            using(new AppWaitCursor(ParentForm, sender))
-            {
-                AuthorForm form = new AuthorForm();
-                if (form.ShowDialog(this) == DialogResult.OK)
-                {
-                    authorText.Text = $"{form.choosedAutor.Imię} {form.choosedAutor.Nazwisko}";
-                }
-            }
-        }
-
-        /// <summary>
         /// Obsługa wyszukiwania na podstawie ustawionych argumentów.
         /// </summary>
         /// <param name = "sender" > Kontrolka.</ param >
@@ -69,7 +52,7 @@ namespace Biblioteka
                         //Podany fragemnt isbn występuje w książce.
                         book.ISBN.Contains(isbnText.Text) &&
                         //Wydawnictwo zawiera frazę.
-                        book.Wydawnictwo.Nazwa.Contains(publisherPicker.PublisherName) &&
+                        book.Wydawnictwo.Nazwa.Contains(publisherText.Text) &&
                         //Imię i nazwisko autora zawiera frazę.
                         book.Autor.Any(author => (author.Imię + " " + author.Nazwisko).Contains(authorText.Text)) &&
                         //Jeżeli niezaznaczona lub data początkowa starsza od podanej.

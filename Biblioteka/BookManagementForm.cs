@@ -275,11 +275,16 @@ namespace Biblioteka
                 bookList.Items.RemoveAt(bookIndex);
                 books.RemoveAt(bookIndex);
                 db.SaveChanges();
-                Autor.DeleteEmpty(db);
-                Wydawnictwo.DeleteEmpty(db);
-                db.SaveChanges();
             }
             copyList.SelectedIndex = -1;
+        }
+
+        private void publishersButton_Click(object sender, EventArgs e)
+        {
+            PublisherManagementForm form = new PublisherManagementForm();
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+            }
         }
     }
 }

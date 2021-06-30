@@ -35,6 +35,7 @@ namespace Biblioteka
             System.Windows.Forms.Label label2;
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label7;
+            System.Windows.Forms.Label label5;
             this.cancelButton = new System.Windows.Forms.Button();
             this.acceptButton = new System.Windows.Forms.Button();
             this.deleteAutorButton = new System.Windows.Forms.Button();
@@ -45,13 +46,15 @@ namespace Biblioteka
             this.datePicker = new System.Windows.Forms.DateTimePicker();
             this.isbnText = new System.Windows.Forms.TextBox();
             this.daySpanPicker = new System.Windows.Forms.NumericUpDown();
-            this.publisherPicker = new Biblioteka.PublisherPicker();
+            this.publisherText = new System.Windows.Forms.TextBox();
+            this.publisherButton = new System.Windows.Forms.Button();
             label6 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label7 = new System.Windows.Forms.Label();
+            label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.daySpanPicker)).BeginInit();
             this.SuspendLayout();
             // 
@@ -232,19 +235,47 @@ namespace Biblioteka
             0,
             0});
             // 
-            // publisherPicker
+            // label5
             // 
-            this.publisherPicker.Location = new System.Drawing.Point(12, 107);
-            this.publisherPicker.Name = "publisherPicker";
-            this.publisherPicker.PublisherName = "";
-            this.publisherPicker.Size = new System.Drawing.Size(338, 35);
-            this.publisherPicker.TabIndex = 6;
+            label5.AutoSize = true;
+            label5.BackColor = System.Drawing.SystemColors.Control;
+            label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label5.Location = new System.Drawing.Point(13, 117);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(109, 20);
+            label5.TabIndex = 19;
+            label5.Text = "Wydawnictwo:";
+            // 
+            // publisherText
+            // 
+            this.publisherText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.publisherText.Location = new System.Drawing.Point(121, 114);
+            this.publisherText.MaxLength = 300;
+            this.publisherText.Name = "publisherText";
+            this.publisherText.ReadOnly = true;
+            this.publisherText.Size = new System.Drawing.Size(144, 26);
+            this.publisherText.TabIndex = 22;
+            this.publisherText.Text = "Brak";
+            // 
+            // publisherButton
+            // 
+            this.publisherButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.publisherButton.Location = new System.Drawing.Point(271, 114);
+            this.publisherButton.Name = "publisherButton";
+            this.publisherButton.Size = new System.Drawing.Size(76, 30);
+            this.publisherButton.TabIndex = 23;
+            this.publisherButton.Text = "Wybierz";
+            this.publisherButton.UseVisualStyleBackColor = true;
+            this.publisherButton.Click += new System.EventHandler(this.publisherButton_Click);
             // 
             // BookModificationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(702, 334);
+            this.Controls.Add(this.publisherButton);
+            this.Controls.Add(this.publisherText);
+            this.Controls.Add(label5);
             this.Controls.Add(this.daySpanPicker);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.acceptButton);
@@ -258,7 +289,6 @@ namespace Biblioteka
             this.Controls.Add(label3);
             this.Controls.Add(label4);
             this.Controls.Add(this.titleText);
-            this.Controls.Add(this.publisherPicker);
             this.Controls.Add(label7);
             this.Controls.Add(label2);
             this.Controls.Add(label1);
@@ -282,6 +312,7 @@ namespace Biblioteka
         private System.Windows.Forms.DateTimePicker datePicker;
         private System.Windows.Forms.TextBox isbnText;
         private System.Windows.Forms.NumericUpDown daySpanPicker;
-        private PublisherPicker publisherPicker;
+        private System.Windows.Forms.TextBox publisherText;
+        private System.Windows.Forms.Button publisherButton;
     }
 }

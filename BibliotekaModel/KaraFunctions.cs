@@ -28,7 +28,7 @@ namespace Biblioteka
                         else
                         {
                             lend.Kara.Add(new Kara { Data_nałożenia = now });
-                            penalties += $"•Książka {lend.Egzemplarz.Książka.Tytuł}\n";
+                            penalties += $"•Książka {lend.Egzemplarz.Książka.Tytuł} (ISBN: {lend.Egzemplarz.Książka.ISBN})\n";
                         }
                     }
                 }

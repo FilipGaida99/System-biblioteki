@@ -115,9 +115,7 @@ namespace Biblioteka
                 .IsUnicode(false);
 
             modelBuilder.Entity<Wydawnictwo>()
-                .HasMany(e => e.Książka)
-                .WithRequired(e => e.Wydawnictwo)
-                .WillCascadeOnDelete();
+                .HasMany(e => e.Książka);
 
             modelBuilder.Entity<Wypożyczenie>()
                 .HasMany(e => e.Kara)

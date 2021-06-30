@@ -34,21 +34,22 @@ namespace Biblioteka
             System.Windows.Forms.Label label3;
             System.Windows.Forms.Label label4;
             System.Windows.Forms.Label label5;
+            System.Windows.Forms.Label label6;
             this.searchText = new System.Windows.Forms.TextBox();
             this.descriptionSearchCheckBox = new System.Windows.Forms.CheckBox();
             this.startDatePicker = new System.Windows.Forms.DateTimePicker();
             this.endDatePicker = new System.Windows.Forms.DateTimePicker();
             this.authorText = new System.Windows.Forms.TextBox();
-            this.authorChooseButton = new System.Windows.Forms.Button();
             this.searchButton = new System.Windows.Forms.Button();
             this.isbnText = new System.Windows.Forms.TextBox();
-            this.publisherPicker = new Biblioteka.PublisherPicker();
             this.onlyElectronicCheckBox = new System.Windows.Forms.CheckBox();
+            this.publisherText = new System.Windows.Forms.TextBox();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
             label5 = new System.Windows.Forms.Label();
+            label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -101,6 +102,16 @@ namespace Biblioteka
             label5.TabIndex = 12;
             label5.Text = "ISBN:";
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            label6.Location = new System.Drawing.Point(6, 127);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(109, 20);
+            label6.TabIndex = 13;
+            label6.Text = "Wydawnictwo:";
+            // 
             // searchText
             // 
             this.searchText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -149,19 +160,8 @@ namespace Biblioteka
             this.authorText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.authorText.Location = new System.Drawing.Point(116, 161);
             this.authorText.Name = "authorText";
-            this.authorText.Size = new System.Drawing.Size(142, 26);
+            this.authorText.Size = new System.Drawing.Size(269, 26);
             this.authorText.TabIndex = 7;
-            // 
-            // authorChooseButton
-            // 
-            this.authorChooseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.authorChooseButton.Location = new System.Drawing.Point(264, 161);
-            this.authorChooseButton.Name = "authorChooseButton";
-            this.authorChooseButton.Size = new System.Drawing.Size(75, 26);
-            this.authorChooseButton.TabIndex = 8;
-            this.authorChooseButton.Text = "Wybierz";
-            this.authorChooseButton.UseVisualStyleBackColor = true;
-            this.authorChooseButton.Click += new System.EventHandler(this.authorChooseButton_Click);
             // 
             // searchButton
             // 
@@ -179,16 +179,8 @@ namespace Biblioteka
             this.isbnText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.isbnText.Location = new System.Drawing.Point(116, 90);
             this.isbnText.Name = "isbnText";
-            this.isbnText.Size = new System.Drawing.Size(142, 26);
+            this.isbnText.Size = new System.Drawing.Size(269, 26);
             this.isbnText.TabIndex = 5;
-            // 
-            // publisherPicker
-            // 
-            this.publisherPicker.Location = new System.Drawing.Point(6, 116);
-            this.publisherPicker.Name = "publisherPicker";
-            this.publisherPicker.PublisherName = "";
-            this.publisherPicker.Size = new System.Drawing.Size(337, 39);
-            this.publisherPicker.TabIndex = 6;
             // 
             // onlyElectronicCheckBox
             // 
@@ -201,18 +193,26 @@ namespace Biblioteka
             this.onlyElectronicCheckBox.Text = "Tylko elektroniczne";
             this.onlyElectronicCheckBox.UseVisualStyleBackColor = true;
             // 
+            // publisherText
+            // 
+            this.publisherText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.publisherText.Location = new System.Drawing.Point(116, 124);
+            this.publisherText.Name = "publisherText";
+            this.publisherText.Size = new System.Drawing.Size(269, 26);
+            this.publisherText.TabIndex = 14;
+            // 
             // BookSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.publisherText);
+            this.Controls.Add(label6);
             this.Controls.Add(this.onlyElectronicCheckBox);
             this.Controls.Add(this.isbnText);
             this.Controls.Add(label5);
             this.Controls.Add(this.searchButton);
-            this.Controls.Add(this.authorChooseButton);
             this.Controls.Add(this.authorText);
             this.Controls.Add(label4);
-            this.Controls.Add(this.publisherPicker);
             this.Controls.Add(label3);
             this.Controls.Add(this.endDatePicker);
             this.Controls.Add(this.startDatePicker);
@@ -233,11 +233,10 @@ namespace Biblioteka
         private System.Windows.Forms.CheckBox descriptionSearchCheckBox;
         private System.Windows.Forms.DateTimePicker startDatePicker;
         private System.Windows.Forms.DateTimePicker endDatePicker;
-        private PublisherPicker publisherPicker;
         private System.Windows.Forms.TextBox authorText;
-        private System.Windows.Forms.Button authorChooseButton;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.TextBox isbnText;
         private System.Windows.Forms.CheckBox onlyElectronicCheckBox;
+        private System.Windows.Forms.TextBox publisherText;
     }
 }

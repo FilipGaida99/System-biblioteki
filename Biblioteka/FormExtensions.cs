@@ -7,20 +7,12 @@ namespace Biblioteka
     /// </summary>
     public static class FormExtensions
     {
-        /// <summary>
-        /// Funkcja zamykająca formularz uruchomiony jako okno dialogowe. Domyślny rezultat ustawiony na OK.
-        /// </summary>
-        /// <param name="form">Formularz wywołujący.</param>
-        public static void Return(this Form form)
-        {
-            form.Return(DialogResult.OK);
-        }
 
         /// <summary>
         /// Funkcja zamykająca formularz uruchomiony jako okno dialogowe.
         /// </summary>
         /// <param name="form">Formularz wywołujący.</param>
-        public static void Return(this Form form, DialogResult result)
+        public static void Return(this Form form, DialogResult result = DialogResult.OK)
         {
             form.DialogResult = result;
             form.Close();

@@ -18,6 +18,10 @@ namespace Biblioteka
         /// </summary>
         public Książka managedBook;
         /// <summary>
+        /// Wybrane wydawnictwo.
+        /// </summary>
+        Wydawnictwo publisher;
+        /// <summary>
         /// Lista wybranych autorów.
         /// </summary>
         List<Autor> authors;
@@ -36,7 +40,15 @@ namespace Biblioteka
         {
             InitializeComponent();
             authors = new List<Autor>();
+            publisher = null;
             managedBook = _managedBook;
+            if(managedBook != null)
+            {
+                using(var db = new BibliotekaDB())
+                {
+                    publisher = db.Wydawnictwo.Find(managedBook.WydawnictwoID);
+                }
+            }
         }
 
         /// <summary>
@@ -90,13 +102,14 @@ namespace Biblioteka
 
             managedBook.Maksymalny_okres_wypożyczenia = (long)daySpanPicker.Value;
 
-            if(!managedBook.SetPublisher(db, publisherPicker.PublisherName))
+            if(publisher == null)
             {
-                errorText = "Pusta nazwa wydawnictwa";
+                errorText = "Brak wydawnictwa";
                 return false;
             }
-            
-            if(!managedBook.SetAuthors(db, authors))
+            managedBook.Wydawnictwo = db.Wydawnictwo.Find(publisher.WydawnictwoID);
+
+            if (!managedBook.SetAuthors(db, authors))
             {
                 errorText = "Brak autorów";
                 return false;
@@ -131,8 +144,8 @@ namespace Biblioteka
                     datePicker.Value = managedBook.Rok_wydania;
                     titleText.Text = managedBook.Tytuł;
                     descriptionText.Text = managedBook.Opis;
-                    publisherPicker.PublisherName = managedBook.Wydawnictwo.Nazwa;
                     daySpanPicker.Value = managedBook.Maksymalny_okres_wypożyczenia;
+                    publisherText.Text = managedBook.Wydawnictwo.Nazwa;
 
                     var list = managedBook.Autor.OrderBy(author => author.Nazwisko).ToList();
                     foreach (var author in list)
@@ -159,9 +172,6 @@ namespace Biblioteka
                     {
                         if (Accept(db, out errorText))
                         {
-                            db.SaveChanges();
-                            Autor.DeleteEmpty(db);
-                            Wydawnictwo.DeleteEmpty(db);
                             db.SaveChanges();
                         }
                         else
@@ -262,6 +272,24 @@ namespace Biblioteka
             { 
                 authorsList.Items.Add($"{author.Imię} {author.Nazwisko}");
                 authors.Add(author);
+            }
+        }
+
+        /// <summary>
+        /// Przejście do zarządzania wydwanictwami.
+        /// </summary>
+        /// <param name="sender">Kontrolka.</param>
+        /// <param name="e">Argumenty.</param>
+        private void publisherButton_Click(object sender, EventArgs e)
+        {
+            using (new AppWaitCursor(this, sender))
+            {
+                PublisherPickForm form = new PublisherPickForm();
+                if (form.ShowDialog(this) == DialogResult.OK)
+                {
+                    publisher = form.publisher;
+                    publisherText.Text = publisher.Nazwa;
+                }
             }
         }
     }

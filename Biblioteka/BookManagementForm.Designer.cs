@@ -38,6 +38,8 @@ namespace Biblioteka
             this.addCopy = new System.Windows.Forms.Button();
             this.copyList = new System.Windows.Forms.ListBox();
             this.bookSearch = new Biblioteka.BookSearch();
+            this.publishersButton = new System.Windows.Forms.Button();
+            this.authorsButton = new System.Windows.Forms.Button();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -134,11 +136,32 @@ namespace Biblioteka
             this.bookSearch.Size = new System.Drawing.Size(638, 238);
             this.bookSearch.TabIndex = 1;
             // 
+            // publishersButton
+            // 
+            this.publishersButton.Location = new System.Drawing.Point(673, 12);
+            this.publishersButton.Name = "publishersButton";
+            this.publishersButton.Size = new System.Drawing.Size(133, 67);
+            this.publishersButton.TabIndex = 10;
+            this.publishersButton.Text = "Wydawnictwa";
+            this.publishersButton.UseVisualStyleBackColor = true;
+            this.publishersButton.Click += new System.EventHandler(this.publishersButton_Click);
+            // 
+            // authorsButton
+            // 
+            this.authorsButton.Location = new System.Drawing.Point(673, 85);
+            this.authorsButton.Name = "authorsButton";
+            this.authorsButton.Size = new System.Drawing.Size(133, 67);
+            this.authorsButton.TabIndex = 11;
+            this.authorsButton.Text = "Autorzy";
+            this.authorsButton.UseVisualStyleBackColor = true;
+            // 
             // BookManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(685, 520);
+            this.ClientSize = new System.Drawing.Size(818, 520);
+            this.Controls.Add(this.authorsButton);
+            this.Controls.Add(this.publishersButton);
             this.Controls.Add(label2);
             this.Controls.Add(label1);
             this.Controls.Add(this.bookSearch);
@@ -165,5 +188,7 @@ namespace Biblioteka
         private System.Windows.Forms.Button addCopy;
         private System.Windows.Forms.ListBox copyList;
         private BookSearch bookSearch;
+        private System.Windows.Forms.Button publishersButton;
+        private System.Windows.Forms.Button authorsButton;
     }
 }
