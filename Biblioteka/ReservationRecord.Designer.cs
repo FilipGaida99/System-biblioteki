@@ -42,6 +42,7 @@ namespace Biblioteka
             this.reservationDate = new System.Windows.Forms.Label();
             this.readerId = new System.Windows.Forms.Label();
             this.deleteButton = new System.Windows.Forms.Button();
+            this.numberInQueue = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -162,11 +163,21 @@ namespace Biblioteka
             this.deleteButton.UseVisualStyleBackColor = true;
             this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
+            // numberInQueue
+            // 
+            this.numberInQueue.AutoSize = true;
+            this.numberInQueue.Location = new System.Drawing.Point(303, 24);
+            this.numberInQueue.Name = "numberInQueue";
+            this.numberInQueue.Size = new System.Drawing.Size(35, 13);
+            this.numberInQueue.TabIndex = 14;
+            this.numberInQueue.Text = "label7";
+            // 
             // ReservationRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Controls.Add(this.numberInQueue);
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.readerId);
             this.Controls.Add(this.reservationDate);
@@ -203,5 +214,6 @@ namespace Biblioteka
         private System.Windows.Forms.Label reservationDate;
         private System.Windows.Forms.Label readerId;
         private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Label numberInQueue;
     }
 }

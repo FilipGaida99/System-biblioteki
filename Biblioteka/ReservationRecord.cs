@@ -34,14 +34,13 @@ namespace Biblioteka
         /// Konstruktor trojargumentowy 
         /// </summary>
         /// <param name="_reservation"></param>
+        /// <param name="_onClick"></param> Metoda wywoływana po usunięciu rezerwacji
+        /// <param name="_reservations"></param> Lista rezerwacji
         public ReservationRecord(Rezerwacje _reservation, Action _onClick, List<Rezerwacje> _reservations)
         {
             InitializeComponent();
             reservation = _reservation;
             reservations = _reservations;
-            //jesli zalogowany użytkownik
-            //if()
-            // widocznośc buttonów + podpięcie odpowiedniego przycisku
             onClick = _onClick;
         }
 
@@ -66,6 +65,19 @@ namespace Biblioteka
                 readerName.Text = reservation.Czytelnik.Imię;
                 readerSurname.Text = reservation.Czytelnik.Nazwisko;
                 reservationDate.Text = $"{reservation.Data_rezerwacji:g}";
+                using(var db = new BibliotekaDB())
+                {
+                    var book = db.Książka.Find(reservation.KsiążkaID);
+                    var bookings = book.Rezerwacje.OrderBy(booking => booking.Data_rezerwacji).ToList();
+                    var user = UserSingleton.Instance.GetLoggedUser() as Czytelnik;
+                    if (user != null)
+                        user = db.Czytelnik.Find(user.CzytelnikID);
+
+                    reservation = db.Rezerwacje.Where(reservation => reservation.KsiążkaID == book.KsiążkaID 
+                                                        && reservation.CzytelnikID == user.CzytelnikID)
+                                                        .FirstOrDefault();
+                    numberInQueue.Text = $"Rezerwacja jest {bookings.IndexOf(reservation) + 1} w kolejce.";
+                }                
             }
         }
 
@@ -90,7 +102,6 @@ namespace Biblioteka
                         reservations.Remove(reservation);
                         onClick.Invoke();
                     }
-
                 }
             }
         }
