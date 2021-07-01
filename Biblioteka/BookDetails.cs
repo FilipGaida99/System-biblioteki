@@ -121,6 +121,15 @@ namespace Biblioteka
                 //TO DO: Sprawdź czy użytkownik zalogowany!
                 book = db.Książka.Find(book.KsiążkaID);
                 var bookings = book.Rezerwacje.OrderBy(booking => booking.Data_rezerwacji).ToList();
+                var user = UserSingleton.Instance.GetLoggedUser() as Czytelnik;
+                var userReservation = new Rezerwacje();
+                if(user != null)
+                {
+                    user = db.Czytelnik.Find(user.CzytelnikID);
+                    userReservation = db.Rezerwacje.Where(reservation => reservation.CzytelnikID == user.CzytelnikID
+                                                                && reservation.KsiążkaID == book.KsiążkaID)
+                                                                .FirstOrDefault();
+                }
                 bool availableCopy = book.AvailableCopy;
                 var physicalCopy = db.Egzemplarz.Where(copy => copy.Egzemplarz_elektroniczny == null && copy.KsiążkaID == this.book.KsiążkaID);
                 
@@ -139,7 +148,10 @@ namespace Biblioteka
                 }
                 else if (bookings.Count > 0)
                 {
-                    availabilityLabel.Text = $"Zarezerwowana. Ostatnia rezerwacja: {bookings[bookings.Count - 1].Data_rezerwacji}, Liczba rezerwacji: {bookings.Count}";
+                    availabilityLabel.Text = $"Zarezerwowana. Ostatnia rezerwacja: {bookings[bookings.Count - 1].Data_rezerwacji:g}, Liczba rezerwacji: {bookings.Count}";
+                    if (bookings.Contains(userReservation))
+                        availabilityLabel.Text += $"\nTwoja rezerwacja jest {bookings.IndexOf(userReservation) + 1} w kolejce.";
+
                     //bookingButton.Enabled = true;
                 }
                 else if(bookings.Count == 0 && !availableCopy)
