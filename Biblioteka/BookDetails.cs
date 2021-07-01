@@ -122,13 +122,14 @@ namespace Biblioteka
                 book = db.Książka.Find(book.KsiążkaID);
                 var bookings = book.Rezerwacje.OrderBy(booking => booking.Data_rezerwacji).ToList();
                 bool availableCopy = book.AvailableCopy;
+                var physicalCopy = db.Egzemplarz.Where(copy => copy.Egzemplarz_elektroniczny == null && copy.KsiążkaID == this.book.KsiążkaID);
                 
                 availabilityLabel.Text = "";
                 //bookingButton.Enabled = false;
-                if(!book.Egzemplarz.Any())
+                if(!book.Egzemplarz.Any() || !physicalCopy.Any())
                 {
                     bookingButton.Enabled = false;
-                    availabilityLabel.Text = "Przepraszamy, książka nie posiada obecnie żadnego egzemplarza :(";
+                    availabilityLabel.Text = "Przepraszamy, książka nie posiada obecnie żadnego kartkowego egzemplarza :(";
                 }
                 else if(bookings.Count == 0 && availableCopy)
                 {
