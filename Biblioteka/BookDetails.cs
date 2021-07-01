@@ -125,7 +125,12 @@ namespace Biblioteka
                 
                 availabilityLabel.Text = "";
                 //bookingButton.Enabled = false;
-                if(bookings.Count == 0 && availableCopy)
+                if(!book.Egzemplarz.Any())
+                {
+                    bookingButton.Enabled = false;
+                    availabilityLabel.Text = "Przepraszamy, książka nie posiada obecnie żadnego egzemplarza :(";
+                }
+                else if(bookings.Count == 0 && availableCopy)
                 {
                     //bookingButton.Enabled = false;
                     availabilityLabel.Text = "Dostępna od ręki";
@@ -133,7 +138,7 @@ namespace Biblioteka
                 }
                 else if (bookings.Count > 0)
                 {
-                    availabilityLabel.Text = $"Zarezerwowana. Ostatnia rezerwacja: {bookings[bookings.Count - 1].Data_rezerwacji}";
+                    availabilityLabel.Text = $"Zarezerwowana. Ostatnia rezerwacja: {bookings[bookings.Count - 1].Data_rezerwacji}, Liczba rezerwacji: {bookings.Count}";
                     //bookingButton.Enabled = true;
                 }
                 else if(bookings.Count == 0 && !availableCopy)

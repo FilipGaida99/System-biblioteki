@@ -39,6 +39,7 @@ namespace Biblioteka
             {
                 // TO DO: wpisać zalogowanego użytkownika i usunąć liniję podspodem
                 var user = UserSingleton.Instance.GetLoggedUser() as Czytelnik;
+                user = db.Czytelnik.Find(user.CzytelnikID);
                 var query = db.Rezerwacje.AsNoTracking().Where(res => res.CzytelnikID == user.CzytelnikID /*loggedUser*/);
                 query = query.OrderByDescending(res => res.Data_rezerwacji);
                 userReservations = query.ToList();

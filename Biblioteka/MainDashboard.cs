@@ -8,6 +8,8 @@ namespace Biblioteka
     {
         public MainDashboard()
         {
+
+
             InitializeComponent();
             panelReader.Visible = true;
             panelLibrarian.Visible = false;
