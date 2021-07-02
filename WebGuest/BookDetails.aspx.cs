@@ -76,26 +76,36 @@ namespace WebGuest
         /// <param name="managedBook">Książka zawierająca wyświetlane informacje</param>
         private void SetAvailabilityInformation(Książka managedBook)
         {
-            var bookings = managedBook.Rezerwacje.OrderBy(booking => booking.Data_rezerwacji).ToList();
-            bool availableCopy = managedBook.AvailableCopy;
+            using (var db = new BibliotekaDB())
+            {
+                var book = db.Książka.Find(managedBook.KsiążkaID);
+                var bookings = managedBook.Rezerwacje.OrderBy(booking => booking.Data_rezerwacji).ToList();
+                bool availableCopy = managedBook.AvailableCopy;
+                var physicalCopy = db.Egzemplarz.Where(copy => copy.Egzemplarz_elektroniczny == null && copy.KsiążkaID == book.KsiążkaID);
 
-            Availability.Text = "";
-            if (bookings.Count == 0 && availableCopy)
-            {
-                Availability.Text = "Dostępna od ręki";
-            }
-            else if (bookings.Count > 0)
-            {
-                Availability.Text = $"Zarezerwowana. Ostatnia rezerwacja: {bookings[bookings.Count - 1].Data_rezerwacji}";
-            }
-            else if (bookings.Count == 0 && !availableCopy)
-            {
-                Availability.Text = "Brak dostępnych kopii. Brak rezerwacji";
-            }
+                Availability.Text = "";
+                if (!book.Egzemplarz.Any() || !physicalCopy.Any())
+                {
+                    Availability.Text = "Przepraszamy, książka nie posiada obecnie żadnego kartkowego egzemplarza :(";
+                    Availability.Visible = false;
+                }
+                else if (bookings.Count == 0 && availableCopy)
+                {
+                    Availability.Text = "Dostępna od ręki";
+                }
+                else if (bookings.Count > 0)
+                {
+                    Availability.Text = $"Zarezerwowana. Ostatnia rezerwacja: {bookings[bookings.Count - 1].Data_rezerwacji}, Liczba rezerwacji: {bookings.Count}";
+                }
+                else if (bookings.Count == 0 && !availableCopy)
+                {
+                    Availability.Text = "Brak dostępnych kopii. Brak rezerwacji";
+                }
 
-            if (managedBook.AvailableElectronicCopy)
-            {
-                Availability.Visible = true;
+                if (managedBook.AvailableElectronicCopy)
+                {
+                    Availability.Visible = true;
+                }
             }
         }
 

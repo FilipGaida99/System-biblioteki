@@ -1,6 +1,7 @@
 ﻿using Biblioteka;
 using System;
 using System.Drawing;
+using System.Linq;
 
 namespace WebGuest
 {
@@ -39,6 +40,11 @@ namespace WebGuest
                 BookLink.NavigateUrl = $"~/BookDetails.aspx?id={reservation.Książka.KsiążkaID}";
 
                 ReservationDate.Text = reservation.Data_rezerwacji.ToShortDateString();
+                var book = db.Książka.Find(reservation.KsiążkaID);
+                var bookings = book.Rezerwacje.OrderBy(booking => booking.Data_rezerwacji).ToList();
+
+                Queue.Text = $"{bookings.Count}";
+                QueuePosition.Text = $"{bookings.IndexOf(reservation) + 1}";
             }
         }
     }

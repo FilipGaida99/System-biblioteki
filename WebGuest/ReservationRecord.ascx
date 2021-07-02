@@ -5,5 +5,11 @@
         <br />
         Data rezerwacji: <asp:Label ID="ReservationDate" runat="server" Text="00.00.0000"></asp:Label>
         <br />
+        <br />
+        Osób w kolejce: <asp:Label ID="Queue" runat="server" Text=""></asp:Label>
+        <br />
+        <br />
+        Jesteś w kolejce: <asp:Label ID="QueuePosition" runat="server" Text=""></asp:Label>
+        <br />
     </div>
 </div>
