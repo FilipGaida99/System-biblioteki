@@ -1,4 +1,6 @@
 ﻿
+using System.IO;
+
 namespace Biblioteka
 {
     partial class MainDashboard
@@ -47,6 +49,7 @@ namespace Biblioteka
             this.bookingButton = new System.Windows.Forms.Button();
             this.lendButton = new System.Windows.Forms.Button();
             this.messagesButton = new System.Windows.Forms.Button();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             this.panelLibrarian.SuspendLayout();
@@ -246,6 +249,10 @@ namespace Biblioteka
             this.messagesButton.UseVisualStyleBackColor = true;
             this.messagesButton.Click += new System.EventHandler(this.messagesButton_Click);
             // 
+            // helpProvider1
+            // 
+            this.helpProvider1.HelpNamespace = (new FileInfo(@"../../help.chm")).FullName;
+            // 
             // MainDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -258,6 +265,7 @@ namespace Biblioteka
             this.Controls.Add(this.booksButton);
             this.Controls.Add(this.exhibitionButton);
             this.Name = "MainDashboard";
+            this.helpProvider1.SetShowHelp(this, true);
             this.Text = "Biblioteka publiczna";
             this.panelLibrarian.ResumeLayout(false);
             this.panelLibrarian.PerformLayout();
@@ -283,6 +291,7 @@ namespace Biblioteka
         private System.Windows.Forms.Button prolognationButton;
         private System.Windows.Forms.Button penaltiesButton;
         private System.Windows.Forms.Button reportButton;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }
 
