@@ -507,6 +507,12 @@
     <EmbeddedResource Include="ReadersManagmentForm.resx">
       <DependentUpon>ReadersManagmentForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="help.chm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="help.chw">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="LibDataSet.xsc">
       <DependentUpon>LibDataSet.xsd</DependentUpon>
     </None>

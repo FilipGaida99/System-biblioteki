@@ -251,7 +251,7 @@ namespace Biblioteka
             // 
             // helpProvider1
             // 
-            this.helpProvider1.HelpNamespace = (new FileInfo(@"../../help.chm")).FullName;
+            this.helpProvider1.HelpNamespace = (new FileInfo(@"help.chm")).FullName;
             // 
             // MainDashboard
             // 
