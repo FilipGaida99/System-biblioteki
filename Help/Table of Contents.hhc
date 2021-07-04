@@ -16,5 +16,37 @@
 		<param name="Name" value="Content">
 		<param name="Local" value="Content.htm">
 		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Wypo&iquest;yczenia">
+		<param name="Local" value="Wypo¿yczenia.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Rezerwacje">
+		<param name="Local" value="Rezerwacje.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Wysy&sup3;anie Wiadomoœci">
+		<param name="Local" value="Wysy³anie wiadomoœci.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Przegl&sup1;danie ksi&ecirc;gozbioru">
+		<param name="Local" value="Przegl¹danie ksiêgozbioru.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Zarz&sup1;dzanie ksi&sup1;&iquest;kami">
+		<param name="Local" value="Zarz¹dzanie ksi¹¿kami.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Zarz&sup1;dzanie wystawami">
+		<param name="Local" value="Zarz¹dzanie wystawami.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Wypo&iquest;yczanie i zwroty">
+		<param name="Local" value="Wypo¿yczanie i zwroty.htm">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Prolongowanie ksi&sup1;&iquest;ek">
+		<param name="Local" value="Prolongowanie ksi¹¿ek.htm">
+		</OBJECT>
 </UL>
 </BODY></HTML>
