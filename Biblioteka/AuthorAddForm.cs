@@ -50,25 +50,6 @@ namespace Biblioteka
         }
 
         /// <summary>
-        /// Obsługa dodawania autora.
-        /// </summary>
-        /// <param name="sender">Kontrolka.</param>
-        /// <param name="e">Argumenty.</param>
-        private void addButton_Click(object sender, EventArgs e)
-        {
-            if(firstNameText.Text.Trim() == "" && surnameText.Text.Trim() == "")
-            {
-                MessageBox.Show(
-                    "Nie można dodać pustego autora. Zamknij okno lub wpisz imię i nazwisko.",
-                    "Błąd w formularzu", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            choosedAuthor = new Autor { Imię = firstNameText.Text, Nazwisko = surnameText.Text };
-            this.Return();
-        }
-
-        /// <summary>
         /// Zaakceptowanie zmian.
         /// </summary>
         /// <param name="sender">Kontrolka.</param>

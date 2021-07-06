@@ -57,7 +57,7 @@ namespace Biblioteka
             {
                 if (publisherNameText.Text.Trim() == "")
                 {
-                    MessageBox.Show("Nazwa jest pusta.\nJeżeli nazwa nie jest pusta wybierz je z listy w poprzednim formularzu",
+                    MessageBox.Show("Nazwa jest pusta.",
                         "Błędna nazwa",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;

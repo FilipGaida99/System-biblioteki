@@ -81,6 +81,11 @@ namespace Biblioteka
 
             if (isElectronicCheckBox.Checked)
             {
+                if (!ValidateLink(linkText.Text))
+                {
+                    errorText = "Wprowadzony odnośnik jest niepoprawny.";
+                    return false;
+                }
                 var electrioncCopy = managedCopy.Egzemplarz_elektroniczny;
                 if(electrioncCopy == null)
                 {
@@ -220,6 +225,11 @@ namespace Biblioteka
                     copyInventoryNumber.Value = Egzemplarz.FindFirstUnused(db);
                 }
             }
+        }
+
+        private bool ValidateLink(string link)
+        {
+            return !(link.Trim() == "");
         }
     }
 }
