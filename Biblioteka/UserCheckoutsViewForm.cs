@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -41,6 +42,7 @@ namespace Biblioteka
                 if (result == DialogResult.No) return;
 
                 Extensions(selected);
+                RefreshCheckoutList();
             }
         }
 
@@ -59,6 +61,12 @@ namespace Biblioteka
 
                     Wypożyczenie checkout = db.Wypożyczenie.Find(checkoutID);
                     if (checkout == null) return;
+                    var lastExtension = checkout.Prolongata.LastOrDefault();
+                    if (lastExtension != null && lastExtension.Status == null) {
+                        MessageBox.Show($"Obecna prośba o prolongatę wciąż oczekuje na rozpatrzenie.",
+                            "Już oczekuje", MessageBoxButtons.OK);
+                        return;
+                    }
                     Prolongata extension = new Prolongata()
                     {
                         Status = null,
