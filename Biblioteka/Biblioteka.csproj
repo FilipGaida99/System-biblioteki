@@ -507,12 +507,15 @@
     <EmbeddedResource Include="ReadersManagmentForm.resx">
       <DependentUpon>ReadersManagmentForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="help.chm">
+    <None Include="Help\help.chm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="help.chw">
+    <None Include="Help\help.chw">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Help\help.hhp" />
+    <None Include="Help\Index.hhk" />
+    <None Include="Help\Table of Contents.hhc" />
     <None Include="LibDataSet.xsc">
       <DependentUpon>LibDataSet.xsd</DependentUpon>
     </None>
@@ -543,6 +546,30 @@
       <Project>{70516b69-f409-49db-a3a3-feec8944947e}</Project>
       <Name>BibliotekaModel</Name>
     </ProjectReference>
+    <Content Include="Help\Content.htm" />
+    <Content Include="Help\images\BookBrowse.png" />
+    <Content Include="Help\images\BookDetailsAvailability.png" />
+    <Content Include="Help\images\BookDetailsCopies.png" />
+    <Content Include="Help\images\BookDetailsInfo.png" />
+    <Content Include="Help\images\BookManagement.png" />
+    <Content Include="Help\images\Checkouts.png" />
+    <Content Include="Help\images\ExhibitionManagement.png" />
+    <Content Include="Help\images\Extension.png" />
+    <Content Include="Help\images\MainMenu.png" />
+    <Content Include="Help\images\MainMenuLibrarian.png" />
+    <Content Include="Help\images\MessageForm.png" />
+    <Content Include="Help\images\UserCheckoutsWindow.png" />
+    <Content Include="Help\images\UserReservationsWindow.png" />
+    <Content Include="Help\Prolongowanie książek.htm" />
+    <Content Include="Help\Przeglądanie księgozbioru.htm" />
+    <Content Include="Help\Rezerwacje.htm" />
+    <Content Include="Help\System-biblioteki.htm" />
+    <Content Include="Help\Wypożyczanie i zwroty.htm" />
+    <Content Include="Help\Wypożyczenia.htm" />
+    <Content Include="Help\Wystawy.htm" />
+    <Content Include="Help\Wysyłanie wiadomości.htm" />
+    <Content Include="Help\Zarządzanie książkami.htm" />
+    <Content Include="Help\Zarządzanie wystawami.htm" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
