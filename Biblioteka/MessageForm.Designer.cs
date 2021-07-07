@@ -34,12 +34,14 @@ namespace Biblioteka
             this.writeMsgButton = new System.Windows.Forms.Button();
             this.receivedMsgButton = new System.Windows.Forms.Button();
             this.sentMsgButton = new System.Windows.Forms.Button();
+            this.filterButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.filterButton);
             this.panel1.Controls.Add(this.msgListFlowPanel);
             this.panel1.Controls.Add(this.writeMsgButton);
             this.panel1.Controls.Add(this.receivedMsgButton);
@@ -71,7 +73,7 @@ namespace Biblioteka
             // 
             // receivedMsgButton
             // 
-            this.receivedMsgButton.Location = new System.Drawing.Point(4, 166);
+            this.receivedMsgButton.Location = new System.Drawing.Point(4, 163);
             this.receivedMsgButton.Name = "receivedMsgButton";
             this.receivedMsgButton.Size = new System.Drawing.Size(147, 50);
             this.receivedMsgButton.TabIndex = 1;
@@ -81,13 +83,24 @@ namespace Biblioteka
             // 
             // sentMsgButton
             // 
-            this.sentMsgButton.Location = new System.Drawing.Point(4, 222);
+            this.sentMsgButton.Location = new System.Drawing.Point(3, 219);
             this.sentMsgButton.Name = "sentMsgButton";
             this.sentMsgButton.Size = new System.Drawing.Size(148, 50);
             this.sentMsgButton.TabIndex = 0;
             this.sentMsgButton.Text = "Wysłane wiadomości";
             this.sentMsgButton.UseVisualStyleBackColor = true;
             this.sentMsgButton.Click += new System.EventHandler(this.sentMsgButton_Click);
+            // 
+            // filterButton
+            // 
+            this.filterButton.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.filterButton.Location = new System.Drawing.Point(3, 373);
+            this.filterButton.Name = "filterButton";
+            this.filterButton.Size = new System.Drawing.Size(147, 50);
+            this.filterButton.TabIndex = 5;
+            this.filterButton.Text = "Wyszukaj";
+            this.filterButton.UseVisualStyleBackColor = false;
+            this.filterButton.Click += new System.EventHandler(this.filterButton_Click);
             // 
             // MessageForm
             // 
@@ -111,5 +124,6 @@ namespace Biblioteka
         private System.Windows.Forms.Button sentMsgButton;
         private System.Windows.Forms.Button writeMsgButton;
         private System.Windows.Forms.FlowLayoutPanel msgListFlowPanel;
+        private System.Windows.Forms.Button filterButton;
     }
 }

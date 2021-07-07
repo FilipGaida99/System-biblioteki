@@ -199,6 +199,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LibDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="MessagesFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MessagesFilterForm.Designer.cs">
+      <DependentUpon>MessagesFilterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PublisherManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -423,6 +429,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MessageForm.resx">
       <DependentUpon>MessageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MessagesFilterForm.resx">
+      <DependentUpon>MessagesFilterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PenaltyForm.resx">
       <DependentUpon>PenaltyForm.cs</DependentUpon>
