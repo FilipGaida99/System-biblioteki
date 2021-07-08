@@ -1,4 +1,6 @@
 ﻿
+using System.IO;
+
 namespace Biblioteka
 {
     partial class BookManagementForm
@@ -40,6 +42,7 @@ namespace Biblioteka
             this.publishersButton = new System.Windows.Forms.Button();
             this.authorsButton = new System.Windows.Forms.Button();
             this.bookSearch = new Biblioteka.BookSearch();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -158,6 +161,10 @@ namespace Biblioteka
             this.bookSearch.Size = new System.Drawing.Size(638, 238);
             this.bookSearch.TabIndex = 1;
             // 
+            // helpProvider1
+            // 
+            this.helpProvider1.HelpNamespace = (new FileInfo(@"Help/help.chm")).FullName;
+            // 
             // BookManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -175,6 +182,7 @@ namespace Biblioteka
             this.Controls.Add(this.bookList);
             this.Controls.Add(this.modButton);
             this.Name = "BookManagementForm";
+            this.helpProvider1.SetShowHelp(this, true);
             this.Text = "Zarządzanie książkami";
             this.Load += new System.EventHandler(this.BookManagementForm_Load);
             this.ResumeLayout(false);
@@ -193,5 +201,6 @@ namespace Biblioteka
         private BookSearch bookSearch;
         private System.Windows.Forms.Button publishersButton;
         private System.Windows.Forms.Button authorsButton;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

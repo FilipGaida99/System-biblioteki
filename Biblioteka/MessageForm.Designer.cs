@@ -1,4 +1,6 @@
 ﻿
+using System.IO;
+
 namespace Biblioteka
 {
     partial class MessageForm
@@ -34,6 +36,7 @@ namespace Biblioteka
             this.writeMsgButton = new System.Windows.Forms.Button();
             this.receivedMsgButton = new System.Windows.Forms.Button();
             this.sentMsgButton = new System.Windows.Forms.Button();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,6 +92,10 @@ namespace Biblioteka
             this.sentMsgButton.UseVisualStyleBackColor = true;
             this.sentMsgButton.Click += new System.EventHandler(this.sentMsgButton_Click);
             // 
+            // helpProvider1
+            // 
+            this.helpProvider1.HelpNamespace = (new FileInfo(@"Help/help.chm")).FullName;
+            // 
             // MessageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -97,6 +104,7 @@ namespace Biblioteka
             this.ClientSize = new System.Drawing.Size(707, 450);
             this.Controls.Add(this.panel1);
             this.Name = "MessageForm";
+            this.helpProvider1.SetShowHelp(this, true);
             this.Text = "MessageForm";
             this.Load += new System.EventHandler(this.MessageForm_Load);
             this.panel1.ResumeLayout(false);
@@ -111,5 +119,6 @@ namespace Biblioteka
         private System.Windows.Forms.Button sentMsgButton;
         private System.Windows.Forms.Button writeMsgButton;
         private System.Windows.Forms.FlowLayoutPanel msgListFlowPanel;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

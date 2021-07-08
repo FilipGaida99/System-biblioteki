@@ -1,4 +1,6 @@
 ﻿
+using System.IO;
+
 namespace Biblioteka
 {
     partial class BookDetails
@@ -58,6 +60,7 @@ namespace Biblioteka
             this.inventory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.availability = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             label4 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
@@ -382,6 +385,11 @@ namespace Biblioteka
             this.availability.Text = "Dostępność";
             this.availability.Width = 419;
             // 
+            // helpProvider1
+            // 
+            this.helpProvider1.HelpNamespace = (new FileInfo(@"Help/help.chm")).FullName;
+            // 
+            //
             // BookDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -389,6 +397,7 @@ namespace Biblioteka
             this.ClientSize = new System.Drawing.Size(687, 449);
             this.Controls.Add(this.tabControl);
             this.Name = "BookDetails";
+            this.helpProvider1.SetShowHelp(this, true);
             this.Text = "BookDetails";
             this.Load += new System.EventHandler(this.BookDetails_Load);
             this.tabControl.ResumeLayout(false);
@@ -424,5 +433,6 @@ namespace Biblioteka
         private System.Windows.Forms.GroupBox electronicCopyGroup;
         private System.Windows.Forms.Button lendBookButton;
         private System.Windows.Forms.ColumnHeader date;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

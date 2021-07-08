@@ -1,4 +1,6 @@
 ﻿
+using System.IO;
+
 namespace Biblioteka
 {
     partial class UserCheckoutsForm
@@ -38,6 +40,7 @@ namespace Biblioteka
             this.inventory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.returnedCheckBox = new System.Windows.Forms.CheckBox();
             this.refreshButton = new System.Windows.Forms.Button();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // label1
@@ -113,6 +116,10 @@ namespace Biblioteka
             this.refreshButton.UseVisualStyleBackColor = true;
             this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
             // 
+            // helpProvider1
+            // 
+            this.helpProvider1.HelpNamespace = (new FileInfo(@"Help/help.chm")).FullName;
+            // 
             // UserCheckoutsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -123,6 +130,7 @@ namespace Biblioteka
             this.Controls.Add(this.checkoutsList);
             this.Controls.Add(this.label1);
             this.Name = "UserCheckoutsForm";
+            this.helpProvider1.SetShowHelp(this, true);
             this.Text = "UserCheckoutsForm";
             this.Load += new System.EventHandler(this.UserCheckoutsForm_Load);
             this.ResumeLayout(false);
@@ -141,5 +149,6 @@ namespace Biblioteka
         protected System.Windows.Forms.ListView checkoutsList;
         private System.Windows.Forms.Button refreshButton;
         protected System.Windows.Forms.CheckBox returnedCheckBox;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

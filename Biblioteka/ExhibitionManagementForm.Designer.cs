@@ -1,4 +1,6 @@
 ﻿
+using System.IO;
+
 namespace Biblioteka
 {
     partial class ExhibitionManagementForm
@@ -33,6 +35,7 @@ namespace Biblioteka
             this.exhibitionList = new System.Windows.Forms.ListBox();
             this.deleteButton = new System.Windows.Forms.Button();
             this.modifyButton = new System.Windows.Forms.Button();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // newButton
@@ -73,6 +76,10 @@ namespace Biblioteka
             this.modifyButton.UseVisualStyleBackColor = true;
             this.modifyButton.Click += new System.EventHandler(this.modifyButton_Click);
             // 
+            // helpProvider1
+            // 
+            this.helpProvider1.HelpNamespace = (new FileInfo(@"Help/help.chm")).FullName;
+            // 
             // ExhibitionManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -83,6 +90,7 @@ namespace Biblioteka
             this.Controls.Add(this.exhibitionList);
             this.Controls.Add(this.newButton);
             this.Name = "ExhibitionManagementForm";
+            this.helpProvider1.SetShowHelp(this, true);
             this.Text = "Wystawy - Zarządzanie";
             this.Load += new System.EventHandler(this.ExhibitionManagementForm_Load);
             this.ResumeLayout(false);
@@ -94,5 +102,6 @@ namespace Biblioteka
         private System.Windows.Forms.ListBox exhibitionList;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button modifyButton;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }
