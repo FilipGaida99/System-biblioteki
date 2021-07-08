@@ -407,14 +407,14 @@ namespace Biblioteka
 
                     IEnumerable<Wiadomość> tmp = new List<Wiadomość>(msgList);
 
-                    if (messagesFilterForm.toUserTextBox.TextLength != 0)
+                    if (messagesFilterForm.fromUserTextBox.TextLength != 0)
                     {
                         tmp = tmp.Where(msg => msg.Bibliotekarz_Wiadomość.Where(libMsg =>
                         libMsg.Bibliotekarz.Imię == Bibliotekarz.specialLibrarianName ?
-                            "System".ToLower().Contains(messagesFilterForm.toUserTextBox.Text.ToLower()) :
+                            "System".ToLower().Contains(messagesFilterForm.fromUserTextBox.Text.ToLower()) :
                             (msg.Bibliotekarz_Wiadomość.FirstOrDefault().Bibliotekarz.Imię.ToLower() +
                             " " + msg.Bibliotekarz_Wiadomość.FirstOrDefault().Bibliotekarz.Imię.ToLower())
-                                .Contains(messagesFilterForm.toUserTextBox.Text.ToLower())
+                                .Contains(messagesFilterForm.fromUserTextBox.Text.ToLower())
                         ).Count() != 0);
                         msgList.Clear();
                         foreach (var elem in tmp)
@@ -471,12 +471,12 @@ namespace Biblioteka
 
                     IEnumerable<Wiadomość> tmp = new List<Wiadomość>(msgList);
 
-                    if (messagesFilterForm.toUserTextBox.TextLength != 0)
+                    if (messagesFilterForm.fromUserTextBox.TextLength != 0)
                     {
                         tmp = tmp.Where(msg => msg.Bibliotekarz_Wiadomość.Where(libMsg =>
                             (msg.Bibliotekarz_Wiadomość.FirstOrDefault().Bibliotekarz.Imię.ToLower() +
                             " " + msg.Bibliotekarz_Wiadomość.FirstOrDefault().Bibliotekarz.Imię.ToLower())
-                                .Contains(messagesFilterForm.toUserTextBox.Text.ToLower())
+                                .Contains(messagesFilterForm.fromUserTextBox.Text.ToLower())
                         ).Count() != 0);
                         msgList.Clear();
                         foreach (var elem in tmp)
