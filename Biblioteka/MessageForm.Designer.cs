@@ -37,12 +37,14 @@ namespace Biblioteka
             this.receivedMsgButton = new System.Windows.Forms.Button();
             this.sentMsgButton = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.filterButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // panel1
-            // 
+            //
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.filterButton);
             this.panel1.Controls.Add(this.msgListFlowPanel);
             this.panel1.Controls.Add(this.writeMsgButton);
             this.panel1.Controls.Add(this.receivedMsgButton);
@@ -51,18 +53,18 @@ namespace Biblioteka
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(683, 426);
             this.panel1.TabIndex = 0;
-            // 
+            //
             // msgListFlowPanel
-            // 
+            //
             this.msgListFlowPanel.BackColor = System.Drawing.SystemColors.ControlLight;
             this.msgListFlowPanel.Location = new System.Drawing.Point(157, 5);
             this.msgListFlowPanel.Margin = new System.Windows.Forms.Padding(0);
             this.msgListFlowPanel.Name = "msgListFlowPanel";
             this.msgListFlowPanel.Size = new System.Drawing.Size(524, 418);
             this.msgListFlowPanel.TabIndex = 4;
-            // 
+            //
             // writeMsgButton
-            // 
+            //
             this.writeMsgButton.BackColor = System.Drawing.SystemColors.ControlLight;
             this.writeMsgButton.Location = new System.Drawing.Point(4, 5);
             this.writeMsgButton.Name = "writeMsgButton";
@@ -71,33 +73,45 @@ namespace Biblioteka
             this.writeMsgButton.Text = "Wyślij wiadomość";
             this.writeMsgButton.UseVisualStyleBackColor = false;
             this.writeMsgButton.Click += new System.EventHandler(this.sendMsgButton_Click);
-            // 
+            //
             // receivedMsgButton
-            // 
-            this.receivedMsgButton.Location = new System.Drawing.Point(4, 166);
+            //
+            this.receivedMsgButton.Location = new System.Drawing.Point(4, 163);
             this.receivedMsgButton.Name = "receivedMsgButton";
             this.receivedMsgButton.Size = new System.Drawing.Size(147, 50);
             this.receivedMsgButton.TabIndex = 1;
             this.receivedMsgButton.Text = "Odebrane wiadomości";
             this.receivedMsgButton.UseVisualStyleBackColor = true;
             this.receivedMsgButton.Click += new System.EventHandler(this.receivedMsgButton_Click);
-            // 
+            //
             // sentMsgButton
-            // 
-            this.sentMsgButton.Location = new System.Drawing.Point(4, 222);
+            //
+            this.sentMsgButton.Location = new System.Drawing.Point(3, 219);
             this.sentMsgButton.Name = "sentMsgButton";
             this.sentMsgButton.Size = new System.Drawing.Size(148, 50);
             this.sentMsgButton.TabIndex = 0;
             this.sentMsgButton.Text = "Wysłane wiadomości";
             this.sentMsgButton.UseVisualStyleBackColor = true;
             this.sentMsgButton.Click += new System.EventHandler(this.sentMsgButton_Click);
-            // 
+            //
             // helpProvider1
-            // 
+            //
             this.helpProvider1.HelpNamespace = (new FileInfo(@"Help/help.chm")).FullName;
-            // 
+
+            //
+            // filterButton
+            //
+            this.filterButton.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.filterButton.Location = new System.Drawing.Point(3, 373);
+            this.filterButton.Name = "filterButton";
+            this.filterButton.Size = new System.Drawing.Size(147, 50);
+            this.filterButton.TabIndex = 5;
+            this.filterButton.Text = "Wyszukaj";
+            this.filterButton.UseVisualStyleBackColor = false;
+            this.filterButton.Click += new System.EventHandler(this.filterButton_Click);
+            //
             // MessageForm
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
@@ -120,5 +134,6 @@ namespace Biblioteka
         private System.Windows.Forms.Button writeMsgButton;
         private System.Windows.Forms.FlowLayoutPanel msgListFlowPanel;
         private System.Windows.Forms.HelpProvider helpProvider1;
+        private System.Windows.Forms.Button filterButton;
     }
 }

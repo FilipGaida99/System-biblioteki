@@ -22,6 +22,11 @@ namespace Biblioteka
         bool isSentMsgView = false;
 
         /// <summary>
+        /// Formatka filtrowania wiadomości
+        /// </summary>
+        MessagesFilterForm messagesFilterForm = new MessagesFilterForm();
+
+        /// <summary>
         /// Konstruktor
         /// </summary>
         public MessageForm()
@@ -274,6 +279,34 @@ namespace Biblioteka
                         .Select(readerMsg => readerMsg.Wiadomość)
                         .ToList();
 
+                    IEnumerable<Wiadomość> tmp = new List<Wiadomość>(msgList);
+
+                    if (messagesFilterForm.toUserTextBox.TextLength != 0)
+                    {
+                        tmp = tmp.Where(msg => msg.Bibliotekarz_Wiadomość.Where(libMsg =>
+                        libMsg.Bibliotekarz.Imię == Bibliotekarz.specialLibrarianName ?
+                            "Wszyscy bibliotekarze".ToLower().Contains(messagesFilterForm.toUserTextBox.Text.ToLower()) :
+                            (msg.Bibliotekarz_Wiadomość.FirstOrDefault().Bibliotekarz.Imię.ToLower() +
+                            " " + msg.Bibliotekarz_Wiadomość.FirstOrDefault().Bibliotekarz.Imię.ToLower())
+                                .Contains(messagesFilterForm.toUserTextBox.Text.ToLower())
+                        ).Count() != 0);
+                        msgList.Clear();
+                        foreach (var elem in tmp)
+                            msgList.Append(elem);
+                    }
+                    if (messagesFilterForm.titleTextBox.TextLength != 0)
+                        tmp = tmp.Where(msg => msg.Tytuł.Contains(messagesFilterForm.titleTextBox.Text));
+                    if (messagesFilterForm.conentTextBox.TextLength != 0)
+                        tmp = tmp.Where(msg => msg.Treść.Contains(messagesFilterForm.conentTextBox.Text));
+                    if (messagesFilterForm.fromCheckBox.Checked)
+                        tmp = tmp.Where(msg => msg.Data_wysłania >= messagesFilterForm.fromDateTimePicker.Value.Date);
+                    if (messagesFilterForm.toCheckBox.Checked)
+                        tmp = tmp.Where(msg => msg.Data_wysłania <= messagesFilterForm.toDateTimePicker.Value);
+
+                    msgList.Clear();
+                    foreach (var elem in tmp)
+                        msgList.Add(elem);
+
                     msgListFlowPanel.SuspendLayout();
                     msgListFlowPanel.Controls.Clear();
                     foreach (var elem in msgList)
@@ -298,6 +331,32 @@ namespace Biblioteka
                         .Where(librarianMsg => librarianMsg.Nadawca == true)
                         .Select(librarianMsg => librarianMsg.Wiadomość)
                         .ToList();
+
+                    IEnumerable<Wiadomość> tmp = new List<Wiadomość>(msgList);
+
+                    if (messagesFilterForm.toUserTextBox.TextLength != 0)
+                    {
+                        tmp = tmp.Where(msg => msg.Bibliotekarz_Wiadomość.Where(libMsg =>
+                            (msg.Bibliotekarz_Wiadomość.FirstOrDefault().Bibliotekarz.Imię.ToLower() +
+                            " " + msg.Bibliotekarz_Wiadomość.FirstOrDefault().Bibliotekarz.Imię.ToLower())
+                                .Contains(messagesFilterForm.toUserTextBox.Text.ToLower())
+                        ).Count() != 0);
+                        msgList.Clear();
+                        foreach (var elem in tmp)
+                            msgList.Append(elem);
+                    }
+                    if (messagesFilterForm.titleTextBox.TextLength != 0)
+                        tmp = tmp.Where(msg => msg.Tytuł.Contains(messagesFilterForm.titleTextBox.Text));
+                    if (messagesFilterForm.conentTextBox.TextLength != 0)
+                        tmp = tmp.Where(msg => msg.Treść.Contains(messagesFilterForm.conentTextBox.Text));
+                    if (messagesFilterForm.fromCheckBox.Checked)
+                        tmp = tmp.Where(msg => msg.Data_wysłania >= messagesFilterForm.fromDateTimePicker.Value.Date);
+                    if (messagesFilterForm.toCheckBox.Checked)
+                        tmp = tmp.Where(msg => msg.Data_wysłania <= messagesFilterForm.toDateTimePicker.Value);
+
+                    msgList.Clear();
+                    foreach (var elem in tmp)
+                        msgList.Add(elem);
 
                     msgListFlowPanel.SuspendLayout();
                     msgListFlowPanel.Controls.Clear();
@@ -346,6 +405,34 @@ namespace Biblioteka
                         .Select(readerMsg => readerMsg.Wiadomość)
                         .ToList();
 
+                    IEnumerable<Wiadomość> tmp = new List<Wiadomość>(msgList);
+
+                    if (messagesFilterForm.toUserTextBox.TextLength != 0)
+                    {
+                        tmp = tmp.Where(msg => msg.Bibliotekarz_Wiadomość.Where(libMsg =>
+                        libMsg.Bibliotekarz.Imię == Bibliotekarz.specialLibrarianName ?
+                            "System".ToLower().Contains(messagesFilterForm.toUserTextBox.Text.ToLower()) :
+                            (msg.Bibliotekarz_Wiadomość.FirstOrDefault().Bibliotekarz.Imię.ToLower() +
+                            " " + msg.Bibliotekarz_Wiadomość.FirstOrDefault().Bibliotekarz.Imię.ToLower())
+                                .Contains(messagesFilterForm.toUserTextBox.Text.ToLower())
+                        ).Count() != 0);
+                        msgList.Clear();
+                        foreach (var elem in tmp)
+                            msgList.Append(elem);
+                    }
+                    if (messagesFilterForm.titleTextBox.TextLength != 0)
+                        tmp = tmp.Where(msg => msg.Tytuł.Contains(messagesFilterForm.titleTextBox.Text));
+                    if (messagesFilterForm.conentTextBox.TextLength != 0)
+                        tmp = tmp.Where(msg => msg.Treść.Contains(messagesFilterForm.conentTextBox.Text));
+                    if (messagesFilterForm.fromCheckBox.Checked)
+                        tmp = tmp.Where(msg => msg.Data_wysłania >= messagesFilterForm.fromDateTimePicker.Value.Date);
+                    if (messagesFilterForm.toCheckBox.Checked)
+                        tmp = tmp.Where(msg => msg.Data_wysłania <= messagesFilterForm.toDateTimePicker.Value);
+
+                    msgList.Clear();
+                    foreach (var elem in tmp)
+                        msgList.Add(elem);
+
                     msgListFlowPanel.SuspendLayout();
                     msgListFlowPanel.Controls.Clear();
                     foreach (var elem in msgList)
@@ -381,6 +468,33 @@ namespace Biblioteka
                         .ToList();
 
                     msgList.AddRange(allLibrariansMsgList);
+
+                    IEnumerable<Wiadomość> tmp = new List<Wiadomość>(msgList);
+
+                    if (messagesFilterForm.toUserTextBox.TextLength != 0)
+                    {
+                        tmp = tmp.Where(msg => msg.Bibliotekarz_Wiadomość.Where(libMsg =>
+                            (msg.Bibliotekarz_Wiadomość.FirstOrDefault().Bibliotekarz.Imię.ToLower() +
+                            " " + msg.Bibliotekarz_Wiadomość.FirstOrDefault().Bibliotekarz.Imię.ToLower())
+                                .Contains(messagesFilterForm.toUserTextBox.Text.ToLower())
+                        ).Count() != 0);
+                        msgList.Clear();
+                        foreach (var elem in tmp)
+                            msgList.Append(elem);
+                    }
+                    if (messagesFilterForm.titleTextBox.TextLength != 0)
+                        tmp = tmp.Where(msg => msg.Tytuł.Contains(messagesFilterForm.titleTextBox.Text));
+                    if (messagesFilterForm.conentTextBox.TextLength != 0)
+                        tmp = tmp.Where(msg => msg.Treść.Contains(messagesFilterForm.conentTextBox.Text));
+                    if (messagesFilterForm.fromCheckBox.Checked)
+                        tmp = tmp.Where(msg => msg.Data_wysłania >= messagesFilterForm.fromDateTimePicker.Value.Date);
+                    if (messagesFilterForm.toCheckBox.Checked)
+                        tmp = tmp.Where(msg => msg.Data_wysłania <= messagesFilterForm.toDateTimePicker.Value);
+
+                    msgList.Clear();
+                    foreach (var elem in tmp)
+                        msgList.Add(elem);
+
                     msgList.Sort(delegate (Wiadomość x, Wiadomość y)
                     {
                         if (x.Data_wysłania == null && y.Data_wysłania == null) return 0;
@@ -415,6 +529,20 @@ namespace Biblioteka
                 //}
                 //msgListFlowPanel.ResumeLayout();
             }
+        }
+
+        /// <summary>
+        /// Obsługa filtrowania wiadomości.
+        /// </summary>
+        /// <param name="sender">Kontrolka.</param>
+        /// <param name="e">Argumenty.</param>
+        private void filterButton_Click(object sender, EventArgs e)
+        {
+            messagesFilterForm.ShowDialog();
+            if (isSentMsgView)
+                LoadSentMessages();
+            else
+                LoadRecievedMessages();
         }
     }
 }
