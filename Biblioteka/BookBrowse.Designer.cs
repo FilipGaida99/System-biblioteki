@@ -1,4 +1,6 @@
 ﻿
+using System.IO;
+
 namespace Biblioteka
 {
     partial class BookBrowse
@@ -31,6 +33,7 @@ namespace Biblioteka
         {
             this.bookLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.bookSearch = new Biblioteka.BookSearch();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // bookLayout
@@ -51,6 +54,10 @@ namespace Biblioteka
             this.bookSearch.Size = new System.Drawing.Size(583, 237);
             this.bookSearch.TabIndex = 0;
             // 
+            // helpProvider1
+            // 
+            this.helpProvider1.HelpNamespace = (new FileInfo(@"Help/help.chm")).FullName;
+            // 
             // BookBrowse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -59,6 +66,7 @@ namespace Biblioteka
             this.Controls.Add(this.bookLayout);
             this.Controls.Add(this.bookSearch);
             this.Name = "BookBrowse";
+            this.helpProvider1.SetShowHelp(this, true);
             this.Text = "Przeglądanie księgozbioru";
             this.Load += new System.EventHandler(this.BookBrowse_Load);
             this.ResumeLayout(false);
@@ -69,5 +77,6 @@ namespace Biblioteka
 
         private BookSearch bookSearch;
         private System.Windows.Forms.FlowLayoutPanel bookLayout;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

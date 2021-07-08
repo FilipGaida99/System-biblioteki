@@ -1,4 +1,6 @@
 ﻿
+using System.IO;
+
 namespace Biblioteka
 {
     partial class CheckoutForm
@@ -37,6 +39,7 @@ namespace Biblioteka
             this.reservationSearch1 = new Biblioteka.ReservationSearch();
             this.reservationsLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -120,11 +123,16 @@ namespace Biblioteka
             this.label1.TabIndex = 0;
             this.label1.Text = "Rezerwacje:";
             // 
+            // helpProvider1
+            // 
+            this.helpProvider1.HelpNamespace = (new FileInfo(@"Help/help.chm")).FullName;
+            // 
             // CheckoutForm
             // 
             this.ClientSize = new System.Drawing.Size(571, 597);
             this.Controls.Add(this.tabControl1);
             this.Name = "CheckoutForm";
+            this.helpProvider1.SetShowHelp(this, true);
             this.Text = "Wypożyczanie";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -145,5 +153,6 @@ namespace Biblioteka
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.FlowLayoutPanel reservationsLayoutPanel;
         private ReservationSearch reservationSearch1;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

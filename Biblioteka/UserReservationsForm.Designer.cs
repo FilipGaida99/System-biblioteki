@@ -1,4 +1,6 @@
 ﻿
+using System.IO;
+
 namespace Biblioteka
 {
     partial class UserReservationsForm
@@ -31,6 +33,7 @@ namespace Biblioteka
         {
             this.label1 = new System.Windows.Forms.Label();
             this.reservationsLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // label1
@@ -52,12 +55,17 @@ namespace Biblioteka
             this.reservationsLayoutPanel.Size = new System.Drawing.Size(484, 295);
             this.reservationsLayoutPanel.TabIndex = 1;
             // 
+            // helpProvider1
+            // 
+            this.helpProvider1.HelpNamespace = (new FileInfo(@"Help/help.chm")).FullName;
+            // 
             // UserReservationsForm
             // 
             this.ClientSize = new System.Drawing.Size(508, 339);
             this.Controls.Add(this.reservationsLayoutPanel);
             this.Controls.Add(this.label1);
             this.Name = "UserReservationsForm";
+            this.helpProvider1.SetShowHelp(this, true);
             this.Text = "Moje rezerwacje";
             this.Load += new System.EventHandler(this.UserReservationsForm_Load);
             this.ResumeLayout(false);
@@ -71,5 +79,6 @@ namespace Biblioteka
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.FlowLayoutPanel reservationsLayoutPanel;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

@@ -1,4 +1,6 @@
 ﻿
+using System.IO;
+
 namespace Biblioteka
 {
     partial class ExtensionForm
@@ -35,8 +37,9 @@ namespace Biblioteka
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // acceptButton
@@ -88,15 +91,19 @@ namespace Biblioteka
             // 
             this.columnHeader3.Text = "ID Czytelnika";
             // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Data zwrotu";
+            this.columnHeader4.Width = 70;
+            // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "Książka";
             this.columnHeader5.Width = 140;
             // 
-            // columnHeader4
+            // helpProvider1
             // 
-            this.columnHeader4.Text = "Data zwrotu";
-            this.columnHeader4.Width = 70;
+            this.helpProvider1.HelpNamespace = (new FileInfo(@"Help/help.chm")).FullName;
             // 
             // ExtensionForm
             // 
@@ -107,6 +114,7 @@ namespace Biblioteka
             this.Controls.Add(this.discardButton);
             this.Controls.Add(this.acceptButton);
             this.Name = "ExtensionForm";
+            this.helpProvider1.SetShowHelp(this, true);
             this.Text = "ExtensionForm";
             this.Load += new System.EventHandler(this.ExtensionForm_Load);
             this.ResumeLayout(false);
@@ -122,5 +130,6 @@ namespace Biblioteka
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }
