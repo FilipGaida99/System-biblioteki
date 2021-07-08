@@ -88,14 +88,13 @@ namespace Biblioteka
                         reservations.Remove(reservation);
                         db.SaveChanges();
                         onClick.Invoke();
-                        MessageBox.Show($"Pomyślnie wypożyczono \"{book.Tytuł}\" o numerze inwentarza: \"{copiesNotInUse.ElementAt(0).Nr_inwentarza}\"!",
-                                        "Informacja",
-                                        MessageBoxButtons.OK,
-                                        MessageBoxIcon.Information);
+
+                        var caption = $"Udało się wypożyczyć o tytule {book.Tytuł} i numerze inwentarza {copiesNotInUse.ElementAt(0).Nr_inwentarza}.";
+                        MessageBox.Show(caption, "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show("Błąd", "Ta książka została zarezerwowana wcześniej przez kogoś innego!\n Brak wolnych egzemplarzy!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Ta książka została zarezerwowana wcześniej przez kogoś innego!\n Brak wolnych egzemplarzy!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                 }
