@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using BibliotekaModel;
 
 namespace Biblioteka
 {
@@ -323,6 +324,10 @@ namespace Biblioteka
             copyList.SelectedIndex = -1;
         }
 
+        /// <summary>
+        /// Wysłanie powiadomienia o odwołaniu rezerwacji.
+        /// </summary>
+        /// <param name="reservations">Rezerwacja.</param>
         void SendCancelationNotification(Rezerwacje reservations)
         {
             Wiadomość.SystemNotification("Usunięto rezerwację",

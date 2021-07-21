@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Windows.Forms;
+using BibliotekaModel;
 
 namespace Biblioteka
 {

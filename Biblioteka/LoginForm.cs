@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using BibliotekaModel;
 
 
 namespace Biblioteka

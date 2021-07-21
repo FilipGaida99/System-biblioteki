@@ -2,6 +2,7 @@
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using BibliotekaModel;
 
 namespace Biblioteka
 {
@@ -13,11 +14,11 @@ namespace Biblioteka
         /// <summary>
         /// Znak oznaczający rosnącą kolejność sortowania.
         /// </summary>
-        const string ascArrow = " ▲";
+        const string ascArrow = " A";
         /// <summary>
         /// nak oznaczający malejącą kolejność sortowania.
         /// </summary>
-        const string descArrow = " ▼";
+        const string descArrow = " V";
         /// <summary>
         /// Książka dostarczająca informacje.
         /// </summary>

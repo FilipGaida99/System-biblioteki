@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 
-namespace Biblioteka
+namespace BibliotekaModel
 {
     /// <summary>
     /// Klasa odpowiedzialna za komunikację z bazą danych.

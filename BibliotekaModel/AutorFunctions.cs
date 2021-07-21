@@ -1,7 +1,10 @@
 ﻿using System.Linq;
 
-namespace Biblioteka
+namespace BibliotekaModel
 {
+    /// <summary>
+    /// Encja autora.
+    /// </summary>
     public partial class Autor
     {
         /// <summary>

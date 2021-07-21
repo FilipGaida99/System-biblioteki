@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Linq;
 using System.Text.RegularExpressions;
+using BibliotekaModel;
 
 namespace Biblioteka
 {

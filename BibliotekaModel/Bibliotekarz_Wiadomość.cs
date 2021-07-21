@@ -1,4 +1,4 @@
-namespace Biblioteka
+namespace BibliotekaModel
 {
     using System;
     using System.Collections.Generic;

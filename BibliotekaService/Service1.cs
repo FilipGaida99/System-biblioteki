@@ -7,9 +7,9 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
-using Biblioteka;
 using System.Timers;
 using System.Data.Entity;
+using BibliotekaModel;
 
 namespace BibliotekaService
 {

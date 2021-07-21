@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Biblioteka
+namespace BibliotekaModel
 {
+    /// <summary>
+    /// Encja książki.
+    /// </summary>
     public partial class Książka
     {
         /// <summary>

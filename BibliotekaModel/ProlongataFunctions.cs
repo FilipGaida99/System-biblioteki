@@ -1,5 +1,8 @@
-﻿namespace Biblioteka
+﻿namespace BibliotekaModel
 {
+    /// <summary>
+    /// Encja prolongaty.
+    /// </summary>
     public partial class Prolongata
     {
         /// <summary>

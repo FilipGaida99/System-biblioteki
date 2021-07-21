@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using BibliotekaModel;
 
 namespace Biblioteka
 {
@@ -28,13 +29,13 @@ namespace Biblioteka
         /// <summary>
         /// Obsługa wyszukiwania na podstawie ustawionych argumentów.
         /// </summary>
-        /// <param name = "sender" > Kontrolka.</ param >
+        /// <param name="sender">Kontrolka.</param>
         /// <param name="e">Argumenty.</param>
         private void searchButton_Click(object sender, EventArgs e)
         {
-            if(startDatePicker.Checked && endDatePicker.Checked)
+            if (startDatePicker.Checked && endDatePicker.Checked)
             {
-                if(endDatePicker.Value < startDatePicker.Value)
+                if (endDatePicker.Value < startDatePicker.Value)
                 {
                     MessageBox.Show("Wprowadzono pusty przedział dat. Nic nie zostanie znalezione.", "Niepoprawna data",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);

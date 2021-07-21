@@ -1,4 +1,4 @@
-namespace Biblioteka
+namespace BibliotekaModel
 {
     using System;
     using System.Collections.Generic;
@@ -6,6 +6,7 @@ namespace Biblioteka
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    
     /// <summary>
     /// Encja autora.
     /// </summary>

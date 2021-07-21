@@ -2,8 +2,11 @@
 using System.Data.Entity;
 using System.Linq;
 
-namespace Biblioteka
+namespace BibliotekaModel
 {
+    /// <summary>
+    /// Encja kary.
+    /// </summary>
     public partial class Kara
     {
         /// <summary>

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Linq;
 
-namespace Biblioteka
+namespace BibliotekaModel
 {
+    /// <summary>
+    /// Encja wypożyczenia.
+    /// </summary>
     public partial class Wypożyczenie
     {
         /// <summary>
